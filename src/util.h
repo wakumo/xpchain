@@ -47,8 +47,8 @@ public:
 
 extern CTranslationInterface translationInterface;
 
-extern const char * const BITCOIN_CONF_FILENAME;
-extern const char * const BITCOIN_PID_FILENAME;
+extern const char * const XPCHAIN_CONF_FILENAME;
+extern const char * const XPCHAIN_PID_FILENAME;
 
 /**
  * Translation function: Call Translate signal on UI interface, which returns a boost::optional result.
