@@ -130,7 +130,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
 
         config = configparser.ConfigParser()
         config.read_file(open(self.options.configfile))
-        self.options.bitcoind = os.getenv("BITCOIND", default=config["environment"]["BUILDDIR"] + '/src/bitcoind' + config["environment"]["EXEEXT"])
+        self.options.bitcoind = os.getenv("XPCHAIND", default=config["environment"]["BUILDDIR"] + '/src/xpchaind' + config["environment"]["EXEEXT"])
         self.options.bitcoincli = os.getenv("BITCOINCLI", default=config["environment"]["BUILDDIR"] + '/src/bitcoin-cli' + config["environment"]["EXEEXT"])
 
         os.environ['PATH'] = os.pathsep.join([
@@ -187,7 +187,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         else:
             for node in self.nodes:
                 node.cleanup_on_exit = False
-            self.log.info("Note: bitcoinds were not stopped and may still be running")
+            self.log.info("Note: xpchainds were not stopped and may still be running")
 
         if not self.options.nocleanup and not self.options.noshutdown and success != TestStatus.FAILED:
             self.log.info("Cleaning up {} on exit".format(self.options.tmpdir))
@@ -270,7 +270,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
             self.nodes.append(TestNode(i, get_datadir_path(self.options.tmpdir, i), rpchost=rpchost, timewait=self.rpc_timewait, bitcoind=binary[i], bitcoin_cli=self.options.bitcoincli, mocktime=self.mocktime, coverage_dir=self.options.coveragedir, extra_conf=extra_confs[i], extra_args=extra_args[i], use_cli=self.options.usecli))
 
     def start_node(self, i, *args, **kwargs):
-        """Start a bitcoind"""
+        """Start a xpchaind"""
 
         node = self.nodes[i]
 
@@ -281,7 +281,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
             coverage.write_all_rpc_commands(self.options.coveragedir, node.rpc)
 
     def start_nodes(self, extra_args=None, *args, **kwargs):
-        """Start multiple bitcoinds"""
+        """Start multiple xpchainds"""
 
         if extra_args is None:
             extra_args = [None] * self.num_nodes
@@ -306,7 +306,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         self.nodes[i].wait_until_stopped()
 
     def stop_nodes(self):
-        """Stop multiple bitcoind test nodes"""
+        """Stop multiple xpchaind test nodes"""
         for node in self.nodes:
             # Issue RPC to stop nodes
             node.stop_node()
@@ -375,7 +375,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
         # User can provide log level as a number or string (eg DEBUG). loglevel was caught as a string, so try to convert it to an int
         ll = int(self.options.loglevel) if self.options.loglevel.isdigit() else self.options.loglevel.upper()
         ch.setLevel(ll)
-        # Format logs the same as bitcoind's debug.log with microprecision (so log files can be concatenated and sorted)
+        # Format logs the same as xpchaind's debug.log with microprecision (so log files can be concatenated and sorted)
         formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d000Z %(name)s (%(levelname)s): %(message)s', datefmt='%Y-%m-%dT%H:%M:%S')
         formatter.converter = time.gmtime
         fh.setFormatter(formatter)
@@ -412,7 +412,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                 if os.path.isdir(get_datadir_path(self.options.cachedir, i)):
                     shutil.rmtree(get_datadir_path(self.options.cachedir, i))
 
-            # Create cache directories, run bitcoinds:
+            # Create cache directories, run xpchainds:
             for i in range(MAX_NODES):
                 datadir = initialize_datadir(self.options.cachedir, i)
                 args = [self.options.bitcoind, "-datadir=" + datadir]

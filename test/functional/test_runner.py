@@ -237,7 +237,7 @@ def main():
 
     enable_wallet = config["components"].getboolean("ENABLE_WALLET")
     enable_utils = config["components"].getboolean("ENABLE_UTILS")
-    enable_bitcoind = config["components"].getboolean("ENABLE_BITCOIND")
+    enable_xpchaind = config["components"].getboolean("ENABLE_XPCHAIND")
 
     if config["environment"]["EXEEXT"] == ".exe" and not args.force:
         # https://github.com/bitcoin/bitcoin/commit/d52802551752140cf41f0d9a225a43e84404d3e9
@@ -245,8 +245,8 @@ def main():
         print("Tests currently disabled on Windows by default. Use --force option to enable")
         sys.exit(0)
 
-    if not (enable_wallet and enable_utils and enable_bitcoind):
-        print("No functional tests to run. Wallet, utils, and bitcoind must all be enabled")
+    if not (enable_wallet and enable_utils and enable_xpchaind):
+        print("No functional tests to run. Wallet, utils, and xpchaind must all be enabled")
         print("Rerun `configure` with -enable-wallet, -with-utils and -with-daemon and rerun make")
         sys.exit(0)
 
@@ -311,8 +311,8 @@ def run_tests(test_list, src_dir, build_dir, tmpdir, jobs=1, enable_coverage=Fal
 
     # Warn if bitcoind is already running (unix only)
     try:
-        if subprocess.check_output(["pidof", "bitcoind"]) is not None:
-            print("%sWARNING!%s There is already a bitcoind process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
+        if subprocess.check_output(["pidof", "xpchaind"]) is not None:
+            print("%sWARNING!%s There is already a xpchaind process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except (OSError, subprocess.SubprocessError):
         pass
 

@@ -1027,7 +1027,7 @@ class SegWitTest(BitcoinTestFramework):
         self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
         assert(self.nodes[0].getbestblockhash() != block.hash)
 
-        # Now redo commitment with the standard nonce, but let bitcoind fill it in.
+        # Now redo commitment with the standard nonce, but let xpchaind fill it in.
         add_witness_commitment(block, nonce=0)
         block.vtx[0].wit = CTxWitness()
         block.solve()
