@@ -21,7 +21,7 @@ class DeprecatedRpcTest(BitcoinTestFramework):
         # self.nodes[1].createmultisig(1, [self.nodes[1].getnewaddress()])
 
         self.log.info("Test validateaddress deprecation")
-        SOME_ADDRESS = "mnvGjUy3NMj67yJ6gkK5o9e5RS33Z2Vqcu"  # This is just some random address to pass as a parameter to validateaddress
+        SOME_ADDRESS = "cWxDzpwfH9iKdBAtfiFAwJ2i8qxRLxXvx6"  # This is just some random address to pass as a parameter to validateaddress
         dep_validate_address = self.nodes[0].validateaddress(SOME_ADDRESS)
         assert "ismine" not in dep_validate_address
         not_dep_val = self.nodes[1].validateaddress(SOME_ADDRESS)
