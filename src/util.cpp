@@ -83,7 +83,6 @@ const int64_t nStartupTime = GetTime();
 
 const char * const XPCHAIN_CONF_FILENAME = "xpchain.conf";
 const char * const XPCHAIN_PID_FILENAME = "xpchaind.pid";
-const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
 
