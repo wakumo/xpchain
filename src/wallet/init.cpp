@@ -47,6 +47,8 @@ public:
 
     //! Close all wallets.
     void Close() const override;
+
+    void StartMinting(boost::thread_group& threadGroup) const override;
 };
 
 const WalletInitInterface& g_wallet_init_interface = WalletInit();
@@ -266,5 +268,12 @@ void WalletInit::Close() const
 {
     for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
         RemoveWallet(pwallet);
+    }
+}
+
+void WalletInit::StartMinting(boost::thread_group& threadGroup) const
+{
+    for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
+
     }
 }

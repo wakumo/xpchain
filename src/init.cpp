@@ -87,6 +87,7 @@ public:
     void Flush() const override {}
     void Stop() const override {}
     void Close() const override {}
+    void StartMinting() const override {}
 };
 
 void DummyWalletInit::AddWalletOptions() const
@@ -1754,6 +1755,10 @@ bool AppInitMain()
         return false;
     }
 
+    #ifndef ENABLE_WALLET
+    if(gArgs.GetBoolArg("-stakegen", true))
+        g_wallet_init_interface.StartMinting(threadGroup);
+    #endif
     // ********************************************************* Step 13: finished
 
     SetRPCWarmupFinished();
