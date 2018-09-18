@@ -456,9 +456,24 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
 
-void static ThreadStakeMinter(std::shared_ptr<CWallet>& wallet)
+void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
 {
+    
+}
 
+void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
+{
+    LogPrintf("ThreadStakeMinter started\n");
+    try
+    {
+        BitcoinMinter(wallet);
+    }
+    catch (std::exception& e) {
+        PrintExceptionContinue(&e, "ThreadStakeMinter()");
+    } catch (...) {
+        PrintExceptionContinue(NULL, "ThreadStakeMinter()");
+    }
+    LogPrintf("ThreadStakeMinter exiting\n");
 }
 
 void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
