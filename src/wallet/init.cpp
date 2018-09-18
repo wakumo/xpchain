@@ -15,6 +15,7 @@
 #include <wallet/rpcwallet.h>
 #include <wallet/wallet.h>
 #include <wallet/walletutil.h>
+#include <miner.h>
 
 class WalletInit : public WalletInitInterface {
 public:
@@ -274,6 +275,6 @@ void WalletInit::Close() const
 void WalletInit::StartMinting(boost::thread_group& threadGroup) const
 {
     for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-
+        MintStake(threadGroup, pwallet);
     }
 }

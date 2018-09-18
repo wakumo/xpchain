@@ -451,3 +451,8 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
+
+void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
+{
+
+}

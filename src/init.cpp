@@ -1755,10 +1755,9 @@ bool AppInitMain()
         return false;
     }
 
-    #ifndef ENABLE_WALLET
+
     if(gArgs.GetBoolArg("-stakegen", true))
         g_wallet_init_interface.StartMinting(threadGroup);
-    #endif
     // ********************************************************* Step 13: finished
 
     SetRPCWarmupFinished();

@@ -18,8 +18,13 @@
 class CBlockIndex;
 class CChainParams;
 class CScript;
+class CWallet;
 
 namespace Consensus { struct Params; };
+
+namespace boost {
+    class thread_group;
+}
 
 static const bool DEFAULT_PRINTPRIORITY = false;
 
@@ -196,5 +201,7 @@ private:
 /** Modify the extranonce in a block */
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
+
+void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet);
 
 #endif // BITCOIN_MINER_H
