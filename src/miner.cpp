@@ -29,6 +29,10 @@
 #include <queue>
 #include <utility>
 
+#include <wallet/wallet.h>
+#include <warnings.h>
+#include <boost/thread.hpp>
+
 // Unconfirmed transactions in the memory pool often depend on other
 // transactions in the memory pool. When we select transactions from the
 // pool, we select by highest fee rate of a transaction combined with all
@@ -452,7 +456,12 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
 
-void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
+void static ThreadStakeMinter(std::shared_ptr<CWallet>& wallet)
 {
 
+}
+
+void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
+{
+    threadGroup.create_thread(boost::bind(&ThreadStakeMinter, wallet));
 }
