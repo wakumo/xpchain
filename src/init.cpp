@@ -87,7 +87,7 @@ public:
     void Flush() const override {}
     void Stop() const override {}
     void Close() const override {}
-    void StartMinting() const override {}
+    void StartMinting(boost::thread_group& threadGroup) const override {}
 };
 
 void DummyWalletInit::AddWalletOptions() const
