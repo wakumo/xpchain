@@ -29,9 +29,11 @@
 #include <queue>
 #include <utility>
 
+#ifdef ENABLE_WALLET
 #include <wallet/wallet.h>
 #include <warnings.h>
 #include <boost/thread.hpp>
+#endif
 
 // Unconfirmed transactions in the memory pool often depend on other
 // transactions in the memory pool. When we select transactions from the
@@ -455,7 +457,7 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
-
+#ifdef ENABLE_WALLET
 void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
 {
     
@@ -480,3 +482,4 @@ void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>&
 {
     threadGroup.create_thread(boost::bind(&ThreadStakeMinter, wallet));
 }
+#endif
