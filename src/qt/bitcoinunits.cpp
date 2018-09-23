@@ -64,9 +64,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case XPC: return QString("Bitcoins");
-    case mXPC: return QString("Milli-Bitcoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uXPC: return QString("Micro-Bitcoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case XPC: return QString("XPChains");
+    case mXPC: return QString("Milli-XPChains (1 / 1" THIN_SP_UTF8 "000)");
+    case uXPC: return QString("Micro-XPChains (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
