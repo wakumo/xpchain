@@ -460,7 +460,40 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
 #ifdef ENABLE_WALLET
 void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
 {
-    
+    LogPrintf("CPUMiner started for proof-of-stake\n");
+    RenameThread("xpchain-stake-minter");
+
+    std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
+    std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
+    std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
+    try
+    {
+        while (true)
+        {
+            if(gArgs.GetBoolArg("-nominting", false))
+            {
+                //strMintWarnig = strMintDisabledMessage
+                return;
+            }
+
+            //while (vNodes.empty())
+            //    MilliSleep(1000);
+
+            while(wallet->IsLocked())
+            {
+                //strMintWarning = strMintMessage;
+                MilliSleep(1000);
+            }
+            //strMintWarning = "";
+
+            return;
+        }
+    }
+    catch (boost::thread_interrupted)
+    {
+        LogPrintf("PeercoinMiner terminated\n");
+        throw;
+    }
 }
 
 void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
