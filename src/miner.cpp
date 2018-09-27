@@ -102,7 +102,7 @@ void BlockAssembler::resetBlock()
     nFees = 0;
 }
 
-std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx, bool fProofOfStale)
 {
     int64_t nTimeStart = GetTimeMicros();
 
@@ -463,6 +463,9 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
     LogPrintf("CPUMiner started for proof-of-stake\n");
     RenameThread("xpchain-stake-minter");
 
+    CReserveKey reserveKey(wallet.get());
+    unsigned int nExtraNonce = 0;
+
     std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
     std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
     std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
@@ -485,6 +488,20 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
                 MilliSleep(1000);
             }
             //strMintWarning = "";
+
+            //
+            // Create new block
+            // 
+            CBlockIndex* pindexPrev = chainActive.Tip();
+            std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(reserveKey.reserveScript,true, true));
+            CBlock *pblock = &pblocktemplate->block;
+            {
+                LOCK(cs_main);
+                //IncrementExtraNonce(pblock, chainActive.Tip(), nExtraNonce);
+            }
+
+            if (!pblocktemplate.get())
+                //throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 
             return;
         }
