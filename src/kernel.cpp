@@ -39,7 +39,7 @@ using namespace std;
 bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned int nTxPrevOffset, const CTxOut& txOutPrev, const COutPoint& prevout, uint32_t nTimeTx, uint256& hashProofOfStake)
 {
     uint32_t nTimeBlockFrom = blockFrom.GetBlockTime();
-    if (nTimeBlockFrom + Params().GetConsensus().nStakeMinAge > nTimeTx) // Min age requirement
+    if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
         return error("CheckStakeKernelHash() : min age violation");
 
     arith_uint256 bnTargetPerCoinDay;
@@ -47,7 +47,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
     // v0.3 protocol kernel hash weight starts from 0 at the 30-day min age
     // this change increases active coins participating the hash and helps
     // to secure the network when proof-of-stake difficulty is low
-    int64_t nTimeWeight = min((int64_t)nTimeTx - nTimeBlockFrom, Params().GetConsensus().nStakeMaxAge) - Params().GetConsensus().nStakeMinAge;
+    int64_t nTimeWeight = min((int64_t)nTimeTx - nTimeBlockFrom, nStakeMaxAge) - nStakeMinAge;
     arith_uint256 bnCoinDayWeight = arith_uint256(txOutPrev.nValue) * nTimeWeight / COIN / (24 * 60 * 60);
     // Calculate hash
     CDataStream ss(SER_GETHASH, 0);
