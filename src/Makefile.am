@@ -121,6 +121,7 @@ BITCOIN_CORE_H = \
   index/txindex.h \
   indirectmap.h \
   init.h \
+  kernel.h \
   interfaces/handler.h \
   interfaces/node.h \
   interfaces/wallet.h \
@@ -227,6 +228,7 @@ libbitcoin_server_a_SOURCES = \
   index/base.cpp \
   index/txindex.cpp \
   init.cpp \
+  kernel.cpp \
   dbwrapper.cpp \
   merkleblock.cpp \
   miner.cpp \
