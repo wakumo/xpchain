@@ -107,6 +107,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
+        consensus.nSwitchHeight = 10080;
+
+        consensus.nStakeMinAge = 60 * 60 * 24 * 3;
+        consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
+
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -201,6 +206,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
+        consensus.nSwitchHeight = 168;
+
+        consensus.nStakeMinAge = 0;
+        consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
+
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0x87;
         pchMessageStart[2] = 0xbb;
@@ -284,6 +294,11 @@ public:
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
+
+        consensus.nSwitchHeight = 100;
+
+        consensus.nStakeMinAge = 0;
+        consensus.nStakeMaxAge = 60 * 60 * 24 * 100;
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0x87;

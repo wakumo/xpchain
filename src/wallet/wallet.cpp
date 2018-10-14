@@ -4352,6 +4352,26 @@ bool CWallet::BackupWallet(const std::string& strDest)
     return database->Backup(strDest);
 }
 
+bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, uint32_t& nCoinStakeTime)
+{
+    LOCK2(cs_main, cs_wallet);
+    txNew.vin.clear();
+    txNew.vout.clear();
+    // Choose coins to use
+    CAmount nBalance = GetBalance();
+    CAmount nReserveBalance = 0;
+    if (gArgs.IsArgSet("-reservebalance") && !ParseMoney(gArgs.GetArg("-reservebalance", ""), nReserveBalance))
+        return error("CreateCoinStake : invalid reserve balance amount");
+    if (nBalance <= nReserveBalance)
+        return false;
+
+    //get utxo pool
+    //create coinstake tx
+    //checkproofofstake
+    //
+    return true;
+}
+
 CKeyPool::CKeyPool()
 {
     nTime = GetTime();

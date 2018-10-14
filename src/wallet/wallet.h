@@ -1211,6 +1211,8 @@ public:
         LogPrintf(("%s " + fmt).c_str(), GetDisplayName(), parameters...);
     };
 
+    bool CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, uint32_t& nCoinStakeTime);
+
 };
 
 /** A key allocated from the key pool. */

@@ -2,7 +2,7 @@
 
 #include "kernel.h"
 #include "db.h"
-#include "uint256hm.h"
+#include "uint256.h"
 #include <chainparams.h>
 #include "util.h"
 #include <wallet/wallet.h>
@@ -10,8 +10,12 @@
 #include "timedata.h"
 #include "txdb.h"
 #include <validation.h>
+#include <index/txindex.h>
 
 using namespace std;
+
+struct CDiskIndex;
+
 
 // ppcoin kernel protocol
 // coinstake must meet hash target according to the protocol:
@@ -39,7 +43,7 @@ using namespace std;
 bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned int nTxPrevOffset, const CTxOut& txOutPrev, const COutPoint& prevout, uint32_t nTimeTx, uint256& hashProofOfStake)
 {
     uint32_t nTimeBlockFrom = blockFrom.GetBlockTime();
-    if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
+    if (nTimeBlockFrom + Params().GetConsensus().nStakeMinAge > nTimeTx) // Min age requirement
         return error("CheckStakeKernelHash() : min age violation");
 
     arith_uint256 bnTargetPerCoinDay;
@@ -47,7 +51,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
     // v0.3 protocol kernel hash weight starts from 0 at the 30-day min age
     // this change increases active coins participating the hash and helps
     // to secure the network when proof-of-stake difficulty is low
-    int64_t nTimeWeight = min((int64_t)nTimeTx - nTimeBlockFrom, nStakeMaxAge) - nStakeMinAge;
+    int64_t nTimeWeight = min((int64_t)nTimeTx - nTimeBlockFrom, Params().GetConsensus().nStakeMaxAge) - Params().GetConsensus().nStakeMinAge;
     arith_uint256 bnCoinDayWeight = arith_uint256(txOutPrev.nValue) * nTimeWeight / COIN / (24 * 60 * 60);
     // Calculate hash
     CDataStream ss(SER_GETHASH, 0);
@@ -67,40 +71,29 @@ bool CheckProofOfStake(CValidationState& state, const CTransactionRef& tx, unsig
 {
     const CTxIn& txin = tx->vin[0];
 
-    CTransactionRef txTemp;
+    CTransactionRef txTmp;
     uint256 hashBlock;
 
     if (!GetTransaction(txin.prevout.hash, txTmp, Params().GetConsensus(), hashBlock))
-        return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
+        return false;
+        //return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
 
     // Verify signature
     PrecomputedTransactionData txdata(*tx);
     if (!CScriptCheck(txTmp->vout[tx->vin[0].prevout.n], *tx, 0, 0, true, &txdata)())
-        return state.DoS(100, error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx->GetHash().ToString()));
+        return false;
+        //return state.DoS(100, error("CheckProofOfStake() : VerifySignature failed on coinstake %s", tx->GetHash().ToString()));
 
     // Get transaction index for the previous transaction
     CDiskTxPos postx;
-    if (!pblocktree->ReadTxIndex(txin.prevout.hash, postx))
-        return error("CheckProofOfStake() : tx index not found");  // tx index not found
-
-    // Read txPrev and header of its block
     CBlockHeader header;
     CTransactionRef txPrev;
-    {
-        CAutoFile file(OpenBlockFile(postx, true), SER_DISK, CLIENT_VERSION);
-        try {
-            file >> header;
-            fseek(file.Get(), postx.nTxOffset, SEEK_CUR);
-            file >> txPrev;
-        } catch (std::exception& e) {
-            return error("%s() : deserialize or I/O error in CheckProofOfStake()", __PRETTY_FUNCTION__);
-        }
-        if (txPrev->GetHash() != txin.prevout.hash)
-            return error("%s() : txid mismatch in CheckProofOfStake()", __PRETTY_FUNCTION__);
-    }
+    if(!g_txindex->FindTx(txin.prevout.hash,postx,header,txPrev))
+        return false;
 
-    if (!CheckStakeKernelHash(nBits, header, postx.nTxOffset + CBlockHeader::NORMAL_SERIALIZE_SIZE, txPrev->vout[txin.prevout.n], txin.prevout, nBlockTime, hashProofOfStake))
-        return state.DoS(1, error("CheckProofOfStake() : INFO: check kernel failed on coinstake %s, hashProof=%s", tx->GetHash().ToString(), hashProofOfStake.ToString())); // may occur during initial download or if behind on block chain sync
+    if (!CheckStakeKernelHash(nBits, header, postx.nTxOffset + sizeof(CBlockHeader), txPrev->vout[txin.prevout.n], txin.prevout, nBlockTime, hashProofOfStake))
+        return false;
+        //return state.DoS(1, error("CheckProofOfStake() : INFO: check kernel failed on coinstake %s, hashProof=%s", tx->GetHash().ToString(), hashProofOfStake.ToString())); // may occur during initial download or if behind on block chain sync
 
     return true;
     

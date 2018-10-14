@@ -102,7 +102,7 @@ void BlockAssembler::resetBlock()
     nFees = 0;
 }
 
-std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx, bool fProofOfStale)
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 {
     int64_t nTimeStart = GetTimeMicros();
 
@@ -123,6 +123,14 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
+
+    if(nHeight >= chainparams.GetConsensus().nSwitchHeight)
+    {
+        //add dummy "Send to myself" Tx as 2nd transaction
+        pblock->vtx.emplace_back();
+        pblocktemplate->vTxFees.push_back(-1); // updated at end
+        pblocktemplate->vTxSigOpsCost.push_back(-1); // updated at end
+    }
 
     pblock->nVersion = ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());
     // -regtest only: allow overriding block.nVersion with
@@ -163,11 +171,23 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
-    coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+     if(nHeight < chainparams.GetConsensus().nSwitchHeight)
+    {
+        coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    }
+    else
+    {
+        //coinbasetx pos
+    }
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
     pblocktemplate->vTxFees[0] = -nFees;
+
+    if(nHeight>=chainparams.GetConsensus().nSwitchHeight)
+    {
+        //create "Send to myself" Tx
+    }
 
     LogPrintf("CreateNewBlock(): block weight: %u txs: %u fees: %ld sigops %d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
 
@@ -491,18 +511,20 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
 
             //
             // Create new block
-            // 
+            //
             CBlockIndex* pindexPrev = chainActive.Tip();
-            std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(reserveKey.reserveScript,true, true));
+            std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(reserveKey.reserveScript));
             CBlock *pblock = &pblocktemplate->block;
             {
                 LOCK(cs_main);
                 //IncrementExtraNonce(pblock, chainActive.Tip(), nExtraNonce);
             }
-
-            if (!pblocktemplate.get())
+            //if(checkproofofstake())
+            //continue
+            //if (!pblocktemplate.get())
                 //throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
-
+            std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+            if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
             return;
         }
     }

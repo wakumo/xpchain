@@ -1,7 +1,8 @@
+#include<primitives/block.h>
+#include <chain.h>
+
 class CValidationState;
 class uint256;
 
-const uint64_t nStakeMinAge = 0;
-const uint64_t nStakeMaxAge = 60 * 60 * 24 * 100;
-bool CheckStakeKernelHash();
-bool CheckProofOfStake(CValidationState& state, uint256 txhash);
+bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned int nTxPrevOffset, const CTxOut& txOutPrev, const COutPoint& prevout, uint32_t nTimeTx, uint256& hashProofOfStake);
+bool CheckProofOfStake(CValidationState& state, const CTransactionRef& tx, unsigned int nBits, uint256& hashProofOfStake, unsigned int nBlockTime);
