@@ -1207,6 +1207,49 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     return nSubsidy;
 }
 
+CAmount GetProofOfStakeReward(int nHeight, CAmount nAmount, uint32_t nTime, const Consensus::Params& consensusParams)
+{
+    int nRewardPerYear;
+    int nSubsidyDownInterval = 525600;
+    if(nTime < consensusParams.nStakeMinAge)
+    {
+        return 0;
+    }
+    if(nHeight < consensusParams.nSwitchHeight)
+    {
+        nRewardPerYear = 0;
+    }
+    else if(consensusParams.nSwitchHeight <= nHeight && nHeight <= nSubsidyDownInterval)
+    {
+        nRewardPerYear = 10;
+    }
+    else if(nSubsidyDownInterval < nHeight && nHeight <= nSubsidyDownInterval * 2)
+    {
+        nRewardPerYear = 9;
+    }
+    else if(nSubsidyDownInterval * 2 < nHeight && nHeight <= nSubsidyDownInterval * 3)
+    {
+        nRewardPerYear = 8;
+    }
+    else if(nSubsidyDownInterval * 3 < nHeight && nHeight <= nSubsidyDownInterval * 4)
+    {
+        nRewardPerYear = 7;
+    }
+    else if(nSubsidyDownInterval * 4 < nHeight && nHeight <= nSubsidyDownInterval * 5)
+    {
+        nRewardPerYear = 6;
+    }
+    else if(nSubsidyDownInterval * 5 < nHeight)
+    {
+        nRewardPerYear = 5;
+    }
+
+    int64_t nTimeToDay = std::min(consensusParams.nStakeMaxAge, (int64_t)nTime) / (60 * 60 * 24);
+    CAmount nSubsidy = nAmount / (100 * 365) * nRewardPerYear * nTimeToDay;
+
+    return nSubsidy;
+}
+
 bool IsInitialBlockDownload()
 {
     // Once this function has returned false, it must remain false.
@@ -2083,8 +2126,21 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
     int64_t nTime3 = GetTimeMicros(); nTimeConnect += nTime3 - nTime2;
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs (%.2fms/blk)]\n", (unsigned)block.vtx.size(), MILLI * (nTime3 - nTime2), MILLI * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : MILLI * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
-
-    CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+    CAmount blockReward;
+    if(pindex->nHeight < chainparams.GetConsensus().nSwitchHeight)
+    {
+        blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+    }
+    else
+    {
+        uint256 hashblock;
+        CDiskTxPos postx;
+        CBlockHeader header;
+        CTransactionRef tx;
+        g_txindex->FindTx(block.vtx[1]->vin[0].prevout.hash, postx, header, tx);
+        uint32_t nTime = block.nTime - header.nTime;
+        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
+    }
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100,
                          error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
