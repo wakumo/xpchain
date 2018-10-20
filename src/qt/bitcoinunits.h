@@ -58,8 +58,7 @@ public:
     {
         XPC,
         mXPC,
-        uXPC,
-        SAT
+        Mocha
     };
 
     enum SeparatorStyle
