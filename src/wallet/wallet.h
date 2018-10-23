@@ -1211,7 +1211,7 @@ public:
         LogPrintf(("%s " + fmt).c_str(), GetDisplayName(), parameters...);
     };
 
-    bool CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, CMutableTransaction& txNew, uint32_t& nCoinStakeTime);
+    bool CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScript& script, CAmount& nFees, CValidationState& state,unsigned int nBlockTime);
 
 };
 

@@ -2137,8 +2137,31 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         CDiskTxPos postx;
         CBlockHeader header;
         CTransactionRef tx;
-        g_txindex->FindTx(block.vtx[1]->vin[0].prevout.hash, postx, header, tx);
+        
+        if(!g_txindex->FindTx(block.vtx[1]->vin[0].prevout.hash, postx, header, tx))
+        {
+            return error("ConnectBlock(): coinstakeTx was not found");
+        }
+
         uint32_t nTime = block.nTime - header.nTime;
+
+        if(block.vtx[1]->vin.size() != 1)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstakeTx. vin size is %d", block.vtx[1]->vin.size());
+        } 
+        if(block.vtx[1]->vout.size() != 1)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstakeTx. vout size is %d", block.vtx[1]->vout.size());
+        }
+
+        CScript out = block.vtx[1]->vout[0].scriptPubKey;
+        CScript in = tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey;
+        CScript base = block.vtx[0]->vout[0].scriptPubKey;
+        if(out != in || in != base)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinStakeTx. vin, vout and coinbase address don't match");
+        }
+
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
     }
     if (block.vtx[0]->GetValueOut() > blockReward)
