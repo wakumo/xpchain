@@ -132,7 +132,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
-    if(nHeight >= chainparams.GetConsensus().nSwitchHeight)
+    if(chainparams.GetConsensus().nSwitchHeight < nHeight)
     {
         //add dummy "Send to myself" Tx as 2nd transaction
         pblock->vtx.emplace_back();
@@ -178,7 +178,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     CScript scriptPubKey;
 
-    if(nHeight>=chainparams.GetConsensus().nSwitchHeight)
+    if(chainparams.GetConsensus().nSwitchHeight < nHeight)
     {
         //create "Send to myself" Tx
         CTransactionRef txCoinStake;
@@ -202,7 +202,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
-     if(nHeight < chainparams.GetConsensus().nSwitchHeight)
+     if(nHeight <= chainparams.GetConsensus().nSwitchHeight)
     {
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
@@ -543,7 +543,7 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             //
             // Create new block
             //
-            if(chainActive.Height() < Params().GetConsensus().nSwitchHeight)
+            if(chainActive.Height() <= Params().GetConsensus().nSwitchHeight)
             {
                 MilliSleep(1000);
             }

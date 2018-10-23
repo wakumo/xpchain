@@ -1132,7 +1132,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
         LOCK(cs_main);
         blockPos = pindex->GetBlockPos();
     }
-    if(pindex->nHeight >= consensusParams.nSwitchHeight)
+    if(consensusParams.nSwitchHeight < pindex->nHeight)
     {
         if(!ReadPoSBlockFromDisk(block, blockPos, consensusParams))
             return false;
@@ -1215,11 +1215,11 @@ CAmount GetProofOfStakeReward(int nHeight, CAmount nAmount, uint32_t nTime, cons
     {
         return 0;
     }
-    if(nHeight < consensusParams.nSwitchHeight)
+    if(nHeight <= consensusParams.nSwitchHeight)
     {
         nRewardPerYear = 0;
     }
-    else if(consensusParams.nSwitchHeight <= nHeight && nHeight <= nSubsidyDownInterval)
+    else if(consensusParams.nSwitchHeight < nHeight && nHeight <= nSubsidyDownInterval)
     {
         nRewardPerYear = 10;
     }
@@ -2127,7 +2127,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nTime3 = GetTimeMicros(); nTimeConnect += nTime3 - nTime2;
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs (%.2fms/blk)]\n", (unsigned)block.vtx.size(), MILLI * (nTime3 - nTime2), MILLI * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : MILLI * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
     CAmount blockReward;
-    if(pindex->nHeight < chainparams.GetConsensus().nSwitchHeight)
+    if(pindex->nHeight <= chainparams.GetConsensus().nSwitchHeight)
     {
         blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
     }
@@ -3192,7 +3192,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams) && chainActive.Height() + 1 < consensusParams.nSwitchHeight)
+    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams) && chainActive.Height() + 1 <= consensusParams.nSwitchHeight)
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
     return true;
@@ -3242,9 +3242,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
 
     int nHeight = chainActive.Height() + 1;
-    if(nHeight >= consensusParams.nSwitchHeight)
+    if(consensusParams.nSwitchHeight < nHeight)
     {
-        if(block.vtx.size() > 1 /*|| !block.vtx[1]->IsSendToMySelf()*/)
+        if(block.vtx.size() > 1)
         {
             // return state.DoS()
             return false;
