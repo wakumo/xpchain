@@ -537,25 +537,35 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             {
                 //strMintWarning = strMintMessage;
                 MilliSleep(1000);
+                continue;
             }
             //strMintWarning = "";
 
             //
             // Create new block
             //
-            if(chainActive.Height() <= Params().GetConsensus().nSwitchHeight)
+            if(chainActive.Height() < Params().GetConsensus().nSwitchHeight)
             {
                 MilliSleep(1000);
+                continue;
             }
             CScript scriptDummy;
             std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(scriptDummy, wallet.get()));
             CBlock *pblock = &pblocktemplate->block;
             if (!pblocktemplate.get())
+            {
+                MilliSleep(1000);
                 continue;
-                //throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
-            std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
-            if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
-                return;
+            }
+            else
+            {
+                std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+                if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
+                {
+                    MilliSleep(1000);
+                    continue;
+                }
+            }
         }
     }
     catch (boost::thread_interrupted)
