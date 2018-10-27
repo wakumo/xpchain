@@ -1,14 +1,12 @@
-#include <boost/assign/list_of.hpp>
-
-#include "kernel.h"
-#include "db.h"
-#include "uint256.h"
+#include <kernel.h>
+#include <db.h>
+#include <uint256.h>
 #include <chainparams.h>
-#include "util.h"
+#include <util.h>
 #include <wallet/wallet.h>
-#include "init.h"
-#include "timedata.h"
-#include "txdb.h"
+#include <init.h>
+#include <timedata.h>
+#include <txdb.h>
 #include <validation.h>
 #include <index/txindex.h>
 
