@@ -264,7 +264,7 @@ class CompactBlocksTest(BitcoinTestFramework):
             # a witness address.
             address = node.addwitnessaddress(address)
             value_to_send = node.getbalance()
-            node.sendtoaddress(address, satoshi_round(value_to_send-Decimal(0.1)))
+            node.sendtoaddress(address, satoshi_round(value_to_send-Decimal(100)))
             node.generate(1)
 
         segwit_tx_generated = False

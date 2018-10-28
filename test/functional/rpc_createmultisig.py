@@ -46,7 +46,7 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
 
         height = node0.getblockchaininfo()["blocks"]
         assert 150 < height < 350
-        total = 149*50 + (height-149-100)*25
+        total = 149*300000 + (height-149-100)*150000
         assert bal1 == 0
         assert bal2 == self.moved
         assert bal0+bal1+bal2 == total
@@ -80,7 +80,7 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
 
         node0.generate(1)
 
-        outval = value - decimal.Decimal("0.00001000")
+        outval = value - decimal.Decimal("0.1000")
         rawtx = node2.createrawtransaction([{"txid": txid, "vout": vout}], [{self.final: outval}])
 
         rawtx2 = node2.signrawtransactionwithkey(rawtx, self.priv[0:self.nsigs-1], prevtxs)
