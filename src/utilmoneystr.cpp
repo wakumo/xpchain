@@ -16,7 +16,7 @@ std::string FormatMoney(const CAmount& n)
     int64_t n_abs = (n > 0 ? n : -n);
     int64_t quotient = n_abs/COIN;
     int64_t remainder = n_abs%COIN;
-    std::string str = strprintf("%d.%08d", quotient, remainder);
+    std::string str = strprintf("%d.%04d", quotient, remainder);
 
     // Right-trim excess zeros before the decimal point:
     int nTrim = 0;
@@ -65,7 +65,7 @@ bool ParseMoney(const char* pszIn, CAmount& nRet)
     for (; *p; p++)
         if (!isspace(*p))
             return false;
-    if (strWhole.size() > 10) // guard against 63 bit overflow
+    if (strWhole.size() > 14) // guard against 63 bit overflow
         return false;
     if (nUnits < 0 || nUnits > COIN)
         return false;
