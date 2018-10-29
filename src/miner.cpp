@@ -104,16 +104,13 @@ void BlockAssembler::resetBlock()
     nBlockTx = 0;
     nFees = 0;
 }
-
+#ifdef ENABLE_WALLET
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 {
-#ifdef ENABLE_WALLET
     return CreateNewBlock(scriptPubKeyIn, nullptr, fMineWitnessTx);
 }
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool fMineWitnessTx)
 #else
-    return CreateNewBlock(scriptPubKeyIn, fMineWitnessTx);
-}
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 #endif
 {
