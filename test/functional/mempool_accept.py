@@ -63,7 +63,7 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
         coin = node.listunspent()[0]  # Pick a random coin(base) to spend
         raw_tx_in_block = node.signrawtransactionwithwallet(node.createrawtransaction(
             inputs=[{'txid': coin['txid'], 'vout': coin['vout']}],
-            outputs=[{node.getnewaddress(): 0.3}, {node.getnewaddress(): 49}],
+            outputs=[{node.getnewaddress(): 3000}, {node.getnewaddress(): 295000}],
         ))['hex']
         txid_in_block = node.sendrawtransaction(hexstring=raw_tx_in_block, allowhighfees=True)
         node.generate(1)
@@ -73,10 +73,10 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
         )
 
         self.log.info('A transaction not in the mempool')
-        fee = 0.00000700
+        fee = 0.0700
         raw_tx_0 = node.signrawtransactionwithwallet(node.createrawtransaction(
             inputs=[{"txid": txid_in_block, "vout": 0, "sequence": BIP125_SEQUENCE_NUMBER}],  # RBF is used later
-            outputs=[{node.getnewaddress(): 0.3 - fee}],
+            outputs=[{node.getnewaddress(): 3000 - fee}],
         ))['hex']
         tx = CTransaction()
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_0)))
@@ -139,7 +139,7 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
                 {'txid': txid_0, 'vout': 0},
                 {'txid': txid_1, 'vout': 0},
             ],
-            outputs=[{node.getnewaddress(): 0.1}]
+            outputs=[{node.getnewaddress(): 1000}]
         ))['hex']
         txid_spend_both = node.sendrawtransaction(hexstring=raw_tx_spend_both, allowhighfees=True)
         node.generate(1)
@@ -157,7 +157,7 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
         self.log.info('Create a signed "reference" tx for later use')
         raw_tx_reference = node.signrawtransactionwithwallet(node.createrawtransaction(
             inputs=[{'txid': txid_spend_both, 'vout': 0}],
-            outputs=[{node.getnewaddress(): 0.05}],
+            outputs=[{node.getnewaddress(): 999}],
         ))['hex']
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_reference)))
         # Reference tx should be valid on itself
@@ -194,7 +194,7 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
 
         self.log.info('A transaction with too large output value')
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_reference)))
-        tx.vout[0].nValue = 21000000 * COIN + 1
+        tx.vout[0].nValue = 210000000000 * COIN + 1
         self.check_mempool_result(
             result_expected=[{'txid': tx.rehash(), 'allowed': False, 'reject-reason': '16: bad-txns-vout-toolarge'}],
             rawtxs=[bytes_to_hex_str(tx.serialize())],
@@ -203,7 +203,7 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
         self.log.info('A transaction with too large sum of output values')
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_reference)))
         tx.vout = [tx.vout[0]] * 2
-        tx.vout[0].nValue = 21000000 * COIN
+        tx.vout[0].nValue = 210000000000 * COIN
         self.check_mempool_result(
             result_expected=[{'txid': tx.rehash(), 'allowed': False, 'reject-reason': '16: bad-txns-txouttotal-toolarge'}],
             rawtxs=[bytes_to_hex_str(tx.serialize())],

@@ -35,7 +35,7 @@ MAX_INV_SZ = 50000
 MAX_LOCATOR_SZ = 101
 MAX_BLOCK_BASE_SIZE = 1000000
 
-COIN = 100000000  # 1 btc in satoshis
+COIN = 10000  # 1 xpc in satoshis
 
 BIP125_SEQUENCE_NUMBER = 0xfffffffd  # Sequence number that is BIP 125 opt-in and BIP 68-opt-out
 
@@ -327,7 +327,7 @@ class CTxOut():
         return r
 
     def __repr__(self):
-        return "CTxOut(nValue=%i.%08i scriptPubKey=%s)" \
+        return "CTxOut(nValue=%i.%04i scriptPubKey=%s)" \
             % (self.nValue // COIN, self.nValue % COIN,
                bytes_to_hex_str(self.scriptPubKey))
 
@@ -1282,7 +1282,7 @@ class msg_feefilter():
         return r
 
     def __repr__(self):
-        return "msg_feefilter(feerate=%08x)" % self.feerate
+        return "msg_feefilter(feerate=%04x)" % self.feerate
 
 class msg_sendcmpct():
     command = b"sendcmpct"

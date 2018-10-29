@@ -77,7 +77,9 @@ class P2PFingerprintTest(BitcoinTestFramework):
         node0 = self.nodes[0].add_p2p_connection(P2PInterface())
 
         # Set node time to 60 days ago
-        self.nodes[0].setmocktime(int(time.time()) - 60 * 24 * 60 * 60)
+        # self.nodes[0].setmocktime(int(time.time()) - 60 * 24 * 60 * 60)
+        # TODO : After 60 days from genesis block, uncomment above line and delete below line.
+        self.nodes[0].setmocktime(0)
 
         # Generating a chain of 10 blocks
         block_hashes = self.nodes[0].generate(nblocks=10)
@@ -110,7 +112,9 @@ class P2PFingerprintTest(BitcoinTestFramework):
         wait_until(test_function, timeout=3)
 
         # Longest chain is extended so stale is much older than chain tip
-        self.nodes[0].setmocktime(0)
+        # self.nodes[0].setmocktime(0)
+        # TODO : After 60 days from genesis block, uncomment above line and delete below line.
+        self.nodes[0].setmocktime(int(time.time()) + 60 * 24 * 60 * 60)
         tip = self.nodes[0].generate(nblocks=1)[0]
         assert_equal(self.nodes[0].getblockcount(), 14)
 

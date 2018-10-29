@@ -19,8 +19,7 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
     QList<BitcoinUnits::Unit> unitlist;
     unitlist.append(XPC);
     unitlist.append(mXPC);
-    unitlist.append(uXPC);
-    unitlist.append(SAT);
+    unitlist.append(Mocha);
     return unitlist;
 }
 
@@ -30,8 +29,7 @@ bool BitcoinUnits::valid(int unit)
     {
     case XPC:
     case mXPC:
-    case uXPC:
-    case SAT:
+    case Mocha:
         return true;
     default:
         return false;
@@ -44,8 +42,7 @@ QString BitcoinUnits::longName(int unit)
     {
     case XPC: return QString("XPC");
     case mXPC: return QString("mXPC");
-    case uXPC: return QString::fromUtf8("µXPC (bits)");
-    case SAT: return QString("Satoshi (sat)");
+    case Mocha: return QString("Mocha");
     default: return QString("???");
     }
 }
@@ -54,8 +51,6 @@ QString BitcoinUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uXPC: return QString::fromUtf8("bits");
-    case SAT: return QString("sat");
     default: return longName(unit);
     }
 }
@@ -66,8 +61,7 @@ QString BitcoinUnits::description(int unit)
     {
     case XPC: return QString("XPChains");
     case mXPC: return QString("Milli-XPChains (1 / 1" THIN_SP_UTF8 "000)");
-    case uXPC: return QString("Micro-XPChains (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case Mocha: return QString("Minimum unit Of xpCHAin (mocha) (1 / 10" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -76,11 +70,10 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case XPC: return 100000000;
-    case mXPC: return 100000;
-    case uXPC: return 100;
-    case SAT: return 1;
-    default: return 100000000;
+    case XPC: return 10000;
+    case mXPC: return 10;
+    case Mocha: return 1;
+    default: return 10000;
     }
 }
 
@@ -88,10 +81,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case XPC: return 8;
-    case mXPC: return 5;
-    case uXPC: return 2;
-    case SAT: return 0;
+    case XPC: return 4;
+    case mXPC: return 3;
+    case Mocha: return 0;
     default: return 0;
     }
 }

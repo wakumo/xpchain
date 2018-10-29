@@ -22,7 +22,7 @@ class PSBTTest(BitcoinTestFramework):
 
     def run_test(self):
         # Create and fund a raw tx for sending 10 BTC
-        psbtx1 = self.nodes[0].walletcreatefundedpsbt([], {self.nodes[2].getnewaddress():10})['psbt']
+        psbtx1 = self.nodes[0].walletcreatefundedpsbt([], {self.nodes[2].getnewaddress():100000})['psbt']
 
         # Node 1 should not be able to add anything to it but still return the psbtx same as before
         psbtx = self.nodes[1].walletprocesspsbt(psbtx1)['psbt']
@@ -75,13 +75,13 @@ class PSBTTest(BitcoinTestFramework):
                 p2pkh_pos = out['n']
 
         # spend single key from node 1
-        rawtx = self.nodes[1].walletcreatefundedpsbt([{"txid":txid,"vout":p2wpkh_pos},{"txid":txid,"vout":p2sh_p2wpkh_pos},{"txid":txid,"vout":p2pkh_pos}], {self.nodes[1].getnewaddress():29.99})['psbt']
+        rawtx = self.nodes[1].walletcreatefundedpsbt([{"txid":txid,"vout":p2wpkh_pos},{"txid":txid,"vout":p2sh_p2wpkh_pos},{"txid":txid,"vout":p2pkh_pos}], {self.nodes[1].getnewaddress():299900})['psbt']
         walletprocesspsbt_out = self.nodes[1].walletprocesspsbt(rawtx)
         assert_equal(walletprocesspsbt_out['complete'], True)
         self.nodes[1].sendrawtransaction(self.nodes[1].finalizepsbt(walletprocesspsbt_out['psbt'])['hex'])
 
         # partially sign multisig things with node 1
-        psbtx = self.nodes[1].walletcreatefundedpsbt([{"txid":txid,"vout":p2wsh_pos},{"txid":txid,"vout":p2sh_pos},{"txid":txid,"vout":p2sh_p2wsh_pos}], {self.nodes[1].getnewaddress():29.99})['psbt']
+        psbtx = self.nodes[1].walletcreatefundedpsbt([{"txid":txid,"vout":p2wsh_pos},{"txid":txid,"vout":p2sh_pos},{"txid":txid,"vout":p2sh_p2wsh_pos}], {self.nodes[1].getnewaddress():299900})['psbt']
         walletprocesspsbt_out = self.nodes[1].walletprocesspsbt(psbtx)
         psbtx = walletprocesspsbt_out['psbt']
         assert_equal(walletprocesspsbt_out['complete'], False)
@@ -92,11 +92,11 @@ class PSBTTest(BitcoinTestFramework):
         self.nodes[2].sendrawtransaction(self.nodes[2].finalizepsbt(walletprocesspsbt_out['psbt'])['hex'])
 
         # check that walletprocesspsbt fails to decode a non-psbt
-        rawtx = self.nodes[1].createrawtransaction([{"txid":txid,"vout":p2wpkh_pos}], {self.nodes[1].getnewaddress():9.99})
+        rawtx = self.nodes[1].createrawtransaction([{"txid":txid,"vout":p2wpkh_pos}], {self.nodes[1].getnewaddress():99900})
         assert_raises_rpc_error(-22, "TX decode failed", self.nodes[1].walletprocesspsbt, rawtx)
 
         # Convert a non-psbt to psbt and make sure we can decode it
-        rawtx = self.nodes[0].createrawtransaction([], {self.nodes[1].getnewaddress():10})
+        rawtx = self.nodes[0].createrawtransaction([], {self.nodes[1].getnewaddress():100000})
         rawtx = self.nodes[0].fundrawtransaction(rawtx)
         new_psbt = self.nodes[0].converttopsbt(rawtx['hex'])
         self.nodes[0].decodepsbt(new_psbt)
@@ -112,15 +112,15 @@ class PSBTTest(BitcoinTestFramework):
         # Create outputs to nodes 1 and 2
         node1_addr = self.nodes[1].getnewaddress()
         node2_addr = self.nodes[2].getnewaddress()
-        txid1 = self.nodes[0].sendtoaddress(node1_addr, 13)
-        txid2 =self.nodes[0].sendtoaddress(node2_addr, 13)
+        txid1 = self.nodes[0].sendtoaddress(node1_addr, 130000)
+        txid2 =self.nodes[0].sendtoaddress(node2_addr, 130000)
         self.nodes[0].generate(6)
         self.sync_all()
-        vout1 = find_output(self.nodes[1], txid1, 13)
-        vout2 = find_output(self.nodes[2], txid2, 13)
+        vout1 = find_output(self.nodes[1], txid1, 130000)
+        vout2 = find_output(self.nodes[2], txid2, 130000)
 
         # Create a psbt spending outputs from nodes 1 and 2
-        psbt_orig = self.nodes[0].createpsbt([{"txid":txid1,  "vout":vout1}, {"txid":txid2, "vout":vout2}], {self.nodes[0].getnewaddress():25.999})
+        psbt_orig = self.nodes[0].createpsbt([{"txid":txid1,  "vout":vout1}, {"txid":txid2, "vout":vout2}], {self.nodes[0].getnewaddress():259990})
 
         # Update psbts, should only have data for one input and not the other
         psbt1 = self.nodes[1].walletprocesspsbt(psbt_orig)['psbt']
