@@ -112,7 +112,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 }
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool fMineWitnessTx)
 #else
-    return CreateNewBlock(scriptPubKey, fMineWitnessTx);
+    return CreateNewBlock(scriptPubKeyIn, fMineWitnessTx);
 }
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 #endif
