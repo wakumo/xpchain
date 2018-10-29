@@ -107,10 +107,15 @@ void BlockAssembler::resetBlock()
 
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 {
+#ifdef ENABLE_WALLET
     return CreateNewBlock(scriptPubKeyIn, nullptr, fMineWitnessTx);
 }
-
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool fMineWitnessTx)
+#else
+    return CreateNewBlock(scriptPubKey, fMineWitnessTx);
+}
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
+#endif
 {
     int64_t nTimeStart = GetTimeMicros();
 
@@ -177,13 +182,15 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
 
     CScript scriptPubKey;
-
+    
     if(chainparams.GetConsensus().nSwitchHeight < nHeight)
     {
         //create "Send to myself" Tx
         CTransactionRef txCoinStake;
         CAmount nCoinStakeTxFee;
+#ifdef ENABLE_WALLET
         if(!pwallet->CreateCoinStake(pblock->nBits, txCoinStake, scriptPubKey, nCoinStakeTxFee, state, pblock->nTime))
+#endif
         {
             return nullptr;
         }
