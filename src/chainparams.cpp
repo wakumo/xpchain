@@ -295,7 +295,7 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        consensus.nSwitchHeight = 128;
+        consensus.nSwitchHeight = 1680;
 
         consensus.nStakeMinAge = 0;
         consensus.nStakeMaxAge = 60 * 60 * 24 * 100;
