@@ -82,7 +82,7 @@ int BitcoinUnits::decimals(int unit)
     switch(unit)
     {
     case XPC: return 4;
-    case mXPC: return 3;
+    case mXPC: return 1;
     case Mocha: return 0;
     default: return 0;
     }
