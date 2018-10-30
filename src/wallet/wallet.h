@@ -1211,6 +1211,8 @@ public:
         LogPrintf(("%s " + fmt).c_str(), GetDisplayName(), parameters...);
     };
 
+    bool CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScript& script, CAmount& nFees, CValidationState& state,unsigned int nBlockTime);
+
 };
 
 /** A key allocated from the key pool. */

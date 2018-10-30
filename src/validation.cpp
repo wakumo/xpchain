@@ -47,6 +47,8 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
 
+#include <kernel.h>
+
 #if defined(NDEBUG)
 # error "Bitcoin cannot be compiled without assertions."
 #endif
@@ -1097,6 +1099,32 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     return true;
 }
 
+bool ReadPoSBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParam)
+{
+    block.SetNull();
+
+    // Open history file to read
+    CAutoFile filein(OpenBlockFile(pos, true), SER_DISK, CLIENT_VERSION);
+    if (filein.IsNull())
+        return error("ReadBlockFromDisk: OpenBlockFile failed for %s", pos.ToString());
+
+    // Read block
+    try {
+        filein >> block;
+    }
+    catch (const std::exception& e) {
+        return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
+    }
+
+    // Check the block
+    CValidationState state;
+    uint256 bnHashPoS;
+    if (!CheckProofOfStake(state, block.vtx[1], block.nBits, bnHashPoS ,block.GetBlockTime()))
+        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+
+    return true;
+}
+
 bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus::Params& consensusParams)
 {
     CDiskBlockPos blockPos;
@@ -1104,9 +1132,16 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
         LOCK(cs_main);
         blockPos = pindex->GetBlockPos();
     }
-
-    if (!ReadBlockFromDisk(block, blockPos, consensusParams))
-        return false;
+    if(consensusParams.nSwitchHeight < pindex->nHeight)
+    {
+        if(!ReadPoSBlockFromDisk(block, blockPos, consensusParams))
+            return false;
+    }
+    else
+    {
+        if (!ReadBlockFromDisk(block, blockPos, consensusParams))
+            return false;
+    }
     if (block.GetHash() != pindex->GetBlockHash())
         return error("ReadBlockFromDisk(CBlock&, CBlockIndex*): GetHash() doesn't match index for %s at %s",
                 pindex->ToString(), pindex->GetBlockPos().ToString());
@@ -1169,6 +1204,49 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     CAmount nSubsidy = 300000 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
+    return nSubsidy;
+}
+
+CAmount GetProofOfStakeReward(int nHeight, CAmount nAmount, uint32_t nTime, const Consensus::Params& consensusParams)
+{
+    int nRewardPerYear;
+    int nSubsidyDownInterval = 525600;
+    if(nTime < consensusParams.nStakeMinAge)
+    {
+        return 0;
+    }
+    if(nHeight <= consensusParams.nSwitchHeight)
+    {
+        nRewardPerYear = 0;
+    }
+    else if(consensusParams.nSwitchHeight < nHeight && nHeight <= nSubsidyDownInterval)
+    {
+        nRewardPerYear = 10;
+    }
+    else if(nSubsidyDownInterval < nHeight && nHeight <= nSubsidyDownInterval * 2)
+    {
+        nRewardPerYear = 9;
+    }
+    else if(nSubsidyDownInterval * 2 < nHeight && nHeight <= nSubsidyDownInterval * 3)
+    {
+        nRewardPerYear = 8;
+    }
+    else if(nSubsidyDownInterval * 3 < nHeight && nHeight <= nSubsidyDownInterval * 4)
+    {
+        nRewardPerYear = 7;
+    }
+    else if(nSubsidyDownInterval * 4 < nHeight && nHeight <= nSubsidyDownInterval * 5)
+    {
+        nRewardPerYear = 6;
+    }
+    else if(nSubsidyDownInterval * 5 < nHeight)
+    {
+        nRewardPerYear = 5;
+    }
+
+    int64_t nTimeToDay = std::min(consensusParams.nStakeMaxAge, (int64_t)nTime) / (60 * 60 * 24);
+    CAmount nSubsidy = nAmount / (100 * 365) * nRewardPerYear * nTimeToDay;
+
     return nSubsidy;
 }
 
@@ -2048,8 +2126,44 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
     int64_t nTime3 = GetTimeMicros(); nTimeConnect += nTime3 - nTime2;
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs (%.2fms/blk)]\n", (unsigned)block.vtx.size(), MILLI * (nTime3 - nTime2), MILLI * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : MILLI * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
+    CAmount blockReward;
+    if(pindex->nHeight <= chainparams.GetConsensus().nSwitchHeight)
+    {
+        blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+    }
+    else
+    {
+        uint256 hashblock;
+        CDiskTxPos postx;
+        CBlockHeader header;
+        CTransactionRef tx;
+        
+        if(!g_txindex->FindTx(block.vtx[1]->vin[0].prevout.hash, postx, header, tx))
+        {
+            return error("ConnectBlock(): coinstakeTx was not found");
+        }
 
-    CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+        uint32_t nTime = block.nTime - header.nTime;
+
+        if(block.vtx[1]->vin.size() != 1)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstakeTx. vin size is %d", block.vtx[1]->vin.size());
+        } 
+        if(block.vtx[1]->vout.size() != 1)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstakeTx. vout size is %d", block.vtx[1]->vout.size());
+        }
+
+        CScript out = block.vtx[1]->vout[0].scriptPubKey;
+        CScript in = tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey;
+        CScript base = block.vtx[0]->vout[0].scriptPubKey;
+        if(out != in || in != base)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinStakeTx. vin, vout and coinbase address don't match");
+        }
+
+        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
+    }
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100,
                          error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
@@ -3078,7 +3192,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
+    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams) && chainActive.Height() + 1 <= consensusParams.nSwitchHeight)
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
     return true;
@@ -3126,6 +3240,23 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     for (unsigned int i = 1; i < block.vtx.size(); i++)
         if (block.vtx[i]->IsCoinBase())
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
+
+    int nHeight = chainActive.Height() + 1;
+    if(consensusParams.nSwitchHeight < nHeight)
+    {
+        if(block.vtx.size() > 1)
+        {
+            // return state.DoS()
+            return false;
+        }
+
+        uint256 bnPosHash;
+
+        if(!CheckProofOfStake(state, block.vtx[1], block.nBits, bnPosHash, GetAdjustedTime()))
+        {
+            return false;
+        }
+    }
 
     // Check transactions
     for (const auto& tx : block.vtx)

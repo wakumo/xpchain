@@ -10,6 +10,10 @@
 class CScheduler;
 class CRPCTable;
 
+namespace boost {
+    class thread_group;
+}
+
 class WalletInitInterface {
 public:
     /** Get wallet help string */
@@ -30,6 +34,8 @@ public:
     virtual void Stop() const = 0;
     /** Close wallets */
     virtual void Close() const = 0;
+
+    virtual void StartMinting(boost::thread_group& threadGroup) const = 0;
 
     virtual ~WalletInitInterface() {}
 };

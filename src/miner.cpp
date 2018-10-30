@@ -28,6 +28,15 @@
 #include <algorithm>
 #include <queue>
 #include <utility>
+#include <txdb.h>
+#include <index/txindex.h>
+#include <key_io.h>
+
+#ifdef ENABLE_WALLET
+#include <wallet/wallet.h>
+#include <warnings.h>
+#include <boost/thread.hpp>
+#endif
 
 // Unconfirmed transactions in the memory pool often depend on other
 // transactions in the memory pool. When we select transactions from the
@@ -95,8 +104,15 @@ void BlockAssembler::resetBlock()
     nBlockTx = 0;
     nFees = 0;
 }
-
+#ifdef ENABLE_WALLET
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
+{
+    return CreateNewBlock(scriptPubKeyIn, nullptr, fMineWitnessTx);
+}
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, bool fMineWitnessTx)
+#else
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
+#endif
 {
     int64_t nTimeStart = GetTimeMicros();
 
@@ -117,6 +133,14 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
+
+    if(chainparams.GetConsensus().nSwitchHeight < nHeight)
+    {
+        //add dummy "Send to myself" Tx as 2nd transaction
+        pblock->vtx.emplace_back();
+        pblocktemplate->vTxFees.push_back(-1); // updated at end
+        pblocktemplate->vTxSigOpsCost.push_back(-1); // updated at end
+    }
 
     pblock->nVersion = ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());
     // -regtest only: allow overriding block.nVersion with
@@ -151,28 +175,67 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     nLastBlockTx = nBlockTx;
     nLastBlockWeight = nBlockWeight;
 
+    CValidationState state;
+    pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
+
+    CScript scriptPubKey;
+    
+    if(chainparams.GetConsensus().nSwitchHeight < nHeight)
+    {
+        //create "Send to myself" Tx
+        CTransactionRef txCoinStake;
+        CAmount nCoinStakeTxFee;
+#ifdef ENABLE_WALLET
+        if(!pwallet->CreateCoinStake(pblock->nBits, txCoinStake, scriptPubKey, nCoinStakeTxFee, state, pblock->nTime))
+#endif
+        {
+            return nullptr;
+        }
+        pblock->vtx[1] = txCoinStake;
+        pblocktemplate->vTxFees[1] = nCoinStakeTxFee;
+        pblocktemplate->vTxSigOpsCost[1] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[1]);
+    }
+    else
+    {
+        scriptPubKey = scriptPubKeyIn;
+    }
+
     // Create coinbase transaction.
     CMutableTransaction coinbaseTx;
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
-    coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
-    coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
+     if(nHeight <= chainparams.GetConsensus().nSwitchHeight)
+    {
+        coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    }
+    else
+    {
+        uint256 hashblock;
+        CDiskTxPos postx;
+        CBlockHeader header;
+        CTransactionRef tx;
+        g_txindex->FindTx(pblock->vtx[1]->vin[0].prevout.hash, postx, header, tx);
+        uint32_t nTime = pblock->nTime - header.nTime;
+        coinbaseTx.vout[0].nValue = GetProofOfStakeReward(nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
+    }
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
     pblocktemplate->vTxFees[0] = -nFees;
+
+ 
 
     LogPrintf("CreateNewBlock(): block weight: %u txs: %u fees: %ld sigops %d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
 
     // Fill in header
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
     UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
-    pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
     pblock->nNonce         = 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 
-    CValidationState state;
+    
     if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, false)) {
         throw std::runtime_error(strprintf("%s: TestBlockValidity failed: %s", __func__, FormatStateMessage(state)));
     }
@@ -451,3 +514,88 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->vtx[0] = MakeTransactionRef(std::move(txCoinbase));
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
+#ifdef ENABLE_WALLET
+void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
+{
+    LogPrintf("CPUMiner started for proof-of-stake\n");
+    RenameThread("xpchain-stake-minter");
+    
+
+    std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
+    std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
+    std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
+    try
+    {
+        while (true)
+        {
+            if(gArgs.GetBoolArg("-nominting", false))
+            {
+                //strMintWarnig = strMintDisabledMessage
+                return;
+            }
+
+            //while (vNodes.empty())
+            //    MilliSleep(1000);
+
+            while(wallet->IsLocked())
+            {
+                //strMintWarning = strMintMessage;
+                MilliSleep(1000);
+                continue;
+            }
+            //strMintWarning = "";
+
+            //
+            // Create new block
+            //
+            if(chainActive.Height() < Params().GetConsensus().nSwitchHeight)
+            {
+                MilliSleep(1000);
+                continue;
+            }
+            CScript scriptDummy;
+            std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(scriptDummy, wallet.get()));
+            CBlock *pblock = &pblocktemplate->block;
+            if (!pblocktemplate.get())
+            {
+                MilliSleep(1000);
+                continue;
+            }
+            else
+            {
+                std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+                if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
+                {
+                    MilliSleep(1000);
+                    continue;
+                }
+            }
+        }
+    }
+    catch (boost::thread_interrupted)
+    {
+        LogPrintf("PeercoinMiner terminated\n");
+        throw;
+    }
+}
+
+void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
+{
+    LogPrintf("ThreadStakeMinter started %s\n", wallet->GetName());
+    try
+    {
+        BitcoinMinter(wallet);
+    }
+    catch (std::exception& e) {
+        PrintExceptionContinue(&e, "ThreadStakeMinter()");
+    } catch (...) {
+        PrintExceptionContinue(NULL, "ThreadStakeMinter()");
+    }
+    LogPrintf("ThreadStakeMinter exiting\n");
+}
+
+void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
+{
+    threadGroup.create_thread(boost::bind(&ThreadStakeMinter, wallet));
+}
+#endif

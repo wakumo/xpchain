@@ -28,6 +28,7 @@
 #include <utilmoneystr.h>
 #include <wallet/fees.h>
 #include <wallet/walletutil.h>
+#include <kernel.h>
 
 #include <algorithm>
 #include <assert.h>
@@ -4350,6 +4351,54 @@ void CWallet::postInitProcess()
 bool CWallet::BackupWallet(const std::string& strDest)
 {
     return database->Backup(strDest);
+}
+
+bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScript& script, CAmount& nFees, CValidationState& state,unsigned int nBlockTime)
+{
+    //get utxo pool
+    std::map<CTxDestination, std::vector<COutput>> data = ListCoins();
+    for(auto aItr = data.begin(); aItr != data.end(); ++aItr)
+    {
+        CTxDestination address = aItr->first;
+        for(auto cItr = aItr->second.begin(); cItr != aItr->second.end(); ++cItr)
+        {
+
+            CCoinControl coin_control;
+			coin_control.Select(COutPoint(cItr->tx->tx->GetHash(), cItr->i));
+			
+			CReserveKey reservekey(this);
+			CAmount nFeeRequired;
+			std::vector<CRecipient> vecSend;
+			std::string strError;
+			CTransactionRef tx;
+
+            int nChangePosRet = -1;
+			CScript scriptPubKey = GetScriptForDestination(address);
+			CAmount nValue = cItr->tx->tx->vout[cItr->i].nValue;
+			
+			CRecipient recipient = {scriptPubKey, nValue, true};
+			vecSend.push_back(recipient);
+			
+            //create coinstake tx
+			// TODO: Check Lock Status
+			// If Wallet is Locked, Fail to send. Need unlock. (Unlock for minting ? )
+			if (!CreateTransaction(vecSend, tx, reservekey, nFeeRequired, nChangePosRet, strError, coin_control)) {
+				continue;
+			}
+
+            //checkproofofstake
+            uint256 hashProofOfStake;
+            if(CheckProofOfStake(state, tx, nBits, hashProofOfStake,  nBlockTime))
+            {
+                txNew = tx;
+                script = scriptPubKey;
+                nFees = nFeeRequired;
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 CKeyPool::CKeyPool()
