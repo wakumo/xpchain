@@ -2,16 +2,15 @@
 #include <uint256.h>
 #include <chainparams.h>
 #include <util.h>
-#include <wallet/wallet.h>
 #include <init.h>
 #include <timedata.h>
 #include <txdb.h>
 #include <validation.h>
 #include <index/txindex.h>
+#include <chain.h>
+#include <script/interpreter.h>
 
 using namespace std;
-
-struct CDiskIndex;
 
 
 // ppcoin kernel protocol
