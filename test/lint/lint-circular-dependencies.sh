@@ -42,7 +42,6 @@ EXPECTED_CIRCULAR_DEPENDENCIES=(
     "qt/guiutil -> qt/walletmodel -> qt/optionsmodel -> qt/intro -> qt/guiutil"
     "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/sendcoinsdialog -> qt/sendcoinsentry -> qt/addressbookpage"
     "kernel -> validation -> kernel"
-    "kernel -> wallet/wallet -> kernel"
 )
 
 EXIT_CODE=0
