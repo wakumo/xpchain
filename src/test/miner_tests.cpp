@@ -52,34 +52,34 @@ struct {
     unsigned char extranonce;
     unsigned int nonce;
 } blockinfo[] = {
-    {3, 0x1b3955a5}, {3, 0x503c9bba}, {4, 0xd5a86cae}, {4, 0x0ae22b42},
-    {0, 0xc5557343}, {2, 0xaf5a6dd8}, {3, 0xe37ff551}, {4, 0x46525920},
-    {5, 0x0617b30f}, {3, 0x02cb2572}, {1, 0x6cbe0247}, {1, 0x9048313f},
-    {2, 0x2806d415}, {3, 0x10149931}, {3, 0x4ab2a559}, {4, 0x4af47a6a},
-    {0, 0x1dc1ceee}, {1, 0x79e0575d}, {2, 0xd16d5d34}, {3, 0x7e360da9},
-    {4, 0x131e12f7}, {4, 0x6a371a46}, {5, 0x9938eea5}, {0, 0x48224658},
-    {1, 0x3797fb0a}, {3, 0xfc97d65f}, {1, 0xbeb1b8bf}, {2, 0xd8d46f1e},
-    {2, 0xf940f42d}, {3, 0xafffb3dc}, {3, 0xecffe3f1}, {4, 0xd306defc},
-    {5, 0xea382f57}, {1, 0xaff1c86f}, {4, 0xdae62943}, {0, 0xb59bfeb6},
-    {1, 0x2ab5708a}, {1, 0xc516d8a5}, {2, 0x6742cba0}, {3, 0xf63994ff},
-    {4, 0x6ab7e666}, {5, 0x722eb631}, {1, 0x748246e4}, {2, 0x6e3864a5},
-    {3, 0x8c4d1cce}, {4, 0x138519ac}, {0, 0x7b520ec9}, {2, 0x16186227},
-    {5, 0x01c2a86b}, {0, 0xa9f4a1e5}, {1, 0x0a05acd1}, {2, 0xfc613b7e},
-    {3, 0x7b921f05}, {5, 0x18e708d3}, {5, 0xfd6da34b}, {0, 0x26a07901},
-    {0, 0xfbbafb12}, {1, 0xd123094d}, {1, 0xe592334b}, {2, 0x9d7346f5},
-    {2, 0x972c16da}, {3, 0x7eeccb89}, {4, 0x5541d724}, {5, 0x68bb89fb},
-    {5, 0xaed5ca1c}, {0, 0x0ac2f489}, {1, 0x2a3ad09b}, {1, 0x59362b74},
-    {2, 0x78af7934}, {2, 0xbfa88291}, {3, 0x6dae3cc8}, {4, 0xce6428a8},
-    {5, 0x77487774}, {5, 0xa6f9be2d}, {0, 0x5fdfda37}, {1, 0x2601a195},
-    {2, 0x58045288}, {2, 0xce0089df}, {3, 0xd3d25741}, {5, 0xf79943b3},
-    {1, 0x5663a8e3}, {1, 0xe078f97c}, {3, 0x838f6a73}, {5, 0xfbdbe90b},
-    {0, 0x4785b978}, {1, 0x14ebe608}, {2, 0x064e9355}, {3, 0x001ab332},
-    {4, 0xa32c9161}, {4, 0xfb0cea37}, {5, 0x2526d4c1}, {1, 0x5e3f0be5},
-    {3, 0x547ae808}, {3, 0xa80a224c}, {3, 0xe2c95cd6}, {0, 0x734823a4},
-    {0, 0xafa6b626}, {1, 0x3324dba5}, {3, 0x17e9c47f}, {4, 0xa58a0a1b},
-    {5, 0x9e290173}, {3, 0x28784cc5}, {4, 0xd682d25c}, {0, 0xf4474ae5},
-    {2, 0xc8188e2c}, {4, 0xa5220e89}, {1, 0x6913fe9e}, {1, 0xc38d4f43},
-    {3, 0xe71b5c06}, {0, 0xac20e8d3}
+    {5, 0x1b011eb2}, {5, 0x1c06282b}, {5, 0x1d054e21}, {5, 0x1e0109ab}, 
+    {5, 0x1f032818}, {5, 0x2003068b}, {5, 0x2101048a}, {5, 0x220125ae}, 
+    {5, 0x2305102a}, {5, 0x240412db}, {5, 0x25030db4}, {5, 0x260215d6}, 
+    {5, 0x27010b75}, {5, 0x28021a96}, {5, 0x29041c6e}, {5, 0x2a0188b9}, 
+    {5, 0x2b020917}, {5, 0x2c0705c9}, {5, 0x2d03059c}, {5, 0x2e023291}, 
+    {5, 0x2f061092}, {5, 0x300021e0}, {5, 0x3100299c}, {5, 0x32001d40}, 
+    {5, 0x33010c7a}, {5, 0x34050596}, {5, 0x35021537}, {5, 0x3600071b}, 
+    {5, 0x370207ea}, {5, 0x38060601}, {5, 0x39001198}, {5, 0x3a0506bc}, 
+    {5, 0x3b04268b}, {5, 0x3c031c66}, {5, 0x3d0532f3}, {5, 0x3e0430a4}, 
+    {5, 0x3f06030f}, {5, 0x4007017c}, {5, 0x41004dd5}, {5, 0x42054f69}, 
+    {5, 0x43050d6d}, {5, 0x440016fa}, {5, 0x45020023}, {5, 0x46010010}, 
+    {5, 0x47041ecc}, {5, 0x480704e7}, {5, 0x49060826}, {5, 0x4a050a82}, 
+    {5, 0x4b062b75}, {5, 0x4c010255}, {5, 0x4d05004e}, {5, 0x4e000e8e}, 
+    {5, 0x4f041fc9}, {5, 0x50060bb0}, {5, 0x51010540}, {5, 0x52030101}, 
+    {5, 0x53020ad4}, {5, 0x54013f9e}, {5, 0x55070744}, {5, 0x56000ac0}, 
+    {5, 0x570005b9}, {5, 0x58002fba}, {5, 0x59030871}, {5, 0x5a020fa6}, 
+    {5, 0x5b0584b3}, {5, 0x5c010c86}, {5, 0x5d010a2a}, {5, 0x5e0407b1}, 
+    {5, 0x5f0400b9}, {5, 0x60050064}, {5, 0x61033563}, {5, 0x62071654}, 
+    {5, 0x6306abf7}, {5, 0x640173ce}, {5, 0x65070310}, {5, 0x660027a8}, 
+    {5, 0x67013fc8}, {5, 0x68051ca1}, {5, 0x690339a5}, {5, 0x6a010295}, 
+    {5, 0x6b0304e5}, {5, 0x6c032a2c}, {5, 0x6d0708d0}, {5, 0x6e041223}, 
+    {5, 0x6f04366b}, {5, 0x700100b6}, {5, 0x71060609}, {5, 0x720002b6}, 
+    {5, 0x73026203}, {5, 0x7407290b}, {5, 0x750405ff}, {5, 0x76070001}, 
+    {5, 0x770235f6}, {5, 0x78000018}, {5, 0x7900197b}, {5, 0x7a073023}, 
+    {5, 0x7b030922}, {5, 0x7c041380}, {5, 0x7d020fe4}, {5, 0x7e010320}, 
+    {5, 0x7f0518f5}, {5, 0x8007680a}, {5, 0x810311cc}, {5, 0x82051155}, 
+    {5, 0x83051269}, {5, 0x84016696}, {5, 0x850509fc}, {5, 0x86000067}, 
+    {5, 0x87030d80}, {5, 0x88040a15}
 };
 
 static CBlockIndex CreateBlockIndex(int nHeight)
@@ -112,20 +112,20 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vin[0].prevout.n = 0;
     tx.vout.resize(1);
-    tx.vout[0].nValue = 3000000000LL - 1000;
+    tx.vout[0].nValue = 11000000000000LL - 1000;
     // This tx has a low fee: 1000 mochas
     uint256 hashParentTx = tx.GetHash(); // save this txid for later use
     mempool.addUnchecked(hashParentTx, entry.Fee(1000).Time(GetTime()).SpendsCoinbase(true).FromTx(tx));
 
     // This tx has a medium fee: 10000 mochas
     tx.vin[0].prevout.hash = txFirst[1]->GetHash();
-    tx.vout[0].nValue = 3000000000LL - 10000;
+    tx.vout[0].nValue = 11000000000000LL - 10000;
     uint256 hashMediumFeeTx = tx.GetHash();
     mempool.addUnchecked(hashMediumFeeTx, entry.Fee(10000).Time(GetTime()).SpendsCoinbase(true).FromTx(tx));
 
     // This tx has a high fee, but depends on the first transaction
     tx.vin[0].prevout.hash = hashParentTx;
-    tx.vout[0].nValue = 3000000000LL - 1000 - 50000; // 50000 mocha fee
+    tx.vout[0].nValue = 11000000000000LL - 1000 - 50000; // 50000 mocha fee
     uint256 hashHighFeeTx = tx.GetHash();
     mempool.addUnchecked(hashHighFeeTx, entry.Fee(50000).Time(GetTime()).SpendsCoinbase(false).FromTx(tx));
 
@@ -136,7 +136,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
 
     // Test that a package below the block min tx fee doesn't get included
     tx.vin[0].prevout.hash = hashHighFeeTx;
-    tx.vout[0].nValue = 3000000000LL - 1000 - 50000; // 0 fee
+    tx.vout[0].nValue = 11000000000000LL - 1000 - 50000; // 0 fee
     uint256 hashFreeTx = tx.GetHash();
     mempool.addUnchecked(hashFreeTx, entry.Fee(0).FromTx(tx));
     size_t freeTxSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
@@ -146,7 +146,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     CAmount feeToUse = blockMinFeeRate.GetFee(2*freeTxSize) - 1;
 
     tx.vin[0].prevout.hash = hashFreeTx;
-    tx.vout[0].nValue = 3000000000LL - 1000 - 50000 - feeToUse;
+    tx.vout[0].nValue = 11000000000000LL - 1000 - 50000 - feeToUse;
     uint256 hashLowFeeTx = tx.GetHash();
     mempool.addUnchecked(hashLowFeeTx, entry.Fee(feeToUse).FromTx(tx));
     pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey);
@@ -172,7 +172,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     // Add a 0-fee transaction that has 2 outputs.
     tx.vin[0].prevout.hash = txFirst[2]->GetHash();
     tx.vout.resize(2);
-    tx.vout[0].nValue = 3000000000LL - 60000000;
+    tx.vout[0].nValue = 11000000000000LL - 60000000;
     tx.vout[1].nValue = 60000000; // 6000XPC output
     uint256 hashFreeTx2 = tx.GetHash();
     mempool.addUnchecked(hashFreeTx2, entry.Fee(0).SpendsCoinbase(true).FromTx(tx));
@@ -181,7 +181,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     tx.vin[0].prevout.hash = hashFreeTx2;
     tx.vout.resize(1);
     feeToUse = blockMinFeeRate.GetFee(freeTxSize);
-    tx.vout[0].nValue = 3000000000LL - 60000000 - feeToUse;
+    tx.vout[0].nValue = 11000000000000LL - 60000000 - feeToUse;
     uint256 hashLowFeeTx2 = tx.GetHash();
     mempool.addUnchecked(hashLowFeeTx2, entry.Fee(feeToUse).SpendsCoinbase(false).FromTx(tx));
     pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey);
@@ -257,7 +257,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     // Just to make sure we can still make simple blocks
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey));
 
-    const CAmount BLOCKSUBSIDY = 30 * 10000 * COIN;
+    const CAmount BLOCKSUBSIDY = 1100000000 * COIN;
     const CAmount LOWFEE = CENT * 10000;
     const CAmount HIGHFEE = COIN * 10000;
     const CAmount HIGHERFEE = 4 * COIN * 10000;

@@ -733,7 +733,7 @@ class FullBlockTest(BitcoinTestFramework):
         self.log.info("Reject a block with a transaction with outputs > inputs")
         self.move_tip(57)
         b59 = self.next_block(59)
-        tx = self.create_and_sign_transaction(out[17], 300001 * COIN)
+        tx = self.create_and_sign_transaction(out[17], 1100000001 * COIN)
         b59 = self.update_block(59, [tx])
         self.sync_blocks([b59], False, 16, b'bad-txns-in-belowout', reconnect=True)
 
