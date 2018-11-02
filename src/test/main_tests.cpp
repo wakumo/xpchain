@@ -16,7 +16,7 @@ BOOST_FIXTURE_TEST_SUITE(main_tests, TestingSetup)
 static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
 {
     int maxHalvings = 64;
-    CAmount nInitialSubsidy = 11000000 * COIN * 100; // TODO remove x100
+    CAmount nInitialSubsidy = 11000000 * COIN;
 
     CAmount nPreviousSubsidy = nInitialSubsidy * 2; // for height == 0
     BOOST_CHECK_EQUAL(nPreviousSubsidy, nInitialSubsidy * 2);
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
     int nSwitch = chainParams->GetConsensus().nSwitchHeight;
     for (int nHeight = 0; nHeight < nSwitch; nHeight++) {
         CAmount nSubsidy = GetBlockSubsidy(nHeight, chainParams->GetConsensus());
-        BOOST_CHECK(nSubsidy = 11000000 * COIN);
+        BOOST_CHECK(nSubsidy <= 11000000 * COIN);
         nSum += nSubsidy;
         BOOST_CHECK(MoneyRange(nSum));
     }

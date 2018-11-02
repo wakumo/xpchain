@@ -1170,7 +1170,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings >= 64)
         return 0;
 
-    CAmount nSubsidy = 11000000 * COIN * 100; // TODO delete * 100 at mainnet
+    CAmount nSubsidy = 11000000 * COIN;
     nSubsidy >>= halvings;
     return nSubsidy;
 }
