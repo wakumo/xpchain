@@ -1075,7 +1075,7 @@ static bool WriteBlockToDisk(const CBlock& block, CDiskBlockPos& pos, const CMes
     return true;
 }
 
-bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParams)
+bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParams, bool fProofOfStake)
 {
     block.SetNull();
 
@@ -1092,35 +1092,20 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
-    // Check the header
-    if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+    if(fProofOfStake)
+    {
+        // Check the block
+        uint256 bnHashPoS;
+        if (!CheckProofOfStake(block.vtx[1], block.nBits, bnHashPoS ,block.GetBlockTime()))
+            return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
 
-    return true;
-}
-
-bool ReadPoSBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParam)
-{
-    block.SetNull();
-
-    // Open history file to read
-    CAutoFile filein(OpenBlockFile(pos, true), SER_DISK, CLIENT_VERSION);
-    if (filein.IsNull())
-        return error("ReadBlockFromDisk: OpenBlockFile failed for %s", pos.ToString());
-
-    // Read block
-    try {
-        filein >> block;
     }
-    catch (const std::exception& e) {
-        return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
+    else
+    {
+        // Check the header
+        if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
+            return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
     }
-
-    // Check the block
-    CValidationState state;
-    uint256 bnHashPoS;
-    if (!CheckProofOfStake(state, block.vtx[1], block.nBits, bnHashPoS ,block.GetBlockTime()))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
 
     return true;
 }
@@ -1132,16 +1117,8 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
         LOCK(cs_main);
         blockPos = pindex->GetBlockPos();
     }
-    if(consensusParams.nSwitchHeight < pindex->nHeight)
-    {
-        if(!ReadPoSBlockFromDisk(block, blockPos, consensusParams))
-            return false;
-    }
-    else
-    {
-        if (!ReadBlockFromDisk(block, blockPos, consensusParams))
-            return false;
-    }
+    if(!ReadBlockFromDisk(block, blockPos, consensusParams, IsPoSHeight(pindex->nHeight, consensusParams)))
+        return false;
     if (block.GetHash() != pindex->GetBlockHash())
         return error("ReadBlockFromDisk(CBlock&, CBlockIndex*): GetHash() doesn't match index for %s at %s",
                 pindex->ToString(), pindex->GetBlockPos().ToString());
@@ -1215,11 +1192,11 @@ CAmount GetProofOfStakeReward(int nHeight, CAmount nAmount, uint32_t nTime, cons
     {
         return 0;
     }
-    if(nHeight <= consensusParams.nSwitchHeight)
+    if(!IsPoSHeight(nHeight, consensusParams))
     {
         nRewardPerYear = 0;
     }
-    else if(consensusParams.nSwitchHeight < nHeight && nHeight <= nSubsidyDownInterval)
+    else if(IsPoSHeight(nHeight, consensusParams) && nHeight <= nSubsidyDownInterval)
     {
         nRewardPerYear = 10;
     }
@@ -2127,7 +2104,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nTime3 = GetTimeMicros(); nTimeConnect += nTime3 - nTime2;
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs (%.2fms/blk)]\n", (unsigned)block.vtx.size(), MILLI * (nTime3 - nTime2), MILLI * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : MILLI * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
     CAmount blockReward;
-    if(pindex->nHeight <= chainparams.GetConsensus().nSwitchHeight)
+    if(!IsPoSHeight(pindex->nHeight, chainparams.GetConsensus()))
     {
         blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
     }
@@ -3192,7 +3169,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams) && chainActive.Height() + 1 <= consensusParams.nSwitchHeight)
+    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
 
     return true;
@@ -3207,7 +3184,15 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW))
+
+    auto itr = mapBlockIndex.find(block.hashPrevBlock);
+    int nHeight = 0;
+    if(itr != mapBlockIndex.end())
+    {
+        nHeight = (*itr).second->nHeight + 1;
+    }
+
+    if (!CheckBlockHeader(block, state, consensusParams, (fCheckPOW && !IsPoSHeight(nHeight, consensusParams))))
         return false;
 
     // Check the merkle root.
@@ -3241,10 +3226,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         if (block.vtx[i]->IsCoinBase())
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
 
-    int nHeight = chainActive.Height() + 1;
-    if(consensusParams.nSwitchHeight < nHeight)
+    if(IsPoSHeight(nHeight, consensusParams))
     {
-        if(block.vtx.size() > 1)
+        if(block.vtx.size() < 2) // block doesn't include coinbase and coinstake
         {
             // return state.DoS()
             return false;
@@ -3252,12 +3236,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
         uint256 bnPosHash;
 
-        if(!CheckProofOfStake(state, block.vtx[1], block.nBits, bnPosHash, GetAdjustedTime()))
+        if(!fCheckPOW && !CheckProofOfStake(block.vtx[1], block.nBits, bnPosHash, GetAdjustedTime()))
         {
             return false;
         }
     }
-
     // Check transactions
     for (const auto& tx : block.vtx)
         if (!CheckTransaction(*tx, state, false))
@@ -3499,9 +3482,6 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
             return true;
         }
 
-        if (!CheckBlockHeader(block, state, chainparams.GetConsensus()))
-            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
-
         // Get prev block index
         CBlockIndex* pindexPrev = nullptr;
         BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
@@ -3512,6 +3492,9 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
             return state.DoS(100, error("%s: prev block invalid", __func__), REJECT_INVALID, "bad-prevblk");
         if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
             return error("%s: Consensus::ContextualCheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
+
+        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !IsPoSHeight(pindexPrev->nHeight + 1, chainparams.GetConsensus())))
+            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
 
         // If the previous block index isn't valid, determine if it descends from any block which
         // has been found invalid (m_failed_blocks), then mark pindexPrev and any blocks
@@ -4574,7 +4557,8 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, CDiskB
                     while (range.first != range.second) {
                         std::multimap<uint256, CDiskBlockPos>::iterator it = range.first;
                         std::shared_ptr<CBlock> pblockrecursive = std::make_shared<CBlock>();
-                        if (ReadBlockFromDisk(*pblockrecursive, it->second, chainparams.GetConsensus()))
+                        auto itr =  mapBlockIndex.find(head);
+                        if (ReadBlockFromDisk(*pblockrecursive, it->second, chainparams.GetConsensus(),IsPoSHeight((*itr).second->nHeight, chainparams.GetConsensus())))
                         {
                             LogPrint(BCLog::REINDEX, "%s: Processing out of order child %s of %s\n", __func__, pblockrecursive->GetHash().ToString(),
                                     head.ToString());
@@ -4977,3 +4961,8 @@ public:
         mapBlockIndex.clear();
     }
 } instance_of_cmaincleanup;
+
+bool IsPoSHeight(int n, const Consensus::Params & params)
+{
+    return n > params.nSwitchHeight;
+}

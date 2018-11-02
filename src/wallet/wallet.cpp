@@ -2663,7 +2663,7 @@ OutputType CWallet::TransactionChangeType(OutputType change_type, const std::vec
 }
 
 bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CReserveKey& reservekey, CAmount& nFeeRet,
-                         int& nChangePosInOut, std::string& strFailReason, const CCoinControl& coin_control, bool sign)
+                         int& nChangePosInOut, std::string& strFailReason, const CCoinControl& coin_control, bool sign, bool fWriteLog)
 {
     CAmount nValue = 0;
     int nChangePosRequest = nChangePosInOut;
@@ -2753,7 +2753,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
                 }
                 CPubKey vchPubKey;
                 bool ret;
-                ret = reservekey.GetReservedKey(vchPubKey, true);
+                ret = reservekey.GetReservedKey(vchPubKey, true, fWriteLog);
                 if (!ret)
                 {
                     strFailReason = _("Keypool ran out, please call keypoolrefill first");
@@ -2975,7 +2975,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
             }
         }
 
-        if (nChangePosInOut == -1) reservekey.ReturnKey(); // Return any reserved key if we don't have change
+        if (nChangePosInOut == -1) reservekey.ReturnKey(fWriteLog); // Return any reserved key if we don't have change
 
         // Shuffle selected coins and fill in final vin
         txNew.vin.clear();
@@ -3042,15 +3042,16 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
             return false;
         }
     }
-
-    WalletLogPrintf("Fee Calculation: Fee:%d Bytes:%u Needed:%d Tgt:%d (requested %d) Reason:\"%s\" Decay %.5f: Estimation: (%g - %g) %.2f%% %.1f/(%.1f %d mem %.1f out) Fail: (%g - %g) %.2f%% %.1f/(%.1f %d mem %.1f out)\n",
-              nFeeRet, nBytes, nFeeNeeded, feeCalc.returnedTarget, feeCalc.desiredTarget, StringForFeeReason(feeCalc.reason), feeCalc.est.decay,
-              feeCalc.est.pass.start, feeCalc.est.pass.end,
-              100 * feeCalc.est.pass.withinTarget / (feeCalc.est.pass.totalConfirmed + feeCalc.est.pass.inMempool + feeCalc.est.pass.leftMempool),
-              feeCalc.est.pass.withinTarget, feeCalc.est.pass.totalConfirmed, feeCalc.est.pass.inMempool, feeCalc.est.pass.leftMempool,
-              feeCalc.est.fail.start, feeCalc.est.fail.end,
-              100 * feeCalc.est.fail.withinTarget / (feeCalc.est.fail.totalConfirmed + feeCalc.est.fail.inMempool + feeCalc.est.fail.leftMempool),
-              feeCalc.est.fail.withinTarget, feeCalc.est.fail.totalConfirmed, feeCalc.est.fail.inMempool, feeCalc.est.fail.leftMempool);
+    if(fWriteLog){
+        WalletLogPrintf("Fee Calculation: Fee:%d Bytes:%u Needed:%d Tgt:%d (requested %d) Reason:\"%s\" Decay %.5f: Estimation: (%g - %g) %.2f%% %.1f/(%.1f %d mem %.1f out) Fail: (%g - %g) %.2f%% %.1f/(%.1f %d mem %.1f out)\n",
+                nFeeRet, nBytes, nFeeNeeded, feeCalc.returnedTarget, feeCalc.desiredTarget, StringForFeeReason(feeCalc.reason), feeCalc.est.decay,
+                feeCalc.est.pass.start, feeCalc.est.pass.end,
+                100 * feeCalc.est.pass.withinTarget / (feeCalc.est.pass.totalConfirmed + feeCalc.est.pass.inMempool + feeCalc.est.pass.leftMempool),
+                feeCalc.est.pass.withinTarget, feeCalc.est.pass.totalConfirmed, feeCalc.est.pass.inMempool, feeCalc.est.pass.leftMempool,
+                feeCalc.est.fail.start, feeCalc.est.fail.end,
+                100 * feeCalc.est.fail.withinTarget / (feeCalc.est.fail.totalConfirmed + feeCalc.est.fail.inMempool + feeCalc.est.fail.leftMempool),
+                feeCalc.est.fail.withinTarget, feeCalc.est.fail.totalConfirmed, feeCalc.est.fail.inMempool, feeCalc.est.fail.leftMempool);
+    }
     return true;
 }
 
@@ -3393,7 +3394,7 @@ bool CWallet::TopUpKeyPool(unsigned int kpSize)
     return true;
 }
 
-bool CWallet::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool, bool fRequestedInternal)
+bool CWallet::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool, bool fRequestedInternal, bool fWriteLog)
 {
     nIndex = -1;
     keypool.vchPubKey = CPubKey();
@@ -3432,7 +3433,8 @@ bool CWallet::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool, bool fRe
         }
 
         m_pool_key_to_index.erase(keypool.vchPubKey.GetID());
-        WalletLogPrintf("keypool reserve %d\n", nIndex);
+        if(fWriteLog)
+            WalletLogPrintf("keypool reserve %d\n", nIndex);
     }
     return true;
 }
@@ -3445,7 +3447,7 @@ void CWallet::KeepKey(int64_t nIndex)
     WalletLogPrintf("keypool keep %d\n", nIndex);
 }
 
-void CWallet::ReturnKey(int64_t nIndex, bool fInternal, const CPubKey& pubkey)
+void CWallet::ReturnKey(int64_t nIndex, bool fInternal, const CPubKey& pubkey, bool fWriteLog)
 {
     // Return to key pool
     {
@@ -3459,7 +3461,8 @@ void CWallet::ReturnKey(int64_t nIndex, bool fInternal, const CPubKey& pubkey)
         }
         m_pool_key_to_index[pubkey.GetID()] = nIndex;
     }
-    WalletLogPrintf("keypool return %d\n", nIndex);
+    if(fWriteLog)
+        WalletLogPrintf("keypool return %d\n", nIndex);
 }
 
 bool CWallet::GetKeyFromPool(CPubKey& result, bool internal)
@@ -3669,12 +3672,12 @@ void CWallet::DeleteLabel(const std::string& label)
     batch.EraseAccount(label);
 }
 
-bool CReserveKey::GetReservedKey(CPubKey& pubkey, bool internal)
+bool CReserveKey::GetReservedKey(CPubKey& pubkey, bool internal, bool fWriteLog)
 {
     if (nIndex == -1)
     {
         CKeyPool keypool;
-        if (!pwallet->ReserveKeyFromKeyPool(nIndex, keypool, internal)) {
+        if (!pwallet->ReserveKeyFromKeyPool(nIndex, keypool, internal, fWriteLog)) {
             return false;
         }
         vchPubKey = keypool.vchPubKey;
@@ -3693,10 +3696,10 @@ void CReserveKey::KeepKey()
     vchPubKey = CPubKey();
 }
 
-void CReserveKey::ReturnKey()
+void CReserveKey::ReturnKey(bool fWriteLog)
 {
     if (nIndex != -1) {
-        pwallet->ReturnKey(nIndex, fInternal, vchPubKey);
+        pwallet->ReturnKey(nIndex, fInternal, vchPubKey, fWriteLog);
     }
     nIndex = -1;
     vchPubKey = CPubKey();
@@ -4353,7 +4356,7 @@ bool CWallet::BackupWallet(const std::string& strDest)
     return database->Backup(strDest);
 }
 
-bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScript& script, CAmount& nFees, CValidationState& state,unsigned int nBlockTime)
+bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScript& script, CAmount& nFees,unsigned int nBlockTime)
 {
     //get utxo pool
     std::map<CTxDestination, std::vector<COutput>> data = ListCoins();
@@ -4378,17 +4381,18 @@ bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScrip
 			
 			CRecipient recipient = {scriptPubKey, nValue, true};
 			vecSend.push_back(recipient);
-			
+
             //create coinstake tx
 			// TODO: Check Lock Status
 			// If Wallet is Locked, Fail to send. Need unlock. (Unlock for minting ? )
-			if (!CreateTransaction(vecSend, tx, reservekey, nFeeRequired, nChangePosRet, strError, coin_control)) {
-				continue;
+            if (!CreateTransaction(vecSend, tx, reservekey, nFeeRequired, nChangePosRet, strError, coin_control, true, false))
+            {
+                continue;
 			}
 
             //checkproofofstake
             uint256 hashProofOfStake;
-            if(CheckProofOfStake(state, tx, nBits, hashProofOfStake,  nBlockTime))
+            if(CheckProofOfStake(tx, nBits, hashProofOfStake,  nBlockTime))
             {
                 txNew = tx;
                 script = scriptPubKey;

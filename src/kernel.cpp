@@ -38,6 +38,7 @@ using namespace std;
 //
 bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned int nTxPrevOffset, const CTxOut& txOutPrev, const COutPoint& prevout, uint32_t nTimeTx, uint256& hashProofOfStake)
 {
+    hashProofOfStake = uint256();
     uint32_t nTimeBlockFrom = blockFrom.GetBlockTime();
     if (nTimeBlockFrom + Params().GetConsensus().nStakeMinAge > nTimeTx) // Min age requirement
         return error("CheckStakeKernelHash() : min age violation");
@@ -63,8 +64,9 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
     return true;
 }
 
-bool CheckProofOfStake(CValidationState& state, const CTransactionRef& tx, unsigned int nBits, uint256& hashProofOfStake, unsigned int nBlockTime)
+bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& hashProofOfStake, unsigned int nBlockTime)
 {
+    hashProofOfStake = uint256();
     const CTxIn& txin = tx->vin[0];
 
     CTransactionRef txTmp;
@@ -73,7 +75,6 @@ bool CheckProofOfStake(CValidationState& state, const CTransactionRef& tx, unsig
     if (!GetTransaction(txin.prevout.hash, txTmp, Params().GetConsensus(), hashBlock))
         return false;
         //return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
-
     // Verify signature
     PrecomputedTransactionData txdata(*tx);
     if (!CScriptCheck(txTmp->vout[tx->vin[0].prevout.n], *tx, 0, 0, true, &txdata)())

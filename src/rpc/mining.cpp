@@ -118,7 +118,7 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
     UniValue blockHashes(UniValue::VARR);
     while (nHeight < nHeightEnd && !ShutdownRequested())
     {
-        if(nHeight >= Params().GetConsensus().nSwitchHeight)
+        if(IsPoSHeight(nHeight+1,Params().GetConsensus()))
         {          
             break;
         }

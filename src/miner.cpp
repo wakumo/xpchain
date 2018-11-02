@@ -134,7 +134,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
-    if(chainparams.GetConsensus().nSwitchHeight < nHeight)
+    if(IsPoSHeight(nHeight, chainparams.GetConsensus()))
     {
         //add dummy "Send to myself" Tx as 2nd transaction
         pblock->vtx.emplace_back();
@@ -175,18 +175,17 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     nLastBlockTx = nBlockTx;
     nLastBlockWeight = nBlockWeight;
 
-    CValidationState state;
     pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
 
     CScript scriptPubKey;
     
-    if(chainparams.GetConsensus().nSwitchHeight < nHeight)
+    if(IsPoSHeight(nHeight, chainparams.GetConsensus()))
     {
         //create "Send to myself" Tx
         CTransactionRef txCoinStake;
         CAmount nCoinStakeTxFee;
 #ifdef ENABLE_WALLET
-        if(!pwallet->CreateCoinStake(pblock->nBits, txCoinStake, scriptPubKey, nCoinStakeTxFee, state, pblock->nTime))
+        if(!pwallet->CreateCoinStake(pblock->nBits, txCoinStake, scriptPubKey, nCoinStakeTxFee, pblock->nTime))
 #endif
         {
             return nullptr;
@@ -206,7 +205,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
-     if(nHeight <= chainparams.GetConsensus().nSwitchHeight)
+    if(!IsPoSHeight(nHeight, chainparams.GetConsensus()))
     {
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
@@ -235,7 +234,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->nNonce         = 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 
-    
+    CValidationState state;
     if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, false)) {
         throw std::runtime_error(strprintf("%s: TestBlockValidity failed: %s", __func__, FormatStateMessage(state)));
     }
@@ -548,14 +547,13 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             //
             // Create new block
             //
-            if(chainActive.Height() < Params().GetConsensus().nSwitchHeight)
+            if(!IsPoSHeight(chainActive.Height()+1,Params().GetConsensus()))
             {
                 MilliSleep(1000);
                 continue;
             }
             CScript scriptDummy;
             std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(scriptDummy, wallet.get()));
-            CBlock *pblock = &pblocktemplate->block;
             if (!pblocktemplate.get())
             {
                 MilliSleep(1000);
@@ -563,19 +561,22 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             }
             else
             {
+                CBlock *pblock = &pblocktemplate->block;
                 std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
                 if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
                 {
                     MilliSleep(1000);
                     continue;
                 }
+                LogPrintf("success! hash = %s\n", pblock->GetHash().ToString().c_str());
             }
+            MilliSleep(1000);
         }
     }
     catch (boost::thread_interrupted)
     {
-        LogPrintf("PeercoinMiner terminated\n");
-        throw;
+        LogPrintf("XPChainMiner terminated\n");
+        return;
     }
 }
 
