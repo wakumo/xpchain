@@ -519,7 +519,9 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
     LogPrintf("CPUMiner started for proof-of-stake\n");
     RenameThread("xpchain-stake-minter");
     
-
+    /*
+    TODO:use these messages
+    */
     std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
     std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
     std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
@@ -527,22 +529,23 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
     {
         while (true)
         {
-            if(gArgs.GetBoolArg("-nominting", false))
+            if(!gArgs.GetBoolArg("-minting", true))
             {
-                //strMintWarnig = strMintDisabledMessage
+                LogPrintf("nominting\n");
                 return;
             }
-
+            /*TODO:
+            regtest always stake
+            others always mint GetBoolArg or !vNodes.empty()
+            */     
             //while (vNodes.empty())
             //    MilliSleep(1000);
 
             while(wallet->IsLocked())
             {
-                //strMintWarning = strMintMessage;
                 MilliSleep(1000);
                 continue;
             }
-            //strMintWarning = "";
 
             //
             // Create new block
@@ -597,6 +600,7 @@ void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
 
 void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
 {
+    
     threadGroup.create_thread(boost::bind(&ThreadStakeMinter, wallet));
 }
 #endif

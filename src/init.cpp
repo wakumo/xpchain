@@ -378,6 +378,9 @@ void SetupServerArgs()
     gArgs.AddArg("-par=<n>", strprintf("Set the number of script verification threads (%u to %d, 0 = auto, <0 = leave that many cores free, default: %d)",
         -GetNumCores(), MAX_SCRIPTCHECK_THREADS, DEFAULT_SCRIPTCHECK_THREADS), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-persistmempool", strprintf("Whether to save the mempool on shutdown and load on restart (default: %u)", DEFAULT_PERSIST_MEMPOOL), false, OptionsCategory::OPTIONS);
+
+    gArgs.AddArg("-minting","stake",false, OptionsCategory::STAKE);
+
 #ifndef WIN32
     gArgs.AddArg("-pid=<file>", strprintf("Specify pid file. Relative paths will be prefixed by a net-specific datadir location. (default: %s)", XPCHAIN_PID_FILENAME), false, OptionsCategory::OPTIONS);
 #else
@@ -1755,9 +1758,7 @@ bool AppInitMain()
         return false;
     }
 
-
-    if(gArgs.GetBoolArg("-stakegen", true))
-        g_wallet_init_interface.StartMinting(threadGroup);
+    g_wallet_init_interface.StartMinting(threadGroup);
     // ********************************************************* Step 13: finished
 
     SetRPCWarmupFinished();
