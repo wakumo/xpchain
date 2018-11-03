@@ -1010,7 +1010,7 @@ bool GetTransaction(const uint256& hash, CTransactionRef& txOut, const Consensus
     CBlockIndex* pindexSlow = blockIndex;
 
     LOCK(cs_main);
-
+    
     if (!blockIndex) {
         CTransactionRef ptx = mempool.get(hash);
         if (ptx) {
@@ -2110,33 +2110,33 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
     else
     {
-        uint256 hashblock;
-        CDiskTxPos postx;
-        CBlockHeader header;
+        uint256 hash;
         CTransactionRef tx;
-        
-        if(!g_txindex->FindTx(block.vtx[1]->vin[0].prevout.hash, postx, header, tx))
+
+        if(!GetTransaction(block.vtx[1]->vin[0].prevout.hash, tx, chainparams.GetConsensus(), hash, true))
         {
             return error("ConnectBlock(): coinstakeTx was not found");
         }
 
-        uint32_t nTime = block.nTime - header.nTime;
+        auto itr = mapBlockIndex.find(hash);
 
-        if(block.vtx[1]->vin.size() != 1)
+        if(itr == mapBlockIndex.end())
         {
-            return error("ConnectBlock(): vtx[1] is not coinstakeTx. vin size is %d", block.vtx[1]->vin.size());
-        } 
-        if(block.vtx[1]->vout.size() != 1)
-        {
-            return error("ConnectBlock(): vtx[1] is not coinstakeTx. vout size is %d", block.vtx[1]->vout.size());
+            return error("ConnectBlock(): coinstakeTx block was not found");
         }
 
-        CScript out = block.vtx[1]->vout[0].scriptPubKey;
-        CScript in = tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey;
-        CScript base = block.vtx[0]->vout[0].scriptPubKey;
-        if(out != in || in != base)
+        CBlockHeader header = (*itr).second->GetBlockHeader();
+
+        uint32_t nTime = block.nTime - header.nTime;
+
+        //if(!IsCoinStakeTx(block.vtx[1]))
         {
-            return error("ConnectBlock(): vtx[1] is not coinStakeTx. vin, vout and coinbase address don't match");
+            return error("ConnectBlock(): vtx[1] is not coinstaketx");
+        }
+
+        //if(AddressesEqual(block.vtx[0].vout[0].scriptPubKey, block.vtx[1].vout[0].scriptPubKey))
+        {
+            return error("ConnectBlock(): vtx[1] and vtx[0] output address do not match");
         }
 
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
@@ -3187,11 +3187,11 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     auto itr = mapBlockIndex.find(block.hashPrevBlock);
     int nHeight = 0;
-    if(itr != mapBlockIndex.end())
+    if(itr == mapBlockIndex.end())
     {
-        nHeight = (*itr).second->nHeight + 1;
+        return false;
     }
-
+    nHeight = (*itr).second->nHeight + 1;
     if (!CheckBlockHeader(block, state, consensusParams, (fCheckPOW && !IsPoSHeight(nHeight, consensusParams))))
         return false;
 

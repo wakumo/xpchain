@@ -211,11 +211,15 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     }
     else
     {
-        uint256 hashblock;
-        CDiskTxPos postx;
-        CBlockHeader header;
+        uint256 hash;
         CTransactionRef tx;
-        g_txindex->FindTx(pblock->vtx[1]->vin[0].prevout.hash, postx, header, tx);
+        if(!GetTransaction(pblock->vtx[1]->vin[0].prevout.hash, tx, chainparams.GetConsensus(), hash, true))
+        {
+            return nullptr;
+        }
+        auto itr = mapBlockIndex.find(hash);
+        CBlockHeader header = (*itr).second->GetBlockHeader();
+
         uint32_t nTime = pblock->nTime - header.nTime;
         coinbaseTx.vout[0].nValue = GetProofOfStakeReward(nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
     }
@@ -518,7 +522,7 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
 {
     LogPrintf("CPUMiner started for proof-of-stake\n");
     RenameThread("xpchain-stake-minter");
-    
+
     /*
     TODO:use these messages
     */
@@ -600,7 +604,6 @@ void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
 
 void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
 {
-    
     threadGroup.create_thread(boost::bind(&ThreadStakeMinter, wallet));
 }
 #endif

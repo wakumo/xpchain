@@ -767,6 +767,7 @@ private:
      */
     const CBlockIndex* m_last_block_processed = nullptr;
 
+    std::map<COutPoint, std::tuple<CTransactionRef, CAmount>>m_coinstaketx;
 public:
     /*
      * Main wallet lock.
