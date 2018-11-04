@@ -569,6 +569,7 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             else
             {
                 CBlock *pblock = &pblocktemplate->block;
+                pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
                 std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
                 if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
                 {
@@ -577,6 +578,7 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
                 }
                 LogPrintf("success! hash = %s\n", pblock->GetHash().ToString().c_str());
             }
+            printf("sleep\n");
             MilliSleep(1000);
         }
     }

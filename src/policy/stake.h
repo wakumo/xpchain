@@ -12,5 +12,6 @@ bool IsProofOfWork(const CBlockHeader& block);
 bool IsProofOfStake(const CBlockHeader& block);
 
 bool IsPayToYourselfTx(const CTransaction& tx);
+bool AddressesEqual(const CScript& a, const CScript& b);
 
 #endif //XPCHAIN_POLICY_STAKE_H

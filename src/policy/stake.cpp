@@ -11,7 +11,8 @@
 #include <pubkey.h>
 #include <script/interpreter.h>
 #include <script/standard.h>
-
+#include <stdio.h>
+#include <key_io.h>
 
 bool IsProofOfWork(const CBlockHeader& block)
 {
@@ -27,13 +28,11 @@ bool IsPayToYourselfTx(const CTransaction& tx)
 {
     if (tx.IsNull() || tx.vin.size() != 1 || tx.vout.size() != 1)
         return false;
-
     txnouttype type;
     std::vector<std::vector<unsigned char>> solutions;
 
     if (!Solver(tx.vout[0].scriptPubKey, type, solutions))
         return false;
-
     //! TX_PUBKEY is rejected because the public key can not be calculated.
     if (solutions.size() == 0 || type == TX_PUBKEY || type == TX_NULL_DATA || type == TX_WITNESS_UNKNOWN)
         return false;
@@ -50,7 +49,7 @@ bool IsPayToYourselfTx(const CTransaction& tx)
 
     if (type == TX_PUBKEYHASH || type == TX_SCRIPTHASH) {
         std::vector<std::vector<unsigned char>> stack;
-        if (!EvalScript(stack, tx.vin[0].scriptSig, SCRIPT_VERIFY_NONE, BaseSignatureChecker(), SIGVERSION_BASE))
+        if (!EvalScript(stack, tx.vin[0].scriptSig, SCRIPT_VERIFY_NONE, BaseSignatureChecker(), SigVersion::BASE))
             return false;
         destination = stack.back();
     } else if (type == TX_WITNESS_V0_KEYHASH || type == TX_WITNESS_V0_SCRIPTHASH) {
@@ -58,16 +57,13 @@ bool IsPayToYourselfTx(const CTransaction& tx)
     } else {
         return false;
     }
-
     if (destination.size() == 0)
         return false;
-
     if (type == TX_PUBKEYHASH || type == TX_WITNESS_V0_KEYHASH) {
         CPubKey pubkey(destination);
         if (!pubkey.IsFullyValid())
             return false;
     }
-
     std::vector<unsigned char> hash;
 
     if (type == TX_WITNESS_V0_SCRIPTHASH) {
@@ -75,6 +71,32 @@ bool IsPayToYourselfTx(const CTransaction& tx)
     } else {
         CHash160().Write(destination.data(), destination.size()).Finalize(hash.data());
     }
-
     return (hash == solutions[0]);
+}
+
+bool AddressesEqual(const CScript& a, const CScript& b)
+{
+    txnouttype aType, bType;
+    std::vector<std::vector<unsigned char>> aSolutions, bSolutions;
+
+    if(!Solver(a, aType, aSolutions) || !Solver(b, bType, bSolutions))
+    {
+        return false;
+    }
+
+    if(aSolutions.size() != 1 || bSolutions.size() != 1)
+    {
+        return false;
+    }
+
+    //addresses of a,b are the same 
+    //TODO: fix
+    CTxDestination aAddress, bAddress;
+    if(!ExtractDestination(a, aAddress) || !ExtractDestination(b, bAddress))
+    {
+        return false;
+    }
+
+    printf("a = %s b = %s\n", EncodeDestination(aAddress).c_str(), EncodeDestination(bAddress).c_str());
+    return aAddress == bAddress;
 }

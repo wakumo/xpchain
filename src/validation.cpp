@@ -48,6 +48,7 @@
 #include <boost/thread.hpp>
 
 #include <kernel.h>
+#include <policy/stake.h>
 
 #if defined(NDEBUG)
 # error "Bitcoin cannot be compiled without assertions."
@@ -2129,12 +2130,12 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
         uint32_t nTime = block.nTime - header.nTime;
 
-        //if(!IsCoinStakeTx(block.vtx[1]))
+        if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
         {
             return error("ConnectBlock(): vtx[1] is not coinstaketx");
         }
 
-        //if(AddressesEqual(block.vtx[0].vout[0].scriptPubKey, block.vtx[1].vout[0].scriptPubKey))
+        if(!AddressesEqual(block.vtx[0]->vout[0].scriptPubKey, block.vtx[1]->vout[0].scriptPubKey))
         {
             return error("ConnectBlock(): vtx[1] and vtx[0] output address do not match");
         }
@@ -3184,14 +3185,14 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-
     auto itr = mapBlockIndex.find(block.hashPrevBlock);
     int nHeight = 0;
-    if(itr == mapBlockIndex.end())
-    {
-        return false;
+    if(itr != mapBlockIndex.end())
+    {   
+        //do not know if this block does not have hashPrevBlock or hashPrevBlock is incorrect
+        nHeight = (*itr).second->nHeight + 1;    
     }
-    nHeight = (*itr).second->nHeight + 1;
+    
     if (!CheckBlockHeader(block, state, consensusParams, (fCheckPOW && !IsPoSHeight(nHeight, consensusParams))))
         return false;
 

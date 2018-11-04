@@ -105,7 +105,7 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
 
         if (!GetTransaction(txin.prevout.hash, txTmp, Params().GetConsensus(), hash, true))
         {
-            LogPrintf("CheckProofOfStake() : txPrev not found\n");
+            LogPrintf("CheckProofOfStake() : txPrev not found hash = %s\n", txin.prevout.hash.ToString().c_str());
             return false;
         }
         //return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
