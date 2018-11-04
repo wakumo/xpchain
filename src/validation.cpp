@@ -3228,7 +3228,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
         uint256 bnPosHash;
 
-        if(!fCheckPOW && !CheckProofOfStake(block.vtx[1], block.nBits, bnPosHash, GetAdjustedTime()))
+        if(fCheckPOW && !CheckProofOfStake(block.vtx[1], block.nBits, bnPosHash, GetAdjustedTime()))
         {
             return false;
         }
