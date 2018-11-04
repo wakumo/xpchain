@@ -578,7 +578,6 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
                 }
                 LogPrintf("success! hash = %s\n", pblock->GetHash().ToString().c_str());
             }
-            printf("sleep\n");
             MilliSleep(1000);
         }
     }

@@ -97,6 +97,6 @@ bool AddressesEqual(const CScript& a, const CScript& b)
         return false;
     }
 
-    printf("a = %s b = %s\n", EncodeDestination(aAddress).c_str(), EncodeDestination(bAddress).c_str());
+    //printf("a = %s b = %s\n", EncodeDestination(aAddress).c_str(), EncodeDestination(bAddress).c_str());
     return aAddress == bAddress;
 }

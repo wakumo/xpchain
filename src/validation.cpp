@@ -1093,21 +1093,12 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
-    if(fProofOfStake)
-    {
-        // Check the block
-        uint256 bnHashPoS;
-        if (!CheckProofOfStake(block.vtx[1], block.nBits, bnHashPoS ,block.GetBlockTime()))
-            return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
-
-    }
-    else
+    if(!fProofOfStake)
     {
         // Check the header
         if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-            return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+            return error("ReadBlockFromDisk: Errors in pow block header at %s", pos.ToString());
     }
-
     return true;
 }
 
