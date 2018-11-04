@@ -258,7 +258,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         # Generate a bunch of transactions.
         node.generate(101)
         num_transactions = 25
-        address = node.getnewaddress()
+        address = node.getnewaddress("", "p2sh-segwit") # for compatible
         if use_witness_address:
             # Want at least one segwit spend, so move all funds to
             # a witness address.
