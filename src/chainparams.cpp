@@ -46,10 +46,10 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
  *   vMerkleTree: 4a5e1e
  */
-static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward, const std::vector<unsigned char> scriptPubKey)
+static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "Xpc developers are Pretty Cute. Of course it is a joke. \"Now\" yet.";
-    const CScript genesisOutputScript = CScript(OP_HASH160) << scriptPubKey << OP_EQUAL;
+    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -80,7 +80,9 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
-        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        // TODO : reset
+        //consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -107,7 +109,7 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        consensus.nSwitchHeight = 10080;
+        consensus.nSwitchHeight = 10275;
 
         consensus.nStakeMinAge = 60 * 60 * 24 * 3;
         consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
@@ -124,10 +126,11 @@ public:
         nDefaultPort = 8798;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1540301656, 3179019895, 0x1d00ffff, 4, 110000000000 * COIN, ParseHex("0ceea72066f61399b54576a077d07853e32cf32f"));
+        // TODO : reset
+        genesis = CreateGenesisBlock(1540301656, 99312, 0x1f00ffff, 4, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000a3719d37a87ebe48665cd68a98ae904e8bf7c404387faec221a795c3"));
-        assert(genesis.hashMerkleRoot == uint256S("0x42cf1e503818a7d8cb79d5bb3a9ae5848bc6c5d8b0873abe2b0f73c70c107e38"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000042cb97e9d18e436b012314f685a2ec68efc4d252d2b4e6362f6ea062cc41"));
+        assert(genesis.hashMerkleRoot == uint256S("0xdaa610662c202dd51c892e6ff17ac1812a3ddcb998ec4923a3a315c409019739"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -218,15 +221,17 @@ public:
         nDefaultPort = 18798;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1540301756, 2327604116, 0x1d00ffff, 4, 110000000000L * COIN, ParseHex("fbe94f8e1ddc76a2ab338488d9f56c1532a4cece"));
+        genesis = CreateGenesisBlock(1540301756, 3632110353, 0x1d00ffff, 4, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000000062962e8c104b7c9509155a161f3f7a1f1e1edfad535caa9a99189ad7"));
-        assert(genesis.hashMerkleRoot == uint256S("0x7f863dbe22ede2e633e0a84b6c0c34be1949b220ab3e296e00080b4ce695ac9b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000f04d3bdebf907f79b4b096a05d763ac890612202ff9c9cc685221617"));
+        assert(genesis.hashMerkleRoot == uint256S("0xdaa610662c202dd51c892e6ff17ac1812a3ddcb998ec4923a3a315c409019739"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("dnsseed.test.xpchain.host");
+        vSeeds.emplace_back("seed1.xpchain.io");
+        vSeeds.emplace_back("seed2.xpchain.io");
+        vSeeds.emplace_back("seed3.xpchain.io");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,138);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,88);
@@ -307,13 +312,10 @@ public:
         nDefaultPort = 28798;
         nPruneAfterHeight = 1000;
 
-        // regtest reward
-        //   Address : caXjVUzxk44eQbPNtkppWDE4ohzDNxiFbQ
-        //   PrivKey : cQmRYozEtZxZiAaMnUBjEEkXkXPgwzGkzwRRCErVegVpM7cD3Mxd
-        genesis = CreateGenesisBlock(1540301856, 0, 0x207fffff, 4, 110000000000L * COIN, ParseHex("6b5b70c843939b08df5989c8ff35b309442d2633"));
+        genesis = CreateGenesisBlock(1540301856, 0, 0x207fffff, 4, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x785d39acbca572caf7028f93d7afced2114efc5242ab7a67ecc6f434049e294b"));
-        assert(genesis.hashMerkleRoot == uint256S("0xa1e0b2df2da027843eed927910a0f6aebd3723f95a1bbcf4a4929952f55b01ce"));
+        assert(consensus.hashGenesisBlock == uint256S("0x4fd557af2a383e80d0ea23ab05b50a3d62ccf675258ab734aaa0e87432864ebd"));
+        assert(genesis.hashMerkleRoot == uint256S("0xdaa610662c202dd51c892e6ff17ac1812a3ddcb998ec4923a3a315c409019739"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.

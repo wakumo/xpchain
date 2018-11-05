@@ -34,8 +34,8 @@ class TxnMallTest(BitcoinTestFramework):
         else:
             output_type = "legacy"
 
-        # All nodes should start with 7500000 XPC:
-        starting_balance = 7500000
+        # All nodes should start with 27500000000 XPC:
+        starting_balance = 27500000000
         for i in range(4):
             assert_equal(self.nodes[i].getbalance(), starting_balance)
             self.nodes[i].getnewaddress()  # bug workaround, coins generated assigned to first getnewaddress!
@@ -43,7 +43,7 @@ class TxnMallTest(BitcoinTestFramework):
         self.nodes[0].settxfee(1)
 
         node0_address1 = self.nodes[0].getnewaddress(address_type=output_type)
-        node0_txid1 = self.nodes[0].sendtoaddress(node0_address1, 7000000)
+        node0_txid1 = self.nodes[0].sendtoaddress(node0_address1, 27499500000)
         node0_tx1 = self.nodes[0].gettransaction(node0_txid1)
 
         node0_address2 = self.nodes[0].getnewaddress(address_type=output_type)
@@ -112,11 +112,7 @@ class TxnMallTest(BitcoinTestFramework):
         self.nodes[2].sendrawtransaction(node0_tx1["hex"])
         txid1_clone = self.nodes[2].sendrawtransaction(tx1_clone["hex"])
 
-        print("\noriginal\n{}".format(rawtx1["hex"]))
-        print("\nclone\n{}".format(tx1_clone["hex"]))
-
         if self.options.segwit:
-            print("{} : {}".format(txid1, txid1_clone))
             assert_equal(txid1, txid1_clone)
             return
 
@@ -142,9 +138,9 @@ class TxnMallTest(BitcoinTestFramework):
 
         # Check node0's total balance; should be same as before the clone, + 600000 XPC for 2 matured,
         # less possible orphaned matured subsidy
-        expected += 600000
+        expected += 2200000000
         if (self.options.mine_block):
-            expected -= 300000
+            expected -= 1100000000
         assert_equal(self.nodes[0].getbalance(), expected)
 
 if __name__ == '__main__':
