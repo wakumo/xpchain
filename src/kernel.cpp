@@ -130,6 +130,7 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
         if (!ReadBlockFromDisk(block, pindex, Params().GetConsensus()))
         {
             LogPrintf("CheckProofOfStake() : block not found db hash = %s\n", hash.ToString().c_str());
+            return true;
         }
 
         nTimeBlockFrom = block.GetBlockTime();
