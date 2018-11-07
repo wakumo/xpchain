@@ -134,7 +134,9 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
-    if(IsPoSHeight(nHeight, chainparams.GetConsensus()))
+    bool fPoSHeight = IsPoSHeight(nHeight, chainparams.GetConsensus());
+
+    if(fPoSHeight)
     {
         //add dummy "Send to myself" Tx as 2nd transaction
         pblock->vtx.emplace_back();
@@ -179,8 +181,13 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     CScript scriptPubKey;
     
-    if(IsPoSHeight(nHeight, chainparams.GetConsensus()))
+    if(fPoSHeight)
     {
+        if(pblock->GetBlockTime() <= pindexPrev->GetMedianTimePast())
+        {
+            return nullptr;
+        }
+
         //create "Send to myself" Tx
         CTransactionRef txCoinStake;
         CAmount nCoinStakeTxFee;
@@ -205,7 +212,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
-    if(!IsPoSHeight(nHeight, chainparams.GetConsensus()))
+    if(!fPoSHeight)
     {
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
@@ -234,7 +241,10 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     // Fill in header
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
-    UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
+    if(!fPoSHeight)
+    {
+        UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
+    }
     pblock->nNonce         = 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 

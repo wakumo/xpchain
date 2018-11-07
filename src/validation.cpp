@@ -1176,47 +1176,65 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     return nSubsidy;
 }
 
+double_t GetAnnualRate(int nHeight, const Consensus::Params& consensusParams)
+{
+    int nSubsidyReducingInterval = 60 * 24 * 365;
+    if(!IsPoSHeight(nHeight, consensusParams))
+    {
+        return 0;
+    }
+    else if(IsPoSHeight(nHeight, consensusParams) && nHeight <= nSubsidyReducingInterval)
+    {
+        return 0.10;
+    }
+    else if(nSubsidyReducingInterval < nHeight && nHeight <= nSubsidyReducingInterval * 2)
+    {
+        return 0.09;
+    }
+    else if(nSubsidyReducingInterval * 2 < nHeight && nHeight <= nSubsidyReducingInterval * 3)
+    {
+        return 0.08;
+    }
+    else if(nSubsidyReducingInterval * 3 < nHeight && nHeight <= nSubsidyReducingInterval * 4)
+    {
+        return 0.07;
+    }
+    else if(nSubsidyReducingInterval * 4 < nHeight && nHeight <= nSubsidyReducingInterval * 5)
+    {
+        return 0.06;
+    }
+    else if(nSubsidyReducingInterval * 5 < nHeight)
+    {
+        return 0.05;
+    }
+
+}
+
 CAmount GetProofOfStakeReward(int nHeight, CAmount nAmount, uint32_t nTime, const Consensus::Params& consensusParams)
 {
-    int nRewardPerYear;
-    int nSubsidyDownInterval = 525600;
+    if(!IsPoSHeight(nHeight, consensusParams))
+    {
+        return 0;
+    }
+
+    double_t dRewardCurveMaximum = 1.02500000;
+    double_t dRewardCurveLimit = 1.00000000;
+    double_t dRewardCurveBase = 0.01800000;
+    double_t dRewardCurveSteepness = 0.00000285;
+
     if(nTime < consensusParams.nStakeMinAge)
     {
         return 0;
     }
-    if(!IsPoSHeight(nHeight, consensusParams))
-    {
-        nRewardPerYear = 0;
-    }
-    else if(IsPoSHeight(nHeight, consensusParams) && nHeight <= nSubsidyDownInterval)
-    {
-        nRewardPerYear = 10;
-    }
-    else if(nSubsidyDownInterval < nHeight && nHeight <= nSubsidyDownInterval * 2)
-    {
-        nRewardPerYear = 9;
-    }
-    else if(nSubsidyDownInterval * 2 < nHeight && nHeight <= nSubsidyDownInterval * 3)
-    {
-        nRewardPerYear = 8;
-    }
-    else if(nSubsidyDownInterval * 3 < nHeight && nHeight <= nSubsidyDownInterval * 4)
-    {
-        nRewardPerYear = 7;
-    }
-    else if(nSubsidyDownInterval * 4 < nHeight && nHeight <= nSubsidyDownInterval * 5)
-    {
-        nRewardPerYear = 6;
-    }
-    else if(nSubsidyDownInterval * 5 < nHeight)
-    {
-        nRewardPerYear = 5;
-    }
 
-    int64_t nTimeToDay = std::min(consensusParams.nStakeMaxAge, (int64_t)nTime) / (60 * 60 * 24);
-    CAmount nSubsidy = nAmount / (100 * 365) * nRewardPerYear * nTimeToDay;
+    nTime = std::min(nTime, (uint32_t)consensusParams.nStakeMaxAge);
 
-    return nSubsidy;
+    CAmount annual = nAmount * GetAnnualRate(nHeight, consensusParams);
+
+    double_t coefficient = dRewardCurveMaximum / (1.0 + (dRewardCurveMaximum / dRewardCurveBase - 1.0) * exp(-dRewardCurveSteepness * nTime));
+    coefficient = std::min(coefficient, dRewardCurveLimit);
+
+    return (CAmount) annual * coefficient / 365;
 }
 
 bool IsInitialBlockDownload()
@@ -1856,6 +1874,11 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     assert(pindex);
     assert(*pindex->phashBlock == block.GetHash());
     int64_t nTimeStart = GetTimeMicros();
+    uint256 hashProofOfStake;
+    if(IsPoSHeight(pindex->nHeight, chainparams.GetConsensus()) && !CheckProofOfStake(block.vtx[1], block.nBits, hashProofOfStake, block.nTime))
+    {
+        return false;
+    }
 
     // Check it again in case a previous version let a bad block in
     // NOTE: We don't currently (re-)invoke ContextualCheckBlock() or
@@ -3223,13 +3246,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         if(block.vtx.size() < 2) // block doesn't include coinbase and coinstake
         {
             // return state.DoS()
-            return false;
-        }
-
-        uint256 bnPosHash;
-
-        if(fCheckPOW && !CheckProofOfStake(block.vtx[1], block.nBits, bnPosHash, GetAdjustedTime()))
-        {
             return false;
         }
     }
