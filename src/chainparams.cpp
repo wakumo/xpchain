@@ -211,8 +211,8 @@ public:
 
         consensus.nSwitchHeight = 168;
 
-        consensus.nStakeMinAge = 0;
-        consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
+        consensus.nStakeMinAge = 60 * 60 * 1;
+        consensus.nStakeMaxAge = 60 * 60 * 20;
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0x87;
