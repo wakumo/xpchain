@@ -112,7 +112,7 @@ public:
         consensus.nSwitchHeight = 10275;
 
         consensus.nStakeMinAge = 60 * 60 * 24 * 3;
-        consensus.nStakeMaxAge = 60 * 60 * 24 * 90;
+        consensus.nStakeMaxAge = 60 * 60 * 24 * 60;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
