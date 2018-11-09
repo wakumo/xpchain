@@ -601,16 +601,21 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
 void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
 {
     LogPrintf("ThreadStakeMinter started %s\n", wallet->GetName());
-    try
-    {
-        BitcoinMinter(wallet);
+    while(true){
+        try
+        {
+            BitcoinMinter(wallet);
+            LogPrintf("ThreadStakeMinter exiting\n");
+            return; // correct exiting
+        }
+        catch (std::exception& e) {
+            PrintExceptionContinue(&e, "ThreadStakeMinter()");
+        } catch (...) {
+            PrintExceptionContinue(NULL, "ThreadStakeMinter()");
+        }
+        LogPrintf("ThreadStakeMinter restarting...\n");
+        MilliSleep(1000);
     }
-    catch (std::exception& e) {
-        PrintExceptionContinue(&e, "ThreadStakeMinter()");
-    } catch (...) {
-        PrintExceptionContinue(NULL, "ThreadStakeMinter()");
-    }
-    LogPrintf("ThreadStakeMinter exiting\n");
 }
 
 void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
