@@ -108,6 +108,17 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
             LogPrintf("CheckProofOfStake() : txPrev not found hash = %s\n", txin.prevout.hash.ToString().c_str());
             return false;
         }
+
+        if(txTmp->GetHash() != txin.prevout.hash)
+        {
+            return false;
+        }
+
+        if(hash == uint256())
+        {
+            return false;
+        }
+
         //return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
         // Verify signature
         PrecomputedTransactionData txdata(*tx);
@@ -126,6 +137,11 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
         }
             
         CBlockIndex* pindex = (*itr).second;
+        if(pindex->GetBlockHash() != hash)
+        {
+            return false;
+        }
+
         CBlock block;
         if (!ReadBlockFromDisk(block, pindex, Params().GetConsensus()))
         {

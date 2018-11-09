@@ -2133,6 +2133,16 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return error("ConnectBlock(): coinstakeTx was not found");
         }
 
+        if(tx->GetHash() != block.vtx[1]->vin[0].prevout.hash)
+        {
+            return error("ConnectBlock(): prevTx Hash is incorrect");
+        }
+
+        if(hash == uint256())
+        {
+            return error("ConnectBlock(): block of prevTx not found");
+        }
+
         auto itr = mapBlockIndex.find(hash);
 
         if(itr == mapBlockIndex.end())
@@ -2140,9 +2150,24 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return error("ConnectBlock(): coinstakeTx block was not found");
         }
 
+        if(hash != (*itr).second->GetBlockHash())
+        {
+            return error("ConnectBlock(): coinstakeTx block hash is incorrect");
+        }
+
         CBlockHeader header = (*itr).second->GetBlockHeader();
 
         uint32_t nTime = block.nTime - header.nTime;
+
+        if(block.vtx[1]->vin.size() != 1)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstaketx too many inputs");
+        }
+
+        if(block.vtx[1]->vout.size() != 1 )
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstaketx too many outputs");
+        }
 
         if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
         {
