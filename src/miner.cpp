@@ -228,7 +228,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         CBlockHeader header = (*itr).second->GetBlockHeader();
 
         uint32_t nTime = pblock->nTime - header.nTime;
-        coinbaseTx.vout[0].nValue = GetProofOfStakeReward(nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
+        coinbaseTx.vout[0].nValue = GetProofOfStakeReward(nHeight, tx->vout[pblock->vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
     }
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));

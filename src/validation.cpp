@@ -2178,7 +2178,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return error("ConnectBlock(): vtx[1] and vtx[0] output address do not match");
         }
 
-        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
+        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
     }
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100,
