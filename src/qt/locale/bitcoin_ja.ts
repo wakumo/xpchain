@@ -3,11 +3,11 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>右クリックでアドレスまたはラベルを編集します</translation>
+        <translation>右クリックでアドレスまたはラベルを編集</translation>
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>新規アドレスの作成</translation>
+        <translation>新しいアドレスを作成</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>現在選択されているアドレスをシステムのクリップボードにコピーする</translation>
+        <translation>現在選択されているアドレスをシステムのクリップボードにコピー</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,15 +27,15 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>選択されたアドレスを一覧から削除する</translation>
+        <translation>選択されたアドレスを一覧から削除</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
-        <translation>検索するアドレスまたはラベルを入力</translation>
+        <translation>検索したいアドレスまたはラベルを入力</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>ファイルに現在のタブのデータをエクスポート</translation>
+        <translation>このタブのデータをファイルにエクスポート</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -47,43 +47,43 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>送信先のアドレスを選択</translation>
+        <translation>コインを送りたいアドレスを選択</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>支払いを受け取るアドレスを指定する</translation>
+        <translation>コインを受け取りたいアドレスを選択</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>選択 (&amp;C)</translation>
+        <translation>選択(&amp;C)</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>送金用</translation>
+        <translation>送金先アドレス</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
-        <translation>受け取りアドレス</translation>
+        <translation>受取用アドレス</translation>
     </message>
     <message>
         <source>These are your XPChain addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>これらは支払いを送信するためのあなたの XPChain アドレスです。コインを送信する前に、常に額と受信アドレスを確認してください。</translation>
+        <translation>これらの XPChain アドレスは、あなたが知っている支払い送り先のアドレスです。コインを送る前に、必ず金額と送金先アドレスを確認してください。</translation>
     </message>
     <message>
         <source>These are your XPChain addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>これらは支払いを受け取るためのXPChainアドレスです。トランザクションごとに新しい受け取り用アドレスを作成することが推奨されます。</translation>
+        <translation>これらの XPChain アドレスは、あなたの支払い受け取り用のアドレスです。各取引ごとに新しく受取用アドレスを作成することが推奨されています。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>アドレスをコピー (&amp;C)</translation>
+        <translation>アドレスをコピー(&amp;C)</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>ラベルをコピー (&amp;L)</translation>
+        <translation>ラベルをコピー(&amp;L)</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>編集 (&amp;E)</translation>
+        <translation>編集(&amp;E)</translation>
     </message>
     <message>
         <source>Export Address List</source>
@@ -91,7 +91,7 @@
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>テキスト CSV (*.csv)</translation>
+        <translation>CSV ファイル (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
