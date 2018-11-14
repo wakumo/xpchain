@@ -309,7 +309,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../xpchaingui.cpp" line="+307"/>
+        <location filename="../bitcoingui.cpp" line="+307"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
@@ -721,7 +721,7 @@
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../xpchain.cpp" line="+529"/>
+        <location filename="../bitcoin.cpp" line="+529"/>
         <source>A fatal error occurred. XPChain can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1837,7 +1837,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../xpchainunits.cpp" line="+197"/>
+        <location filename="../bitcoinunits.cpp" line="+197"/>
         <source>Amount</source>
         <translation type="unfinished">Amount</translation>
     </message>
@@ -1957,7 +1957,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xpchain.cpp" line="+192"/>
+        <location filename="../bitcoin.cpp" line="+192"/>
         <source>%1 didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1970,7 +1970,7 @@
 <context>
     <name>QObject::QObject</name>
     <message>
-        <location filename="../xpchain.cpp" line="-117"/>
+        <location filename="../bitcoin.cpp" line="-117"/>
         <source>Error parsing command line arguments: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3942,7 +3942,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
-        <location filename="../xpchaingui.cpp" line="+159"/>
+        <location filename="../bitcoingui.cpp" line="+159"/>
         <source>Unit to show amounts in. Click to select another unit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4061,7 +4061,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>bitcoin-core</name>
     <message>
-        <location filename="../xpchainstrings.cpp" line="+29"/>
+        <location filename="../bitcoinstrings.cpp" line="+29"/>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation type="unfinished"></translation>
     </message>
