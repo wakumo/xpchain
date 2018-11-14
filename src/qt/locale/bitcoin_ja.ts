@@ -141,27 +141,27 @@
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>ウォレットの新しいパスフレーズを入力してください。&lt;br/&gt;&lt;b&gt;10文字以上のランダムな文字&lt;/b&gt;で構成されたものか、&lt;b&gt;8単語以上の単語&lt;/b&gt;で構成されたパスフレーズを使用してください。</translation>
+        <translation>ウォレットの新しいパスフレーズを入力してください。&lt;br/&gt;&lt;b&gt;10文字以上のランダムな文字&lt;/b&gt;で構成されたものか、&lt;b&gt;8単語以上の単語&lt;/b&gt;で構成されたものを使用してください。</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>ウォレットを暗号化する</translation>
+        <translation>ウォレットを暗号化</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>この操作はウォレットをアンロックするためにパスフレーズが必要です。</translation>
+        <translation>この操作を続行するには、パスフレーズを入力してウォレットをアンロックする必要があります。</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>ウォレットをアンロックする</translation>
+        <translation>ウォレットをアンロック</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>この操作はウォレットの暗号化解除のためにパスフレーズが必要です。</translation>
+        <translation>この操作を続行するには、パスフレーズを入力してウォレットの暗号化を解除する必要があります。</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
-        <translation>ウォレットの暗号化を解除する</translation>
+        <translation>ウォレットの暗号化を解除</translation>
     </message>
     <message>
         <source>Change passphrase</source>
@@ -173,11 +173,11 @@
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>ウォレットの暗号化を確認する</translation>
+        <translation>ウォレットの暗号化の承諾</translation>
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>警告: もしもあなたのウォレットを暗号化してパスフレーズを失ってしまったなら、&lt;b&gt;あなたの XPChain はすべて失われます&lt;/b&gt;!</translation>
+        <translation>警告: もしもあなたのウォレットを暗号化してパスフレーズを失ってしまったなら、&lt;b&gt;あなたの XPChain はすべて失われます&lt;/b&gt;！</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -185,31 +185,31 @@
     </message>
     <message>
         <source>Wallet encrypted</source>
-        <translation>ウォレットは暗号化されました</translation>
+        <translation>ウォレットの暗号化の完了</translation>
     </message>
     <message>
         <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your xpchains from being stolen by malware infecting your computer.</source>
-        <translation>暗号化処理を完了させるため %1 をいますぐ終了します。ウォレットの暗号化では、コンピュータに感染したマルウェアなどによるXPChainの盗難から完全に守ることはできないことにご注意ください。</translation>
+        <translation>暗号化処理を完了させるため %1 をいますぐ終了します。ウォレットを暗号化しても、コンピュータに感染したマルウェアなどによる XPChain の盗難を完全に防ぐことはできないことにご注意ください。</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>重要: 過去のウォレット ファイルのバックアップは、暗号化された新しいウォレット ファイルに取り替える必要があります。セキュリティ上の理由により、暗号化された新しいウォレットを使い始めると、暗号化されていないウォレット ファイルのバックアップはすぐに使えなくなります。</translation>
+        <translation>重要: 今までに作成されたウォレット ファイルのバックアップは、暗号化された新しいウォレット ファイルに置き換える必要があります。セキュリティ上の理由により、暗号化された新しいウォレットを使い始めると、暗号化されていないウォレット ファイルのバックアップはすぐに使えなくなります。</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>ウォレットの暗号化に失敗しました</translation>
+        <translation>ウォレットの暗号化に失敗</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>内部エラーによりウォレットの暗号化が失敗しました。ウォレットは暗号化されませんでした。</translation>
+        <translation>内部エラーによりウォレットの暗号化に失敗しました。ウォレットは暗号化されませんでした。</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>パスフレーズが同じではありません。</translation>
+        <translation>入力されたパスフレーズが一致しません。</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
-        <translation>ウォレットのアンロックに失敗しました</translation>
+        <translation>ウォレットのアンロックに失敗</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
@@ -217,15 +217,15 @@
     </message>
     <message>
         <source>Wallet decryption failed</source>
-        <translation>ウォレットの暗号化解除に失敗しました</translation>
+        <translation>ウォレットの暗号化解除に失敗</translation>
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>ウォレットのパスフレーズの変更が成功しました。</translation>
+        <translation>ウォレットのパスフレーズが正常に変更されました。</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>警告: Caps Lock キーがオンになっています!</translation>
+        <translation>警告: Caps Lock キーがオンになっています！</translation>
     </message>
 </context>
 <context>
