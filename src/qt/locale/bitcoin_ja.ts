@@ -236,7 +236,7 @@
     </message>
     <message>
         <source>Banned Until</source>
-        <translation>以下の時間までbanする:</translation>
+        <translation>Ban 解除予定時刻</translation>
     </message>
 </context>
 <context>
