@@ -243,11 +243,11 @@
     <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>メッセージの署名... (&amp;m)</translation>
+        <translation>メッセージの署名...(&amp;m)</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
-        <translation>ネットワークに同期中……</translation>
+        <translation>ネットワークに同期中...</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
@@ -267,7 +267,7 @@
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>取引履歴を閲覧</translation>
+        <translation>取引履歴を見る</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -275,15 +275,15 @@
     </message>
     <message>
         <source>Quit application</source>
-        <translation>アプリケーションを終了</translation>
+        <translation>アプリケーションを終了する</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
-        <translation>%1 について (&amp;A)</translation>
+        <translation>%1 について(&amp;A)</translation>
     </message>
     <message>
         <source>Show information about %1</source>
-        <translation>%1 の情報を表示</translation>
+        <translation>%1 の情報を表示する</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -291,11 +291,11 @@
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Qt の情報を表示</translation>
+        <translation>Qt の情報を表示する</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation>オプション... (&amp;O)</translation>
+        <translation>オプション...(&amp;O)</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
@@ -303,27 +303,27 @@
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>ウォレットの暗号化... (&amp;E)</translation>
+        <translation>ウォレットの暗号化...(&amp;E)</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>ウォレットのバックアップ... (&amp;B)</translation>
+        <translation>ウォレットのバックアップ...(&amp;B)</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>パスフレーズの変更... (&amp;C)</translation>
+        <translation>パスフレーズの変更...(&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
-        <translation>送金先アドレス一覧 (&amp;S)...</translation>
+        <translation>送金先アドレス一覧(&amp;S)...</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>受け取り用アドレス一覧 (&amp;R)...</translation>
+        <translation>受取用アドレス一覧(&amp;R)...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>URI を開く (&amp;U)...</translation>
+        <translation>URIを開く(&amp;U)...</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -347,15 +347,15 @@
     </message>
     <message>
         <source>Syncing Headers (%1%)...</source>
-        <translation>未知。ヘッダを同期しています (%1%)...</translation>
+        <translation>ヘッダを同期中 (%1%)...</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>ディスク上のブロックのインデックスを再作成中...</translation>
+        <translation>ディスク上のブロックを再インデックス中...</translation>
     </message>
     <message>
         <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
-        <translation>プロキシは &lt;b&gt;有効&lt;/b&gt;です: %1</translation>
+        <translation>プロキシは&lt;b&gt;有効&lt;/b&gt;: %1</translation>
     </message>
     <message>
         <source>Send coins to a XPChain address</source>
@@ -363,23 +363,23 @@
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>ウォレットを他の場所にバックアップ</translation>
+        <translation>ウォレットを他の場所にバックアップする</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>ウォレット暗号化用パスフレーズの変更</translation>
+        <translation>ウォレット暗号化用パスフレーズを変更する</translation>
     </message>
     <message>
         <source>&amp;Debug window</source>
-        <translation>デバッグ ウインドウ (&amp;D)</translation>
+        <translation>デバッグ ウインドウ(&amp;D)</translation>
     </message>
     <message>
         <source>Open debugging and diagnostic console</source>
-        <translation>デバッグと診断コンソールを開く</translation>
+        <translation>デバッグ・診断コンソールを開く</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>メッセージの検証... (&amp;V)</translation>
+        <translation>メッセージの検証...(&amp;V)</translation>
     </message>
     <message>
         <source>XPChain</source>
@@ -391,31 +391,31 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>送金 (&amp;S)</translation>
+        <translation>送金(&amp;S)</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>入金 (&amp;R)</translation>
+        <translation>受取(&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
-        <translation>見る/隠す (&amp;S)</translation>
+        <translation>表示 / 非表示(&amp;S)</translation>
     </message>
     <message>
         <source>Show or hide the main Window</source>
-        <translation>メイン ウインドウを表示または非表示</translation>
+        <translation>メイン ウインドウを表示または非表示する</translation>
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>あなたのウォレットの秘密鍵を暗号化します</translation>
+        <translation>ウォレットの秘密鍵を暗号化する</translation>
     </message>
     <message>
         <source>Sign messages with your XPChain addresses to prove you own them</source>
-        <translation>あなたが所有していることを証明するために、あなたの XPChain アドレスでメッセージに署名してください</translation>
+        <translation>XPChain アドレスでメッセージに署名して、アドレスを所有していることを証明する</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified XPChain addresses</source>
-        <translation>指定された XPChain アドレスで署名されたことを確認するためにメッセージを検証します</translation>
+        <translation>メッセージを検証して、指定された XPChain アドレスで署名されたことを確認する</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -435,39 +435,39 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and xpchain: URIs)</source>
-        <translation>支払いを要求する (QRコードとxpchain:ではじまるURIを生成する)</translation>
+        <translation>支払いをリクエストする (QRコードと xpchain: URIを生成する)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>使用済みの送金用アドレスとラベルの一覧を表示する</translation>
+        <translation>送金したことがあるアドレスとラベルの一覧を表示する</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>支払いを受け取るアドレスとラベルのリストを表示する</translation>
+        <translation>受け取ったことがあるアドレスとラベルの一覧を表示する</translation>
     </message>
     <message>
         <source>Open a xpchain: URI or payment request</source>
-        <translation>xpchain: URIまたは支払いリクエストを開く</translation>
+        <translation>xpchain: URIや支払いリクエストを開く</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
-        <translation>コマンドラインオプション (&amp;C)</translation>
+        <translation>コマンドラインオプション(&amp;C)</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to XPChain network</source>
-        <translation><numerusform>%n の XPChain ネットワークへのアクティブな接続</numerusform></translation>
+        <translation><numerusform>XPChain ネットワークへのアクティブな接続は %n 個</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
-        <translation>ディスク上のブロックのインデックスを作成しています...</translation>
+        <translation>ディスク上のブロックをインデックス中...</translation>
     </message>
     <message>
         <source>Processing blocks on disk...</source>
-        <translation>ディスク上のブロックを処理しています...</translation>
+        <translation>ディスク上のブロックを処理中...</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>トランザクション履歴の %n ブロックを処理しました。</numerusform></translation>
+        <translation><numerusform>%n ブロックの取引履歴を処理済み。</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -475,11 +475,11 @@
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
-        <translation>最後に受信されたブロックは %1 前に生成されました。</translation>
+        <translation>最後に受信したブロックは %1 前に生成。</translation>
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
-        <translation>この後の取引はまだ表示されません。</translation>
+        <translation>これより後の取引はまだ表示されないでしょう。</translation>
     </message>
     <message>
         <source>Error</source>
@@ -495,11 +495,11 @@
     </message>
     <message>
         <source>Up to date</source>
-        <translation>バージョンは最新です</translation>
+        <translation>ブロックは最新</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible XPChain command-line options</source>
-        <translation>有効な XPChain のコマンドライン オプションを見るために %1 のヘルプメッセージを表示します。</translation>
+        <translation>%1 のヘルプ メッセージを表示して、使用可能な XPChain のコマンドライン オプションの一覧を見る。</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -507,22 +507,22 @@
     </message>
     <message>
         <source>Connecting to peers...</source>
-        <translation>ピアに接続しています...</translation>
+        <translation>ピアに接続中...</translation>
     </message>
     <message>
         <source>Catching up...</source>
-        <translation>追跡中...</translation>
+        <translation>遅延取戻し中...</translation>
     </message>
     <message>
         <source>Date: %1
 </source>
-        <translation>日付: %1
+        <translation>日時: %1
 </translation>
     </message>
     <message>
         <source>Amount: %1
 </source>
-        <translation>総額: %1
+        <translation>金額: %1
 </translation>
     </message>
     <message>
@@ -534,7 +534,7 @@
     <message>
         <source>Type: %1
 </source>
-        <translation>タイプ: %1
+        <translation>種別: %1
 </translation>
     </message>
     <message>
@@ -555,27 +555,27 @@
     </message>
     <message>
         <source>Incoming transaction</source>
-        <translation>着金取引</translation>
+        <translation>入金取引</translation>
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
-        <translation>HD鍵生成は&lt;b&gt;有効化&lt;/b&gt;されています</translation>
+        <translation>HD鍵生成は&lt;b&gt;有効&lt;/b&gt;</translation>
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>HD鍵生成は&lt;b&gt;無効化&lt;/b&gt;されています</translation>
+        <translation>HD鍵生成は&lt;b&gt;無効&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>ウォレットは&lt;b&gt;暗号化されて、アンロックされています&lt;/b&gt;</translation>
+        <translation>ウォレットは&lt;b&gt;暗号化済み&lt;/b&gt;・&lt;b&gt;アンロック状態&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>ウォレットは&lt;b&gt;暗号化されて、ロックされています&lt;/b&gt;</translation>
+        <translation>ウォレットは&lt;b&gt;暗号化済み&lt;/b&gt;・&lt;b&gt;ロック済み&lt;/b&gt;</translation>
     </message>
     <message>
         <source>A fatal error occurred. XPChain can no longer continue safely and will quit.</source>
-        <translation>致命的なエラーが発生しました。XPChain は安全に継続することができず終了するでしょう。</translation>
+        <translation>致命的なエラーが発生しました。XPChain を安全に動作し続けることができないため終了します。</translation>
     </message>
 </context>
 <context>
