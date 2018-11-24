@@ -45,13 +45,14 @@
 
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
-        Qt::AlignLeft|Qt::AlignVCenter,
-        Qt::AlignLeft|Qt::AlignVCenter,
-        Qt::AlignRight|Qt::AlignVCenter,
-        Qt::AlignRight|Qt::AlignVCenter,
-        Qt::AlignRight|Qt::AlignVCenter,
-        Qt::AlignRight|Qt::AlignVCenter
-    };
+    Qt::AlignLeft|Qt::AlignVCenter,
+    Qt::AlignLeft|Qt::AlignVCenter,
+    Qt::AlignLeft|Qt::AlignVCenter,
+    Qt::AlignLeft|Qt::AlignVCenter,
+    Qt::AlignLeft|Qt::AlignVCenter,
+    Qt::AlignLeft|Qt::AlignVCenter,
+    Qt::AlignLeft|Qt::AlignVCenter
+};
 
 // Comparison operator for sort/binary search of model tx list
 struct TxLessThan
@@ -258,7 +259,7 @@ MintingTableModel::MintingTableModel(const PlatformStyle *_platformStyle, Wallet
         //cachedNumBlocks(0),
         platformStyle(_platformStyle)
 {
-    columns << tr("Transaction") <<  tr("Address") << tr("Balance") << tr("Age") << tr("CoinDay") << tr("MintProbability");
+    columns << tr("Transaction") <<  tr("Address") << tr("Balance") << tr("Age") << tr("CoinDay") << tr("MintProbability") << tr("MintReward");
 
     priv->refreshWallet(walletModel->wallet());
 
@@ -279,7 +280,7 @@ void MintingTableModel::updateTransaction(const QString &hash, int status, bool 
     uint256 updated;
     updated.SetHex(hash.toStdString());
 
-    priv->updateWallet(walletModel->wallet(), updated, status, showTransaction);
+    priv->refreshWallet(walletModel->wallet());
     mintingProxyModel->invalidate(); // Force deletion of empty rows
 }
 
@@ -288,6 +289,8 @@ void MintingTableModel::updateAge()
     Q_EMIT dataChanged(index(0, Age), index(priv->size()-1, Age));
     Q_EMIT dataChanged(index(0, CoinDay), index(priv->size()-1, CoinDay));
     Q_EMIT dataChanged(index(0, MintProbability), index(priv->size()-1, MintProbability));
+    Q_EMIT dataChanged(index(0, MintReward), index(priv->size()-1, MintReward));
+    priv->refreshWallet(walletModel->wallet());
 }
 
 void MintingTableModel::setMintingProxyModel(MintingFilterProxy *mintingProxy)
@@ -330,6 +333,8 @@ QVariant MintingTableModel::data(const QModelIndex &index, int role) const
             return formatTxCoinDay(rec);
         case MintProbability:
             return formatDayToMint(rec);
+        case MintReward:
+            return formatTxPoSReward(rec);
         }
         break;
       case Qt::TextAlignmentRole:
@@ -373,6 +378,8 @@ QVariant MintingTableModel::data(const QModelIndex &index, int role) const
             return (qlonglong)rec->nValue;
         case MintProbability:
             return getDayToMint(rec);
+        case MintReward:
+            return formatTxPoSReward(rec);
         }
         break;
       case Qt::BackgroundColorRole:
@@ -416,6 +423,13 @@ QString MintingTableModel::lookupAddress(const std::string &address, bool toolti
     return description;
 }
 
+QString MintingTableModel::formatTxPoSReward(KernelRecord *wtx) const
+{
+    QString posReward;
+    posReward += QString(QObject::tr("from  %1 to %2")).arg(BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), wtx->getPoSReward(0)), 
+        BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(), wtx->getPoSReward(mintingInterval))); 
+    return posReward;
+}
 double MintingTableModel::getDayToMint(KernelRecord *wtx) const
 {
     
@@ -485,6 +499,8 @@ QVariant MintingTableModel::headerData(int section, Qt::Orientation orientation,
                 return tr("Coin age in the output.");
             case MintProbability:
                 return tr("Chance to mint a block within given time interval.");
+            case MintReward:
+                return tr("The size of the potential rewards if the block is found at the beginning and the end given time interval.");
             }
         }
     }

@@ -89,6 +89,8 @@ void WalletModel::pollBalanceChanged()
         checkBalanceChanged(new_balances);
         if(transactionTableModel)
             transactionTableModel->updateConfirmations();
+        if(mintingTableModel)
+            mintingTableModel->updateAge();
     }
 }
 
