@@ -4419,6 +4419,20 @@ bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScrip
     return false;
 }
 
+bool CWallet::SetRewardDistributionPcts(const std::vector<std::pair<std::string, std::uint8_t>>& pcts)
+{
+    LOCK(cs_wallet); // vRewardDistributionPcts
+    vRewardDistributionPcts = pcts;
+    return WalletBatch(*database).WriteRewardDistributionPcts(pcts);
+}
+
+bool CWallet::DelRewardDistributionPcts()
+{
+    LOCK(cs_wallet); // vRewardDistributionPcts
+    vRewardDistributionPcts.clear();
+    return WalletBatch(*database).EraseRewardDistributionPcts();
+}
+
 CKeyPool::CKeyPool()
 {
     nTime = GetTime();
