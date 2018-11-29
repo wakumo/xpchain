@@ -4368,7 +4368,7 @@ bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScrip
         {
             COutPoint utxo = COutPoint(cItr->tx->tx->GetHash(), cItr->i);
             auto txItr = m_coinstaketx.find(utxo);
-            
+
             CAmount nFeeRequired;
             CTransactionRef tx;
             if(txItr != m_coinstaketx.end())
@@ -4380,27 +4380,27 @@ bool CWallet::CreateCoinStake(unsigned int nBits, CTransactionRef& txNew, CScrip
             else
             {
                 CCoinControl coin_control;
-			    coin_control.Select(utxo);
-			
-			    CReserveKey reservekey(this);
-			    CAmount nFeeRequired;
-			    std::vector<CRecipient> vecSend;
-			    std::string strError;
+                coin_control.Select(utxo);
+
+                CReserveKey reservekey(this);
+                CAmount nFeeRequired;
+                std::vector<CRecipient> vecSend;
+                std::string strError;
 
                 int nChangePosRet = -1;
-			    
-			    CAmount nValue = cItr->tx->tx->vout[cItr->i].nValue;
-			
-			    CRecipient recipient = {scriptPubKey, nValue, true};
-			    vecSend.push_back(recipient);
+
+                CAmount nValue = cItr->tx->tx->vout[cItr->i].nValue;
+
+                CRecipient recipient = {scriptPubKey, nValue, true};
+                vecSend.push_back(recipient);
 
                 //create coinstake tx
-			    // TODO: Check Lock Status
-			    // If Wallet is Locked, Fail to send. Need unlock. (Unlock for minting ? )
+                // TODO: Check Lock Status
+                // If Wallet is Locked, Fail to send. Need unlock. (Unlock for minting ? )
                 if (!CreateTransaction(vecSend, tx, reservekey, nFeeRequired, nChangePosRet, strError, coin_control, true, true))
                 {
                     continue;
-			    }
+                }
                 m_coinstaketx[utxo] = std::tuple<CTransactionRef, CAmount>(tx, nFeeRequired);
             }
 
