@@ -67,7 +67,7 @@ int64_t KernelRecord::getPoSReward(int minutes)
     if( nWeight <  Params().GetConsensus().nStakeMinAge)
         return 0;
     uint64_t coinAge = (nValue * nWeight ) / (COIN * 86400);
-    PoSReward = GetProofOfStakeReward(chainActive.Tip()->nHeight, nValue, nTime, Params().GetConsensus());
+    PoSReward = GetProofOfStakeReward(chainActive.Tip()->nHeight, nValue, nTime + minutes * 60, Params().GetConsensus());
     return PoSReward;
 }
 
