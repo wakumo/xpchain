@@ -34,6 +34,7 @@ public:
     {
         Minting10min,
         Minting1day,
+        Minting7days,
         Minting30days,
         Minting90days
     };
@@ -49,6 +50,8 @@ private Q_SLOTS:
     void contextualMenu(const QPoint &);
     void copyAddress();
     void copyTransactionId();
+    void showHideAddress();
+    void showHideTxID();
 
 Q_SIGNALS:
 

@@ -21,6 +21,8 @@
 
 #include <QObject>
 
+extern bool fWalletUnlockMintOnly;
+
 enum class OutputType;
 
 class AddressTableModel;

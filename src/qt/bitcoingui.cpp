@@ -262,7 +262,7 @@ void BitcoinGUI::createActions()
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(historyAction);
 
-    mintingAction = new QAction(platformStyle->SingleColorIcon(":/icons/receiving_addresses"), tr("&Minting"), this);
+    mintingAction = new QAction(platformStyle->SingleColorIcon(":/icons/tx_mined"), tr("&Minting"), this);
     mintingAction->setStatusTip(tr("mintingtab"));
     mintingAction->setToolTip(mintingAction->statusTip());
     mintingAction->setCheckable(true);
@@ -308,6 +308,9 @@ void BitcoinGUI::createActions()
     encryptWalletAction = new QAction(platformStyle->TextColorIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
     encryptWalletAction->setStatusTip(tr("Encrypt the private keys that belong to your wallet"));
     encryptWalletAction->setCheckable(true);
+    decryptForMintingAction = new QAction(platformStyle->TextColorIcon(":/icons/lock_open"), tr("&Decrypt Wallet for Minting Only"), this);
+    decryptForMintingAction->setStatusTip(tr("Decrypt wallet only for minting. Sending coins will still require the password."));
+    decryptForMintingAction->setCheckable(true);
     backupWalletAction = new QAction(platformStyle->TextColorIcon(":/icons/filesave"), tr("&Backup Wallet..."), this);
     backupWalletAction->setStatusTip(tr("Backup wallet to another location"));
     changePassphraseAction = new QAction(platformStyle->TextColorIcon(":/icons/key"), tr("&Change Passphrase..."), this);
@@ -348,6 +351,7 @@ void BitcoinGUI::createActions()
     if(walletFrame)
     {
         connect(encryptWalletAction, SIGNAL(triggered(bool)), walletFrame, SLOT(encryptWallet(bool)));
+        connect(decryptForMintingAction, SIGNAL(triggered(bool)), walletFrame, SLOT(decryptForMinting(bool)));
         connect(backupWalletAction, SIGNAL(triggered()), walletFrame, SLOT(backupWallet()));
         connect(changePassphraseAction, SIGNAL(triggered()), walletFrame, SLOT(changePassphrase()));
         connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
@@ -391,6 +395,7 @@ void BitcoinGUI::createMenuBar()
     if(walletFrame)
     {
         settings->addAction(encryptWalletAction);
+        settings->addAction(decryptForMintingAction);
         settings->addAction(changePassphraseAction);
         settings->addSeparator();
     }
@@ -1086,6 +1091,8 @@ void BitcoinGUI::setEncryptionStatus(int status)
         encryptWalletAction->setChecked(false);
         changePassphraseAction->setEnabled(false);
         encryptWalletAction->setEnabled(true);
+        decryptForMintingAction->setEnabled(false);
+        decryptForMintingAction->setChecked(false);
         break;
     case WalletModel::Unlocked:
         labelWalletEncryptionIcon->show();
@@ -1094,6 +1101,8 @@ void BitcoinGUI::setEncryptionStatus(int status)
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
         encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
+        decryptForMintingAction->setEnabled(fWalletUnlockMintOnly);
+        decryptForMintingAction->setChecked(fWalletUnlockMintOnly);
         break;
     case WalletModel::Locked:
         labelWalletEncryptionIcon->show();
@@ -1102,6 +1111,8 @@ void BitcoinGUI::setEncryptionStatus(int status)
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
         encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
+        decryptForMintingAction->setEnabled(true);
+        decryptForMintingAction->setChecked(false);
         break;
     }
 }

@@ -263,7 +263,7 @@ void WalletView::encryptWallet(bool status)
 
     updateEncryptionStatus();
 }
-/*void WalletView::decryptForMinting(bool status)
+void WalletView::decryptForMinting(bool status)
 {
     if(!walletModel)
         return;
@@ -273,14 +273,15 @@ void WalletView::encryptWallet(bool status)
         if(walletModel->getEncryptionStatus() != WalletModel::Locked)
             return;
 
+        fWalletUnlockMintOnly = true;
         AskPassphraseDialog dlg(AskPassphraseDialog::Unlock, this);
         dlg.setModel(walletModel);
         dlg.exec();
 
-        if(walletModel->getEncryptionStatus() != WalletModel::Unlocked)
+        if(walletModel->getEncryptionStatus() != WalletModel::Unlocked){
+            fWalletUnlockMintOnly = false;
             return;
-
-        fWalletUnlockMintOnly = true;
+         }
     }
     else
     {
@@ -294,7 +295,7 @@ void WalletView::encryptWallet(bool status)
         fWalletUnlockMintOnly = false;
     }
 }
-*/
+
 void WalletView::backupWallet()
 {
     QString filename = GUIUtil::getSaveFileName(this,

@@ -89,6 +89,8 @@ void WalletModel::pollBalanceChanged()
         checkBalanceChanged(new_balances);
         if(transactionTableModel)
             transactionTableModel->updateConfirmations();
+        if(mintingTableModel)
+            mintingTableModel->updateAge();
     }
 }
 
@@ -448,6 +450,11 @@ void WalletModel::unsubscribeFromCoreSignals()
 WalletModel::UnlockContext WalletModel::requestUnlock()
 {
     bool was_locked = getEncryptionStatus() == Locked;
+    if ((!was_locked) && fWalletUnlockMintOnly)
+    {
+        setWalletLocked(true);
+        was_locked = getEncryptionStatus() == Locked;
+    }
     if(was_locked)
     {
         // Request UI to unlock wallet
@@ -456,7 +463,7 @@ WalletModel::UnlockContext WalletModel::requestUnlock()
     // If wallet is still locked, unlock was failed or cancelled, mark context as invalid
     bool valid = getEncryptionStatus() != Locked;
 
-    return UnlockContext(this, valid, was_locked);
+    return UnlockContext(this, valid, was_locked && !fWalletUnlockMintOnly);
 }
 
 WalletModel::UnlockContext::UnlockContext(WalletModel *_wallet, bool _valid, bool _relock):
@@ -580,3 +587,7 @@ bool WalletModel::isMultiwallet()
 {
     return m_node.getWallets().size() > 1;
 }
+
+// xpchain: optional setting to unlock wallet for block minting only;
+//         serves to disable the trivial sendmoney when OS account compromised
+bool fWalletUnlockMintOnly = false;
