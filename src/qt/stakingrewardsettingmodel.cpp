@@ -101,7 +101,7 @@ public:
         QList<StakingRewardSettingTableEntry>::iterator lower, upper;
         int lowerIndex;
         findEntry(address, &lower, &upper, &lowerIndex, /* upperIndex= */ nullptr);
-        
+
         bool inModel = (lower != upper);
 
         if(status == CT_UPDATED)

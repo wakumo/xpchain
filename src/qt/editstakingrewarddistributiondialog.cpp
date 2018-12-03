@@ -84,7 +84,7 @@ void EditStakingRewardDistributionDialog::accept()
 {
     if(!model)
         return;
-    
+
     if(!saveCurrentRow())
     {
         StakingRewardSettingTableModel::EditStatus status = model->getEditStatus();
@@ -121,7 +121,7 @@ QString EditStakingRewardDistributionDialog::getDuplicateAddressWarning() const
 {
     QString dup_address = ui->addressEdit->text();
     QString existing_label = model->labelForAddress(dup_address);
-    
+
     return tr(
         "The entered address \"%1\" is already in the settings with "
         "label \"%2\"."

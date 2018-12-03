@@ -241,7 +241,7 @@ void StakingRewardSettingPage::on_okButton_clicked()
             model->data(model->index(r, StakingRewardSettingTableModel::ColumnIndex::Address)).toString().toStdString();
         uint8_t pct =
             model->data(model->index(r, StakingRewardSettingTableModel::ColumnIndex::DistributionPercentage), Qt::EditRole).toInt();
-        
+
         vPcts.push_back(std::make_pair(strAddress, pct));
         totalPct += pct;
     }
