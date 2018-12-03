@@ -149,8 +149,9 @@ public:
         {
             if(mask.at(i) == false)
             {
-                parent->removeRow(i);
+                parent->beginRemoveRows(QModelIndex(), i, i);
                 cachedWallet.removeAt(i);
+                parent->endRemoveRows();
             }
         }
     }
