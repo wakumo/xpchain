@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
     int nSwitch = chainParams->GetConsensus().nSwitchHeight;
     for (int nHeight = 0; nHeight < nSwitch; nHeight++) {
         CAmount nSubsidy = GetBlockSubsidy(nHeight, chainParams->GetConsensus());
-        BOOST_CHECK(nSubsidy <= 11000000 * COIN);
+        BOOST_CHECK(nSubsidy = 11000000 * COIN);
         nSum += nSubsidy;
         BOOST_CHECK(MoneyRange(nSum));
     }
