@@ -1,5 +1,5 @@
-#ifndef GUICONSTANTS_H
-#define GUICONSTANTS_H
+#ifndef BITCOIN_GUICONSTANTS_H
+#define BITCOIN_GUICONSTANTS_H
 
 /* Milliseconds between model updates */
 static const int MODEL_UPDATE_DELAY = 250;
@@ -40,4 +40,4 @@ static const int MAX_URI_LENGTH = 255;
 #define COLOR_MINT_MATURE QColor(64, 128, 64)
 #define COLOR_MINT_OLD QColor(26, 77, 26)
 
-#endif // GUICONSTANTS_H
+#endif // BITCOIN_GUICONSTANTS_H

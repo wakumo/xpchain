@@ -1,5 +1,5 @@
-#ifndef MINTINGTABLEMODEL_H
-#define MINTINGTABLEMODEL_H
+#ifndef BITCOIN_QT_MINTINGTABLEMODEL_H
+#define BITCOIN_QT_MINTINGTABLEMODEL_H
 
 #include <qt/bitcoinunits.h>
 
@@ -72,4 +72,4 @@ public Q_SLOTS:
     friend class MintingTablePriv;
 };
 
-#endif // MINTINGTABLEMODEL_H
+#endif // BITCOIN_QT_MINTINGTABLEMODEL_H
