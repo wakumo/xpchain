@@ -815,7 +815,7 @@
     </message>
     <message>
         <source>(%1-bit)</source>
-        <translation>(%1ビット)</translation>
+        <translation>(%1 ビット)</translation>
     </message>
     <message>
         <source>About %1</source>
