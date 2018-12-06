@@ -952,11 +952,11 @@
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
-        <translation>URI を開く</translation>
+        <translation>URIを開く</translation>
     </message>
     <message>
         <source>Open payment request from URI or file</source>
-        <translation>URI またはファイルから支払いリクエストを開く</translation>
+        <translation>URIまたはファイルから支払いリクエストを開く</translation>
     </message>
     <message>
         <source>URI:</source>
@@ -964,11 +964,11 @@
     </message>
     <message>
         <source>Select payment request file</source>
-        <translation>支払いリクエストファイルを選択してください</translation>
+        <translation>支払いリクエストファイルを選択</translation>
     </message>
     <message>
         <source>Select payment request file to open</source>
-        <translation>開きたい支払いリクエストファイルを選択してください</translation>
+        <translation>支払いリクエストファイルを選択</translation>
     </message>
 </context>
 <context>
