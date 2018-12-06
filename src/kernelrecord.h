@@ -1,5 +1,5 @@
-#ifndef KERNELRECORD_H
-#define KERNELRECORD_H
+#ifndef BITCOIN_KERNELRECORD_H
+#define BITCOIN_KERNELRECORD_H
 
 #include <amount.h>
 #include <uint256.h>
@@ -56,4 +56,4 @@ protected:
     double prevProbability;
 };
 
-#endif // KERNELRECORD_H
+#endif // BITCOIN_KERNELRECORD_H

@@ -93,19 +93,65 @@ public:
     void refreshWallet(interfaces::Wallet& wallet)
     {
         qDebug() << "MintingTablePriv::refreshWallet";
-        cachedWallet.clear();
+
+        // Make mask
+        QList<bool> mask;
+        for(int i = 0; i < cachedWallet.size(); i++)
         {
-           for (const auto& coins : wallet.listCoins()) {
-             for (const auto& outpair : coins.second) {
-               const COutPoint& output = std::get<0>(outpair);
-               const interfaces::WalletTxOut& out = std::get<1>(outpair);
-               std::vector<KernelRecord> txList = KernelRecord::decomposeOutput(output, out);
-               if(KernelRecord::showTransaction()){
-                 for(const KernelRecord& kr : txList) {
-                   cachedWallet.append(kr);
+            mask.append(false);
+        }
+
+        // Update and add records
+        for (const auto& coins : wallet.listCoins())
+        {
+            for (const auto& outpair : coins.second)
+            {
+                const COutPoint& output = std::get<0>(outpair);
+                const interfaces::WalletTxOut& out = std::get<1>(outpair);
+                std::vector<KernelRecord> txList = KernelRecord::decomposeOutput(output, out);
+                if(KernelRecord::showTransaction())
+                {
+
+                    QList<KernelRecord>::iterator lower = qLowerBound(
+                        cachedWallet.begin(), cachedWallet.end(), output.hash, TxLessThan());
+                    QList<KernelRecord>::iterator upper = qUpperBound(
+                        cachedWallet.begin(), cachedWallet.end(), output.hash, TxLessThan());
+                    int lowerIndex = (lower - cachedWallet.begin());
+                    bool inModel = (lower != upper);
+
+                    if(inModel)
+                    {
+                        int offset = 0;
+                        for(const KernelRecord& kr : txList)
+                        {
+                            cachedWallet.replace(lowerIndex + offset, kr);
+                            mask.replace(lowerIndex + offset, true);
+                            offset++;
+                        }
                     }
-                 }
-               }
+                    else
+                    {
+                        parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex + txList.size() - 1);
+                        int offset = 0;
+                        for(const KernelRecord& kr : txList)
+                        {
+                            cachedWallet.insert(lowerIndex + offset, kr);
+                            mask.insert(lowerIndex + offset, true);
+                            offset++;
+                        }
+                        parent->endInsertRows();
+                    }
+                }
+            }
+        }
+        // Delete old records
+        for(int i = 0; i < mask.size(); i++)
+        {
+            if(mask.at(i) == false)
+            {
+                parent->beginRemoveRows(QModelIndex(), i, i);
+                cachedWallet.removeAt(i);
+                parent->endRemoveRows();
             }
         }
     }
