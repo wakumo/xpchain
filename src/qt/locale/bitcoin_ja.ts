@@ -905,11 +905,11 @@
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the xpchain network, as detailed below.</source>
-        <translation>確認できない最近のトランザクションがあるかもしれません。これによりウォレットの残高は不正確なものである可能性があります。この情報はウォレットが一度XPChainネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
+        <translation>最近の取引がまだ表示されていない可能性があります。そのため、ウォレットの残高が正しく表示されていないかもしれません。この情報は、ウォレットが XPChain ネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
     </message>
     <message>
         <source>Attempting to spend xpchains that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>まだ表示されていないトランザクションが影響するXPChainを使用しようとすると、ネットワークから認証がなされないでしょう。</translation>
+        <translation>まだ表示されていない取引が関係する XPChain を使用しようとすると、ネットワークから認証を受けられません。</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -917,7 +917,7 @@
     </message>
     <message>
         <source>Unknown...</source>
-        <translation>未知...</translation>
+        <translation>不明...</translation>
     </message>
     <message>
         <source>Last block time</source>
@@ -933,7 +933,7 @@
     </message>
     <message>
         <source>calculating...</source>
-        <translation>計算しています...</translation>
+        <translation>計算中...</translation>
     </message>
     <message>
         <source>Estimated time left until synced</source>
@@ -945,7 +945,7 @@
     </message>
     <message>
         <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>未知。ヘッダを同期しています (%1)...</translation>
+        <translation>不明。ヘッダ (%1) の同期中...</translation>
     </message>
 </context>
 <context>
