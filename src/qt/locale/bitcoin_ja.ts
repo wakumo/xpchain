@@ -733,7 +733,7 @@
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
-        <translation>アドレスの編集</translation>
+        <translation>アドレスを編集</translation>
     </message>
     <message>
         <source>&amp;Label</source>
@@ -741,27 +741,27 @@
     </message>
     <message>
         <source>The label associated with this address list entry</source>
-        <translation>このアドレス帳項目に結びつけられているラベル</translation>
+        <translation>このアドレス帳項目のラベル</translation>
     </message>
     <message>
         <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>このアドレス帳項目に結びつけられているアドレス。この項目は送金用アドレスの場合のみ編集することができます。</translation>
+        <translation>このアドレス帳項目のアドレス。アドレスは送金先アドレスの場合のみ編集することができます。</translation>
     </message>
     <message>
         <source>&amp;Address</source>
-        <translation>アドレス帳 (&amp;A)</translation>
+        <translation>アドレス(&amp;A)</translation>
     </message>
     <message>
         <source>New sending address</source>
-        <translation>新しい送信アドレス</translation>
+        <translation>新しい送金先アドレス</translation>
     </message>
     <message>
         <source>Edit receiving address</source>
-        <translation>入金アドレスを編集</translation>
+        <translation>受取用アドレスを編集</translation>
     </message>
     <message>
         <source>Edit sending address</source>
-        <translation>送信アドレスを編集</translation>
+        <translation>送金先アドレスを編集</translation>
     </message>
     <message>
         <source>The entered address "%1" is not a valid XPChain address.</source>
@@ -769,11 +769,11 @@
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>アドレス "%1" は既に受取用アドレスにラベル "%2" として存在するので、送金用アドレスとしては追加できません。</translation>
+        <translation>アドレス "%1" は既に受取用アドレスにラベル "%2" として存在するので、送金先アドレスとしては追加できません。</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>入力されたアドレス"%1"はすでにアドレス帳のラベル"%2"に存在します｡</translation>
+        <translation>入力されたアドレス "%1" は既にラベル "%2" としてアドレス帳に存在します｡</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
