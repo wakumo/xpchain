@@ -582,19 +582,19 @@
     <name>CoinControlDialog</name>
     <message>
         <source>Coin Selection</source>
-        <translation>コイン選択</translation>
+        <translation>コインの選択</translation>
     </message>
     <message>
         <source>Quantity:</source>
-        <translation>数量:</translation>
+        <translation>選択数:</translation>
     </message>
     <message>
         <source>Bytes:</source>
-        <translation>バイト:</translation>
+        <translation>バイト数:</translation>
     </message>
     <message>
         <source>Amount:</source>
-        <translation>総額:</translation>
+        <translation>金額:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -606,15 +606,15 @@
     </message>
     <message>
         <source>After Fee:</source>
-        <translation>手数料差引後:</translation>
+        <translation>手数料差引後金額:</translation>
     </message>
     <message>
         <source>Change:</source>
-        <translation>釣り銭:</translation>
+        <translation>お釣り:</translation>
     </message>
     <message>
         <source>(un)select all</source>
-        <translation>すべて選択/選択解除</translation>
+        <translation>全て選択/選択解除</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -626,19 +626,19 @@
     </message>
     <message>
         <source>Amount</source>
-        <translation>総額</translation>
+        <translation>金額</translation>
     </message>
     <message>
         <source>Received with label</source>
-        <translation>ラベルに対する入金一覧</translation>
+        <translation>対応するラベル</translation>
     </message>
     <message>
         <source>Received with address</source>
-        <translation>アドレスに対する入金一覧</translation>
+        <translation>対応するアドレス</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation>日付</translation>
+        <translation>日時</translation>
     </message>
     <message>
         <source>Confirmations</source>
@@ -650,15 +650,15 @@
     </message>
     <message>
         <source>Copy address</source>
-        <translation>アドレスをコピーする</translation>
+        <translation>アドレスをコピー</translation>
     </message>
     <message>
         <source>Copy label</source>
-        <translation>ラベルをコピーする</translation>
+        <translation>ラベルをコピー</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>総額のコピー</translation>
+        <translation>金額をコピー</translation>
     </message>
     <message>
         <source>Copy transaction ID</source>
@@ -666,39 +666,39 @@
     </message>
     <message>
         <source>Lock unspent</source>
-        <translation>未使用トランザクションをロックする</translation>
+        <translation>未使用トランザクションをロック</translation>
     </message>
     <message>
         <source>Unlock unspent</source>
-        <translation>未使用トランザクションをアンロックする</translation>
+        <translation>未使用トランザクションのロックを解除</translation>
     </message>
     <message>
         <source>Copy quantity</source>
-        <translation>数量をコピーする</translation>
+        <translation>選択数をコピー</translation>
     </message>
     <message>
         <source>Copy fee</source>
-        <translation>手数料をコピーする</translation>
+        <translation>手数料をコピー</translation>
     </message>
     <message>
         <source>Copy after fee</source>
-        <translation>手数料差引後の値をコピーする</translation>
+        <translation>手数料差引後金額をコピー</translation>
     </message>
     <message>
         <source>Copy bytes</source>
-        <translation>バイト数をコピーする</translation>
+        <translation>バイト数をコピー</translation>
     </message>
     <message>
         <source>Copy dust</source>
-        <translation>ダストをコピーする</translation>
+        <translation>ダストをコピー</translation>
     </message>
     <message>
         <source>Copy change</source>
-        <translation>釣り銭をコピー</translation>
+        <translation>お釣りをコピー</translation>
     </message>
     <message>
         <source>(%1 locked)</source>
-        <translation>(%1 がロック済み)</translation>
+        <translation>(ロック済み %1個)</translation>
     </message>
     <message>
         <source>yes</source>
@@ -710,15 +710,15 @@
     </message>
     <message>
         <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>少なくともひとつの受取額が現在のダスト閾値を下回る場合にはこのラベルは赤くなります。</translation>
+        <translation>受取額が現在のダスト閾値を下回るアドレスがひとつでもあると、このラベルが赤くなります。</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>ひとつの入力につき %1 satoshi 前後ずれることがあります。</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>ひとつの入力につき %1 mocha 前後ずれることがあります。</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>（ラベル無し）</translation>
+        <translation>(ラベル無し)</translation>
     </message>
     <message>
         <source>change from %1 (%2)</source>
