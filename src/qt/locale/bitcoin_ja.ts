@@ -838,27 +838,27 @@
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
-        <translation>これはプログラム最初の起動です。%1 がデータを保存する場所を選択して下さい。</translation>
+        <translation>これはプログラムの最初の起動です。%1 がデータを保存する場所を選択してください。</translation>
     </message>
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>OKをクリックすると、%1は完全な%4ブロックチェーン (%2GB) のダウンロードおよび処理を%4が開始された時点の%3から開始します。</translation>
+        <translation>OKをクリックすると、%1 は %4 がリリースされた%3年最初の取引からの完全な %4 ブロックチェーン（%2GB）のダウンロードおよび処理を開始します。</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
-        <translation>この初期同期には多大なリソースを消費し、あなたのコンピュータにこれまで見つからなかったハードウェア上の問題を露呈させるかもしれません。%1 を実行する度に、中断された時点からダウンロードを継続します。</translation>
+        <translation>この初回同期には多大なリソースを消費し、あなたのコンピュータでこれまで見つからなかったハードウェア上の問題が発生する場合があります。%1 を実行する度に、中断された時点からダウンロードを再開します。</translation>
     </message>
     <message>
         <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
-        <translation>ブロックチェーンの保存容量に制限を設けることを選択した場合 (剪定) にも、過去のデータのダウンロードおよび処理が必要になります。しかしこれらのデータはディスク使用量を低く抑えるためにその後削除されるでしょう</translation>
+        <translation>ブロックチェーンの保存容量に制限を設けることを選択した場合（節約モード）にも、過去のデータのダウンロードおよび処理が必要になります。しかし、これらのデータはディスク使用量を低く抑えるために、後で削除されます。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
-        <translation>初期値のデータ ディレクトリを使用</translation>
+        <translation>デフォルトのデータ ディレクトリを使用</translation>
     </message>
     <message>
         <source>Use a custom data directory:</source>
-        <translation>任意のデータ ディレクトリを使用:</translation>
+        <translation>カスタム データ ディレクトリを使用:</translation>
     </message>
     <message>
         <source>XPChain</source>
@@ -866,15 +866,15 @@
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
-        <translation>少なくとも%1GBのデータをこのディレクトリに保存する必要があります。またこのデータは時間とともに増加していきます。</translation>
+        <translation>最低でも%1 GBのデータをこのディレクトリに保存する必要があります。またこのデータは時間とともに増加していきます。</translation>
     </message>
     <message>
         <source>Approximately %1 GB of data will be stored in this directory.</source>
-        <translation>おおむね%1GBのデータがこのディレクトリに保存されます。</translation>
+        <translation>約%1 GBのデータがこのディレクトリに保存されます。</translation>
     </message>
     <message>
         <source>%1 will download and store a copy of the XPChain block chain.</source>
-        <translation>%1はXPChainのブロックチェーンの複製をダウンロードし保存します。</translation>
+        <translation>%1 は XPChain ブロックチェーンのコピーをダウンロードし保存します。</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -882,7 +882,7 @@
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>エラー: 指定のデータディレクトリ "%1" を作成できません。</translation>
+        <translation>エラー: 指定されたデータディレクトリ "%1" を作成できません。</translation>
     </message>
     <message>
         <source>Error</source>
@@ -890,7 +890,7 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GBの空き容量が利用可能</numerusform></translation>
+        <translation><numerusform>利用可能な空き容量 %n GB</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
