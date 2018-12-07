@@ -1420,11 +1420,11 @@
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
-        <translation>ユーザエージェント</translation>
+        <translation>ユーザーエージェント</translation>
     </message>
     <message>
         <source>Node/Service</source>
-        <translation>ノード・サービス</translation>
+        <translation>ノード/サービス</translation>
     </message>
     <message>
         <source>NodeId</source>
