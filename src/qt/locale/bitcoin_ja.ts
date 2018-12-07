@@ -1325,7 +1325,7 @@
     <name>PaymentServer</name>
     <message>
         <source>Payment request error</source>
-        <translation>支払いのリクエストのエラーです</translation>
+        <translation>支払いリクエスト エラー</translation>
     </message>
     <message>
         <source>Cannot start xpchain: click-to-pay handler</source>
@@ -1333,7 +1333,7 @@
     </message>
     <message>
         <source>URI handling</source>
-        <translation>URI の操作</translation>
+        <translation>URIの処理</translation>
     </message>
     <message>
         <source>'xpchain://' is not a valid URI. Use 'xpchain:' instead.</source>
@@ -1341,79 +1341,79 @@
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
-        <translation>支払い要求の取得先URLが無効です: %1</translation>
+        <translation>支払いリクエストの取得先URLが無効です: %1</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
-        <translation>支払いのアドレス「%1」は無効です</translation>
+        <translation>支払い先アドレス「 %1 」は無効です</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid XPChain address or malformed URI parameters.</source>
-        <translation>URI を解析できません! これは無効な XPChain アドレスあるいは不正な形式の URI パラメーターによって引き起こされる場合があります。</translation>
+        <translation>URIを解析できませんでした！ XPChain アドレスが無効であるか、URIパラメーターが不正な形式である可能性があります。</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
-        <translation>支払いリクエストファイルを処理しています</translation>
+        <translation>支払いリクエストファイルの処理</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>支払いリクエストファイルを読み込めませんでした！無効な支払いリクエストファイルにより引き起こされた可能性があります。</translation>
+        <translation>支払いリクエストファイルを読み込めませんでした！ 無効な支払いリクエストファイルである可能性があります。</translation>
     </message>
     <message>
         <source>Payment request rejected</source>
-        <translation>支払い要求は拒否されました</translation>
+        <translation>支払いリクエストの拒否</translation>
     </message>
     <message>
         <source>Payment request network doesn't match client network.</source>
-        <translation>支払いリクエストのネットワークは現在のクライアントのネットワークに一致しません。</translation>
+        <translation>支払いリクエストのネットワークが現在のクライアントのネットワークと一致しません。</translation>
     </message>
     <message>
         <source>Payment request expired.</source>
-        <translation>支払いリクエストの期限が切れました。</translation>
+        <translation>支払いリクエストが期限切れです。</translation>
     </message>
     <message>
         <source>Payment request is not initialized.</source>
-        <translation>支払いリクエストは開始されていません。</translation>
+        <translation>支払いリクエストが初期化されていません。</translation>
     </message>
     <message>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>カスタム支払いスクリプトに対する、検証されていない支払いリクエストはサポートされていません。</translation>
+        <translation>カスタム支払いスクリプトに対する、未検証支払いリクエストはサポートされていません。</translation>
     </message>
     <message>
         <source>Invalid payment request.</source>
-        <translation>無効な支払いリクエスト。</translation>
+        <translation>無効な支払いリクエストです。</translation>
     </message>
     <message>
         <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>要求された支払額 %1 は少なすぎます (ダストとみなされてしまいます)。</translation>
+        <translation>リクエストされた支払い額 %1 は小さすぎます（ダストとみなされてしまいます)。</translation>
     </message>
     <message>
         <source>Refund from %1</source>
-        <translation>%1 からの返金</translation>
+        <translation>%1 からのお釣り</translation>
     </message>
     <message>
         <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>支払リクエスト %1 は大きすぎます（%2バイトですが、%3バイトまでが許されています）。</translation>
+        <translation>支払いリクエスト %1 は大きすぎます（サイズ: %2バイト / 最大処理可能サイズ: %3バイト）。</translation>
     </message>
     <message>
         <source>Error communicating with %1: %2</source>
-        <translation>%1: %2とコミュニケーション・エラーです</translation>
+        <translation>%1 との通信時にエラーが発生しました: %2</translation>
     </message>
     <message>
         <source>Payment request cannot be parsed!</source>
-        <translation>支払リクエストを読み込めませんでした！</translation>
+        <translation>支払いリクエストを解析できませんでした！</translation>
     </message>
     <message>
         <source>Bad response from server %1</source>
-        <translation>サーバーの返事は無効 %1</translation>
+        <translation>%1 サーバーの応答が無効でした</translation>
     </message>
     <message>
         <source>Network request error</source>
-        <translation>ネットワーク・リクエストのエラーです</translation>
+        <translation>ネットワーク リクエストエラー</translation>
     </message>
     <message>
         <source>Payment acknowledged</source>
-        <translation>支払いは確認しました</translation>
+        <translation>支払いは承認されました</translation>
     </message>
 </context>
 <context>
