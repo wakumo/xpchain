@@ -210,14 +210,15 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     CMutableTransaction coinbaseTx;
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
-    coinbaseTx.vout.resize(1);
-    coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
+
     if(!fPoSHeight)
-    {
+    {   coinbaseTx.vout.resize(1);
+        coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
     else
     {
+#ifdef ENABLE_WALLET
         uint256 hash;
         CTransactionRef tx;
         if(!GetTransaction(pblock->vtx[1]->vin[0].prevout.hash, tx, chainparams.GetConsensus(), hash, true))
@@ -228,7 +229,52 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         CBlockHeader header = (*itr).second->GetBlockHeader();
 
         uint32_t nTime = pblock->nTime - header.nTime;
-        coinbaseTx.vout[0].nValue = GetProofOfStakeReward(nHeight, tx->vout[pblock->vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
+        CAmount nBlockReward = GetProofOfStakeReward(nHeight, tx->vout[pblock->vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
+
+        // GetRewardPct tekina something
+        //kokokara
+        std::vector<std::pair<CTxDestination, int>>rewardPct;
+        rewardPct.resize(2);
+        CTxDestination address;
+        if(!ExtractDestination(scriptPubKey, address))
+        {
+            return nullptr;
+        }
+        rewardPct[0].first = address;
+        rewardPct[0].second = 40;
+        rewardPct[1].first = address;
+        rewardPct[1].second = 60;
+        //kokomade
+
+        std::vector<std::pair<CScript, CAmount>> rewardValue;
+        rewardValue.clear();
+        rewardValue.resize(rewardPct.size());
+
+        for(size_t i = 0;i<rewardPct.size();i++)
+        {
+            rewardValue[i].first = GetScriptForDestination(rewardPct[i].first);
+            rewardValue[i].second = nBlockReward * rewardPct[i].second / 100;
+        }
+
+        coinbaseTx.vout.resize(rewardPct.size()+1);
+        for(size_t i = 0;i<rewardPct.size();i++)
+        {
+            coinbaseTx.vout[i+1].scriptPubKey = rewardValue[i].first;
+            coinbaseTx.vout[i+1].nValue = rewardValue[i].second;
+        }
+
+        CScript txSig;
+        if(!CreateTxSig(*pwallet, pblock->nTime, pblock->vtx[1], rewardValue, txSig))
+        {
+            LogPrintf("create tx sig failed\n");
+            return nullptr;
+        }
+        coinbaseTx.vout[0].nValue = 0;
+        coinbaseTx.vout[0].scriptPubKey = txSig;
+#else
+        return nullptr;
+#endif
+
     }
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
@@ -616,5 +662,43 @@ void static ThreadStakeMinter(const std::shared_ptr<CWallet>& wallet)
 void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet)
 {
     threadGroup.create_thread(boost::bind(&ThreadStakeMinter, wallet));
+}
+
+bool CreateTxSig(const CWallet& wallet, uint32_t nTime, CTransactionRef txCoinStake, const std::vector<std::pair<CScript, CAmount>>& vValues, CScript& script)
+{
+    CTxDestination dest;
+    if(!ExtractDestination(txCoinStake->vout[0].scriptPubKey, dest))
+    {
+        LogPrintf("address not found\n");
+        return false;
+    }
+
+    // vValues size < 2^32-1
+
+    CKeyID keyID =  GetKeyForDestination(wallet, dest);
+    if(keyID.IsNull())
+    {
+        LogPrintf("pubkey hash not found\n");
+        return false;
+    }
+    CKey key;
+    if(!wallet.GetKey(keyID, key))
+    {
+        LogPrintf("privkey not found\n");
+        return false;
+    }
+    CPubKey pubkey = key.GetPubKey();
+    std::vector<unsigned char> vchSig;
+    uint256 hash = GetRewardHash(vValues, txCoinStake, nTime);
+    //printf("sign hash = %s\n",hash.ToString().c_str());
+    bool result = key.Sign(hash, vchSig, 0);
+    //printf("%s %s\n",HexStr(vchSig.begin(), vchSig.end()) ,hash.ToString().c_str());
+    // OP_RETURN 4 vValues.size() 72 vchSig pubkey_size pubkey
+    script = CScript() << OP_RETURN << CScriptNum((int64_t)vValues.size()) << vchSig << ToByteVector(pubkey);
+    if(!result)
+    {
+        LogPrintf("sign failed\n");
+    }
+    return result;
 }
 #endif
