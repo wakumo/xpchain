@@ -1254,11 +1254,11 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the XPChain network after a connection is established, but this process has not completed yet.</source>
-        <translation>表示された情報は古いかもしれません。接続が確立されると、あなたのウォレットは XPChain ネットワークと自動的に同期しますが、このプロセスはまだ完了していません。</translation>
+        <translation>表示されている情報は古い可能性があります。ウォレットは接続確立後に XPChain ネットワークと自動的に同期しますが、同期処理はまだ完了していません。</translation>
     </message>
     <message>
         <source>Watch-only:</source>
-        <translation>監視限定:</translation>
+        <translation>ウォッチ限定:</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -1266,7 +1266,7 @@
     </message>
     <message>
         <source>Your current spendable balance</source>
-        <translation>あなたの利用可能残高</translation>
+        <translation>送金可能な残高</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -1274,15 +1274,15 @@
     </message>
     <message>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</source>
-        <translation>未検証の取引で利用可能残高に反映されていない数</translation>
+        <translation>取引が未承認で残高に反映されていない総額</translation>
     </message>
     <message>
         <source>Immature:</source>
-        <translation>未完成:</translation>
+        <translation>未成熟:</translation>
     </message>
     <message>
         <source>Mined balance that has not yet matured</source>
-        <translation>完成していない採掘された残高</translation>
+        <translation>採掘された未成熟な残高</translation>
     </message>
     <message>
         <source>Balances</source>
@@ -1294,31 +1294,31 @@
     </message>
     <message>
         <source>Your current total balance</source>
-        <translation>あなたの現在の残高</translation>
+        <translation>現在の残高の総計</translation>
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
-        <translation>監視限定アドレス内の現在の残高</translation>
+        <translation>ウォッチ限定アドレス内の現在の残高</translation>
     </message>
     <message>
         <source>Spendable:</source>
-        <translation>使用可能:</translation>
+        <translation>送金可能:</translation>
     </message>
     <message>
         <source>Recent transactions</source>
-        <translation>最近のトランザクション</translation>
+        <translation>最近の取引</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
-        <translation>監視限定アドレスに対する未検証のトランザクション</translation>
+        <translation>ウォッチ限定アドレスの未承認取引</translation>
     </message>
     <message>
         <source>Mined balance in watch-only addresses that has not yet matured</source>
-        <translation>ウォッチオンリーアドレスの採掘された残高のうち、成熟していないもの</translation>
+        <translation>ウォッチ限定アドレスで採掘された未成熟な残高</translation>
     </message>
     <message>
         <source>Current total balance in watch-only addresses</source>
-        <translation>監視限定アドレス内の現在の全残高</translation>
+        <translation>ウォッチ限定アドレスの現在の残高の総計</translation>
     </message>
 </context>
 <context>
