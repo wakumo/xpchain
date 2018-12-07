@@ -1584,7 +1584,7 @@
     </message>
     <message>
         <source>&amp;Information</source>
-        <translation>情報 (&amp;I)</translation>
+        <translation>情報(&amp;I)</translation>
     </message>
     <message>
         <source>Debug window</source>
@@ -1592,19 +1592,19 @@
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation>全般</translation>
     </message>
     <message>
         <source>Using BerkeleyDB version</source>
-        <translation>使用中のBerkleyDBバージョン</translation>
+        <translation>使用している BerkleyDB のバージョン</translation>
     </message>
     <message>
         <source>Datadir</source>
-        <translation>データディレクトリ</translation>
+        <translation>データ ディレクトリ</translation>
     </message>
     <message>
         <source>Startup time</source>
-        <translation>起動した日時</translation>
+        <translation>起動日時</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1628,11 +1628,11 @@
     </message>
     <message>
         <source>Memory Pool</source>
-        <translation>メモリ・プール</translation>
+        <translation>メモリ プール</translation>
     </message>
     <message>
         <source>Current number of transactions</source>
-        <translation>現在のトランザクション数</translation>
+        <translation>現在の取引数</translation>
     </message>
     <message>
         <source>Memory usage</source>
@@ -1648,7 +1648,7 @@
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>リセット (&amp;R)</translation>
+        <translation>リセット(&amp;R)</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1660,7 +1660,7 @@
     </message>
     <message>
         <source>&amp;Peers</source>
-        <translation>ピア (&amp;P)</translation>
+        <translation>ピア(&amp;P)</translation>
     </message>
     <message>
         <source>Banned peers</source>
@@ -1672,7 +1672,7 @@
     </message>
     <message>
         <source>Whitelisted</source>
-        <translation>ホワイトリスト</translation>
+        <translation>ホワイトリスト登録済み</translation>
     </message>
     <message>
         <source>Direction</source>
@@ -1696,11 +1696,11 @@
     </message>
     <message>
         <source>User Agent</source>
-        <translation>ユーザエージェント</translation>
+        <translation>ユーザーエージェント</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>現在のデータディレクトリから %1 のデバッグ用ログファイルを開きます。ログファイルが巨大な場合、数秒かかることがあります。</translation>
+        <translation>現在のデータ ディレクトリから %1 のデバッグ用ログファイルを開きます。ログファイルが巨大な場合、数秒かかることがあります。</translation>
     </message>
     <message>
         <source>Decrease font size</source>
@@ -1732,15 +1732,15 @@
     </message>
     <message>
         <source>Ping Time</source>
-        <translation>Ping時間</translation>
+        <translation>Ping 時間</translation>
     </message>
     <message>
         <source>The duration of a currently outstanding ping.</source>
-        <translation>現在実行中のpingにかかっている時間。</translation>
+        <translation>現在実行中の ping にかかっている時間。</translation>
     </message>
     <message>
         <source>Ping Wait</source>
-        <translation>Ping待ち</translation>
+        <translation>Ping 待ち時間</translation>
     </message>
     <message>
         <source>Min Ping</source>
@@ -1756,15 +1756,15 @@
     </message>
     <message>
         <source>&amp;Open</source>
-        <translation>開く (&amp;O)</translation>
+        <translation>開く(&amp;O)</translation>
     </message>
     <message>
         <source>&amp;Console</source>
-        <translation>コンソール (&amp;C)</translation>
+        <translation>コンソール(&amp;C)</translation>
     </message>
     <message>
         <source>&amp;Network Traffic</source>
-        <translation>ネットワーク (&amp;N)</translation>
+        <translation>ネットワークトラフィック(&amp;N)</translation>
     </message>
     <message>
         <source>Totals</source>
@@ -1772,11 +1772,11 @@
     </message>
     <message>
         <source>In:</source>
-        <translation>入力:</translation>
+        <translation>入:</translation>
     </message>
     <message>
         <source>Out:</source>
-        <translation>出力:</translation>
+        <translation>出:</translation>
     </message>
     <message>
         <source>Debug log file</source>
@@ -1788,23 +1788,23 @@
     </message>
     <message>
         <source>1 &amp;hour</source>
-        <translation>1時間 (&amp;H)</translation>
+        <translation>1時間(&amp;H)</translation>
     </message>
     <message>
         <source>1 &amp;day</source>
-        <translation>1日 (&amp;D)</translation>
+        <translation>1日(&amp;D)</translation>
     </message>
     <message>
         <source>1 &amp;week</source>
-        <translation>1週間 (&amp;W)</translation>
+        <translation>1週間(&amp;W)</translation>
     </message>
     <message>
         <source>1 &amp;year</source>
-        <translation>1年 (&amp;Y)</translation>
+        <translation>1年(&amp;Y)</translation>
     </message>
     <message>
         <source>&amp;Disconnect</source>
-        <translation>切断 (&amp;D)</translation>
+        <translation>切断(&amp;D)</translation>
     </message>
     <message>
         <source>Ban for</source>
@@ -1812,7 +1812,7 @@
     </message>
     <message>
         <source>&amp;Unban</source>
-        <translation>Banを解除する (&amp;U)</translation>
+        <translation>Banを解除する(&amp;U)</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -1820,11 +1820,11 @@
     </message>
     <message>
         <source>Welcome to the %1 RPC console.</source>
-        <translation>%1 のRPCコンソールへようこそ。</translation>
+        <translation>%1 の RPC コンソールへようこそ。</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
-        <translation>上下の矢印で履歴をたどれます。%1でスクリーンを消去できます。</translation>
+        <translation>上下の矢印で履歴をたどれます。%1 でスクリーンを消去できます。</translation>
     </message>
     <message>
         <source>Type %1 for an overview of available commands.</source>
@@ -1832,15 +1832,15 @@
     </message>
     <message>
         <source>For more information on using this console type %1.</source>
-        <translation>さらに情報を得たい方は、コンソールで  %1 を入力してください。</translation>
+        <translation>詳しくは、コンソールで %1 と入力してください。</translation>
     </message>
     <message>
         <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
-        <translation>警告: 詐欺師が活動しており、ユーザに対してここにコマンドを入力させることでウォレットの中身を盗もうとしています。コマンドの結果を完全に理解していない限り、このコンソールは利用しないでください。</translation>
+        <translation>警告: 以前より詐欺師が活発に活動しており、この画面でユーザーにコマンドを入力させてウォレットの中身を盗もうとしています。コマンドを実行した結果何が起こるかを完全に理解していない場合は、このコンソールを利用しないでください。</translation>
     </message>
     <message>
         <source>Network activity disabled</source>
-        <translation>ネットワーク活動は無効化されました</translation>
+        <translation>ネットワーク活動が無効になりました</translation>
     </message>
     <message>
         <source>Executing command without any wallet</source>
