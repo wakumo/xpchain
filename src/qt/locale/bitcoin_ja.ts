@@ -1447,11 +1447,11 @@
     <name>QObject</name>
     <message>
         <source>Amount</source>
-        <translation>総額</translation>
+        <translation>金額</translation>
     </message>
     <message>
         <source>Enter a XPChain address (e.g. %1)</source>
-        <translation>XPChainアドレスを入力してください (例 %1)</translation>
+        <translation>XPChain アドレスを入力してください (例: %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1459,11 +1459,11 @@
     </message>
     <message>
         <source>%1 h</source>
-        <translation>%1 h</translation>
+        <translation>%1時間</translation>
     </message>
     <message>
         <source>%1 m</source>
-        <translation>%1 m</translation>
+        <translation>%1分</translation>
     </message>
     <message>
         <source>%1 s</source>
@@ -1483,31 +1483,31 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n 秒</numerusform></translation>
+        <translation><numerusform>%n秒</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n 分</numerusform></translation>
+        <translation><numerusform>%n分</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n 時間</numerusform></translation>
+        <translation><numerusform>%n時間</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n 日</numerusform></translation>
+        <translation><numerusform>%n日</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n 週間</numerusform></translation>
+        <translation><numerusform>%n週間</numerusform></translation>
     </message>
     <message>
         <source>%1 and %2</source>
-        <translation>%1 と %2</translation>
+        <translation>%1 %2</translation>
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n 年</numerusform></translation>
+        <translation><numerusform>%n年</numerusform></translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1531,7 +1531,7 @@
     </message>
     <message>
         <source>unknown</source>
-        <translation>未確認</translation>
+        <translation>不明</translation>
     </message>
 </context>
 <context>
