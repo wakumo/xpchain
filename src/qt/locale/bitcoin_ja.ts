@@ -979,7 +979,7 @@
     </message>
     <message>
         <source>&amp;Main</source>
-        <translation>メイン (&amp;M)</translation>
+        <translation>メイン(&amp;M)</translation>
     </message>
     <message>
         <source>Automatically start %1 after logging in to the system.</source>
@@ -987,11 +987,11 @@
     </message>
     <message>
         <source>&amp;Start %1 on system login</source>
-        <translation>システムにログインした時に %1 を起動 (&amp;S)</translation>
+        <translation>システムのログイン時に %1 を起動(&amp;S)</translation>
     </message>
     <message>
         <source>Size of &amp;database cache</source>
-        <translation>データベースキャッシュのサイズ (&amp;D)</translation>
+        <translation>データベースキャッシュのサイズ(&amp;D)</translation>
     </message>
     <message>
         <source>MB</source>
@@ -999,23 +999,23 @@
     </message>
     <message>
         <source>Number of script &amp;verification threads</source>
-        <translation>スクリプト検証用スレッド数 (&amp;V)</translation>
+        <translation>スクリプト検証用スレッド数(&amp;V)</translation>
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
-        <translation>プロキシのIPアドレス (例えば IPv4: 127.0.0.1 / IPv6: ::1)</translation>
+        <translation>プロキシのIPアドレス (例 IPv4: 127.0.0.1 / IPv6: ::1)</translation>
     </message>
     <message>
         <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
-        <translation>このネットワークタイプ経由で、与えられたデフォルトのSOCKS5プロキシを使用してピアに到達した場合に表示する。</translation>
+        <translation>指定されたデフォルト SOCKS5 プロキシが、このネットワークタイプ経由でピアに接続しているかどうかを表示する。</translation>
     </message>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Tor秘匿サービス経由でピアに接続するために専用のSOCKS5プロキシを利用する:</translation>
+        <translation>Tor秘匿サービス経由でピアに接続するために専用の SOCKS5 プロキシを利用する(&amp;5):</translation>
     </message>
     <message>
         <source>Hide the icon from the system tray.</source>
-        <translation>システムトレイのアイコンを隠す</translation>
+        <translation>システムトレイのアイコンを隠す。</translation>
     </message>
     <message>
         <source>&amp;Hide tray icon</source>
@@ -1023,19 +1023,19 @@
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
-        <translation>ウィンドウを閉じる際にアプリケーションを終了するのではなく、最小化します。このオプションが有効化された場合、メニューから終了を選択した場合にのみアプリケーションは閉じられます。</translation>
+        <translation>ウィンドウが閉じられたとき、アプリケーションを終了するのではなく最小化します。このオプションが有効の場合、メニューから終了が選択されたときのみアプリケーションが終了します。</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation>トランザクションタブのコンテキストメニュー項目に表示する、サードパーティURL (例えばブロックエクスプローラ)。URL中の%sはトランザクションのハッシュ値に置き換えられます。垂直バー | で区切ることで、複数のURLを指定できます。</translation>
+        <translation>取引タブのコンテキストメニュー項目に表示する、サードパーティURL（例: ブロックエクスプローラ）。URL中の %s は取引のハッシュ値に置き換えられます。半角垂直バー | で区切ることで、複数のURLを指定できます。</translation>
     </message>
     <message>
         <source>Active command-line options that override above options:</source>
-        <translation>上のオプションを置き換えることのできる、有効なコマンドラインオプションの一覧:</translation>
+        <translation>上記の設定を上書きする、現在有効なコマンドラインオプション:</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
-        <translation>%1の設定ファイルをワーキングディレクトリから開く。</translation>
+        <translation>作業ディレクトリ内の %1 の設定ファイルを開く。</translation>
     </message>
     <message>
         <source>Open Configuration File</source>
@@ -1043,23 +1043,23 @@
     </message>
     <message>
         <source>Reset all client options to default.</source>
-        <translation>すべてのオプションを初期値に戻します。</translation>
+        <translation>全ての設定を初期値に戻す。</translation>
     </message>
     <message>
         <source>&amp;Reset Options</source>
-        <translation>オプションをリセット (&amp;R)</translation>
+        <translation>オプションをリセット(&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Network</source>
-        <translation>ネットワーク (&amp;N)</translation>
+        <translation>ネットワーク(&amp;N)</translation>
     </message>
     <message>
         <source>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</source>
-        <translation>いくつかの高度な機能は無効になりますが、すべてのブロックは完全に検証されます。この設定を元に戻すには、ブロック チェーン全体を再ダウンロードする必要があります。実際のディスク使用量は多少多くなる可能性があります。</translation>
+        <translation>いくつかの高度な機能は無効になりますが、全てのブロックが完全に検証されることは変わりません。この設定を元に戻すには、ブロックチェーン全体を再ダウンロードする必要があります。実際のディスク使用量は若干多くなる場合があります。</translation>
     </message>
     <message>
         <source>Prune &amp;block storage to</source>
-        <translation>剪定 / ブロックの保存容量</translation>
+        <translation>ブロックの保存容量を次の値までに節約する(&amp;b):</translation>
     </message>
     <message>
         <source>GB</source>
@@ -1067,15 +1067,15 @@
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
-        <translation>この設定を元に戻すには、ブロック チェーン全体を再ダウンロードする必要があります。</translation>
+        <translation>この設定を元に戻すには、ブロックチェーン全体を再ダウンロードする必要があります。</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
-        <translation>(0 = 自動、0以上 = 指定した数のコアをフリーにする)</translation>
+        <translation>(0 = 自動、0以上 = 指定した数のコアを解放する)</translation>
     </message>
     <message>
         <source>W&amp;allet</source>
-        <translation>ウォレット (&amp;A)</translation>
+        <translation>ウォレット(&amp;A)</translation>
     </message>
     <message>
         <source>Expert</source>
@@ -1083,55 +1083,55 @@
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
-        <translation>コインコントロール機能を有効化する (&amp;C)</translation>
+        <translation>コインコントロール機能を有効化する(&amp;C)</translation>
     </message>
     <message>
         <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
-        <translation>未検証のおつりの使用を無効化すると、トランザクションが少なくとも1検証を獲得するまではそのトランザクションのおつりは利用できなくなります。これは残高の計算方法にも影響します。</translation>
+        <translation>未承認のお釣りを使用しない場合、取引が最低1回検証されるまではその取引のお釣りは利用できなくなります。これは残高の計算方法にも影響します。</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>
-        <translation>未検証のおつりを使用する (&amp;S)</translation>
+        <translation>未承認のお釣りを使用する(&amp;S)</translation>
     </message>
     <message>
         <source>Automatically open the XPChain client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自動的にルーター上の XPChain クライアントのポートを開きます。あなたのルーターが UPnP に対応していて、それが有効になっている場合に作動します。</translation>
+        <translation>自動的にルーター上の XPChain クライアントのポートを開放します。あなたのルーターが UPnP に対応していて、それが有効になっている場合のみ動作します。</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
-        <translation>UPnP を使ってポートを割り当てる (&amp;U)</translation>
+        <translation>UPnP を使ってポートを割り当てる(&amp;U)</translation>
     </message>
     <message>
         <source>Accept connections from outside.</source>
-        <translation>外部からの接続を許可する</translation>
+        <translation>外部からの接続を許可する。</translation>
     </message>
     <message>
         <source>Allow incomin&amp;g connections</source>
-        <translation>外部からの接続を許可する (&amp;G)</translation>
+        <translation>外部からの接続を許可する(&amp;G)</translation>
     </message>
     <message>
         <source>Connect to the XPChain network through a SOCKS5 proxy.</source>
-        <translation>SOCKS5 プロキシ経由でXPChainネットワークに接続する</translation>
+        <translation>SOCKS5 プロキシ経由で XPChain ネットワークに接続する</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>SOCKS5 プロキシ経由で接続する (デフォルトプロキシ): (&amp;C)</translation>
+        <translation>SOCKS5 プロキシ経由で接続する（デフォルトプロキシ）(&amp;C):</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
-        <translation>プロキシの IP (&amp;I) :</translation>
+        <translation>プロキシ IP(&amp;I):</translation>
     </message>
     <message>
         <source>&amp;Port:</source>
-        <translation>ポート (&amp;P) :</translation>
+        <translation>ポート(&amp;P):</translation>
     </message>
     <message>
         <source>Port of the proxy (e.g. 9050)</source>
-        <translation>プロキシのポート番号 (例 9050)</translation>
+        <translation>プロキシのポート番号（例: 9050）</translation>
     </message>
     <message>
         <source>Used for reaching peers via:</source>
-        <translation>ピアへ到達するために使われた方法:</translation>
+        <translation>ピアへの接続手段:</translation>
     </message>
     <message>
         <source>IPv4</source>
@@ -1147,43 +1147,43 @@
     </message>
     <message>
         <source>Connect to the XPChain network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Tor秘匿サービスを利用するため、独立なSOCKS5プロキシ経由でXPChainネットワークに接続する</translation>
+        <translation>Tor秘匿サービスを利用するため、専用の SOCKS5 プロキシ経由で XPChain ネットワークに接続する。</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation>ウインドウ (&amp;W)</translation>
+        <translation>ウインドウ(&amp;W)</translation>
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>ウインドウを最小化したあとトレイ アイコンだけを表示する。</translation>
+        <translation>ウインドウを最小化したあとトレイアイコンのみ表示する。</translation>
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>タスクバーの代わりにトレイに最小化 (&amp;M)</translation>
+        <translation>タスクバーではなくトレイに最小化(&amp;M)</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
-        <translation>閉じる時に最小化 (&amp;i)</translation>
+        <translation>閉じたときに最小化(&amp;i)</translation>
     </message>
     <message>
         <source>&amp;Display</source>
-        <translation>表示 (&amp;D)</translation>
+        <translation>表示(&amp;D)</translation>
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>ユーザインターフェースの言語 (&amp;l) :</translation>
+        <translation>ユーザーインターフェイスの言語(&amp;l):</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
-        <translation>ここでユーザインターフェースの言語を設定できます。設定を反映するには %1 を再起動します。</translation>
+        <translation>ユーザーインターフェイスの言語を設定できます。設定を反映するには %1 の再起動が必要です。</translation>
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>額を表示する単位 (&amp;U) :</translation>
+        <translation>金額の表示単位(&amp;U):</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>インターフェース上の表示とコインの送信で使用する単位を選択します。</translation>
+        <translation>インターフェイスや送金時に使用する単位を選択する。</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1191,7 +1191,7 @@
     </message>
     <message>
         <source>&amp;Third party transaction URLs</source>
-        <translation>サードパーティのトランザクションURL (&amp;T)</translation>
+        <translation>サードパーティの取引確認URL(&amp;T)</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1203,7 +1203,7 @@
     </message>
     <message>
         <source>default</source>
-        <translation>初期値</translation>
+        <translation>既定</translation>
     </message>
     <message>
         <source>none</source>
@@ -1211,7 +1211,7 @@
     </message>
     <message>
         <source>Confirm options reset</source>
-        <translation>オプションのリセットの確認</translation>
+        <translation>設定リセットの確認</translation>
     </message>
     <message>
         <source>Client restart required to activate changes.</source>
@@ -1219,7 +1219,7 @@
     </message>
     <message>
         <source>Client will be shut down. Do you want to proceed?</source>
-        <translation>クライアントを終了します。続行してもよろしいですか？</translation>
+        <translation>クライアントを終了します。よろしいですか？</translation>
     </message>
     <message>
         <source>Configuration options</source>
@@ -1227,7 +1227,7 @@
     </message>
     <message>
         <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
-        <translation>設定ファイルは高度なユーザオプションを指定するために利用され、GUI での設定をオーバーライドします。また、コマンドラインオプションはこの設定ファイルの内容をオーバーライドします</translation>
+        <translation>設定ファイルは、GUIでの設定を上書きする高度なユーザーオプションを指定するためのものです。また、コマンドラインオプションはこの設定ファイルの内容も上書きします</translation>
     </message>
     <message>
         <source>Error</source>
