@@ -1565,11 +1565,11 @@
     </message>
     <message>
         <source>Save QR Code</source>
-        <translation>QR コードの保存</translation>
+        <translation>QRコードの保存</translation>
     </message>
     <message>
         <source>PNG Image (*.png)</source>
-        <translation>PNG画像ファイル(*.png)</translation>
+        <translation>PNG画像 (*.png)</translation>
     </message>
 </context>
 <context>
