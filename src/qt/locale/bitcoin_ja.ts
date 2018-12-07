@@ -1538,11 +1538,11 @@
     <name>QObject::QObject</name>
     <message>
         <source>Error parsing command line arguments: %1.</source>
-        <translation>エラー: コマンドライン引数のパース: %1.</translation>
+        <translation>コマンドライン引数の解析時にエラーが発生しました: %1</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>エラー: 指定のデータ ディレクトリ "%1" は存在しません。</translation>
+        <translation>エラー: 指定されたデータ ディレクトリ "%1" は存在しません。</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
