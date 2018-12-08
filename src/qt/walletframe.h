@@ -71,6 +71,8 @@ public Q_SLOTS:
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
+    /** Switch to minting page */
+    void gotoMintingPage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -79,6 +81,8 @@ public Q_SLOTS:
 
     /** Encrypt the wallet */
     void encryptWallet(bool status);
+    /** Decrypt wallet for minting only */
+    void decryptForMinting(bool status);
     /** Backup the wallet */
     void backupWallet();
     /** Change encrypted wallet passphrase */

@@ -26,6 +26,7 @@ EXPECTED_CIRCULAR_DEPENDENCIES=(
     "qt/sendcoinsdialog -> qt/walletmodel -> qt/sendcoinsdialog"
     "qt/stakingrewardsettingmodel -> qt/walletmodel -> qt/stakingrewardsettingmodel"
     "qt/transactiontablemodel -> qt/walletmodel -> qt/transactiontablemodel"
+    "qt/mintingtablemodel -> qt/walletmodel -> qt/mintingtablemodel"
     "qt/walletmodel -> qt/walletmodeltransaction -> qt/walletmodel"
     "rpc/rawtransaction -> wallet/rpcwallet -> rpc/rawtransaction"
     "txmempool -> validation -> txmempool"

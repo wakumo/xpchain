@@ -151,6 +151,12 @@ void WalletFrame::gotoSendCoinsPage(QString addr)
         i.value()->gotoSendCoinsPage(addr);
 }
 
+void WalletFrame::gotoMintingPage()
+{
+    QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoMintingPage();
+}
 void WalletFrame::gotoSignMessageTab(QString addr)
 {
     WalletView *walletView = currentWalletView();
@@ -170,6 +176,13 @@ void WalletFrame::encryptWallet(bool status)
     WalletView *walletView = currentWalletView();
     if (walletView)
         walletView->encryptWallet(status);
+}
+
+void WalletFrame::decryptForMinting(bool status)
+{
+    WalletView *walletView = currentWalletView();
+    if (walletView)
+        walletView->decryptForMinting(status);
 }
 
 void WalletFrame::backupWallet()
