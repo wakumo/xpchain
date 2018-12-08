@@ -3226,9 +3226,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     auto itr = mapBlockIndex.find(block.hashPrevBlock);
     int nHeight = 0;
     if(itr != mapBlockIndex.end())
-    {   
+    {
         //do not know if this block does not have hashPrevBlock or hashPrevBlock is incorrect
-        nHeight = (*itr).second->nHeight + 1;    
+        nHeight = (*itr).second->nHeight + 1;
     }
     
     if (!CheckBlockHeader(block, state, consensusParams, (fCheckPOW && !IsPoSHeight(nHeight, consensusParams))))

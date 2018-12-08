@@ -238,12 +238,12 @@ void MintingView::copyTransactionId()
 }
 void MintingView::showHideAddress()
 {
-    mintingView->horizontalHeader()->setSectionHidden(MintingTableModel::Address, 
+    mintingView->horizontalHeader()->setSectionHidden(MintingTableModel::Address,
         !(mintingView->horizontalHeader()->isSectionHidden(MintingTableModel::Address)));
 }
 
 void MintingView::showHideTxID()
 {
-    mintingView->horizontalHeader()->setSectionHidden(MintingTableModel::TxHash, 
+    mintingView->horizontalHeader()->setSectionHidden(MintingTableModel::TxHash,
         !(mintingView->horizontalHeader()->isSectionHidden(MintingTableModel::TxHash)));
 }
