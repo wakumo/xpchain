@@ -309,7 +309,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../xpchaingui.cpp" line="+307"/>
+        <location filename="../bitcoingui.cpp" line="+307"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
@@ -721,7 +721,7 @@
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../xpchain.cpp" line="+529"/>
+        <location filename="../bitcoin.cpp" line="+529"/>
         <source>A fatal error occurred. XPChain can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1837,7 +1837,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../xpchainunits.cpp" line="+197"/>
+        <location filename="../bitcoinunits.cpp" line="+189"/>
         <source>Amount</source>
         <translation type="unfinished">Amount</translation>
     </message>
@@ -1957,7 +1957,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../xpchain.cpp" line="+192"/>
+        <location filename="../bitcoin.cpp" line="+192"/>
         <source>%1 didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1970,7 +1970,7 @@
 <context>
     <name>QObject::QObject</name>
     <message>
-        <location filename="../xpchain.cpp" line="-117"/>
+        <location filename="../bitcoin.cpp" line="-117"/>
         <source>Error parsing command line arguments: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3942,7 +3942,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
-        <location filename="../xpchaingui.cpp" line="+159"/>
+        <location filename="../bitcoingui.cpp" line="+159"/>
         <source>Unit to show amounts in. Click to select another unit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4061,7 +4061,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>bitcoin-core</name>
     <message>
-        <location filename="../xpchainstrings.cpp" line="+29"/>
+        <location filename="../bitcoinstrings.cpp" line="+29"/>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4086,7 +4086,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+28"/>
         <source>Pruning blockstore...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4096,7 +4096,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-184"/>
+        <location line="-187"/>
         <source>XPChain Core</source>
         <translation type="unfinished">XPChain Core</translation>
     </message>
@@ -4406,7 +4406,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-171"/>
+        <location line="-174"/>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4441,7 +4441,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+11"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
@@ -4556,7 +4556,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-197"/>
+        <location line="-200"/>
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4611,7 +4611,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+24"/>
         <source>Keypool ran out, please call keypoolrefill first</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4661,7 +4661,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>Insufficient funds</translation>
     </message>
     <message>
-        <location line="-134"/>
+        <location line="-137"/>
         <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4686,7 +4686,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+42"/>
         <source>Loading block index...</source>
         <translation>Loading block index...</translation>
     </message>
@@ -4696,17 +4696,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>Loading wallet...</translation>
     </message>
     <message>
-        <location line="-42"/>
+        <location line="-45"/>
         <source>Cannot downgrade wallet</source>
         <translation>Cannot downgrade wallet</translation>
     </message>
     <message>
-        <location line="+50"/>
+        <location line="+53"/>
         <source>Rescanning...</source>
         <translation>Rescanning...</translation>
     </message>
     <message>
-        <location line="-43"/>
+        <location line="-46"/>
         <source>Done loading</source>
         <translation>Done loading</translation>
     </message>
