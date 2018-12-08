@@ -212,7 +212,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
 
     if(!fPoSHeight)
-    {   coinbaseTx.vout.resize(1);
+    {
+        coinbaseTx.vout.resize(1);
         coinbaseTx.vout[0].scriptPubKey = scriptPubKey;
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
@@ -231,7 +232,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         uint32_t nTime = pblock->nTime - header.nTime;
         CAmount nBlockReward = GetProofOfStakeReward(nHeight, tx->vout[pblock->vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
 
-        // GetRewardPct tekina something
+        //TODO: GetRewardPct tekina something
         //kokokara
         std::vector<std::pair<CTxDestination, int>>rewardPct;
         rewardPct.resize(2);
@@ -673,27 +674,31 @@ bool CreateTxSig(const CWallet& wallet, uint32_t nTime, CTransactionRef txCoinSt
         return false;
     }
 
-    // vValues size < 2^32-1
+    //TODO: vValues size < 2^32-1
 
+    //get pubkey hash from dest
     CKeyID keyID =  GetKeyForDestination(wallet, dest);
     if(keyID.IsNull())
     {
         LogPrintf("pubkey hash not found\n");
         return false;
     }
+
+    //get privkey of pubkeyhash from wallet
     CKey key;
     if(!wallet.GetKey(keyID, key))
     {
         LogPrintf("privkey not found\n");
         return false;
     }
+
+    //calc pubkey
     CPubKey pubkey = key.GetPubKey();
     std::vector<unsigned char> vchSig;
     uint256 hash = GetRewardHash(vValues, txCoinStake, nTime);
-    //printf("sign hash = %s\n",hash.ToString().c_str());
     bool result = key.Sign(hash, vchSig, 0);
-    //printf("%s %s\n",HexStr(vchSig.begin(), vchSig.end()) ,hash.ToString().c_str());
-    // OP_RETURN 4 vValues.size() 72 vchSig pubkey_size pubkey
+
+    //script is  OP_RETURN CScriptNum.size() vValues.size() signature_size vchSig pubkey_size pubkey
     script = CScript() << OP_RETURN << CScriptNum((int64_t)vValues.size()) << vchSig << ToByteVector(pubkey);
     if(!result)
     {

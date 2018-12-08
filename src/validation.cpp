@@ -5031,12 +5031,11 @@ uint256 GetRewardHash(const std::vector<std::pair<CScript, CAmount>>& vReward, C
 
 static bool EqualDestination(CTransactionRef txCoinStake, CPubKey pubkey)
 {
+    //address of txcoinstake output == address from pubkey
     std::vector<std::vector<unsigned char>> vSolutions;
     txnouttype whichType;
     if (!Solver(txCoinStake->vout[0].scriptPubKey, whichType, vSolutions))
         return false;
-
-    CKeyID pubkeyHashFromScript;
 
     if(whichType == TX_SCRIPTHASH)
     {
@@ -5050,19 +5049,21 @@ static bool EqualDestination(CTransactionRef txCoinStake, CPubKey pubkey)
     else if(whichType == TX_PUBKEYHASH || whichType == TX_WITNESS_V0_KEYHASH)
     {
         //p2wpkh p2pkh
-        pubkeyHashFromScript = CKeyID(uint160(vSolutions[0]));
-        return pubkeyHashFromScript == pubkey.GetID();
+        return CKeyID(uint160(vSolutions[0])) == pubkey.GetID();
     }
     return false;
 }
 
 bool VerifyCoinBaseTx(const CBlock& block)
 {
+    //If the number of transactions is 0, it returns false
     if(block.vtx.size() < 1)
     {
         return false;
     }
+    //sig is data output (number of output destination + signature + pubkey)
     CScript sig = block.vtx[0]->vout[0].scriptPubKey;
+    //if the first of sig is OP_RETURN
     if(sig.size() < 1)
     {
         LogPrintf("coinbase sig size is %d\n", sig.size());
@@ -5073,7 +5074,10 @@ bool VerifyCoinBaseTx(const CBlock& block)
         LogPrintf("sig[0] != OP_RETURN\n");
         return false;
     }
+    //get datas
     CScriptBase::const_iterator ptr = sig.begin()+1;
+
+    //get number of output destination
     opcodetype sizeOP;
     std::vector<unsigned char> vchSize;
     if(!GetScriptOp(ptr, sig.end(), sizeOP, &vchSize))
@@ -5088,6 +5092,8 @@ bool VerifyCoinBaseTx(const CBlock& block)
     }
     CScriptNum nSize(vchSize, false);
     int size = nSize.getint();
+
+    //get signature
     opcodetype sigOP;
     std::vector<unsigned char> vchSig;
     if(!GetScriptOp(ptr, sig.end(), sigOP, &vchSig))
@@ -5095,6 +5101,8 @@ bool VerifyCoinBaseTx(const CBlock& block)
         LogPrintf("signature not found\n");
         return false;
     }
+
+    //get pubkey
     opcodetype pubkeyOP;
     std::vector<unsigned char> vchPubKey;
     if(!GetScriptOp(ptr, sig.end(), pubkeyOP, &vchPubKey))
@@ -5109,6 +5117,8 @@ bool VerifyCoinBaseTx(const CBlock& block)
         LogPrintf("coinbase sig is incorrect\n");
         return false;
     }
+
+    //make rewardvalues and hash
     std::vector<std::pair<CScript, CAmount>> rewardValues;
     rewardValues.clear();
     rewardValues.resize(size);
@@ -5118,8 +5128,8 @@ bool VerifyCoinBaseTx(const CBlock& block)
         rewardValues[i-1].first = block.vtx[0]->vout[i].scriptPubKey;
         rewardValues[i-1].second = block.vtx[0]->vout[i].nValue;
     }
-    //address from coinstakeTX output == address from pubkey
 
+    //address from coinstakeTX output == address from pubkey
     if(!EqualDestination(block.vtx[1], pubkey))
     {
         LogPrintf("coinstaketx output != address from pubkey\n");
