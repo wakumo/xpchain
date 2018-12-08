@@ -10,6 +10,7 @@
 #include <fs.h>
 #include <key_io.h>
 #include <protocol.h>
+#include <script/standard.h>
 #include <serialize.h>
 #include <sync.h>
 #include <util.h>
@@ -509,6 +510,11 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
                 strErr = "Error reading wallet database: Unknown non-tolerable wallet flags found";
                 return false;
             }
+        } else if (strType == "rewarddistpcts") {
+            std::vector<std::pair<std::string, std::uint8_t>> pcts;
+            ssValue >> pcts;
+            pwallet->WalletLogPrintf("Load list of staking reward distribution percentages (entry: %d)\n", pcts.size());
+            pwallet->vRewardDistributionPcts = pcts;
         } else if (strType != "bestblock" && strType != "bestblock_nomerkle") {
             wss.m_unknown_records++;
         }
@@ -869,4 +875,19 @@ bool WalletBatch::ReadVersion(int& nVersion)
 bool WalletBatch::WriteVersion(int nVersion)
 {
     return m_batch.WriteVersion(nVersion);
+}
+
+bool WalletBatch::WriteRewardDistributionPcts(const std::vector<std::pair<std::string, std::uint8_t>>& pcts)
+{
+    return WriteIC(std::string("rewarddistpcts"), pcts);
+}
+
+bool WalletBatch::EraseRewardDistributionPcts()
+{
+    return EraseIC(std::string("rewarddistpcts"));
+}
+
+bool WalletBatch::ReadRewardDistributionPcts(std::vector<std::pair<std::string, std::uint8_t>>& pcts)
+{
+    return m_batch.Read(std::string("rewarddistpcts"), pcts);
 }
