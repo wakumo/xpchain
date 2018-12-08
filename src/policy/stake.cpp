@@ -29,7 +29,7 @@ bool AddressesEqual(const CScript& a, const CScript& b)
         return false;
     }
 
-    //addresses of a,b are the same 
+    //addresses of a,b are the same
     //TODO: fix
     CTxDestination aAddress, bAddress;
     if(!ExtractDestination(a, aAddress) || !ExtractDestination(b, bAddress))

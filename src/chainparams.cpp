@@ -80,9 +80,7 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
-        // TODO : reset
-        //consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -126,10 +124,9 @@ public:
         nDefaultPort = 8798;
         nPruneAfterHeight = 100000;
 
-        // TODO : reset
-        genesis = CreateGenesisBlock(1540301656, 99312, 0x1f00ffff, 4, 50 * COIN);
+        genesis = CreateGenesisBlock(1540301656, 1280281997, 0x1d00ffff, 4, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000042cb97e9d18e436b012314f685a2ec68efc4d252d2b4e6362f6ea062cc41"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000009f4a28557aad6be5910c39d40e8a44e596d5ad485a9e4a7d4d72937c"));
         assert(genesis.hashMerkleRoot == uint256S("0xdaa610662c202dd51c892e6ff17ac1812a3ddcb998ec4923a3a315c409019739"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
@@ -209,10 +206,10 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        consensus.nSwitchHeight = 168;
+        consensus.nSwitchHeight = 10275;
 
-        consensus.nStakeMinAge = 60 * 60 * 1;
-        consensus.nStakeMaxAge = 60 * 60 * 20;
+        consensus.nStakeMinAge = 60 * 60 * 24 * 3;
+        consensus.nStakeMaxAge = 60 * 60 * 24 * 60;
 
         pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0x87;
@@ -302,7 +299,7 @@ public:
 
         consensus.nSwitchHeight = 1680;
 
-        consensus.nStakeMinAge = 0;
+        consensus.nStakeMinAge = 60 * 60 * 24;
         consensus.nStakeMaxAge = 60 * 60 * 24 * 100;
 
         pchMessageStart[0] = 0xfc;

@@ -180,7 +180,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
 
     CScript scriptPubKey;
-    
+
     if(fPoSHeight)
     {
         if(pblock->GetBlockTime() <= pindexPrev->GetMedianTimePast())
@@ -235,7 +235,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
     pblocktemplate->vTxFees[0] = -nFees;
 
- 
+
 
     LogPrintf("CreateNewBlock(): block weight: %u txs: %u fees: %ld sigops %d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
 
@@ -551,7 +551,7 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             /*TODO:
             regtest always stake
             others always mint GetBoolArg or !vNodes.empty()
-            */     
+            */
             //while (vNodes.empty())
             //    MilliSleep(1000);
 
