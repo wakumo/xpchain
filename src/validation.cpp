@@ -27,7 +27,7 @@
 #include <reverse_iterator.h>
 #include <script/script.h>
 #include <script/sigcache.h>
-#include <script/standard.h>
+//#include <script/standard.h>
 #include <shutdown.h>
 #include <timedata.h>
 #include <tinyformat.h>
@@ -49,6 +49,9 @@
 
 #include <kernel.h>
 #include <policy/stake.h>
+#include <pubkey.h>
+#include <key_io.h>
+#include <outputtype.h>
 
 #if defined(NDEBUG)
 # error "Bitcoin cannot be compiled without assertions."
@@ -2173,12 +2176,29 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return error("ConnectBlock(): vtx[1] is not coinstaketx");
         }
 
-        if(!AddressesEqual(block.vtx[0]->vout[0].scriptPubKey, block.vtx[1]->vout[0].scriptPubKey))
+        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
+        bool checkCoinBase = false;
+        if(block.vtx[0]->vout.size() >= 1)
         {
-            return error("ConnectBlock(): vtx[1] and vtx[0] output address do not match");
+            checkCoinBase|=VerifyCoinBaseTx(block);
+            if(!checkCoinBase)
+            {
+                if(block.vtx[0]->vout[0].nValue < blockReward)
+                {
+                    return error("ConnectBlock(): coinbase pays too little");
+                }
+                if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey))
+                {
+                    return error("ConnectBlock(): vtx[1].address != vtx[0].address");
+                }
+                checkCoinBase = true;
+            }
         }
 
-        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[0].nValue, nTime, chainparams.GetConsensus());
+        if(!checkCoinBase)
+        {
+            return error("ConnectBlock(): coinbase tx is incorrect");
+        }
     }
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100,
@@ -4994,7 +5014,129 @@ public:
     }
 } instance_of_cmaincleanup;
 
-bool IsPoSHeight(int n, const Consensus::Params & params)
+bool IsPoSHeight(int n, const Consensus::Params& params)
 {
     return n > params.nSwitchHeight;
+}
+uint256 GetRewardHash(const std::vector<std::pair<CScript, CAmount>>& vReward, CTransactionRef txCoinStake, uint32_t nTime)
+{
+    CDataStream ss(SER_GETHASH, 0);
+    for(std::pair<CScript, CAmount> p:vReward)
+    {
+        ss << p.first << p.second;
+    }
+    ss << nTime << txCoinStake->vin[0];
+    return Hash(ss.begin(), ss.end());
+}
+
+static bool EqualDestination(CTransactionRef txCoinStake, CPubKey pubkey)
+{
+    //address of txcoinstake output == address from pubkey
+    std::vector<std::vector<unsigned char>> vSolutions;
+    txnouttype whichType;
+    if (!Solver(txCoinStake->vout[0].scriptPubKey, whichType, vSolutions))
+        return false;
+
+    if(whichType == TX_SCRIPTHASH)
+    {
+        //p2sh(p2wpkh)
+        CTxDestination dest = GetDestinationForKey(pubkey, OutputType::P2SH_SEGWIT);
+        if(auto scriptID = boost::get<CScriptID>(&dest))
+        {
+            return *scriptID == CScriptID(uint160(vSolutions[0]));
+        }
+    }
+    else if(whichType == TX_PUBKEYHASH || whichType == TX_WITNESS_V0_KEYHASH)
+    {
+        //p2wpkh p2pkh
+        return CKeyID(uint160(vSolutions[0])) == pubkey.GetID();
+    }
+    return false;
+}
+
+bool VerifyCoinBaseTx(const CBlock& block)
+{
+    //If the number of transactions is 0, it returns false
+    if(block.vtx.size() < 1)
+    {
+        return false;
+    }
+    //sig is data output (number of output destination + signature + pubkey)
+    CScript sig = block.vtx[0]->vout[0].scriptPubKey;
+    //if the first of sig is OP_RETURN
+    if(sig.size() < 1)
+    {
+        LogPrintf("coinbase sig size is %d\n", sig.size());
+        return false;
+    }
+    if(sig[0] != OP_RETURN)
+    {
+        LogPrintf("sig[0] != OP_RETURN\n");
+        return false;
+    }
+    //get datas
+    CScriptBase::const_iterator ptr = sig.begin()+1;
+
+    //get number of output destination
+    opcodetype sizeOP;
+    std::vector<unsigned char> vchSize;
+    if(!GetScriptOp(ptr, sig.end(), sizeOP, &vchSize))
+    {
+        LogPrintf("size not found\n");
+        return false;
+    }
+    if(vchSize.size() > 4)
+    {
+        LogPrintf("size is not 4byte\n");
+        return false;
+    }
+    CScriptNum nSize(vchSize, false);
+    int size = nSize.getint();
+
+    //get signature
+    opcodetype sigOP;
+    std::vector<unsigned char> vchSig;
+    if(!GetScriptOp(ptr, sig.end(), sigOP, &vchSig))
+    {
+        LogPrintf("signature not found\n");
+        return false;
+    }
+
+    //get pubkey
+    opcodetype pubkeyOP;
+    std::vector<unsigned char> vchPubKey;
+    if(!GetScriptOp(ptr, sig.end(), pubkeyOP, &vchPubKey))
+    {
+        LogPrintf("pubkey not found\n");
+        return false;
+    }
+    CPubKey pubkey(vchPubKey.begin(), vchPubKey.end());
+    //printf("size = %d\n", block.vtx[0]->vout[0].scriptPubKey.size());
+    if(!pubkey.IsFullyValid())
+    {
+        LogPrintf("coinbase sig is incorrect\n");
+        return false;
+    }
+
+    //make rewardvalues and hash
+    std::vector<std::pair<CScript, CAmount>> rewardValues;
+    rewardValues.clear();
+    rewardValues.resize(size);
+    //printf("vout size =  %d\n",block.vtx[0]->vout.size());
+    for(size_t i = 1;i<=size;i++)
+    {
+        rewardValues[i-1].first = block.vtx[0]->vout[i].scriptPubKey;
+        rewardValues[i-1].second = block.vtx[0]->vout[i].nValue;
+    }
+
+    //address from coinstakeTX output == address from pubkey
+    if(!EqualDestination(block.vtx[1], pubkey))
+    {
+        LogPrintf("coinstaketx output != address from pubkey\n");
+        return false;
+    }
+
+    uint256 hash = GetRewardHash(rewardValues, block.vtx[1], block.nTime);
+    //printf("verify hash = %s\n",hash.ToString().c_str());
+    return pubkey.Verify(hash, vchSig);
 }
