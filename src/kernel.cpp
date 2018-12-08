@@ -129,14 +129,14 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
             return false;
         }
         // Get transaction index for the previous transaction
-        
+
         auto itr = mapBlockIndex.find(hash);
         if(itr == mapBlockIndex.end())
         {
             LogPrintf("CheckProofOfStake() : blockindex not found hash = %s\n", hash.ToString().c_str());
             return false;
         }
-            
+
         CBlockIndex* pindex = (*itr).second;
         if(pindex->GetBlockHash() != hash)
         {
@@ -162,5 +162,5 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
         //return state.DoS(1, error("CheckProofOfStake() : INFO: check kernel failed on coinstake %s, hashProof=%s", tx->GetHash().ToString(), hashProofOfStake.ToString())); // may occur during initial download or if behind on block chain sync
 
     return true;
-    
+
 }

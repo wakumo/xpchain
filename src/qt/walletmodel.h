@@ -31,6 +31,7 @@ class PlatformStyle;
 class RecentRequestsTableModel;
 class TransactionTableModel;
 class MintingTableModel;
+class StakingRewardSettingTableModel;
 class WalletModelTransaction;
 
 class CCoinControl;
@@ -143,6 +144,7 @@ public:
     TransactionTableModel *getTransactionTableModel();
     MintingTableModel *getMintingTableModel();
     RecentRequestsTableModel *getRecentRequestsTableModel();
+    StakingRewardSettingTableModel *getStakingRewardSettingTableModel();
 
     EncryptionStatus getEncryptionStatus() const;
 
@@ -232,6 +234,7 @@ private:
     TransactionTableModel *transactionTableModel;
     MintingTableModel *mintingTableModel;
     RecentRequestsTableModel *recentRequestsTableModel;
+    StakingRewardSettingTableModel *stakingRewardSettingTableModel;
 
     // Cache some values to be able to detect changes
     interfaces::WalletBalances m_cached_balances;

@@ -22,7 +22,7 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
     def run_test(self):
         node0,node1,node2 = self.nodes
 
-        # 1100000000 XPC each, rest will be 550000000 XPC each
+        # 11000000 XPC each, rest will be 5500000 XPC each
         node0.generate(149)
         self.sync_all()
 
@@ -46,7 +46,7 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
 
         height = node0.getblockchaininfo()["blocks"]
         assert 150 < height < 350
-        total = 149*1100000000 + (height-149-100)*550000000
+        total = 149*11000000 + (height-149-100)*5500000
         assert bal1 == 0
         assert bal2 == self.moved
         assert bal0+bal1+bal2 == total

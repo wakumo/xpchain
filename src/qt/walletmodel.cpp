@@ -10,6 +10,7 @@
 #include <qt/paymentserver.h>
 #include <qt/recentrequeststablemodel.h>
 #include <qt/sendcoinsdialog.h>
+#include <qt/stakingrewardsettingmodel.h>
 #include <qt/transactiontablemodel.h>
 #include <qt/mintingtablemodel.h>
 
@@ -34,6 +35,7 @@ WalletModel::WalletModel(std::unique_ptr<interfaces::Wallet> wallet, interfaces:
     transactionTableModel(0),
     mintingTableModel(0),
     recentRequestsTableModel(0),
+    stakingRewardSettingTableModel(0),
     cachedEncryptionStatus(Unencrypted),
     cachedNumBlocks(0)
 {
@@ -44,6 +46,7 @@ WalletModel::WalletModel(std::unique_ptr<interfaces::Wallet> wallet, interfaces:
     transactionTableModel = new TransactionTableModel(platformStyle, this);
     mintingTableModel = new MintingTableModel(platformStyle, this);
     recentRequestsTableModel = new RecentRequestsTableModel(this);
+    stakingRewardSettingTableModel = new StakingRewardSettingTableModel(this);
 
     // This timer will be fired repeatedly to update the balance
     pollTimer = new QTimer(this);
@@ -113,6 +116,9 @@ void WalletModel::updateAddressBook(const QString &address, const QString &label
 {
     if(addressTableModel)
         addressTableModel->updateEntry(address, label, isMine, purpose, status);
+
+    if(stakingRewardSettingTableModel)
+        stakingRewardSettingTableModel->updateEntry(address, label, status);
 }
 
 void WalletModel::updateWatchOnlyFlag(bool fHaveWatchonly)
@@ -321,6 +327,12 @@ MintingTableModel *WalletModel::getMintingTableModel()
 RecentRequestsTableModel *WalletModel::getRecentRequestsTableModel()
 {
     return recentRequestsTableModel;
+}
+
+StakingRewardSettingTableModel *WalletModel::getStakingRewardSettingTableModel()
+{
+    stakingRewardSettingTableModel = new StakingRewardSettingTableModel(this);
+    return stakingRewardSettingTableModel;
 }
 
 WalletModel::EncryptionStatus WalletModel::getEncryptionStatus() const

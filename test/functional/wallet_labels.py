@@ -45,7 +45,7 @@ class WalletLabelsTest(BitcoinTestFramework):
         # the same address, so we call twice to get two addresses w/50 each
         node.generate(1)
         node.generate(101)
-        assert_equal(node.getbalance(), 2200000000)
+        assert_equal(node.getbalance(), 22000000)
 
         # there should be 2 address groups
         # each with 1 address with a balance of 50 Bitcoins
@@ -57,7 +57,7 @@ class WalletLabelsTest(BitcoinTestFramework):
         for address_group in address_groups:
             assert_equal(len(address_group), 1)
             assert_equal(len(address_group[0]), 2)
-            assert_equal(address_group[0][1], 1100000000)
+            assert_equal(address_group[0][1], 11000000)
             linked_addresses.add(address_group[0][0])
 
         # send 50 from each address to a third address not in this wallet
@@ -66,7 +66,7 @@ class WalletLabelsTest(BitcoinTestFramework):
         common_address = "xjnM6pQniGqC15fGHaYVEgY2TpyiMfgA2n"
         txid = node.sendmany(
             fromaccount="",
-            amounts={common_address: 2200000000},
+            amounts={common_address: 22000000},
             subtractfeefrom=[common_address],
             minconf=1,
         )
@@ -140,12 +140,12 @@ class WalletLabelsTest(BitcoinTestFramework):
                 node.move(label.name, "", node.getbalance(label.name))
             label.verify(node)
         node.generate(101)
-        expected_account_balances = {"": 114400000000}
+        expected_account_balances = {"": 1144000000}
         for label in labels:
             expected_account_balances[label.name] = 0
         if accounts_api:
             assert_equal(node.listaccounts(), expected_account_balances)
-            assert_equal(node.getbalance(""), 114400000000)
+            assert_equal(node.getbalance(""), 1144000000)
 
         # Check that setlabel can assign a label to a new unused address.
         for label in labels:
@@ -168,11 +168,11 @@ class WalletLabelsTest(BitcoinTestFramework):
             label.purpose[multisig_address] = "send"
             label.verify(node)
             if accounts_api:
-                node.sendfrom("", multisig_address, 1100000000)
+                node.sendfrom("", multisig_address, 11000000)
         node.generate(101)
         if accounts_api:
             for label in labels:
-                assert_equal(node.getbalance(label.name), 1100000000)
+                assert_equal(node.getbalance(label.name), 11000000)
 
         # Check that setlabel can change the label of an address from a
         # different label.

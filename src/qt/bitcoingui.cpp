@@ -333,6 +333,9 @@ void BitcoinGUI::createActions()
     openAction = new QAction(platformStyle->TextColorIcon(":/icons/open"), tr("Open &URI..."), this);
     openAction->setStatusTip(tr("Open a xpchain: URI or payment request"));
 
+    openStakingRewardSettingsAction = new QAction(platformStyle->TextColorIcon(":/icons/options"), tr("Staking reward settings..."), this);
+    openStakingRewardSettingsAction->setStatusTip(tr("Setting for staking reward"));
+
     showHelpMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
     showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible XPChain command-line options").arg(tr(PACKAGE_NAME)));
@@ -359,6 +362,7 @@ void BitcoinGUI::createActions()
         connect(usedSendingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedSendingAddresses()));
         connect(usedReceivingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedReceivingAddresses()));
         connect(openAction, SIGNAL(triggered()), this, SLOT(openClicked()));
+        connect(openStakingRewardSettingsAction, SIGNAL(triggered()), walletFrame, SLOT(openStakingRewardSettings()));
     }
 #endif // ENABLE_WALLET
 
@@ -397,6 +401,7 @@ void BitcoinGUI::createMenuBar()
         settings->addAction(encryptWalletAction);
         settings->addAction(decryptForMintingAction);
         settings->addAction(changePassphraseAction);
+        settings->addAction(openStakingRewardSettingsAction);
         settings->addSeparator();
     }
     settings->addAction(optionsAction);
@@ -586,6 +591,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
     mintingAction->setEnabled(enabled);
+    openStakingRewardSettingsAction->setEnabled(enabled);
 }
 
 void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)

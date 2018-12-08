@@ -20,6 +20,7 @@ class TransactionView;
 class MintingView;
 class WalletModel;
 class AddressBookPage;
+class StakingRewardSettingPage;
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -114,7 +115,8 @@ public Q_SLOTS:
 
     /** Re-emit encryption status signal */
     void updateEncryptionStatus();
-
+    /** Open dialog for staking reward settings */
+    void openStakingRewardSettings();
     /** Show progress dialog e.g. for rescan */
     void showProgress(const QString &title, int nProgress);
 

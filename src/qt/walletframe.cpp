@@ -220,6 +220,13 @@ void WalletFrame::usedReceivingAddresses()
         walletView->usedReceivingAddresses();
 }
 
+void WalletFrame::openStakingRewardSettings()
+{
+    WalletView *walletView = currentWalletView();
+    if (walletView)
+        walletView->openStakingRewardSettings();
+}
+
 WalletView *WalletFrame::currentWalletView()
 {
     return qobject_cast<WalletView*>(walletStack->currentWidget());

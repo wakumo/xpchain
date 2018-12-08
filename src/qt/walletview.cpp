@@ -15,6 +15,7 @@
 #include <qt/receivecoinsdialog.h>
 #include <qt/sendcoinsdialog.h>
 #include <qt/signverifymessagedialog.h>
+#include <qt/stakingrewardsettingpage.h>
 #include <qt/transactiontablemodel.h>
 #include <qt/transactionview.h>
 #include <qt/mintingtablemodel.h>
@@ -343,6 +344,19 @@ void WalletView::usedSendingAddresses()
     usedSendingAddressesPage->show();
     usedSendingAddressesPage->raise();
     usedSendingAddressesPage->activateWindow();
+}
+
+void WalletView::openStakingRewardSettings()
+{
+    if(!walletModel)
+        return;
+
+    StakingRewardSettingPage dlg(platformStyle, this);
+    dlg.setModel(walletModel->getStakingRewardSettingTableModel());
+    if(dlg.exec())
+    {
+        walletModel->wallet().setRewardDistributionPcts(dlg.getReturnValue());
+    }
 }
 
 void WalletView::usedReceivingAddresses()
