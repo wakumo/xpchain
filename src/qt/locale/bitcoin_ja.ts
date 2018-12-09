@@ -1974,15 +1974,15 @@
     <name>ReceiveRequestDialog</name>
     <message>
         <source>QR Code</source>
-        <translation>QR コード</translation>
+        <translation>QRコード</translation>
     </message>
     <message>
         <source>Copy &amp;URI</source>
-        <translation>URI をコピーする (&amp;U)</translation>
+        <translation>URIをコピー(&amp;U)</translation>
     </message>
     <message>
         <source>Copy &amp;Address</source>
-        <translation>アドレスをコピーする (&amp;A)</translation>
+        <translation>アドレスをコピー(&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Save Image...</source>
@@ -1990,7 +1990,7 @@
     </message>
     <message>
         <source>Request payment to %1</source>
-        <translation>%1 への支払いリクエストを行う</translation>
+        <translation>%1 への支払いリクエスト</translation>
     </message>
     <message>
         <source>Payment information</source>
@@ -2006,7 +2006,7 @@
     </message>
     <message>
         <source>Amount</source>
-        <translation>総額</translation>
+        <translation>金額</translation>
     </message>
     <message>
         <source>Label</source>
@@ -2022,11 +2022,11 @@
     </message>
     <message>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>URI が長くなり過ぎます。ラベルやメッセージのテキストを短くしてください。</translation>
+        <translation>生成されたURIが長すぎです。ラベルやメッセージのテキストを短くしてください。</translation>
     </message>
     <message>
         <source>Error encoding URI into QR Code.</source>
-        <translation>QR コード用の URI エンコードでエラー。</translation>
+        <translation>URIをQRコードへ変換している際にエラーが発生しました。</translation>
     </message>
 </context>
 <context>
