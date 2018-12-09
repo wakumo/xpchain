@@ -2033,7 +2033,7 @@
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
-        <translation>日付</translation>
+        <translation>日時</translation>
     </message>
     <message>
         <source>Label</source>
@@ -2045,19 +2045,19 @@
     </message>
     <message>
         <source>(no label)</source>
-        <translation>（ラベル無し）</translation>
+        <translation>(ラベル無し)</translation>
     </message>
     <message>
         <source>(no message)</source>
-        <translation>（メッセージなし）</translation>
+        <translation>(メッセージ無し)</translation>
     </message>
     <message>
         <source>(no amount requested)</source>
-        <translation>(金額指定なし)</translation>
+        <translation>(指定無し)</translation>
     </message>
     <message>
         <source>Requested</source>
-        <translation>要求</translation>
+        <translation>リクエストされた金額</translation>
     </message>
 </context>
 <context>
