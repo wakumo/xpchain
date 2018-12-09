@@ -1844,11 +1844,11 @@
     </message>
     <message>
         <source>Executing command without any wallet</source>
-        <translation>ウォレットを含めずにコマンドを実行する</translation>
+        <translation>どのウォレットも使わずにコマンドを実行します</translation>
     </message>
     <message>
         <source>Executing command using "%1" wallet</source>
-        <translation>"%1"のウォレットを使ってコマンドを実行する</translation>
+        <translation>"%1" ウォレットを使ってコマンドを実行します</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1856,11 +1856,11 @@
     </message>
     <message>
         <source>via %1</source>
-        <translation>%1経由</translation>
+        <translation>%1 経由</translation>
     </message>
     <message>
         <source>never</source>
-        <translation>一度もなし</translation>
+        <translation>まだ無し</translation>
     </message>
     <message>
         <source>Inbound</source>
@@ -1880,14 +1880,14 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>不明</translation>
     </message>
 </context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
         <source>&amp;Amount:</source>
-        <translation>総額:(&amp;A)</translation>
+        <translation>金額(&amp;A):</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
@@ -1895,27 +1895,27 @@
     </message>
     <message>
         <source>&amp;Message:</source>
-        <translation>メッセージ (&amp;M):</translation>
+        <translation>メッセージ(&amp;M):</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the XPChain network.</source>
-        <translation>支払リクエストが開始された時に表示される、支払リクエストに添える任意のメッセージです。注意：メッセージはXPChainネットワークを通じて、支払と共に送られるわけではありません。</translation>
+        <translation>支払いリクエストに添付するメッセージ（任意）。支払リクエスト開始時に表示されます。注意: メッセージは XPChain ネットワーク上へ送信されません。</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>受取用アドレスに紐づく任意のラベル。</translation>
+        <translation>新規受取用アドレスに紐づけるラベル（任意）。</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
-        <translation>このフォームを使用して支払のリクエストを行いましょう。すべての項目は&lt;b&gt;任意入力&lt;/b&gt;です。</translation>
+        <translation>このフォームで支払いをリクエストしましょう。全ての入力欄は&lt;b&gt;任意入力&lt;/b&gt;です。</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
-        <translation>リクエストする任意の金額。特定の金額をリクエストするのでない場合には、この欄は空白のままかゼロにしてください。</translation>
+        <translation>リクエストする金額（任意）。特定の金額をリクエストしない場合は、この欄は空白のままかゼロにしてください。</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
-        <translation>全ての入力項目をクリア</translation>
+        <translation>全ての入力欄をクリア</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -1923,23 +1923,23 @@
     </message>
     <message>
         <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
-        <translation>Segwitアドレス(Bech32もしくはBIP-173アドレス)を利用すると手数料が安くなり、また誤入力防止機能も強化されますが、Segwitアドレスをサポートしない古いウォレットとの互換性は失われます。チェックを外すと、古いウォレットとの互換性を保った古いアドレスが代わりに生成されます。</translation>
+        <translation>ネイティブ Segwit アドレス（別名: Bech32 アドレス・ BIP-173 アドレス）を利用することで、取引手数料が安くなり、誤入力防止機能も強化されますが、Segwit アドレスをサポートしない古いウォレットとは取引できません。チェックを外すと、古いウォレットとの互換性を保ったアドレスが代わりに生成されます。</translation>
     </message>
     <message>
         <source>Generate native segwit (Bech32) address</source>
-        <translation>Segwitアドレス(Bech32アドレス)を生成する</translation>
+        <translation>Segwit アドレス（Bech32 アドレス）を生成</translation>
     </message>
     <message>
         <source>Requested payments history</source>
-        <translation>支払リクエスト履歴</translation>
+        <translation>支払いリクエスト履歴</translation>
     </message>
     <message>
         <source>&amp;Request payment</source>
-        <translation>支払をリクエストする (&amp;R)</translation>
+        <translation>支払いをリクエスト(&amp;R)</translation>
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>選択されたリクエストを表示する（項目をダブルクリックすることでも表示できます）</translation>
+        <translation>選択されたリクエストを表示（項目をダブルクリックすることでも表示できます）</translation>
     </message>
     <message>
         <source>Show</source>
@@ -1947,7 +1947,7 @@
     </message>
     <message>
         <source>Remove the selected entries from the list</source>
-        <translation>リストから選択項目を削除</translation>
+        <translation>選択項目をリストから削除</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -1955,19 +1955,19 @@
     </message>
     <message>
         <source>Copy URI</source>
-        <translation>URI をコピーする</translation>
+        <translation>URIをコピー</translation>
     </message>
     <message>
         <source>Copy label</source>
-        <translation>ラベルをコピーする</translation>
+        <translation>ラベルをコピー</translation>
     </message>
     <message>
         <source>Copy message</source>
-        <translation>メッセージをコピーする</translation>
+        <translation>メッセージをコピー</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>総額のコピー</translation>
+        <translation>金額をコピー</translation>
     </message>
 </context>
 <context>
