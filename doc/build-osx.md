@@ -38,17 +38,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see the section *Disable-Wallet mode* below).
 
-Build Bitcoin Core
+Build XPChain Core
 ------------------------
 
-1. Clone the Bitcoin Core source code and cd into `bitcoin`
+1. Clone the XPChain Core source code and cd into `xpchain`
 
-        git clone https://github.com/bitcoin/bitcoin
-        cd bitcoin
+        git clone https://github.com/xpc-wg/xpchain
+        cd xpchain
 
-2.  Build Bitcoin Core:
+2.  Build XPChain Core:
 
-    Configure and build the headless Bitcoin Core binaries as well as the GUI (if Qt is found).
+    Configure and build the headless XPChain Core binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -67,26 +67,26 @@ Build Bitcoin Core
 Running
 -------
 
-Bitcoin Core is now available at `./src/bitcoind`
+XPChain Core is now available at `./src/xpchaind`
 
 Before running, it's recommended that you create an RPC configuration file.
 
-    echo -e "rpcuser=bitcoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Bitcoin/bitcoin.conf"
+    echo -e "rpcuser=xpchainrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/XPChain/xpchain.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Bitcoin/bitcoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/XPChain/xpchain.conf"
 
-The first time you run bitcoind, it will start downloading the blockchain. This process could take several hours.
+The first time you run xpchaind, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/Bitcoin/debug.log
+    tail -f $HOME/Library/Application\ Support/XPChain/debug.log
 
 Other commands:
 -------
 
-    ./src/bitcoind -daemon # Starts the bitcoin daemon.
-    ./src/bitcoin-cli --help # Outputs a list of command-line options.
-    ./src/bitcoin-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/xpchaind -daemon # Starts the xpchain daemon.
+    ./src/xpchain-cli --help # Outputs a list of command-line options.
+    ./src/xpchain-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Notes
 -----
