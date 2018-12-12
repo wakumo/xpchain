@@ -2460,23 +2460,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>署名 - メッセージの署名/検証</translation>
+        <translation>署名 - メッセージの署名・検証</translation>
     </message>
     <message>
         <source>&amp;Sign Message</source>
-        <translation>メッセージの署名 (&amp;S)</translation>
+        <translation>メッセージの署名(&amp;S)</translation>
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive xpchains sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>あなたの所有しているアドレスによりメッセージや合意書に署名をすることで、それらアドレスに対して送られたXPChainを受け取ることができることを証明できます。フィッシング攻撃により不正にあなたの識別情報を署名させられてしまうことを防ぐために、不明確なものやランダムなものに対して署名しないよう注意してください。あなたが同意した、よく詳細の記された文言にのみ署名するようにしてください。</translation>
+        <translation>あなたが所有しているアドレスでメッセージや契約書に署名をすることで、それらのアドレスへ送られた XPChain を受け取ることができることを証明できます。フィッシング攻撃者があなたを騙して、あなたの身分情報に署名させようとしている可能性があるため、よくわからないものやランダムな文字列に対して署名しないでください。あなたが同意した、よく詳細の記された文言にのみ署名するようにしてください。</translation>
     </message>
     <message>
         <source>The XPChain address to sign the message with</source>
-        <translation>メッセージを署名するXPChainアドレス</translation>
+        <translation>メッセージの署名に使用する XPChain アドレス</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
-        <translation>前に使用したアドレスを選ぶ</translation>
+        <translation>これまでに使用したことがあるアドレスから選択</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2484,7 +2484,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>クリップボードからアドレスを貼付ける</translation>
+        <translation>クリップボードからアドレスを貼り付け</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -2492,7 +2492,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Enter the message you want to sign here</source>
-        <translation>ここにあなたが署名するメッセージを入力します</translation>
+        <translation>署名するメッセージを入力</translation>
     </message>
     <message>
         <source>Signature</source>
@@ -2500,51 +2500,51 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>現在の署名をシステムのクリップボードにコピーする</translation>
+        <translation>この署名をシステムのクリップボードにコピー</translation>
     </message>
     <message>
         <source>Sign the message to prove you own this XPChain address</source>
-        <translation>この XPChain アドレスを所有していることを証明するためにメッセージに署名</translation>
+        <translation>メッセージに署名してこの XPChain アドレスを所有していることを証明</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
-        <translation>メッセージの署名 (&amp;M)</translation>
+        <translation>メッセージを署名(&amp;M)</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
-        <translation>入力項目の内容をすべて消去します</translation>
+        <translation>入力欄の内容を全て消去</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>すべてクリア (&amp;A)</translation>
+        <translation>全てクリア(&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Verify Message</source>
-        <translation>メッセージの検証 (&amp;V)</translation>
+        <translation>メッセージの検証(&amp;V)</translation>
     </message>
     <message>
         <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
-        <translation>受取人のアドレスとメッセージ（改行やスペース、タブなども完全に一致するよう注意してください）および署名を以下に入力し、メッセージの署名を検証してください。中間者攻撃により騙されるのを防ぐため、署名対象のメッセージに書かれていること以上の意味を署名から読み取ろうとしないよう注意してください。これは署名作成者がこのアドレスで受け取ったことを証明するだけであり、トランザクションの送信権限を証明するものではないことに注意してください！</translation>
+        <translation>送金先のアドレスと、メッセージ（改行やスペース、タブなども完全に一致させること）および署名を以下に入力し、メッセージを検証します。中間者攻撃により騙されるのを防ぐため、署名対象のメッセージから書かれていること以上の意味を読み取ろうとしないでください。また、これは署名作成者がこのアドレスで受け取れることを証明するだけであり、取引の送信権限を証明するものではありません！</translation>
     </message>
     <message>
         <source>The XPChain address the message was signed with</source>
-        <translation>メッセージの署名に使われたXPChainアドレス</translation>
+        <translation>メッセージの署名に使われた XPChain アドレス</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified XPChain address</source>
-        <translation>指定された XPChain アドレスで署名されたことを保証するメッセージを検証</translation>
+        <translation>メッセージを検証して指定された XPChain アドレスで署名されたことを確認</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
-        <translation>メッセージの検証 (&amp;M)</translation>
+        <translation>メッセージを検証(&amp;M)</translation>
     </message>
     <message>
         <source>Reset all verify message fields</source>
-        <translation>入力項目の内容をすべて消去します</translation>
+        <translation>入力欄の内容を全て消去</translation>
     </message>
     <message>
         <source>Click "Sign Message" to generate signature</source>
-        <translation>署名を作成するには"メッセージの署名"をクリック</translation>
+        <translation>「メッセージを署名」をクリックして署名を生成</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2552,11 +2552,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Please check the address and try again.</source>
-        <translation>アドレスを確かめてからもう一度試してください。</translation>
+        <translation>アドレスが正しいか確かめてから、もう一度試してください。</translation>
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>入力されたアドレスに関連するキーがありません。</translation>
+        <translation>入力されたアドレスに紐づく鍵がありません。</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -2564,7 +2564,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>入力されたアドレスのプライベート キーが無効です。</translation>
+        <translation>入力されたアドレスの秘密鍵は利用できません。</translation>
     </message>
     <message>
         <source>Message signing failed.</source>
@@ -2576,15 +2576,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The signature could not be decoded.</source>
-        <translation>署名がデコードできません。</translation>
+        <translation>署名が復号できませんでした。</translation>
     </message>
     <message>
         <source>Please check the signature and try again.</source>
-        <translation>署名を確認してからもう一度試してください。</translation>
+        <translation>署名が正しいか確認してから、もう一度試してください。</translation>
     </message>
     <message>
         <source>The signature did not match the message digest.</source>
-        <translation>署名はメッセージ ダイジェストと一致しませんでした。</translation>
+        <translation>署名がメッセージダイジェストと一致しませんでした。</translation>
     </message>
     <message>
         <source>Message verification failed.</source>
