@@ -2606,7 +2606,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TrafficGraphWidget</name>
     <message>
         <source>KB/s</source>
-        <translation>KB/s</translation>
+        <translation>KB/秒</translation>
     </message>
 </context>
 <context>
