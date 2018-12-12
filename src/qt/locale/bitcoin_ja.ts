@@ -2359,7 +2359,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Pay &amp;To:</source>
-        <translation>送り先(&amp;T):</translation>
+        <translation>送金先(&amp;T):</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
@@ -2367,15 +2367,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Choose previously used address</source>
-        <translation>前に使用したアドレスを選ぶ</translation>
+        <translation>これまでに送金したことがあるアドレスから選択</translation>
     </message>
     <message>
         <source>This is a normal payment.</source>
-        <translation>これは通常の支払です。</translation>
+        <translation>これは通常の支払いです。</translation>
     </message>
     <message>
         <source>The XPChain address to send the payment to</source>
-        <translation>支払の送金先XPChainアドレス</translation>
+        <translation>支払い先 XPChain アドレス</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2383,7 +2383,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>クリップボードからアドレスを貼付ける</translation>
+        <translation>クリップボードからアドレスを貼り付け</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -2391,19 +2391,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Remove this entry</source>
-        <translation>この項目を削除する</translation>
+        <translation>この項目を削除</translation>
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less xpchains than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>送金する金額から手数料が差し引かれます。受取人は数量フィールドで指定した量よりも少ないXPChainを受け取ります。受取人が複数いる場合には、手数料は均等割されます。</translation>
+        <translation>手数料は送金する金額から差し引かれます。送金先には金額欄で指定した額よりも少ない XPChain が送られます。送金先が複数ある場合は、手数料は均等に分けられます。</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
-        <translation>送金額から手数料を差し引く (&amp;U)</translation>
+        <translation>送金額から手数料を差し引く(&amp;U)</translation>
     </message>
     <message>
         <source>Use available balance</source>
-        <translation>利用可能な残額を使用</translation>
+        <translation>利用可能な残高を使用</translation>
     </message>
     <message>
         <source>Message:</source>
@@ -2419,23 +2419,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
-        <translation>このアドレスに対するラベルを入力することで、使用済みアドレスの一覧に追加することができます</translation>
+        <translation>このアドレスに対するラベルを入力することで、送金したことがあるアドレスの一覧に追加することができます</translation>
     </message>
     <message>
         <source>A message that was attached to the xpchain: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the XPChain network.</source>
-        <translation>xpchain: URIに添付されていたメッセージです。これは参照用としてトランザクションとともに保存されます。注意：このメッセージはXPChainネットワークを通して送信されるわけではありません。</translation>
+        <translation>xpchain: URIに添付されていたメッセージです。これは参照用として取引とともに保存されます。注意: メッセージは XPChain ネットワーク上へ送信されません。</translation>
     </message>
     <message>
         <source>Pay To:</source>
-        <translation>支払先:</translation>
+        <translation>送金先:</translation>
     </message>
     <message>
         <source>Memo:</source>
-        <translation>メモ：</translation>
+        <translation>メモ:</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>アドレス帳に追加するには、このアドレスのラベルを入力します</translation>
+        <translation>アドレス帳に追加するには、このアドレスに対するラベルを入力します</translation>
     </message>
 </context>
 <context>
