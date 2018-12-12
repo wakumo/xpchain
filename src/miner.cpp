@@ -183,10 +183,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     if(fPoSHeight)
     {
-        if(pblock->GetBlockTime() <= pindexPrev->GetMedianTimePast())
-        {
-            return nullptr;
-        }
+        UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
 
         //create "Send to myself" Tx
         CTransactionRef txCoinStake;
