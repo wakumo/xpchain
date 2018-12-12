@@ -51,24 +51,41 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;
 
-    // Limit adjustment step
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    if (nActualTimespan < params.nPowTargetTimespan/4)
-        nActualTimespan = params.nPowTargetTimespan/4;
-    if (nActualTimespan > params.nPowTargetTimespan*4)
-        nActualTimespan = params.nPowTargetTimespan*4;
-
-    // Retarget
+    int64_t nActualTimespan;
+    bool fProofOfStake = pindexLast->nHeight > params.nSwitchHeight;
+    if(fProofOfStake)
+    {
+        CBlockIndex* pindexLastLast = pindexLast->pprev;
+        nActualTimespan = pindexLast->GetBlockTime() - pindexLastLast->GetBlockTime();
+    }
+    else
+    {
+        // Limit adjustment step
+        nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
+        if (nActualTimespan < params.nPowTargetTimespan/4)
+            nActualTimespan = params.nPowTargetTimespan/4;
+        if (nActualTimespan > params.nPowTargetTimespan*4)
+            nActualTimespan = params.nPowTargetTimespan*4;
+    }
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     arith_uint256 bnNew;
     bnNew.SetCompact(pindexLast->nBits);
-    bnNew *= nActualTimespan;
-    bnNew /= params.nPowTargetTimespan;
+    if(fProofOfStake)
+    {
+        int64_t nInterval = params.DifficultyAdjustmentInterval();
+        bnNew*=((nInterval - 1) * params.nPowTargetSpacing + nActualTimespan + nActualTimespan);
+        bnNew/=((nInterval + 1) * params.nPowTargetSpacing);
+    }
+    else
+    {
+        // Retarget
+        bnNew *= nActualTimespan;
+        bnNew /= params.nPowTargetTimespan;
+    }
+        if (bnNew > bnPowLimit)
+            bnNew = bnPowLimit;
 
-    if (bnNew > bnPowLimit)
-        bnNew = bnPowLimit;
-
-    return bnNew.GetCompact();
+        return bnNew.GetCompact();
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
