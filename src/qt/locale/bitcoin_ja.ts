@@ -2064,7 +2064,7 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>コインを送る</translation>
+        <translation>コインの送金</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2072,7 +2072,7 @@
     </message>
     <message>
         <source>Inputs...</source>
-        <translation>入力...</translation>
+        <translation>インプット...</translation>
     </message>
     <message>
         <source>automatically selected</source>
@@ -2084,15 +2084,15 @@
     </message>
     <message>
         <source>Quantity:</source>
-        <translation>数量:</translation>
+        <translation>選択数:</translation>
     </message>
     <message>
         <source>Bytes:</source>
-        <translation>バイト:</translation>
+        <translation>バイト数:</translation>
     </message>
     <message>
         <source>Amount:</source>
-        <translation>総額:</translation>
+        <translation>金額:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -2100,31 +2100,31 @@
     </message>
     <message>
         <source>After Fee:</source>
-        <translation>手数料差引後:</translation>
+        <translation>手数料差引後金額:</translation>
     </message>
     <message>
         <source>Change:</source>
-        <translation>釣り銭:</translation>
+        <translation>お釣り:</translation>
     </message>
     <message>
         <source>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</source>
-        <translation>これが有効にもかかわらずおつりアドレスが空欄であったり無効であった場合には、おつりは新しく生成されたアドレスへ送金されます。</translation>
+        <translation>チェックが付いているにもかかわらず、お釣りアドレスが空欄や無効である場合、お釣りは新しく生成されたアドレスへ送金されます。</translation>
     </message>
     <message>
         <source>Custom change address</source>
-        <translation>カスタムおつりアドレス</translation>
+        <translation>カスタムお釣りアドレス</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
-        <translation>トランザクション手数料：</translation>
+        <translation>トランザクション手数料:</translation>
     </message>
     <message>
         <source>Choose...</source>
-        <translation>選択……</translation>
+        <translation>選択...</translation>
     </message>
     <message>
         <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
-        <translation> 代替料金を利用することで、承認されるまでに数時間または数日 (ないし一生承認されない) トランザクションを送信してしまう可能性があります。手動にて手数料を選択するか、完全なブロックチェーンの検証が終わるまで待つことを検討しましょう</translation>
+        <translation>fallbackfee（代替手数料）を利用すると、送信した取引が承認されるまでに数時間から数日かかる（または永久に承認されない）可能性があります。手動で手数料を選択するか、ブロックチェーンの検証が完全に終わるまで待つことも検討してください。</translation>
     </message>
     <message>
         <source>Warning: Fee estimation is currently not possible.</source>
@@ -2138,13 +2138,13 @@
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
-        <translation>トランザクションの仮想サイズの kB (1,000 バイト) あたりのカスタム手数料を指定します。
+        <translation>トランザクションの仮想サイズの1 kB（1,000 バイト）あたりのカスタム手数料を指定する。
 
-注:  手数料はバイト単位で計算されるので、500 バイト (1 kBの半分) のトランザクションサイズに対する "kB あたり 100 satoshi" の手数料は、最終的にわずか 50 satoshiとなります。</translation>
+注:  手数料はバイト単位で計算されるので、500 バイト（1 kBの半分）のトランザクションサイズに対する「1 kBあたり 100 satoshi」の手数料は、最終的にはわずか 50 satoshi となります。</translation>
     </message>
     <message>
         <source>per kilobyte</source>
-        <translation>1キロバイトあたり手数料</translation>
+        <translation>1キロバイトあたり</translation>
     </message>
     <message>
         <source>Hide</source>
@@ -2152,55 +2152,55 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for xpchain transactions than the network can process.</source>
-        <translation>ブロックの容量に比べてトランザクション流量が少ないうちは最小手数料のみの支払で十分です。しかしながらネットワークが処理しきれないほどxpchainトランザクションの需要がひとたび生まれてしまった場合には、永遠に検証がされないトランザクションになってしまう可能性があることに注意してください。</translation>
+        <translation>ブロックの容量に比べてトランザクション流量が少ないうちは、最小手数料のみの支払いでも問題ありません。しかし、一度 XPChain トランザクションの需要がネットワークの処理能力を超えてしまった場合には、トランザクションが永久に承認されなくなってしまう可能性があることにご注意ください。</translation>
     </message>
     <message>
         <source>(read the tooltip)</source>
-        <translation>（ツールチップをお読みください）</translation>
+        <translation>（ツールチップを参照せよ）</translation>
     </message>
     <message>
         <source>Recommended:</source>
-        <translation>推奨：</translation>
+        <translation>推奨:</translation>
     </message>
     <message>
         <source>Custom:</source>
-        <translation>カスタム：</translation>
+        <translation>カスタム:</translation>
     </message>
     <message>
         <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
-        <translation>（スマート手数料はまだ初期化されていません。これにはおおよそ数ブロックほどかかります……）</translation>
+        <translation>（スマート手数料はまだ初期化されていません。これにはおおよそ数ブロックほどかかります...）</translation>
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
-        <translation>一度に複数の人に送る</translation>
+        <translation>一度に複数の送金先に送る</translation>
     </message>
     <message>
         <source>Add &amp;Recipient</source>
-        <translation>受取人を追加 (&amp;R)</translation>
+        <translation>送金先を追加(&amp;R)</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
-        <translation>全ての入力項目をクリア</translation>
+        <translation>全ての入力欄をクリア</translation>
     </message>
     <message>
         <source>Dust:</source>
-        <translation>ダスト：</translation>
+        <translation>ダスト:</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
-        <translation>検証時間のターゲット:</translation>
+        <translation>目標承認時間:</translation>
     </message>
     <message>
         <source>Enable Replace-By-Fee</source>
-        <translation>Replace-By-Fee を有効</translation>
+        <translation>Replace-By-Fee を有効化する</translation>
     </message>
     <message>
         <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>手数料の上乗せ(Replace-By-Fee: BIP-125を参照)によってトランザクションを送信した後でも手数料を上乗せすることができます。この機能を利用しない場合、予め手数料を多めに見積もっておかないと送金が遅れる可能性があります。</translation>
+        <translation>Replace-By-Fee（手数料の上乗せ: BIP-125）機能を有効にすることで、トランザクション送信後でも手数料を上乗せすることができます。この機能を利用しない場合、予め手数料を多めに見積もっておかないと取引が遅れる可能性があります。</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>すべてクリア (&amp;A)</translation>
+        <translation>全てクリア(&amp;A)</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -2208,51 +2208,51 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Confirm the send action</source>
-        <translation>送る操作を確認する</translation>
+        <translation>送金内容を確認</translation>
     </message>
     <message>
         <source>S&amp;end</source>
-        <translation>送金 (&amp;E)</translation>
+        <translation>送金(&amp;E)</translation>
     </message>
     <message>
         <source>Copy quantity</source>
-        <translation>数量をコピーする</translation>
+        <translation>選択量をコピー</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>総額のコピー</translation>
+        <translation>金額をコピー</translation>
     </message>
     <message>
         <source>Copy fee</source>
-        <translation>手数料をコピーする</translation>
+        <translation>手数料をコピー</translation>
     </message>
     <message>
         <source>Copy after fee</source>
-        <translation>手数料差引後の値をコピーする</translation>
+        <translation>手数料差引後金額をコピー</translation>
     </message>
     <message>
         <source>Copy bytes</source>
-        <translation>バイト数をコピーする</translation>
+        <translation>バイト数をコピー</translation>
     </message>
     <message>
         <source>Copy dust</source>
-        <translation>ダストをコピーする</translation>
+        <translation>ダストをコピー</translation>
     </message>
     <message>
         <source>Copy change</source>
-        <translation>釣り銭をコピー</translation>
+        <translation>お釣りをコピー</translation>
     </message>
     <message>
         <source>%1 (%2 blocks)</source>
-        <translation>%1 (%2 ブロック)</translation>
+        <translation>%1（%2 ブロック）</translation>
     </message>
     <message>
         <source>%1 to %2</source>
-        <translation>%1 から %2</translation>
+        <translation>%1 送金先: %2</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
-        <translation>送ってよろしいですか？</translation>
+        <translation>送金してもよろしいですか？</translation>
     </message>
     <message>
         <source>or</source>
@@ -2260,15 +2260,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
-        <translation>手数料は後から上乗せすることができます(Replace-By-Feeのシグナル: BIP-125を参照)。</translation>
+        <translation>手数料は後から上乗せ可能です（Replace-By-Fee（手数料の上乗せ: BIP-125）機能が有効)。</translation>
     </message>
     <message>
         <source>from wallet %1</source>
-        <translation>ウォレット %1 から</translation>
+        <translation>%1 ウォレット から</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
-        <translation>トランザクションを見直してください。</translation>
+        <translation>取引内容の最終確認をしてください。</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2276,7 +2276,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation>BIP-125による手数料上乗せ機能を利用していません。</translation>
+        <translation>Replace-By-Fee（手数料の上乗せ: BIP-125）機能は有効になっていません。</translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -2284,23 +2284,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Confirm send coins</source>
-        <translation>コインを送る確認</translation>
+        <translation>送金の確認</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
-        <translation>受取アドレスが不正です。再チェックしてください。</translation>
+        <translation>送金先アドレスが不正です。再確認してください。</translation>
     </message>
     <message>
         <source>The amount to pay must be larger than 0.</source>
-        <translation>支払額は0より大きくないといけません。</translation>
+        <translation>支払い総額は0より大きい必要があります。</translation>
     </message>
     <message>
         <source>The amount exceeds your balance.</source>
-        <translation>額が残高を超えています。</translation>
+        <translation>支払い総額が残高を超えています。</translation>
     </message>
     <message>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>%1 の取引手数料を含めると額が残高を超えています。</translation>
+        <translation>取引手数料 %1 を含めた総額が残高を超えています。</translation>
     </message>
     <message>
         <source>Duplicate address found: addresses should only be used once each.</source>
@@ -2308,47 +2308,47 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction creation failed!</source>
-        <translation>トラザクションの作成に失敗しました!</translation>
+        <translation>取引の作成に失敗しました！</translation>
     </message>
     <message>
         <source>The transaction was rejected with the following reason: %1</source>
-        <translation>トランザクションは以下の理由により拒絶されました: %1</translation>
+        <translation>取引は次の理由により拒否されました: %1</translation>
     </message>
     <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
-        <translation>%1 よりも高い手数料の場合、手数料が高すぎると判断されます。</translation>
+        <translation>%1 よりも高い手数料は、異常に高すぎです。</translation>
     </message>
     <message>
         <source>Payment request expired.</source>
-        <translation>支払いリクエストの期限が切れました。</translation>
+        <translation>支払いリクエストが期限切れです。</translation>
     </message>
     <message>
         <source>Pay only the required fee of %1</source>
-        <translation>要求手数料 %1 のみを支払う</translation>
+        <translation>必要最低限な手数料 %1 だけ支払う</translation>
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>%n ブロック以内に検証が開始されると予想されます。</numerusform></translation>
+        <translation><numerusform>予想される承認開始ブロック: %n ブロック以内</numerusform></translation>
     </message>
     <message>
         <source>Warning: Invalid XPChain address</source>
-        <translation>警告：無効なXPChainアドレスです</translation>
+        <translation>警告：無効な XPChain アドレス</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
-        <translation>警告：未知のおつりアドレスです</translation>
+        <translation>警告：正体不明のお釣りアドレスです</translation>
     </message>
     <message>
         <source>Confirm custom change address</source>
-        <translation>カスタムおつりアドレスを確認</translation>
+        <translation>カスタムお釣りアドレスの確認</translation>
     </message>
     <message>
         <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
-        <translation>おつりとして指定されたアドレスはこのウォレットに属さないもののようです。このウォレットの一部またはすべての資産がこのアドレスへ送金されます。よろしいですか？</translation>
+        <translation>お釣り用として指定されたアドレスはこのウォレットのものではありません。このウォレットの一部又は全部の資産がこのアドレスへ送金されます。よろしいですか？</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>（ラベル無し）</translation>
+        <translation>(ラベル無し)</translation>
     </message>
 </context>
 <context>
