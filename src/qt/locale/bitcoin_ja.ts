@@ -2780,7 +2780,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>ここでは取引の詳細を表示しています</translation>
+        <translation>取引内容の詳細</translation>
     </message>
     <message>
         <source>Details for %1</source>
