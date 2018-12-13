@@ -2922,23 +2922,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Range...</source>
-        <translation>期間...</translation>
+        <translation>期間指定...</translation>
     </message>
     <message>
         <source>Received with</source>
-        <translation>送り主</translation>
+        <translation>受取</translation>
     </message>
     <message>
         <source>Sent to</source>
-        <translation>送り先</translation>
+        <translation>送金</translation>
     </message>
     <message>
         <source>To yourself</source>
-        <translation>自分自身</translation>
+        <translation>自己送金</translation>
     </message>
     <message>
         <source>Mined</source>
-        <translation>発掘した</translation>
+        <translation>発掘</translation>
     </message>
     <message>
         <source>Other</source>
@@ -2946,35 +2946,35 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Enter address, transaction id, or label to search</source>
-        <translation>検索するアドレス、トランザクションID、またはラベルを入力してください</translation>
+        <translation>検索したいアドレスや取引ID、ラベルを入力</translation>
     </message>
     <message>
         <source>Min amount</source>
-        <translation>最小の額</translation>
+        <translation>表示最小金額</translation>
     </message>
     <message>
         <source>Abandon transaction</source>
-        <translation>取引の中止</translation>
+        <translation>取引の送信を中止</translation>
     </message>
     <message>
         <source>Increase transaction fee</source>
-        <translation>トランザクション手数料を増額する</translation>
+        <translation>取引手数料を上乗せ</translation>
     </message>
     <message>
         <source>Copy address</source>
-        <translation>アドレスをコピーする</translation>
+        <translation>アドレスをコピー</translation>
     </message>
     <message>
         <source>Copy label</source>
-        <translation>ラベルをコピーする</translation>
+        <translation>ラベルをコピー</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>総額のコピー</translation>
+        <translation>金額をコピー</translation>
     </message>
     <message>
         <source>Copy transaction ID</source>
-        <translation>取引 ID をコピー</translation>
+        <translation>取引IDをコピー</translation>
     </message>
     <message>
         <source>Copy raw transaction</source>
@@ -2982,11 +2982,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Copy full transaction details</source>
-        <translation>トランザクションの詳細すべてをコピー</translation>
+        <translation>取引の詳細すべてをコピー</translation>
     </message>
     <message>
         <source>Edit label</source>
-        <translation>ラベルの編集</translation>
+        <translation>ラベルを編集</translation>
     </message>
     <message>
         <source>Show transaction details</source>
@@ -2994,11 +2994,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Export Transaction History</source>
-        <translation>トランザクション履歴をエクスポートする</translation>
+        <translation>取引履歴をエクスポート</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>テキスト CSV (*.csv)</translation>
+        <translation>CSV ファイル (*.csv)</translation>
     </message>
     <message>
         <source>Confirmed</source>
@@ -3006,15 +3006,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Watch-only</source>
-        <translation>監視限定</translation>
+        <translation>ウォッチ限定</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation>日付</translation>
+        <translation>日時</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>タイプ</translation>
+        <translation>種別</translation>
     </message>
     <message>
         <source>Label</source>
@@ -3034,7 +3034,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>There was an error trying to save the transaction history to %1.</source>
-        <translation>トランザクション履歴を %1 へ保存する際にエラーが発生しました。</translation>
+        <translation>取引履歴を %1 に保存する際にエラーが発生しました。</translation>
     </message>
     <message>
         <source>Exporting Successful</source>
@@ -3042,7 +3042,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
-        <translation>トランザクション履歴は正常に%1に保存されました。</translation>
+        <translation>取引履歴は正常に %1 に保存されました。</translation>
     </message>
     <message>
         <source>Range:</source>
@@ -3050,7 +3050,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>to</source>
-        <translation>から</translation>
+        <translation>～</translation>
     </message>
 </context>
 <context>
