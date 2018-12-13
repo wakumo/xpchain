@@ -2780,7 +2780,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>取引内容の詳細</translation>
+        <translation>取引の詳細</translation>
     </message>
     <message>
         <source>Details for %1</source>
@@ -2791,11 +2791,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
-        <translation>日付</translation>
+        <translation>日時</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>タイプ</translation>
+        <translation>種別</translation>
     </message>
     <message>
         <source>Label</source>
@@ -2803,27 +2803,27 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>%n 以上のブロックを開く</numerusform></translation>
+        <translation><numerusform>あと %n ブロックは未承認の予定</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
-        <translation>ユニット %1 を開く</translation>
+        <translation>%1 まで未承認の予定</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
-        <translation>未検証</translation>
+        <translation>未承認</translation>
     </message>
     <message>
         <source>Abandoned</source>
-        <translation>中止</translation>
+        <translation>送信中止</translation>
     </message>
     <message>
         <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>検証中（%2の推奨検証数のうち、%1検証が完了）</translation>
+        <translation>承認中（推奨承認数 %2 のうち %1 承認が完了）</translation>
     </message>
     <message>
         <source>Confirmed (%1 confirmations)</source>
-        <translation>検証されました (%1 検証済み)</translation>
+        <translation>承認されました（%1 承認）</translation>
     </message>
     <message>
         <source>Conflicted</source>
@@ -2831,7 +2831,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Immature (%1 confirmations, will be available after %2)</source>
-        <translation>未成熟（%1検証。%2検証完了後に使用可能となります）</translation>
+        <translation>未成熟（%1 承認。%2 承認完了後に使用可能）</translation>
     </message>
     <message>
         <source>Generated but not accepted</source>
@@ -2839,27 +2839,27 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Received with</source>
-        <translation>送り主</translation>
+        <translation>受取（通常）</translation>
     </message>
     <message>
         <source>Received from</source>
-        <translation>送り主</translation>
+        <translation>受取（その他）</translation>
     </message>
     <message>
         <source>Sent to</source>
-        <translation>送り先</translation>
+        <translation>送金</translation>
     </message>
     <message>
         <source>Payment to yourself</source>
-        <translation>自分自身への支払い</translation>
+        <translation>自分への送金</translation>
     </message>
     <message>
         <source>Mined</source>
-        <translation>発掘した</translation>
+        <translation>発掘</translation>
     </message>
     <message>
         <source>watch-only</source>
-        <translation>監視限定</translation>
+        <translation>ウォッチ限定</translation>
     </message>
     <message>
         <source>(n/a)</source>
@@ -2871,7 +2871,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>取引の状況。このフィールドの上にカーソルを置くと検証の数を表示します。</translation>
+        <translation>取引の状況。このフィールドの上にカーソルを置くと承認数が表示されます。</translation>
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
@@ -2883,15 +2883,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Whether or not a watch-only address is involved in this transaction.</source>
-        <translation>監視限定アドレスがこのトランザクションに含まれているかどうか</translation>
+        <translation>ウォッチ限定アドレスがこの取引に含まれているかどうか</translation>
     </message>
     <message>
         <source>User-defined intent/purpose of the transaction.</source>
-        <translation>ユーザ定義のトランザクションの意図や目的。</translation>
+        <translation>ユーザー定義の取引の目的や用途。</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
-        <translation>残高に追加または削除された総額。</translation>
+        <translation>残高から増えた又は減った総額。</translation>
     </message>
 </context>
 <context>
