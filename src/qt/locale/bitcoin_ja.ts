@@ -3057,7 +3057,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>UnitDisplayStatusBarControl</name>
     <message>
         <source>Unit to show amounts in. Click to select another unit.</source>
-        <translation>金額を表示する際の単位。クリックすることで他の単位を選択します。</translation>
+        <translation>金額を表示する際の単位。クリックすると他の単位を選択できます。</translation>
     </message>
 </context>
 <context>
