@@ -3114,11 +3114,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>エクスポート (&amp;E)</translation>
+        <translation>エクスポート(&amp;E)</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>ファイルに現在のタブのデータをエクスポート</translation>
+        <translation>現在のタブのデータをファイルにエクスポート</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -3130,11 +3130,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Backup Failed</source>
-        <translation>バックアップに失敗しました</translation>
+        <translation>バックアップ失敗</translation>
     </message>
     <message>
         <source>There was an error trying to save the wallet data to %1.</source>
-        <translation>ウォレットデータを%1へ保存する際にエラーが発生しました。</translation>
+        <translation>ウォレットデータを %1 に保存する際にエラーが発生しました。</translation>
     </message>
     <message>
         <source>Backup Successful</source>
@@ -3142,7 +3142,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The wallet data was successfully saved to %1.</source>
-        <translation>ウォレット データは正常に%1に保存されました。</translation>
+        <translation>ウォレット データは正常に %1 に保存されました。</translation>
     </message>
     <message>
         <source>Cancel</source>
