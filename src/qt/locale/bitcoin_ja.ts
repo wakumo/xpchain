@@ -3071,19 +3071,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>コインを送る</translation>
+        <translation>コインの送金</translation>
     </message>
     <message>
         <source>Fee bump error</source>
-        <translation>手数料の引き上げエラー</translation>
+        <translation>手数料上乗せエラー</translation>
     </message>
     <message>
         <source>Increasing transaction fee failed</source>
-        <translation>トランザクション手数料の増額に失敗しました</translation>
+        <translation>取引手数料の上乗せに失敗しました</translation>
     </message>
     <message>
         <source>Do you want to increase the fee?</source>
-        <translation>手数料を増額してもよろしいですか？</translation>
+        <translation>手数料を上乗せしてもよろしいですか？</translation>
     </message>
     <message>
         <source>Current fee:</source>
@@ -3091,7 +3091,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Increase:</source>
-        <translation>増加:</translation>
+        <translation>上乗せ額:</translation>
     </message>
     <message>
         <source>New fee:</source>
@@ -3099,11 +3099,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Confirm fee bump</source>
-        <translation>手数料の引き上げ確認</translation>
+        <translation>手数料上乗せの確認</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>
-        <translation>トランザクションを署名できませんでした。</translation>
+        <translation>トランザクションに署名できませんでした。</translation>
     </message>
     <message>
         <source>Could not commit transaction</source>
