@@ -2613,19 +2613,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>%n 以上のブロックを開く</numerusform></translation>
+        <translation><numerusform>あと %n ブロックは未承認の予定</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
-        <translation>ユニット %1 を開く</translation>
+        <translation>%1 まで未承認の予定</translation>
     </message>
     <message>
         <source>conflicted with a transaction with %1 confirmations</source>
-        <translation>%1 検証のトランザクションと衝突</translation>
+        <translation>%1 承認の取引と衝突</translation>
     </message>
     <message>
         <source>0/unconfirmed, %1</source>
-        <translation>0/未検証, %1</translation>
+        <translation>0/未承認, %1</translation>
     </message>
     <message>
         <source>in memory pool</source>
@@ -2637,19 +2637,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>abandoned</source>
-        <translation>中止</translation>
+        <translation>送信中止</translation>
     </message>
     <message>
         <source>%1/unconfirmed</source>
-        <translation>%1/未検証</translation>
+        <translation>%1/未承認</translation>
     </message>
     <message>
         <source>%1 confirmations</source>
-        <translation>%1 確認</translation>
+        <translation>%1 承認</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>ステータス</translation>
+        <translation>状態</translation>
     </message>
     <message>
         <source>Date</source>
@@ -2661,19 +2661,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Generated</source>
-        <translation>生成された</translation>
+        <translation>生成</translation>
     </message>
     <message>
         <source>From</source>
-        <translation>送信</translation>
+        <translation>送金元</translation>
     </message>
     <message>
         <source>unknown</source>
-        <translation>未確認</translation>
+        <translation>不明</translation>
     </message>
     <message>
         <source>To</source>
-        <translation>受信</translation>
+        <translation>送金先</translation>
     </message>
     <message>
         <source>own address</source>
@@ -2681,7 +2681,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>watch-only</source>
-        <translation>監視限定</translation>
+        <translation>ウォッチ限定</translation>
     </message>
     <message>
         <source>label</source>
@@ -2689,27 +2689,27 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Credit</source>
-        <translation>クレジット</translation>
+        <translation>貸方</translation>
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>あと %n ブロックで成熟します</numerusform></translation>
+        <translation><numerusform>あと %n ブロックで成熟</numerusform></translation>
     </message>
     <message>
         <source>not accepted</source>
-        <translation>承認されなかった</translation>
+        <translation>承認されていない</translation>
     </message>
     <message>
         <source>Debit</source>
-        <translation>引き落とし額</translation>
+        <translation>借方</translation>
     </message>
     <message>
         <source>Total debit</source>
-        <translation>総出金額</translation>
+        <translation>借方総計</translation>
     </message>
     <message>
         <source>Total credit</source>
-        <translation>総入金額</translation>
+        <translation>貸方総計</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2729,7 +2729,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction ID</source>
-        <translation>取引 ID</translation>
+        <translation>取引ID</translation>
     </message>
     <message>
         <source>Transaction total size</source>
@@ -2741,15 +2741,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Output index</source>
-        <translation>出力インデックス</translation>
+        <translation>アウトプット インデックス数</translation>
     </message>
     <message>
         <source>Merchant</source>
-        <translation>商人</translation>
+        <translation>リクエスト元</translation>
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>生成されたコインは使う前に%1のブロックを完成させる必要があります。あなたが生成した時、このブロックはブロック チェーンに追加されるネットワークにブロードキャストされました。チェーンに追加されるのが失敗した場合、状態が"不承認"に変更されて使えなくなるでしょう。これは、別のノードがあなたの数秒前にブロックを生成する場合に時々起こるかもしれません。</translation>
+        <translation>生成されたコインは、%1 ブロックの間成熟させたあとに使用可能になります。このブロックは生成された際、ブロックチェーンに取り込まれるためにネットワークに放流されました。ブロックチェーンに取り込まれられなかった場合、取引状態が「承認されていない」に変更され、コインは使用不能になります。これは、別のノードがあなたの数秒前にブロックを生成した場合に時々起こる場合があります。</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2757,23 +2757,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction</source>
-        <translation>取引</translation>
+        <translation>トランザクション</translation>
     </message>
     <message>
         <source>Inputs</source>
-        <translation>入力</translation>
+        <translation>インプット</translation>
     </message>
     <message>
         <source>Amount</source>
-        <translation>総額</translation>
+        <translation>金額</translation>
     </message>
     <message>
         <source>true</source>
-        <translation>正しい</translation>
+        <translation>はい</translation>
     </message>
     <message>
         <source>false</source>
-        <translation>正しくない</translation>
+        <translation>いいえ</translation>
     </message>
 </context>
 <context>
