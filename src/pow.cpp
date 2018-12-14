@@ -38,7 +38,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     }
 
     // Go back by what we want to be 14 days worth of blocks
-    int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
+    bool fProofOfStake = pindexLast->nHeight > params.nSwitchHeight;
+
+    int nHeightFirst = fProofOfStake ? pindexLast->nHeight - 1:pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
     assert(nHeightFirst >= 0);
     const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
     assert(pindexFirst);
@@ -51,17 +53,11 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;
 
-    int64_t nActualTimespan;
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
     bool fProofOfStake = pindexLast->nHeight > params.nSwitchHeight;
-    if(fProofOfStake)
-    {
-        CBlockIndex* pindexLastLast = pindexLast->pprev;
-        nActualTimespan = pindexLast->GetBlockTime() - pindexLastLast->GetBlockTime();
-    }
-    else
+    if(!fProofOfStake)
     {
         // Limit adjustment step
-        nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
         if (nActualTimespan < params.nPowTargetTimespan/4)
             nActualTimespan = params.nPowTargetTimespan/4;
         if (nActualTimespan > params.nPowTargetTimespan*4)
@@ -82,10 +78,10 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
         bnNew *= nActualTimespan;
         bnNew /= params.nPowTargetTimespan;
     }
-        if (bnNew > bnPowLimit)
-            bnNew = bnPowLimit;
+    if (bnNew > bnPowLimit)
+        bnNew = bnPowLimit;
 
-        return bnNew.GetCompact();
+    return bnNew.GetCompact();
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
