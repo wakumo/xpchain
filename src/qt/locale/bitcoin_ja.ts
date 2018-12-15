@@ -1308,7 +1308,7 @@
     </message>
     <message>
         <source>Prune &amp;block storage to</source>
-        <translation>ブロックの保存容量を次の値までに節約する(&amp;b):</translation>
+        <translation>ブロックの保存容量を次の値までに節約する(&amp;B):</translation>
     </message>
     <message>
         <source>GB</source>
@@ -1412,7 +1412,7 @@
     </message>
     <message>
         <source>M&amp;inimize on close</source>
-        <translation>閉じたときに最小化(&amp;i)</translation>
+        <translation>閉じたときに最小化(&amp;I)</translation>
     </message>
     <message>
         <source>&amp;Display</source>
@@ -1420,7 +1420,7 @@
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>ユーザーインターフェイスの言語(&amp;l):</translation>
+        <translation>ユーザーインターフェイスの言語(&amp;L):</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
