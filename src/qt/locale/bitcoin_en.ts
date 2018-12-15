@@ -349,12 +349,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>mintingtab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
+        <location line="+25"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
@@ -399,17 +394,7 @@
         <translation>&amp;Encrypt Wallet...</translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>&amp;Decrypt Wallet for Minting Only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Decrypt wallet only for minting. Sending coins will still require the password.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
+        <location line="+6"/>
         <source>&amp;Backup Wallet...</source>
         <translation>&amp;Backup Wallet...</translation>
     </message>
@@ -665,7 +650,22 @@
         <translation>Up to date</translation>
     </message>
     <message>
-        <location line="-507"/>
+        <location line="-582"/>
+        <source>Show the status of minting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <source>&amp;Unlock Wallet for Minting Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Unlock wallet only for minting. Sending coins will still require the password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
         <source>Show the %1 help message to get a list with possible XPChain command-line options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1330,7 +1330,7 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>transaction  has reached maximum probability</source>
+        <source>transaction has reached maximum probability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4526,7 +4526,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+25"/>
         <source>Pruning blockstore...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4536,7 +4536,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-187"/>
+        <location line="-184"/>
         <source>XPChain Core</source>
         <translation type="unfinished">XPChain Core</translation>
     </message>
@@ -4721,21 +4721,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>Incorrect or no genesis block found. Wrong datadir for network?</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Info: Minting disabled by &apos;nominting&apos; option.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Info: Minting suspended due to block creation failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Info: Minting suspended due to locked wallet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+2"/>
         <source>Initialization sanity check failed. %s is shutting down.</source>
         <translation type="unfinished"></translation>
@@ -4861,7 +4846,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-174"/>
+        <location line="-171"/>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4896,7 +4881,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+8"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
@@ -5011,7 +4996,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-200"/>
+        <location line="-197"/>
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5066,7 +5051,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+21"/>
         <source>Keypool ran out, please call keypoolrefill first</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5116,7 +5101,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>Insufficient funds</translation>
     </message>
     <message>
-        <location line="-137"/>
+        <location line="-134"/>
         <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5141,7 +5126,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+39"/>
         <source>Loading block index...</source>
         <translation>Loading block index...</translation>
     </message>
@@ -5151,17 +5136,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>Loading wallet...</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-42"/>
         <source>Cannot downgrade wallet</source>
         <translation>Cannot downgrade wallet</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+50"/>
         <source>Rescanning...</source>
         <translation>Rescanning...</translation>
     </message>
     <message>
-        <location line="-46"/>
+        <location line="-43"/>
         <source>Done loading</source>
         <translation>Done loading</translation>
     </message>
