@@ -334,10 +334,6 @@
         <translation>ステーキング報酬設定...</translation>
     </message>
     <message>
-        <source>Setting for staking reward</source>
-        <translation>ステーキング報酬の設定</translation>
-    </message>
-    <message>
         <source>Wallet:</source>
         <translation>ウォレット:</translation>
     </message>
@@ -520,6 +516,10 @@
     <message>
         <source>Unlock wallet only for minting. Sending coins will still require the password.</source>
         <translation>鋳造のみのためにウォレットをアンロックする。コインの送金にはパスワードが必要となります。</translation>
+    </message>
+    <message>
+        <source>Modify settings for staking reward</source>
+        <translation>ステーキング報酬の設定を変更する</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible XPChain command-line options</source>
@@ -819,16 +819,16 @@
         <translation>ラベル(&amp;L)</translation>
     </message>
     <message>
-        <source>The label associated with this address list entry</source>
-        <translation>このアドレス帳項目のラベル</translation>
-    </message>
-    <message>
         <source>&amp;Address</source>
         <translation>アドレス(&amp;A)</translation>
     </message>
     <message>
-        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>このアドレス帳項目のアドレス。アドレスは送金先アドレスの場合のみ編集することができます。</translation>
+        <source>The label associated with this setting entry for staking reward distribution</source>
+        <translation>このステーキング報酬分配設定の項目のラベル</translation>
+    </message>
+    <message>
+        <source>The address associated with this setting entry for staking reward distribution</source>
+        <translation>このステーキング報酬分配設定の項目のアドレス。</translation>
     </message>
     <message>
         <source>&amp;Distribution %</source>
@@ -2874,28 +2874,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>セルをダブルクリックして、アドレス・ラベル・分配率を編集</translation>
     </message>
     <message>
-        <source>labelSurplus</source>
-        <translation>labelSurplus</translation>
+        <source>Insert a new setting entry</source>
+        <translation>新しい設定項目を挿入</translation>
     </message>
     <message>
-        <source>Create a new address</source>
-        <translation>新しいアドレスを作成</translation>
+        <source>Copy address of the currently selected entry to the system clipboard</source>
+        <translation>現在選択されている項目のアドレスをシステムのクリップボードにコピー</translation>
+    </message>
+    <message>
+        <source>Delete the currently selected entry from the list</source>
+        <translation>選択された項目を一覧から削除</translation>
     </message>
     <message>
         <source>&amp;New</source>
         <translation>新規(&amp;N)</translation>
     </message>
     <message>
-        <source>Copy the currently selected address to the system clipboard</source>
-        <translation>現在選択されているアドレスをシステムのクリップボードにコピー</translation>
-    </message>
-    <message>
         <source>C&amp;opy</source>
         <translation>コピー(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Delete the currently selected address from the list</source>
-        <translation>選択されたアドレスを一覧から削除</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
