@@ -1063,7 +1063,7 @@
     </message>
     <message>
         <source>Display minting probability within : </source>
-        <translation>次の時間における確率を表示</translation>
+        <translation>次の時間における確率を表示 : </translation>
     </message>
     <message>
         <source>10 min</source>
