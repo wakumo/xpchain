@@ -334,7 +334,7 @@ void BitcoinGUI::createActions()
     openAction->setStatusTip(tr("Open a xpchain: URI or payment request"));
 
     openStakingRewardSettingsAction = new QAction(platformStyle->TextColorIcon(":/icons/options"), tr("Staking reward settings..."), this);
-    openStakingRewardSettingsAction->setStatusTip(tr("Setting for staking reward"));
+    openStakingRewardSettingsAction->setStatusTip(tr("Modify settings for staking reward"));
 
     showHelpMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
