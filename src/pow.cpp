@@ -38,7 +38,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     }
 
     // Go back by what we want to be 14 days worth of blocks
-    int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
+    bool fProofOfStake = pindexLast->nHeight > params.nSwitchHeight;
+
+    int nHeightFirst = fProofOfStake ? pindexLast->nHeight - 1:pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
     assert(nHeightFirst >= 0);
     const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
     assert(pindexFirst);
@@ -51,20 +53,31 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;
 
-    // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    if (nActualTimespan < params.nPowTargetTimespan/4)
-        nActualTimespan = params.nPowTargetTimespan/4;
-    if (nActualTimespan > params.nPowTargetTimespan*4)
-        nActualTimespan = params.nPowTargetTimespan*4;
-
-    // Retarget
+    bool fProofOfStake = pindexLast->nHeight > params.nSwitchHeight;
+    if(!fProofOfStake)
+    {
+        // Limit adjustment step
+        if (nActualTimespan < params.nPowTargetTimespan/4)
+            nActualTimespan = params.nPowTargetTimespan/4;
+        if (nActualTimespan > params.nPowTargetTimespan*4)
+            nActualTimespan = params.nPowTargetTimespan*4;
+    }
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     arith_uint256 bnNew;
     bnNew.SetCompact(pindexLast->nBits);
-    bnNew *= nActualTimespan;
-    bnNew /= params.nPowTargetTimespan;
-
+    if(fProofOfStake)
+    {
+        int64_t nInterval = params.DifficultyAdjustmentInterval();
+        bnNew*=((nInterval - 1) * params.nPowTargetSpacing + nActualTimespan + nActualTimespan);
+        bnNew/=((nInterval + 1) * params.nPowTargetSpacing);
+    }
+    else
+    {
+        // Retarget
+        bnNew *= nActualTimespan;
+        bnNew /= params.nPowTargetTimespan;
+    }
     if (bnNew > bnPowLimit)
         bnNew = bnPowLimit;
 
