@@ -506,8 +506,8 @@
         <translation>ブロックは最新</translation>
     </message>
     <message>
-        <source>鋳造の状況を表示する</source>
-        <translation></translation>
+        <source>Show the status of minting</source>
+        <translation>鋳造の状況を表示する</translation>
     </message>
     <message>
         <source>&amp;Unlock Wallet for Minting Only</source>
