@@ -2862,10 +2862,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>ステーキング報酬の設定</translation>
     </message>
     <message>
-        <source>You will get a staking reward every time you mine a block according to the following settings.&lt;br&gt;In calculating each amount of distribution, the number of it is rounded down to the nearest integer, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
-        <translation>ブロックを発掘すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;各分配量は計算時に整数へと切り捨てられ、余りは元金アドレスに送り返されます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
-    </message>
-    <message>
         <source>Enter address or label to search</source>
         <translation>検索したいアドレスまたはラベルを入力</translation>
     </message>
@@ -2888,6 +2884,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     <message>
         <source>&amp;New</source>
         <translation>新規(&amp;N)</translation>
+    </message>
+    <message>
+        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;When calculated, each amount of distribution is rounded down to the nearest integer in mochas, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation>ブロックを生成すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;各分配量は計算時に mocha 単位で切り捨てられ、余りは元金アドレスに送り返されます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
     </message>
     <message>
         <source>C&amp;opy</source>
@@ -3205,8 +3205,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>自分への送金</translation>
     </message>
     <message>
-        <source>Mined</source>
-        <translation>発掘</translation>
+        <source>Minted</source>
+        <translation>鋳造</translation>
     </message>
     <message>
         <source>watch-only</source>
@@ -3288,8 +3288,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>自己送金</translation>
     </message>
     <message>
-        <source>Mined</source>
-        <translation>発掘</translation>
+        <source>Minted</source>
+        <translation>鋳造</translation>
     </message>
     <message>
         <source>Other</source>
