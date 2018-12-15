@@ -263,7 +263,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(historyAction);
 
     mintingAction = new QAction(platformStyle->SingleColorIcon(":/icons/tx_mined"), tr("&Minting"), this);
-    mintingAction->setStatusTip(tr("mintingtab"));
+    mintingAction->setStatusTip(tr("Show the status of minting"));
     mintingAction->setToolTip(mintingAction->statusTip());
     mintingAction->setCheckable(true);
     mintingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
@@ -308,8 +308,8 @@ void BitcoinGUI::createActions()
     encryptWalletAction = new QAction(platformStyle->TextColorIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
     encryptWalletAction->setStatusTip(tr("Encrypt the private keys that belong to your wallet"));
     encryptWalletAction->setCheckable(true);
-    decryptForMintingAction = new QAction(platformStyle->TextColorIcon(":/icons/lock_open"), tr("&Decrypt Wallet for Minting Only"), this);
-    decryptForMintingAction->setStatusTip(tr("Decrypt wallet only for minting. Sending coins will still require the password."));
+    decryptForMintingAction = new QAction(platformStyle->TextColorIcon(":/icons/lock_open"), tr("&Unlock Wallet for Minting Only"), this);
+    decryptForMintingAction->setStatusTip(tr("Unlock wallet only for minting. Sending coins will still require the password."));
     decryptForMintingAction->setCheckable(true);
     backupWalletAction = new QAction(platformStyle->TextColorIcon(":/icons/filesave"), tr("&Backup Wallet..."), this);
     backupWalletAction->setStatusTip(tr("Backup wallet to another location"));
