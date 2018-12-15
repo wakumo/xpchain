@@ -1036,7 +1036,7 @@
     </message>
     <message>
         <source>Coin age in the output.</source>
-        <translation>アウトプットのコインAge</translation>
+        <translation>アウトプットのコインAge。</translation>
     </message>
     <message>
         <source>Chance to mint a block within given time interval.</source>
@@ -1360,7 +1360,7 @@
     </message>
     <message>
         <source>Connect to the XPChain network through a SOCKS5 proxy.</source>
-        <translation>SOCKS5 プロキシ経由で XPChain ネットワークに接続する</translation>
+        <translation>SOCKS5 プロキシ経由で XPChain ネットワークに接続する。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
