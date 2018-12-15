@@ -589,9 +589,9 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
     /*
     TODO:use these messages
     */
-    std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
-    std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
-    std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
+    //std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
+    //std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
+    //std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
     try
     {
         while (true)
