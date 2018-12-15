@@ -105,6 +105,23 @@ void BlockAssembler::resetBlock()
     nFees = 0;
 }
 #ifdef ENABLE_WALLET
+static std::vector<std::pair<CTxDestination, int>> GetRewardPct(const CWallet& wallet, const CTxDestination& defaultDestination)
+{
+    std::vector<std::pair<CTxDestination, int>> result;
+    int remainder = 100;
+    for(std::pair<std::string, uint8_t> p:wallet.vRewardDistributionPcts)
+    {
+        result.push_back(std::make_pair(DecodeDestination(p.first), (int)p.second));
+        remainder -= (int)p.second;
+        assert(remainder >= 0);
+    }
+    if(remainder > 0)
+    {
+        result.push_back(std::make_pair(defaultDestination, remainder));
+    }
+    return result;
+}
+
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
 {
     return CreateNewBlock(scriptPubKeyIn, nullptr, fMineWitnessTx);
@@ -232,21 +249,13 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         uint32_t nTime = pblock->nTime - header.nTime;
         CAmount nBlockReward = GetProofOfStakeReward(nHeight, tx->vout[pblock->vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
 
-        //TODO: GetRewardPct tekina something
-        //kokokara
-        std::vector<std::pair<CTxDestination, int>>rewardPct;
-        rewardPct.resize(2);
-        CTxDestination address;
-        if(!ExtractDestination(scriptPubKey, address))
+        CTxDestination defaultDest;
+        if(!ExtractDestination(scriptPubKey, defaultDest))
         {
             return nullptr;
         }
-        rewardPct[0].first = address;
-        rewardPct[0].second = 40;
-        rewardPct[1].first = address;
-        rewardPct[1].second = 60;
-        //kokomade
-
+        std::vector<std::pair<CTxDestination, int>>rewardPct = GetRewardPct(*pwallet, defaultDest);
+        //TODO:Implement function calc reward
         std::vector<std::pair<CScript, CAmount>> rewardValue;
         rewardValue.clear();
         rewardValue.resize(rewardPct.size());
