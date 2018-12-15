@@ -270,6 +270,10 @@
         <translation>取引履歴を見る</translation>
     </message>
     <message>
+        <source>&amp;Minting</source>
+        <translation>鋳造(&amp;M)</translation>
+    </message>
+    <message>
         <source>E&amp;xit</source>
         <translation>終了(&amp;E)</translation>
     </message>
@@ -324,6 +328,14 @@
     <message>
         <source>Open &amp;URI...</source>
         <translation>URIを開く(&amp;U)...</translation>
+    </message>
+    <message>
+        <source>Staking reward settings...</source>
+        <translation>ステーキング報酬設定...</translation>
+    </message>
+    <message>
+        <source>Setting for staking reward</source>
+        <translation>ステーキング報酬の設定</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -496,6 +508,18 @@
     <message>
         <source>Up to date</source>
         <translation>ブロックは最新</translation>
+    </message>
+    <message>
+        <source>鋳造の状況を表示する</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Unlock Wallet for Minting Only</source>
+        <translation>鋳造のみのためにウォレットをアンロック(&amp;U)</translation>
+    </message>
+    <message>
+        <source>Unlock wallet only for minting. Sending coins will still require the password.</source>
+        <translation>鋳造のみのためにウォレットをアンロックする。コインの送金にはパスワードが必要となります。</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible XPChain command-line options</source>
@@ -785,6 +809,57 @@
     </message>
 </context>
 <context>
+    <name>EditStakingRewardDistributionDialog</name>
+    <message>
+        <source>Edit Setting</source>
+        <translation>設定の編集</translation>
+    </message>
+    <message>
+        <source>&amp;Label</source>
+        <translation>ラベル(&amp;L)</translation>
+    </message>
+    <message>
+        <source>The label associated with this address list entry</source>
+        <translation>このアドレス帳項目のラベル</translation>
+    </message>
+    <message>
+        <source>&amp;Address</source>
+        <translation>アドレス(&amp;A)</translation>
+    </message>
+    <message>
+        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
+        <translation>このアドレス帳項目のアドレス。アドレスは送金先アドレスの場合のみ編集することができます。</translation>
+    </message>
+    <message>
+        <source>&amp;Distribution %</source>
+        <translation>分配率(&amp;D)</translation>
+    </message>
+    <message>
+        <source>The percentage of staking reward you want to send to the address</source>
+        <translation>このアドレスに分配するステーキング報酬の割合</translation>
+    </message>
+    <message>
+        <source> %</source>
+        <translation> %</translation>
+    </message>
+    <message>
+        <source>New staking reward distribution setting</source>
+        <translation>新しいステーキング報酬分配設定</translation>
+    </message>
+    <message>
+        <source>The entered address &quot;%1&quot; is not a valid XPChain address.</source>
+        <translation>入力されたアドレス &quot;%1&quot; は無効な XPChain アドレスです。</translation>
+    </message>
+    <message>
+        <source>The entered number of percentage is not between 1 and 100, or is not a valid number</source>
+        <translation>入力された分配率が1から100の間でないか、無効な数字です。</translation>
+    </message>
+    <message>
+        <source>The entered address &quot;%1&quot; is already in the settings with label &quot;%2&quot;.</source>
+        <translation>入力されたアドレス &quot;%1&quot; は既にラベル &quot;%2&quot; として設定に存在します｡</translation>
+    </message>
+</context>
+<context>
     <name>FreespaceChecker</name>
     <message>
         <source>A new data directory will be created.</source>
@@ -895,6 +970,180 @@
     <message numerus="yes">
         <source>(of %n GB needed)</source>
         <translation><numerusform>(%n GB必要)</numerusform></translation>
+    </message>
+</context>
+<context>
+    <name>MintingTableModel</name>
+    <message>
+        <source>Transaction</source>
+        <translation>トランザクション</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>アドレス</translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation>残高</translation>
+    </message>
+    <message>
+        <source>Age</source>
+        <translation>Age</translation>
+    </message>
+    <message>
+        <source>CoinDay</source>
+        <translation>CoinDay</translation>
+    </message>
+    <message>
+        <source>MintProbability</source>
+        <translation>鋳造確率</translation>
+    </message>
+    <message>
+        <source>MintReward</source>
+        <translation>報酬量</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>分間</translation>
+    </message>
+    <message>
+        <source>hours</source>
+        <translation>時間</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation>日間</translation>
+    </message>
+    <message>
+        <source>You have %1 chance to find a POS block if you mint %2 %3 at current difficulty.</source>
+        <translation>現在の難易度で %2 %3 鋳造した場合、POSブロックを見つける確率は %1 です。</translation>
+    </message>
+    <message>
+        <source>Destination address of the output.</source>
+        <translation>アドレスのアウトプットの宛先。</translation>
+    </message>
+    <message>
+        <source>Original transaction id.</source>
+        <translation>元のトランザクションID。</translation>
+    </message>
+    <message>
+        <source>Age of the transaction in days.</source>
+        <translation>日数表記でのトランザクションのAge。</translation>
+    </message>
+    <message>
+        <source>Balance of the output.</source>
+        <translation>アウトプットの残高。</translation>
+    </message>
+    <message>
+        <source>Coin age in the output.</source>
+        <translation>アウトプットのコインAge</translation>
+    </message>
+    <message>
+        <source>Chance to mint a block within given time interval.</source>
+        <translation>指定された時間内にブロックを生成する確率。</translation>
+    </message>
+    <message>
+        <source>The size of the potential rewards if the block is found at the beginning and the end given time interval.</source>
+        <translation>指定された時間の開始時点と終了時点でブロックを見つけた場合の、獲得する報酬量の範囲。</translation>
+    </message>
+</context>
+<context>
+    <name>MintingView</name>
+    <message>
+        <source>transaction is too young</source>
+        <translation>トランザクションは成熟前</translation>
+    </message>
+    <message>
+        <source>transaction is mature</source>
+        <translation>トランザクションは成熟中</translation>
+    </message>
+    <message>
+        <source>transaction has reached maximum probability</source>
+        <translation>トランザクションは最大鋳造確率に到達済み</translation>
+    </message>
+    <message>
+        <source>Display minting probability within : </source>
+        <translation>次の時間における確率を表示</translation>
+    </message>
+    <message>
+        <source>10 min</source>
+        <translation>10分間</translation>
+    </message>
+    <message>
+        <source>24 hours</source>
+        <translation>24時間</translation>
+    </message>
+    <message>
+        <source>7 days</source>
+        <translation>7日間</translation>
+    </message>
+    <message>
+        <source>30 days</source>
+        <translation>30日間</translation>
+    </message>
+    <message>
+        <source>90 days</source>
+        <translation>90日間</translation>
+    </message>
+    <message>
+        <source>Copy address</source>
+        <translation>アドレスをコピー</translation>
+    </message>
+    <message>
+        <source>Copy transaction id</source>
+        <translation>トランザクションIDをコピー</translation>
+    </message>
+    <message>
+        <source>Show/hide &apos;Address&apos; column</source>
+        <translation>&apos;アドレス&apos;列を表示/非表示</translation>
+    </message>
+    <message>
+        <source>Show/hide &apos;Transaction&apos; column</source>
+        <translation>&apos;Transaction&apos;列を表示/非表示</translation>
+    </message>
+    <message>
+        <source>Export Minting Data</source>
+        <translation>鋳造データをエクスポート</translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>CSV ファイル (*.csv)</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>アドレス</translation>
+    </message>
+    <message>
+        <source>Transaction</source>
+        <translation>トランザクション</translation>
+    </message>
+    <message>
+        <source>Age</source>
+        <translation>Age</translation>
+    </message>
+    <message>
+        <source>CoinDay</source>
+        <translation>CoinDay</translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation>残高</translation>
+    </message>
+    <message>
+        <source>MintingProbability</source>
+        <translation>鋳造確率</translation>
+    </message>
+    <message>
+        <source>MintingReward</source>
+        <translation>報酬量</translation>
+    </message>
+    <message>
+        <source>Error exporting</source>
+        <translation>エクスポート エラー</translation>
+    </message>
+    <message>
+        <source>Could not write to file %1.</source>
+        <translation>ファイル %1 に書き込めませんでした。</translation>
     </message>
 </context>
 <context>
@@ -1533,6 +1782,10 @@
         <source>unknown</source>
         <translation>不明</translation>
     </message>
+    <message>
+        <source>from  %1 to %2</source>
+        <translation>%1 ～ %2</translation>
+    </message>
 </context>
 <context>
     <name>QObject::QObject</name>
@@ -2135,20 +2388,20 @@
         <translation>手数料設定を折りたたむ</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
-
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
-        <translation>トランザクションの仮想サイズの1 kB（1,000 バイト）あたりのカスタム手数料を指定する。
-
-注:  手数料はバイト単位で計算されるので、500 バイト（1 kBの半分）のトランザクションサイズに対する「1 kBあたり 100 satoshi」の手数料は、最終的にはわずか 50 satoshi となります。</translation>
-    </message>
-    <message>
         <source>per kilobyte</source>
         <translation>1キロバイトあたり</translation>
     </message>
     <message>
         <source>Hide</source>
         <translation>隠す</translation>
+    </message>
+    <message>
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+        <translation>トランザクションの仮想サイズの1 kB（1,000 バイト）あたりのカスタム手数料を指定する。
+
+注:  手数料はバイト単位で計算されるので、500 バイト（1 kBの半分）のトランザクションサイズに対する「1 kBあたり 100 satoshi」の手数料は、最終的にはわずか 50 satoshi となります。</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for xpchain transactions than the network can process.</source>
@@ -2600,6 +2853,108 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>[testnet]</source>
         <translation>[testnet]</translation>
+    </message>
+</context>
+<context>
+    <name>StakingRewardSettingPage</name>
+    <message>
+        <source>Staking reward settings</source>
+        <translation>ステーキング報酬の設定</translation>
+    </message>
+    <message>
+        <source>You will get a staking reward every time you mine a block according to the following settings.&lt;br&gt;In calculating each amount of distribution, the number of it is rounded down to the nearest integer, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation>ブロックを発掘すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;各分配量は計算時に整数へと切り捨てられ、余りは元金アドレスに送り返されます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
+    </message>
+    <message>
+        <source>Enter address or label to search</source>
+        <translation>検索したいアドレスまたはラベルを入力</translation>
+    </message>
+    <message>
+        <source>Double-click cell to edit address, label or percentage</source>
+        <translation>セルをダブルクリックして、アドレス・ラベル・分配率を編集</translation>
+    </message>
+    <message>
+        <source>labelSurplus</source>
+        <translation>labelSurplus</translation>
+    </message>
+    <message>
+        <source>Create a new address</source>
+        <translation>新しいアドレスを作成</translation>
+    </message>
+    <message>
+        <source>&amp;New</source>
+        <translation>新規(&amp;N)</translation>
+    </message>
+    <message>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation>現在選択されているアドレスをシステムのクリップボードにコピー</translation>
+    </message>
+    <message>
+        <source>C&amp;opy</source>
+        <translation>コピー(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Delete the currently selected address from the list</source>
+        <translation>選択されたアドレスを一覧から削除</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>削除(&amp;D)</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>キャンセル(&amp;C)</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Address</source>
+        <translation>アドレスをコピー(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Label</source>
+        <translation>ラベルをコピー(&amp;L)</translation>
+    </message>
+    <message>
+        <source>An entire reward will be sent to the captal address.</source>
+        <translation>報酬は全額、元金アドレスに送られます。</translation>
+    </message>
+    <message>
+        <source>About %1% remaining of a reward will be sent back to the captal address.</source>
+        <translation>報酬の残り約 %1 %が元金アドレスに送り返されます。</translation>
+    </message>
+    <message>
+        <source>Almost all reward will be sent as above. If there are some XPChains left by rounding, they will be sent back to the captal address.</source>
+        <translation>ほぼ全額の報酬が上記の通り送られます。小数点以下切り捨ての際に余った XPChain は、元金アドレスに送り返されます。</translation>
+    </message>
+    <message>
+        <source>The total of distribution percentage must be 100% or less.</source>
+        <translation>分配率の合計は100%以下である必要があります。</translation>
+    </message>
+    <message>
+        <source>The total of distribution percentage must be 100% or less</source>
+        <translation>分配率の合計は100%以下である必要があります。</translation>
+    </message>
+</context>
+<context>
+    <name>StakingRewardSettingTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>ラベル</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>アドレス</translation>
+    </message>
+    <message>
+        <source>Distribution %</source>
+        <translation>分配率</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>（ラベル無し）</translation>
     </message>
 </context>
 <context>
