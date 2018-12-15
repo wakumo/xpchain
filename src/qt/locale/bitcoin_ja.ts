@@ -2396,12 +2396,12 @@
         <translation>隠す</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mochas per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
         <translation>トランザクションの仮想サイズの1 kB（1,000 バイト）あたりのカスタム手数料を指定する。
 
-注:  手数料はバイト単位で計算されるので、500 バイト（1 kBの半分）のトランザクションサイズに対する「1 kBあたり 100 satoshi」の手数料は、最終的にはわずか 50 satoshi となります。</translation>
+注:  手数料はバイト単位で計算されるので、500 バイト（1 kBの半分）のトランザクションサイズに対する「1 kBあたり 100 mocha」の手数料は、最終的にはわずか 50 mocha となります。</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for xpchain transactions than the network can process.</source>
