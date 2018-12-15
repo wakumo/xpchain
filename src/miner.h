@@ -204,5 +204,5 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 
 void MintStake(boost::thread_group& threadGroup, const std::shared_ptr<CWallet>& wallet);
-
+bool CreateTxSig(const CWallet& wallet, uint32_t nTime, CTransactionRef txCoinStake, const std::vector<std::pair<CScript, CAmount>>& vValues, CScript& script);
 #endif // BITCOIN_MINER_H

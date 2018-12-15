@@ -17,8 +17,10 @@ class ReceiveCoinsDialog;
 class SendCoinsDialog;
 class SendCoinsRecipient;
 class TransactionView;
+class MintingView;
 class WalletModel;
 class AddressBookPage;
+class StakingRewardSettingPage;
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -61,12 +63,14 @@ private:
 
     OverviewPage *overviewPage;
     QWidget *transactionsPage;
+    QWidget *mintingPage;
     ReceiveCoinsDialog *receiveCoinsPage;
     SendCoinsDialog *sendCoinsPage;
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
 
     TransactionView *transactionView;
+    MintingView *mintingView;
 
     QProgressDialog *progressDialog;
     const PlatformStyle *platformStyle;
@@ -81,6 +85,8 @@ public Q_SLOTS:
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 
+    void gotoMintingPage();
+
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
     /** Show Sign/Verify Message dialog and switch to verify message tab */
@@ -93,6 +99,8 @@ public Q_SLOTS:
     void processNewTransaction(const QModelIndex& parent, int start, int /*end*/);
     /** Encrypt the wallet */
     void encryptWallet(bool status);
+    /** Decrypt wallet for minting only*/
+    void decryptForMinting(bool status);
     /** Backup the wallet */
     void backupWallet();
     /** Change encrypted wallet passphrase */
@@ -107,7 +115,8 @@ public Q_SLOTS:
 
     /** Re-emit encryption status signal */
     void updateEncryptionStatus();
-
+    /** Open dialog for staking reward settings */
+    void openStakingRewardSettings();
     /** Show progress dialog e.g. for rescan */
     void showProgress(const QString &title, int nProgress);
 

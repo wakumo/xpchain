@@ -7,6 +7,7 @@
 #define BITCOIN_WALLET_WALLETDB_H
 
 #include <amount.h>
+#include <script/standard.h>
 #include <primitives/transaction.h>
 #include <wallet/db.h>
 #include <key.h>
@@ -245,6 +246,11 @@ public:
     bool ReadVersion(int& nVersion);
     //! Write wallet version
     bool WriteVersion(int nVersion);
+
+    // Write / erase / read list of percentages of staking reward distribution from(to) wallet database
+    bool WriteRewardDistributionPcts(const std::vector<std::pair<std::string, std::uint8_t>>& pcts);
+    bool EraseRewardDistributionPcts();
+    bool ReadRewardDistributionPcts(std::vector<std::pair<std::string, std::uint8_t>>& pcts);
 private:
     BerkeleyBatch m_batch;
     WalletDatabase& m_database;

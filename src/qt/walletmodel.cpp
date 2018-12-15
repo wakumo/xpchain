@@ -10,7 +10,9 @@
 #include <qt/paymentserver.h>
 #include <qt/recentrequeststablemodel.h>
 #include <qt/sendcoinsdialog.h>
+#include <qt/stakingrewardsettingmodel.h>
 #include <qt/transactiontablemodel.h>
+#include <qt/mintingtablemodel.h>
 
 #include <interfaces/handler.h>
 #include <interfaces/node.h>
@@ -31,7 +33,9 @@
 WalletModel::WalletModel(std::unique_ptr<interfaces::Wallet> wallet, interfaces::Node& node, const PlatformStyle *platformStyle, OptionsModel *_optionsModel, QObject *parent) :
     QObject(parent), m_wallet(std::move(wallet)), m_node(node), optionsModel(_optionsModel), addressTableModel(0),
     transactionTableModel(0),
+    mintingTableModel(0),
     recentRequestsTableModel(0),
+    stakingRewardSettingTableModel(0),
     cachedEncryptionStatus(Unencrypted),
     cachedNumBlocks(0)
 {
@@ -40,7 +44,9 @@ WalletModel::WalletModel(std::unique_ptr<interfaces::Wallet> wallet, interfaces:
 
     addressTableModel = new AddressTableModel(this);
     transactionTableModel = new TransactionTableModel(platformStyle, this);
+    mintingTableModel = new MintingTableModel(platformStyle, this);
     recentRequestsTableModel = new RecentRequestsTableModel(this);
+    stakingRewardSettingTableModel = new StakingRewardSettingTableModel(this);
 
     // This timer will be fired repeatedly to update the balance
     pollTimer = new QTimer(this);
@@ -86,6 +92,8 @@ void WalletModel::pollBalanceChanged()
         checkBalanceChanged(new_balances);
         if(transactionTableModel)
             transactionTableModel->updateConfirmations();
+        if(mintingTableModel)
+            mintingTableModel->updateAge();
     }
 }
 
@@ -108,6 +116,9 @@ void WalletModel::updateAddressBook(const QString &address, const QString &label
 {
     if(addressTableModel)
         addressTableModel->updateEntry(address, label, isMine, purpose, status);
+
+    if(stakingRewardSettingTableModel)
+        stakingRewardSettingTableModel->updateEntry(address, label, status);
 }
 
 void WalletModel::updateWatchOnlyFlag(bool fHaveWatchonly)
@@ -308,9 +319,20 @@ TransactionTableModel *WalletModel::getTransactionTableModel()
     return transactionTableModel;
 }
 
+MintingTableModel *WalletModel::getMintingTableModel()
+{
+    return mintingTableModel;
+}
+
 RecentRequestsTableModel *WalletModel::getRecentRequestsTableModel()
 {
     return recentRequestsTableModel;
+}
+
+StakingRewardSettingTableModel *WalletModel::getStakingRewardSettingTableModel()
+{
+    stakingRewardSettingTableModel = new StakingRewardSettingTableModel(this);
+    return stakingRewardSettingTableModel;
 }
 
 WalletModel::EncryptionStatus WalletModel::getEncryptionStatus() const
@@ -440,6 +462,11 @@ void WalletModel::unsubscribeFromCoreSignals()
 WalletModel::UnlockContext WalletModel::requestUnlock()
 {
     bool was_locked = getEncryptionStatus() == Locked;
+    if ((!was_locked) && fWalletUnlockMintOnly)
+    {
+        setWalletLocked(true);
+        was_locked = getEncryptionStatus() == Locked;
+    }
     if(was_locked)
     {
         // Request UI to unlock wallet
@@ -448,7 +475,7 @@ WalletModel::UnlockContext WalletModel::requestUnlock()
     // If wallet is still locked, unlock was failed or cancelled, mark context as invalid
     bool valid = getEncryptionStatus() != Locked;
 
-    return UnlockContext(this, valid, was_locked);
+    return UnlockContext(this, valid, was_locked && !fWalletUnlockMintOnly);
 }
 
 WalletModel::UnlockContext::UnlockContext(WalletModel *_wallet, bool _valid, bool _relock):
@@ -572,3 +599,7 @@ bool WalletModel::isMultiwallet()
 {
     return m_node.getWallets().size() > 1;
 }
+
+// xpchain: optional setting to unlock wallet for block minting only;
+//         serves to disable the trivial sendmoney when OS account compromised
+bool fWalletUnlockMintOnly = false;

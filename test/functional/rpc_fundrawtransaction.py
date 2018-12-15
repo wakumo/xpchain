@@ -58,7 +58,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         self.sync_all()
 
         # ensure that setting changePosition in fundraw with an exact match is handled properly
-        rawmatch = self.nodes[2].createrawtransaction([], {self.nodes[2].getnewaddress():1100000000})
+        rawmatch = self.nodes[2].createrawtransaction([], {self.nodes[2].getnewaddress():11000000})
         rawmatch = self.nodes[2].fundrawtransaction(rawmatch, {"changePosition":1, "subtractFeeFromOutputs":[0]})
         assert_equal(rawmatch["changepos"], -1)
 
@@ -527,7 +527,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         self.sync_all()
 
         # make sure funds are received at node1
-        assert_equal(oldBalance+Decimal('1100000001.1000'), self.nodes[0].getbalance())
+        assert_equal(oldBalance+Decimal('11000001.1000'), self.nodes[0].getbalance())
 
 
         ###############################################
@@ -587,7 +587,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         self.sync_all()
         self.nodes[0].generate(1)
         self.sync_all()
-        assert_equal(oldBalance+Decimal('1100000019'), self.nodes[0].getbalance()) #19+block reward
+        assert_equal(oldBalance+Decimal('11000019'), self.nodes[0].getbalance()) #19+block reward
 
         #####################################################
         # test fundrawtransaction with OP_RETURN and no vin #
