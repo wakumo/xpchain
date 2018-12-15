@@ -424,12 +424,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Setting for staking reward</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+108"/>
+        <location line="+109"/>
         <source>Wallet:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -665,7 +660,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+25"/>
+        <source>Modify settings for staking reward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
         <source>Show the %1 help message to get a list with possible XPChain command-line options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1027,18 +1027,18 @@
         <translation type="unfinished">&amp;Label</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <source>The label associated with this address list entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
+        <location line="+17"/>
         <source>&amp;Address</source>
         <translation type="unfinished">&amp;Address</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
+        <location line="-7"/>
+        <source>The label associated with this setting entry for staking reward distribution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>The address associated with this setting entry for staking reward distribution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3692,37 +3692,32 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
-        <source>labelSurplus</source>
+        <location line="+37"/>
+        <source>Insert a new setting entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+9"/>
-        <source>Create a new address</source>
-        <translation type="unfinished">Create a new address</translation>
+        <location line="+17"/>
+        <source>Copy address of the currently selected entry to the system clipboard</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+17"/>
+        <source>Delete the currently selected entry from the list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-31"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>Copy the currently selected address to the system clipboard</source>
-        <translation type="unfinished">Copy the currently selected address to the system clipboard</translation>
-    </message>
-    <message>
-        <location line="+3"/>
+        <location line="+17"/>
         <source>C&amp;opy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
-        <source>Delete the currently selected address from the list</source>
-        <translation type="unfinished">Delete the currently selected address from the list</translation>
-    </message>
-    <message>
-        <location line="+3"/>
+        <location line="+17"/>
         <source>&amp;Delete</source>
         <translation type="unfinished">&amp;Delete</translation>
     </message>
