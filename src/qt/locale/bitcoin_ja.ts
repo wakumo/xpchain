@@ -3153,35 +3153,35 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>bitcoin-core</name>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
-        <translation>MITソフトウェアライセンスのもとで配布されています。付属のファイル %s または %s を参照してください</translation>
+        <translation>MIT ソフトウェアライセンスのもとで配布されています。付属の %s ファイルか、 %s を参照してください</translation>
     </message>
     <message>
         <source>Prune configured below the minimum of %d MiB.  Please use a higher number.</source>
-        <translation>剪定が最小値の %d MiB以下に設定されています。もっと大きな値を使用してください。</translation>
+        <translation>節約モード設定が、設定可能最小値の %d MiBより低く設定されています。より大きい値を使用してください。</translation>
     </message>
     <message>
         <source>Prune: last wallet synchronisation goes beyond pruned data. You need to -reindex (download the whole blockchain again in case of pruned node)</source>
-        <translation>剪定: 最後のウォレット同期ポイントは、選定されたデータよりも過去のものとなっています。-reindexをする必要があります (剪定されたノードの場合、ブロックチェイン全体をダウンロードします)</translation>
+        <translation>節約モード: 最後のウォレット同期ポイントが、節約されたデータを越えています。-reindex を実行する必要があります (節約モードのノードの場合、ブロックチェーン全体を再ダウンロードします)</translation>
     </message>
     <message>
         <source>Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again.</source>
-        <translation>剪定モードでは再スキャンを行うことはできません。-reindexを指定し、ブロックチェイン全体を再ダウンロードする必要があります。</translation>
+        <translation>節約モードでは再スキャンを行うことはできません。-reindex オプションを指定し、ブロックチェーン全体を再ダウンロードする必要があります。</translation>
     </message>
     <message>
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
-        <translation>エラー：致命的な内部エラーが発生しました。詳細はdebug.logを参照してください</translation>
+        <translation>エラー: 致命的な内部エラーが発生しました。詳細は debug.log を参照してください</translation>
     </message>
     <message>
         <source>Pruning blockstore...</source>
-        <translation>ブロックデータを剪定しています……</translation>
+        <translation>ブロック保存容量を節約しています...</translation>
     </message>
     <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
-        <translation>HTTPサーバを開始できませんでした。詳細はデバッグログをご確認ください。</translation>
+        <translation>HTTPサーバを開始できませんでした。詳細は debug.log を参照してください。</translation>
     </message>
     <message>
         <source>XPChain Core</source>
-        <translation>XPChain のコア</translation>
+        <translation>XPChain コア</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -3189,15 +3189,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
-        <translation>データ ディレクトリ %s のロックを取得することができません。おそらく %s は実行中です。</translation>
+        <translation>データ ディレクトリ %s のロックを取得することができません。%s がおそらく既に実行中です。</translation>
     </message>
     <message>
         <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
-        <translation>特定の接続が利用できず、またaddrmanは外向き接続を見つけられませんでした。</translation>
+        <translation>指定された接続が利用できず、また addrman は外向き接続を見つけられませんでした。</translation>
     </message>
     <message>
         <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>%s の読み込みエラー! すべてのキーは正しく読み取れますが、取引データやアドレス帳のエントリが失われたか、正しくない可能性があります。</translation>
+        <translation>%s の読み込み中にエラーが発生しました！ 全ての鍵は正しく読み込めましたが、取引データやアドレス帳の項目が失われたか、正しくない可能性があります。</translation>
     </message>
     <message>
         <source>Group outputs by address, selecting all or none, instead of selecting on a per-output basis. Privacy is improved as an address is only used once (unless someone sends to it after spending from it), but may result in slightly higher fees as suboptimal coin selection may result due to the added limitation (default: %u)</source>
@@ -3205,7 +3205,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
-        <translation>あなたのPCの日付と時刻が正しいことを確認して下さい！ もしあなたの時計が正しくなければ %s が正確に動作しません。</translation>
+        <translation>お使いのコンピューターの日付と時刻が正しいことを確認してください！ PCの時計が正しくない場合 %s は正確に動作しません。</translation>
     </message>
     <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
@@ -3213,19 +3213,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
-        <translation>ブロックのデータベースに未来の時刻のブロックが含まれています。これはおそらくお使いのコンピュータに設定されている日時が間違っていることを示しています。お使いのコンピュータの日時が本当に正しい場合にのみ、ブロックのデータベースの再構築を行ってください。</translation>
+        <translation>ブロックデータベースに未来の時刻のブロックが含まれています。お使いのコンピューターの日付と時刻が間違っている可能性があります。コンピュータの日付と時刻が本当に正しい場合にのみ、ブロックデータベースの再構築を実行してください。</translation>
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>これはリリース前のテストビルドです - 各自の責任で利用すること - 採掘や商取引に使用しないでください</translation>
+        <translation>これはリリース前のテストビルドです - 自己責任で使用してください - 採掘や商取引に使用しないでください</translation>
     </message>
     <message>
         <source>This is the transaction fee you may discard if change is smaller than dust at this level</source>
-        <translation>これは、このレベルにおいてダストよりもおつりが小さい場合に捨てられるトランザクション手数料です。</translation>
+        <translation>これは、このレベルでダストよりもお釣りが小さい場合に破棄されるトランザクション手数料です。</translation>
     </message>
     <message>
         <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
-        <translation>ブロックのリプレイができませんでした。-reindex-chainstate を用いてデータベースを再構築する必要があります。</translation>
+        <translation>ブロックのリプレイができませんでした。-reindex-chainstate オプションを指定してデータベースを再構築する必要があります。</translation>
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
@@ -3233,15 +3233,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>警告: ネットワークは完全に合意が取れていないようです。幾人かのマイナーに何らかの障害が発生しているようです。</translation>
+        <translation>警告: ネットワークは完全に合意が取れていないようです。問題が発生しているマイナーがいる可能性があります。</translation>
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>警告: ピアと完全に合意が取れていないようです！このノードまたは他のノードのアップグレードが必要なようです。</translation>
+        <translation>警告: ピアと完全に合意が取れていないようです！ このノードもしくは他のノードのアップグレードが必要な可能性があります。</translation>
     </message>
     <message>
         <source>%d of last 100 blocks have unexpected version</source>
-        <translation>直近の100ブロックの内%dが予期しないバージョンを含んでいます</translation>
+        <translation>直近の100ブロックの内、%d ブロックが予期しないバージョンを含んでいます</translation>
     </message>
     <message>
         <source>%s corrupt, salvage failed</source>
@@ -3257,7 +3257,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Change index out of range</source>
-        <translation>おつりのインデックスが範囲外です</translation>
+        <translation>お釣りのインデックスが範囲外です</translation>
     </message>
     <message>
         <source>Copyright (C) %i-%i</source>
@@ -3265,100 +3265,99 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Corrupted block database detected</source>
-        <translation>破損したブロック データベースが見つかりました
-</translation>
+        <translation>破損したブロックデータベースが見つかりました</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
-        <translation>ブロック データベースを今すぐ再構築しますか?</translation>
+        <translation>ブロックデータベースを今すぐ再構築しますか？</translation>
     </message>
     <message>
         <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>%sの作成に失敗しました。このバージョンではHDウォレット以外を作成することはできません。</translation>
+        <translation>%s の作成に失敗しました。このバージョンではHDウォレット以外を作成することはできません。</translation>
     </message>
     <message>
         <source>Error initializing block database</source>
-        <translation>ブロック データベースの初期化中にエラー</translation>
+        <translation>ブロックデータベースの初期化時にエラーが発生しました</translation>
     </message>
     <message>
         <source>Error initializing wallet database environment %s!</source>
-        <translation>ウォレットのデータベース環境 %s 初期化エラー!</translation>
+        <translation>ウォレットデータベース環境 %s の初期化時にエラーが発生しました！</translation>
     </message>
     <message>
         <source>Error loading %s</source>
-        <translation>%s 読み込みエラー</translation>
+        <translation>%s の読み込みエラー</translation>
     </message>
     <message>
         <source>Error loading %s: Private keys can only be disabled during creation</source>
-        <translation>%s の読み込みエラー: 秘密鍵の無効化はウォレットの生成時のみ可能です。</translation>
+        <translation>%s の読み込みエラー: 秘密鍵の無効化はウォレットの生成時のみ可能です</translation>
     </message>
     <message>
         <source>Error loading %s: Wallet corrupted</source>
-        <translation>%s 読み込みエラー: ウォレットが壊れました</translation>
+        <translation>%s の読み込みエラー: ウォレットが壊れています</translation>
     </message>
     <message>
         <source>Error loading %s: Wallet requires newer version of %s</source>
-        <translation>%s の読み込みに失敗しました: ウォレットの読み込みにはより新しいバージョンの %s が必要です</translation>
+        <translation>%s の読み込みエラー: より新しいバージョンの %s が必要です</translation>
     </message>
     <message>
         <source>Error loading block database</source>
-        <translation>ブロック データベースの読み込みエラー</translation>
+        <translation>ブロックデータベースの読み込み時にエラーが発生しました</translation>
     </message>
     <message>
         <source>Error opening block database</source>
-        <translation>ブロック データベースの開始エラー</translation>
+        <translation>ブロックデータベースのオープン時にエラーが発生しました</translation>
     </message>
     <message>
         <source>Error: Disk space is low!</source>
-        <translation>エラー: ディスク容量不足!</translation>
+        <translation>エラー: ディスク容量が不足しています！</translation>
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
-        <translation>ポートのリッスンに失敗しました。必要であれば -listen=0 を使用してください。</translation>
+        <translation>ポートのリッスンに失敗しました。必要であれば -listen=0 を指定してください。</translation>
     </message>
     <message>
         <source>Failed to rescan the wallet during initialization</source>
-        <translation>初期化の途中でウォレットの再スキャンに失敗しました</translation>
+        <translation>初期化中にウォレットの再スキャンに失敗しました</translation>
     </message>
     <message>
         <source>Importing...</source>
-        <translation>インポートしています……</translation>
+        <translation>インポート中...</translation>
     </message>
     <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
-        <translation>不正なブロックあるいは、生成されていないブロックが見つかりました。ネットワークの datadir が間違っていませんか?</translation>
+        <translation>ジェネシスブロックが不正であるか、見つかりません。ネットワークの datadir が間違っていませんか？</translation>
     </message>
     <message>
         <source>Initialization sanity check failed. %s is shutting down.</source>
-        <translation>初期化時の健全性チェックに失敗しました。%s を終了します。</translation>
+        <translation>初期化時の健全性検査に失敗しました。%s を終了します。</translation>
     </message>
     <message>
         <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>-%s=&lt;数量&gt; に対する不正な額: '%s'</translation>
+        <translation>-%s=&lt;amount&gt; オプションに対する不正な amount: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>-discardfee=&lt;amount&gt; に対する不正な数量: '%s'</translation>
+        <translation>-discardfee=&lt;amount&gt; オプションに対する不正な amount: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>不正な額 -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <translation>-fallbackfee=&lt;amount&gt; オプションに対する不正な amount: '%s'</translation>
     </message>
     <message>
         <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>指定のブロックディレクトリ"%s"は存在しません｡</translation>
+        <translation>指定されたブロックディレクトリ "%s" は存在しません｡</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
-        <translation>txindex データベースを更新しています</translation>
+        <translation>txindex データベースの更新中</translation>
     </message>
     <message>
         <source>Loading P2P addresses...</source>
-        <translation>P2Pアドレスを読み込んでいます...</translation>
+        <translation>P2Pアドレスの読み込み中...</translation>
     </message>
     <message>
         <source>Loading banlist...</source>
-        <translation>banリストを読み込んでいます...</translation>
+        <translation>banリストの読み込み中...</translation>
     </message>
     <message>
         <source>Not enough file descriptors available.</source>
@@ -3366,31 +3365,31 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Prune cannot be configured with a negative value.</source>
-        <translation>剪定値は負の値に設定できません。</translation>
+        <translation>節約モードの設定値は負の値にはできません。</translation>
     </message>
     <message>
         <source>Prune mode is incompatible with -txindex.</source>
-        <translation>剪定モードは-txindexと互換性がありません。</translation>
+        <translation>節約モードは -txindex オプションと互換性がありません。</translation>
     </message>
     <message>
         <source>Replaying blocks...</source>
-        <translation>ブロックをリプレイしています...</translation>
+        <translation>ブロックのリプレイ中...</translation>
     </message>
     <message>
         <source>Rewinding blocks...</source>
-        <translation>ブロックを巻き戻しています...</translation>
+        <translation>ブロックの巻き戻し中...</translation>
     </message>
     <message>
         <source>The source code is available from %s.</source>
-        <translation>ソースコードは %s より入手可能です。</translation>
+        <translation>ソースコードは %s から入手できます。</translation>
     </message>
     <message>
         <source>Transaction fee and change calculation failed</source>
-        <translation>トランザクション手数料およびおつりの計算に失敗しました</translation>
+        <translation>トランザクション手数料およびお釣りの計算に失敗しました</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. %s is probably already running.</source>
-        <translation>このコンピュータの %s にバインドすることができません。おそらく %s は既に実行されています。</translation>
+        <translation>このコンピュータの %s にバインドすることができません。%s がおそらく既に実行中です。</translation>
     </message>
     <message>
         <source>Unable to generate keys</source>
@@ -3406,19 +3405,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Unsupported argument -tor found, use -onion.</source>
-        <translation>サポートされていない引数 -tor が見つかりました。-onion を使用してください。</translation>
+        <translation>サポートされていない引数 -tor が指定されました。-onion を使用してください。</translation>
     </message>
     <message>
         <source>Unsupported logging category %s=%s.</source>
-        <translation>サポートされていないログカテゴリ %s=%s.</translation>
+        <translation>サポートされていないログカテゴリ %s=%s 。</translation>
     </message>
     <message>
         <source>Upgrading UTXO database</source>
-        <translation>UTXOデータベースを更新しています</translation>
+        <translation>UTXOデータベースの更新中</translation>
     </message>
     <message>
         <source>User Agent comment (%s) contains unsafe characters.</source>
-        <translation>ユーザエージェントのコメント (%s) には安全でない文字が含まれています。</translation>
+        <translation>ユーザエージェントのコメント ( %s ) に安全でない文字が含まれています。</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -3426,23 +3425,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart %s to complete</source>
-        <translation>ウォレットが書き直される必要がありました: 完了するために %s を再起動します</translation>
+        <translation>ウォレットの書き直しが必要です: 完了するために %s を再起動します</translation>
     </message>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
-        <translation>エラー: 内向きの接続をリッスンするのに失敗しました (エラー %s が返却されました)</translation>
+        <translation>エラー: 内向きの接続をリッスンするのに失敗しました（%s エラーが返却されました）</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>-maxtxfee=&lt;amount&gt; の数量の指定が不正です: '%s' (トランザクションが詰まってしまうのを防ぐため、少なくとも %s の最小中継手数料を指定しなければいけません)</translation>
+        <translation>-maxtxfee=&lt;amount&gt; オプションに対する不正な amount: '%s'（トランザクション詰まり防止のため、最小中継手数料の %s より大きくする必要があります）</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
-        <translation>手数料差引後のトランザクションの金額が小さすぎるため、送金できません。</translation>
+        <translation>取引の手数料差引後金額が小さすぎるため、送金できません。</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
-        <translation>非剪定モードに戻るためには-reindexオプションを使用してデータベースを再構築する必要があります。これによりブロックチェイン全体の再ダウンロードが行われます。</translation>
+        <translation>非節約モードに戻るためには -reindex オプションを指定してデータベースを再構築する必要があります。 ブロックチェーン全体の再ダウンロードが必要となります。</translation>
     </message>
     <message>
         <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
@@ -3454,7 +3453,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Error upgrading chainstate database</source>
-        <translation>チェインステートデータベースの更新エラー</translation>
+        <translation>chainstate データベースの更新時にエラーが発生しました</translation>
     </message>
     <message>
         <source>Information</source>
@@ -3462,23 +3461,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>無効な -onion アドレスまたはホスト名: '%s'</translation>
+        <translation>-onion オプションに対する不正なアドレスまたはホスト名: '%s'</translation>
     </message>
     <message>
         <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>無効な -proxy アドレスまたはホスト名: '%s'</translation>
+        <translation>-proxy オプションに対する不正なアドレスまたはホスト名: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>-paytxfee=&lt;amount&gt; に対する無効な数量です: '%s' (少なくとも %s でなければいけません)</translation>
+        <translation>-paytxfee=&lt;amount&gt; オプションにに対する不正な amount: '%s'（最低でも %s である必要があります）</translation>
     </message>
     <message>
         <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>-whitelist に対する無効なネットマスクです: '%s'</translation>
+        <translation>-whitelist オプションに対する不正なネットマスク: '%s'</translation>
     </message>
     <message>
         <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>-whitebind を用いてポートを指定する必要があります: '%s'</translation>
+        <translation>-whitebind オプションでポートを指定する必要があります: '%s'</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3490,15 +3489,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
-        <translation>トランザクションの金額が小さすぎて手数料を支払えません</translation>
+        <translation>取引の金額が小さすぎて手数料を支払えません</translation>
     </message>
     <message>
         <source>This is experimental software.</source>
-        <translation>これは実験的なソフトウェアです。</translation>
+        <translation>これは実験用のソフトウェアです。</translation>
     </message>
     <message>
         <source>Transaction amount too small</source>
-        <translation>取引の額が小さ過ぎます</translation>
+        <translation>取引の金額が小さすぎます</translation>
     </message>
     <message>
         <source>Transaction too large for fee policy</source>
@@ -3506,15 +3505,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction too large</source>
-        <translation>取引が大き過ぎます</translation>
+        <translation>トランザクションが大きすぎます</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
-        <translation>このコンピュータの %s にバインドすることができません (バインドが返したエラーは %s)</translation>
+        <translation>このコンピュータの %s にバインドすることができません（%s エラーが返却されました）</translation>
     </message>
     <message>
         <source>Unable to generate initial keys</source>
-        <translation>初期化キーを生成できません</translation>
+        <translation>イニシャル鍵を生成できません</translation>
     </message>
     <message>
         <source>Verifying wallet(s)...</source>
@@ -3534,11 +3533,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>
-        <translation>ウォレットからすべてのトランザクションを消去しています...</translation>
+        <translation>ウォレットから全取引を消去中...</translation>
     </message>
     <message>
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
-        <translation>-maxtxfee が非常に高く設定されています！ひとつのトランザクションでこの量の手数料が支払われてしまうことがあります。</translation>
+        <translation>-maxtxfee が非常に高く設定されています！ ひとつの取引でこの金額の手数料が支払われてしまうことがあります。</translation>
     </message>
     <message>
         <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
@@ -3546,23 +3545,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
-        <translation>これは手数料の推定機能が利用できない場合に支払うトランザクション手数料です。</translation>
+        <translation>これは、手数料推定機能が利用できない場合に支払う取引手数料です。</translation>
     </message>
     <message>
         <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>この製品はOpenSSLプロジェクトにより開発されたソフトウェアをOpenSSLツールキット %s として利用しています &lt;https://www.openssl.org/&gt;。また、Eric Young氏により開発された暗号ソフトウェア、Thomas Bernard氏により書かれたUPnPソフトウェアを用いています。</translation>
+        <translation>この製品は、OpenSSLツールキット %s で使用するためにOpenSSLプロジェクトにより開発されたソフトウェアと、Eric Young氏により開発された暗号ソフトウェア、Thomas Bernard氏により開発されたUPnPソフトウェアを使用しています。</translation>
     </message>
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
-        <translation>ネットワークバージョン文字 (%i) の長さが最大の長さ (%i) を超えています。UAコメントの数や長さを削減してください。</translation>
+        <translation>ネットワークバージョン文字列の長さ（%i）が、最大の長さ (%i) を超えています。UAコメントの数や長さを削減してください。</translation>
     </message>
     <message>
         <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
-        <translation>サポートされていない引数 -socks が見つかりました。SOCKSバージョンの設定はできないようになりました。SOCKS5プロキシのみがサポートされています。</translation>
+        <translation>サポートされていない引数 -socks が指定されました。SOCKSバージョンは設定できなくなりました。SOCKS5プロキシのみがサポートされています。</translation>
     </message>
     <message>
         <source>Unsupported argument -whitelistalwaysrelay ignored, use -whitelistrelay and/or -whitelistforcerelay.</source>
-        <translation>サポートされていない引数 -whitelistalwaysrelay は無視されました。-whitelistrelay または -whitelistforcerelay を利用してください</translation>
+        <translation>サポートされていない引数 -whitelistalwaysrelay は無視されました。-whitelistrelay と -whitelistforcerelay のいずれか又は両方を利用してください</translation>
     </message>
     <message>
         <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
@@ -3570,15 +3569,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>警告: ウォレットファイルが破損していましたのでデータを復旧しました！元の %s は %s として %s に保存されました; 残高やトランザクションが正しくない場合にはバックアップから復元してください。</translation>
+        <translation>警告: ウォレットファイルが破損していたため、データを復旧しました！ 復旧前の %s は %s として %s に保存されました。残高や取引が正しくない場合にはバックアップから復元してください。</translation>
     </message>
     <message>
         <source>%s is set very high!</source>
-        <translation>%s の設定値は高すぎます</translation>
+        <translation>%s の設定値が高すぎです！</translation>
     </message>
     <message>
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>ウォレット %s の読み込みエラー。重複する -wallet ファイル名が指定されました。</translation>
+        <translation>ウォレット %s の読み込み時にエラーが発生しました。重複する -wallet ファイル名が指定されました。</translation>
     </message>
     <message>
         <source>Keypool ran out, please call keypoolrefill first</source>
@@ -3586,27 +3585,27 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Starting network threads...</source>
-        <translation>ネットワークのスレッドを起動しています...</translation>
+        <translation>ネットワークスレッドの起動中...</translation>
     </message>
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>ウォレットは最小中継手数料を下回る額の支払を拒否します。</translation>
+        <translation>ウォレットは最小中継手数料を下回る金額は支払いません。</translation>
     </message>
     <message>
         <source>This is the minimum transaction fee you pay on every transaction.</source>
-        <translation>これはすべてのトランザクションに対して最低限支払うべき手数料です。</translation>
+        <translation>これは、全ての取引に対して最低限支払うべき手数料です。</translation>
     </message>
     <message>
         <source>This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>これは取引を送信する場合に支払う取引手数料です。</translation>
+        <translation>これは、取引を送信する場合に支払う取引手数料です。</translation>
     </message>
     <message>
         <source>Transaction amounts must not be negative</source>
-        <translation>取引の額は負であってはいけません</translation>
+        <translation>取引の金額は負の値にはできません</translation>
     </message>
     <message>
         <source>Transaction has too long of a mempool chain</source>
-        <translation>トランザクションのmempoolチェインが長過ぎます</translation>
+        <translation>トランザクションのmempoolチェーンが長すぎます</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
@@ -3614,7 +3613,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>-onlynet で指定された '%s' は未知のネットワークです</translation>
+        <translation>-onlynet オプションに対する不明なネットワーク: '%s'</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -3622,15 +3621,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
-        <translation>おつりアドレスの鍵を生成することができません。このウォレットでは秘密鍵が無効です。</translation>
+        <translation>お釣りアドレスの鍵を生成することができません。このウォレットでは秘密鍵が無効です。</translation>
     </message>
     <message>
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
-        <translation>事前分割キープールをサポートするようにアップグレードせずに、非HD分割ウォレットをアップグレードすることはできません。 -upgradewallet=169900 または、バージョンを指定しない -upgradewallet を使用してください。</translation>
+        <translation>分割済みキープールをサポートするようにアップグレードしないと、非HD分割ウォレットをアップグレードすることはできません。 -upgradewallet=169900 オプションか、バージョン無しで -upgradewallet オプションを指定してください。</translation>
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation>手数料の見積りに失敗しました。代替手数料は無効です。数ブロック待つか、-fallbackfee を有効にしてください。</translation>
+        <translation>手数料推定に失敗しました。代替手数料が無効です。数ブロック待つか、-fallbackfee オプションを有効にしてください。</translation>
     </message>
     <message>
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
@@ -3642,11 +3641,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Loading block index...</source>
-        <translation>ブロック インデックスを読み込んでいます...</translation>
+        <translation>ブロックインデックスの読み込み中...</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
-        <translation>ウォレットを読み込んでいます...</translation>
+        <translation>ウォレットの読み込み中...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>
