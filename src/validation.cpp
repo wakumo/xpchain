@@ -2180,8 +2180,11 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         bool checkCoinBase = false;
         if(block.vtx[0]->vout.size() >= 1)
         {
-            checkCoinBase|=VerifyCoinBaseTx(block);
-            if(!checkCoinBase)
+            if(block.vtx[0]->vout.size() >= 3)
+            {
+                checkCoinBase = VerifyCoinBaseTx(block);
+            }
+            else if(block.vtx[0]->vout.size() >= 1)
             {
                 if(block.vtx[0]->vout[0].nValue < blockReward)
                 {
@@ -5117,7 +5120,14 @@ bool VerifyCoinBaseTx(const CBlock& block)
         LogPrintf("coinbase sig is incorrect\n");
         return false;
     }
-
+    if(size != block.vtx[0]->vout.size() - 2)
+    {
+        return false;
+    }
+    if(block.vtx[0]->vout[0].nValue != 0 || block.vtx[0]->vout[size+1].nValue != 0)
+    {
+        return false;
+    }
     //make rewardvalues and hash
     std::vector<std::pair<CScript, CAmount>> rewardValues;
     rewardValues.clear();
