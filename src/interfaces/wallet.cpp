@@ -456,6 +456,19 @@ public:
     {
         return MakeHandler(m_wallet.NotifyWatchonlyChanged.connect(fn));
     }
+    bool setRewardDistributionPcts(const std::vector<std::pair<std::string, std::uint8_t>>& pcts) override
+    {
+        return m_wallet.SetRewardDistributionPcts(pcts);
+    }
+    bool delRewardDistributionPcts() override
+    {
+        return m_wallet.DelRewardDistributionPcts();
+    }
+    std::vector<std::pair<std::string, std::uint8_t>> getRewardDistributionPcts() override
+    {
+        LOCK(m_wallet.cs_wallet);
+        return m_wallet.vRewardDistributionPcts;
+    }
 
     std::shared_ptr<CWallet> m_shared_wallet;
     CWallet& m_wallet;

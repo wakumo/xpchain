@@ -272,6 +272,15 @@ public:
     //! Register handler for watchonly changed messages.
     using WatchOnlyChangedFn = std::function<void(bool have_watch_only)>;
     virtual std::unique_ptr<Handler> handleWatchOnlyChanged(WatchOnlyChangedFn fn) = 0;
+
+    //! Add or update list of percentages of staking reward distribution.
+    virtual bool setRewardDistributionPcts(const std::vector<std::pair<std::string, std::uint8_t>>& pcts) = 0;
+
+    // Remove list of percentages of staking reward distributionress.
+    virtual bool delRewardDistributionPcts() = 0;
+
+    //! Get list of percentages of staking reward distribution.
+    virtual std::vector<std::pair<std::string, std::uint8_t>> getRewardDistributionPcts() = 0;
 };
 
 //! Tracking object returned by CreateTransaction and passed to CommitTransaction.

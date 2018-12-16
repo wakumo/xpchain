@@ -27,7 +27,7 @@
 #include <reverse_iterator.h>
 #include <script/script.h>
 #include <script/sigcache.h>
-#include <script/standard.h>
+//#include <script/standard.h>
 #include <shutdown.h>
 #include <timedata.h>
 #include <tinyformat.h>
@@ -46,6 +46,12 @@
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
+
+#include <kernel.h>
+#include <policy/stake.h>
+#include <pubkey.h>
+#include <key_io.h>
+#include <outputtype.h>
 
 #if defined(NDEBUG)
 # error "Bitcoin cannot be compiled without assertions."
@@ -1073,7 +1079,7 @@ static bool WriteBlockToDisk(const CBlock& block, CDiskBlockPos& pos, const CMes
     return true;
 }
 
-bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParams)
+bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParams, bool fProofOfStake)
 {
     block.SetNull();
 
@@ -1090,10 +1096,12 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
-    // Check the header
-    if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
-
+    if(!fProofOfStake)
+    {
+        // Check the header
+        if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
+            return error("ReadBlockFromDisk: Errors in pow block header at %s", pos.ToString());
+    }
     return true;
 }
 
@@ -1104,8 +1112,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
         LOCK(cs_main);
         blockPos = pindex->GetBlockPos();
     }
-
-    if (!ReadBlockFromDisk(block, blockPos, consensusParams))
+    if(!ReadBlockFromDisk(block, blockPos, consensusParams, IsPoSHeight(pindex->nHeight, consensusParams)))
         return false;
     if (block.GetHash() != pindex->GetBlockHash())
         return error("ReadBlockFromDisk(CBlock&, CBlockIndex*): GetHash() doesn't match index for %s at %s",
@@ -1166,10 +1173,70 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings >= 64)
         return 0;
 
-    CAmount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
+    CAmount nSubsidy = 11000000 * COIN;
     nSubsidy >>= halvings;
     return nSubsidy;
+}
+
+double_t GetAnnualRate(int nHeight, const Consensus::Params& consensusParams)
+{
+    int nSubsidyReducingInterval = 60 * 24 * 365;
+    if(!IsPoSHeight(nHeight, consensusParams))
+    {
+        return 0;
+    }
+    else if(IsPoSHeight(nHeight, consensusParams) && nHeight <= nSubsidyReducingInterval)
+    {
+        return 0.10;
+    }
+    else if(nSubsidyReducingInterval < nHeight && nHeight <= nSubsidyReducingInterval * 2)
+    {
+        return 0.09;
+    }
+    else if(nSubsidyReducingInterval * 2 < nHeight && nHeight <= nSubsidyReducingInterval * 3)
+    {
+        return 0.08;
+    }
+    else if(nSubsidyReducingInterval * 3 < nHeight && nHeight <= nSubsidyReducingInterval * 4)
+    {
+        return 0.07;
+    }
+    else if(nSubsidyReducingInterval * 4 < nHeight && nHeight <= nSubsidyReducingInterval * 5)
+    {
+        return 0.06;
+    }
+    else if(nSubsidyReducingInterval * 5 < nHeight)
+    {
+        return 0.05;
+    }
+
+}
+
+CAmount GetProofOfStakeReward(int nHeight, CAmount nAmount, uint32_t nTime, const Consensus::Params& consensusParams)
+{
+    if(!IsPoSHeight(nHeight, consensusParams))
+    {
+        return 0;
+    }
+
+    double_t dRewardCurveMaximum = 1.02500000;
+    double_t dRewardCurveLimit = 1.00000000;
+    double_t dRewardCurveBase = 0.01800000;
+    double_t dRewardCurveSteepness = 0.00000285;
+
+    if(nTime < consensusParams.nStakeMinAge)
+    {
+        return 0;
+    }
+
+    nTime = std::min(nTime, (uint32_t)consensusParams.nStakeMaxAge);
+
+    CAmount annual = nAmount * GetAnnualRate(nHeight, consensusParams);
+
+    double_t coefficient = dRewardCurveMaximum / (1.0 + (dRewardCurveMaximum / dRewardCurveBase - 1.0) * exp(-dRewardCurveSteepness * nTime));
+    coefficient = std::min(coefficient, dRewardCurveLimit);
+
+    return (CAmount) (annual * coefficient * nTime / (365 * 24 * 60 * 60));
 }
 
 bool IsInitialBlockDownload()
@@ -1809,6 +1876,11 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     assert(pindex);
     assert(*pindex->phashBlock == block.GetHash());
     int64_t nTimeStart = GetTimeMicros();
+    uint256 hashProofOfStake;
+    if(IsPoSHeight(pindex->nHeight, chainparams.GetConsensus()) && !CheckProofOfStake(block.vtx[1], block.nBits, hashProofOfStake, block.nTime))
+    {
+        return false;
+    }
 
     // Check it again in case a previous version let a bad block in
     // NOTE: We don't currently (re-)invoke ContextualCheckBlock() or
@@ -2048,8 +2120,89 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
     int64_t nTime3 = GetTimeMicros(); nTimeConnect += nTime3 - nTime2;
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs (%.2fms/blk)]\n", (unsigned)block.vtx.size(), MILLI * (nTime3 - nTime2), MILLI * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : MILLI * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
+    CAmount blockReward;
+    if(!IsPoSHeight(pindex->nHeight, chainparams.GetConsensus()))
+    {
+        blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+    }
+    else
+    {
+        uint256 hash;
+        CTransactionRef tx;
 
-    CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+        if(!GetTransaction(block.vtx[1]->vin[0].prevout.hash, tx, chainparams.GetConsensus(), hash, true))
+        {
+            return error("ConnectBlock(): coinstakeTx was not found");
+        }
+
+        if(tx->GetHash() != block.vtx[1]->vin[0].prevout.hash)
+        {
+            return error("ConnectBlock(): prevTx Hash is incorrect");
+        }
+
+        if(hash == uint256())
+        {
+            return error("ConnectBlock(): block of prevTx not found");
+        }
+
+        auto itr = mapBlockIndex.find(hash);
+
+        if(itr == mapBlockIndex.end())
+        {
+            return error("ConnectBlock(): coinstakeTx block was not found");
+        }
+
+        if(hash != (*itr).second->GetBlockHash())
+        {
+            return error("ConnectBlock(): coinstakeTx block hash is incorrect");
+        }
+
+        CBlockHeader header = (*itr).second->GetBlockHeader();
+
+        uint32_t nTime = block.nTime - header.nTime;
+
+        if(block.vtx[1]->vin.size() != 1)
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstaketx too many inputs");
+        }
+
+        if(block.vtx[1]->vout.size() != 1 )
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstaketx too many outputs");
+        }
+
+        if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
+        {
+            return error("ConnectBlock(): vtx[1] is not coinstaketx");
+        }
+
+        blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
+        bool checkCoinBase = false;
+        if(block.vtx[0]->vout.size() >= 1)
+        {
+            if(block.vtx[0]->vout.size() >= 3)
+            {
+                checkCoinBase = VerifyCoinBaseTx(block);
+            }
+            else if(block.vtx[0]->vout.size() >= 1)
+            {
+                if(block.vtx[0]->vout[0].nValue < blockReward)
+                {
+                    return error("ConnectBlock(): coinbase pays too little");
+                }
+                if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey))
+                {
+                    return error("ConnectBlock(): vtx[1].address != vtx[0].address");
+                }
+                checkCoinBase = true;
+            }
+        }
+
+        if(!checkCoinBase)
+        {
+            return error("ConnectBlock(): coinbase tx is incorrect");
+        }
+    }
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100,
                          error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
@@ -3093,7 +3246,15 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW))
+    auto itr = mapBlockIndex.find(block.hashPrevBlock);
+    int nHeight = 0;
+    if(itr != mapBlockIndex.end())
+    {
+        //do not know if this block does not have hashPrevBlock or hashPrevBlock is incorrect
+        nHeight = (*itr).second->nHeight + 1;
+    }
+
+    if (!CheckBlockHeader(block, state, consensusParams, (fCheckPOW && !IsPoSHeight(nHeight, consensusParams))))
         return false;
 
     // Check the merkle root.
@@ -3127,6 +3288,14 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         if (block.vtx[i]->IsCoinBase())
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
 
+    if(IsPoSHeight(nHeight, consensusParams))
+    {
+        if(block.vtx.size() < 2) // block doesn't include coinbase and coinstake
+        {
+            // return state.DoS()
+            return false;
+        }
+    }
     // Check transactions
     for (const auto& tx : block.vtx)
         if (!CheckTransaction(*tx, state, false))
@@ -3368,9 +3537,6 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
             return true;
         }
 
-        if (!CheckBlockHeader(block, state, chainparams.GetConsensus()))
-            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
-
         // Get prev block index
         CBlockIndex* pindexPrev = nullptr;
         BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
@@ -3381,6 +3547,9 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
             return state.DoS(100, error("%s: prev block invalid", __func__), REJECT_INVALID, "bad-prevblk");
         if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
             return error("%s: Consensus::ContextualCheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
+
+        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !IsPoSHeight(pindexPrev->nHeight + 1, chainparams.GetConsensus())))
+            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
 
         // If the previous block index isn't valid, determine if it descends from any block which
         // has been found invalid (m_failed_blocks), then mark pindexPrev and any blocks
@@ -4443,7 +4612,8 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, CDiskB
                     while (range.first != range.second) {
                         std::multimap<uint256, CDiskBlockPos>::iterator it = range.first;
                         std::shared_ptr<CBlock> pblockrecursive = std::make_shared<CBlock>();
-                        if (ReadBlockFromDisk(*pblockrecursive, it->second, chainparams.GetConsensus()))
+                        auto itr =  mapBlockIndex.find(head);
+                        if (ReadBlockFromDisk(*pblockrecursive, it->second, chainparams.GetConsensus(),IsPoSHeight((*itr).second->nHeight, chainparams.GetConsensus())))
                         {
                             LogPrint(BCLog::REINDEX, "%s: Processing out of order child %s of %s\n", __func__, pblockrecursive->GetHash().ToString(),
                                     head.ToString());
@@ -4846,3 +5016,137 @@ public:
         mapBlockIndex.clear();
     }
 } instance_of_cmaincleanup;
+
+bool IsPoSHeight(int n, const Consensus::Params& params)
+{
+    return n > params.nSwitchHeight;
+}
+uint256 GetRewardHash(const std::vector<std::pair<CScript, CAmount>>& vReward, CTransactionRef txCoinStake, uint32_t nTime)
+{
+    CDataStream ss(SER_GETHASH, 0);
+    for(std::pair<CScript, CAmount> p:vReward)
+    {
+        ss << p.first << p.second;
+    }
+    ss << nTime << txCoinStake->vin[0];
+    return Hash(ss.begin(), ss.end());
+}
+
+static bool EqualDestination(CTransactionRef txCoinStake, CPubKey pubkey)
+{
+    //address of txcoinstake output == address from pubkey
+    std::vector<std::vector<unsigned char>> vSolutions;
+    txnouttype whichType;
+    if (!Solver(txCoinStake->vout[0].scriptPubKey, whichType, vSolutions))
+        return false;
+
+    if(whichType == TX_SCRIPTHASH)
+    {
+        //p2sh(p2wpkh)
+        CTxDestination dest = GetDestinationForKey(pubkey, OutputType::P2SH_SEGWIT);
+        if(auto scriptID = boost::get<CScriptID>(&dest))
+        {
+            return *scriptID == CScriptID(uint160(vSolutions[0]));
+        }
+    }
+    else if(whichType == TX_PUBKEYHASH || whichType == TX_WITNESS_V0_KEYHASH)
+    {
+        //p2wpkh p2pkh
+        return CKeyID(uint160(vSolutions[0])) == pubkey.GetID();
+    }
+    return false;
+}
+
+bool VerifyCoinBaseTx(const CBlock& block)
+{
+    //If the number of transactions is 0, it returns false
+    if(block.vtx.size() < 1)
+    {
+        return false;
+    }
+    //sig is data output (number of output destination + signature + pubkey)
+    CScript sig = block.vtx[0]->vout[0].scriptPubKey;
+    //if the first of sig is OP_RETURN
+    if(sig.size() < 1)
+    {
+        LogPrintf("coinbase sig size is %d\n", sig.size());
+        return false;
+    }
+    if(sig[0] != OP_RETURN)
+    {
+        LogPrintf("sig[0] != OP_RETURN\n");
+        return false;
+    }
+    //get datas
+    CScriptBase::const_iterator ptr = sig.begin()+1;
+
+    //get number of output destination
+    opcodetype sizeOP;
+    std::vector<unsigned char> vchSize;
+    if(!GetScriptOp(ptr, sig.end(), sizeOP, &vchSize))
+    {
+        LogPrintf("size not found\n");
+        return false;
+    }
+    if(vchSize.size() > 4)
+    {
+        LogPrintf("size is not 4byte\n");
+        return false;
+    }
+    CScriptNum nSize(vchSize, false);
+    int size = nSize.getint();
+
+    //get signature
+    opcodetype sigOP;
+    std::vector<unsigned char> vchSig;
+    if(!GetScriptOp(ptr, sig.end(), sigOP, &vchSig))
+    {
+        LogPrintf("signature not found\n");
+        return false;
+    }
+
+    //get pubkey
+    opcodetype pubkeyOP;
+    std::vector<unsigned char> vchPubKey;
+    if(!GetScriptOp(ptr, sig.end(), pubkeyOP, &vchPubKey))
+    {
+        LogPrintf("pubkey not found\n");
+        return false;
+    }
+    CPubKey pubkey(vchPubKey.begin(), vchPubKey.end());
+    //printf("size = %d\n", block.vtx[0]->vout[0].scriptPubKey.size());
+    if(!pubkey.IsFullyValid())
+    {
+        LogPrintf("coinbase sig is incorrect\n");
+        return false;
+    }
+    if(size != block.vtx[0]->vout.size() - 2)
+    {
+        return false;
+    }
+    if(block.vtx[0]->vout[0].nValue != 0 || block.vtx[0]->vout[size+1].nValue != 0)
+    {
+        return false;
+    }
+    //make rewardvalues and hash
+    std::vector<std::pair<CScript, CAmount>> rewardValues;
+    rewardValues.clear();
+    rewardValues.resize(size);
+    //printf("vout size =  %d\n",block.vtx[0]->vout.size());
+    for(size_t i = 1;i<=size;i++)
+    {
+        rewardValues[i-1].first = block.vtx[0]->vout[i].scriptPubKey;
+        rewardValues[i-1].second = block.vtx[0]->vout[i].nValue;
+    }
+
+    //address from coinstakeTX output == address from pubkey
+    if(!EqualDestination(block.vtx[1], pubkey))
+    {
+        LogPrintf("coinstaketx output != address from pubkey\n");
+        return false;
+    }
+
+    uint256 hash = GetRewardHash(rewardValues, block.vtx[1], block.nTime);
+    //printf("verify hash = %s\n",hash.ToString().c_str());
+    return pubkey.Verify(hash, vchSig);
+}

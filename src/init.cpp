@@ -87,6 +87,7 @@ public:
     void Flush() const override {}
     void Stop() const override {}
     void Close() const override {}
+    void StartMinting(boost::thread_group& threadGroup) const override {}
 };
 
 void DummyWalletInit::AddWalletOptions() const
@@ -377,6 +378,9 @@ void SetupServerArgs()
     gArgs.AddArg("-par=<n>", strprintf("Set the number of script verification threads (%u to %d, 0 = auto, <0 = leave that many cores free, default: %d)",
         -GetNumCores(), MAX_SCRIPTCHECK_THREADS, DEFAULT_SCRIPTCHECK_THREADS), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-persistmempool", strprintf("Whether to save the mempool on shutdown and load on restart (default: %u)", DEFAULT_PERSIST_MEMPOOL), false, OptionsCategory::OPTIONS);
+
+    gArgs.AddArg("-minting","stake",false, OptionsCategory::STAKE);
+
 #ifndef WIN32
     gArgs.AddArg("-pid=<file>", strprintf("Specify pid file. Relative paths will be prefixed by a net-specific datadir location. (default: %s)", XPCHAIN_PID_FILENAME), false, OptionsCategory::OPTIONS);
 #else
@@ -527,10 +531,10 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/bitcoin/bitcoin>";
-    const std::string URL_WEBSITE = "<https://bitcoincore.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/xpc-wg/xpchain>";
+    const std::string URL_WEBSITE = "<https://www.xpchain.io/>";
 
-    return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) + " ") + "\n" +
+    return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2018, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
            strprintf(_("Please contribute if you find %s useful. "
                        "Visit %s for further information about the software."),
@@ -1754,6 +1758,7 @@ bool AppInitMain()
         return false;
     }
 
+    g_wallet_init_interface.StartMinting(threadGroup);
     // ********************************************************* Step 13: finished
 
     SetRPCWarmupFinished();

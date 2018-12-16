@@ -18,7 +18,6 @@ class TxIndex final : public BaseIndex
 {
 protected:
     class DB;
-
 private:
     const std::unique_ptr<DB> m_db;
 
@@ -33,6 +32,7 @@ protected:
     const char* GetName() const override { return "txindex"; }
 
 public:
+
     /// Constructs the index, which becomes available to be queried.
     explicit TxIndex(size_t n_cache_size, bool f_memory = false, bool f_wipe = false);
 
@@ -46,6 +46,8 @@ public:
     /// @param[out]  tx  The transaction itself.
     /// @return  true if transaction is found, false otherwise
     bool FindTx(const uint256& tx_hash, uint256& block_hash, CTransactionRef& tx) const;
+
+    bool FindTx(const uint256& tx_hash, CDiskTxPos& postx, CBlockHeader& header, CTransactionRef& txPrev);
 };
 
 /// The global transaction index, used in GetTransaction. May be null.

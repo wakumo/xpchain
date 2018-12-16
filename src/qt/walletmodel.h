@@ -21,6 +21,8 @@
 
 #include <QObject>
 
+extern bool fWalletUnlockMintOnly;
+
 enum class OutputType;
 
 class AddressTableModel;
@@ -28,6 +30,8 @@ class OptionsModel;
 class PlatformStyle;
 class RecentRequestsTableModel;
 class TransactionTableModel;
+class MintingTableModel;
+class StakingRewardSettingTableModel;
 class WalletModelTransaction;
 
 class CCoinControl;
@@ -138,7 +142,9 @@ public:
     OptionsModel *getOptionsModel();
     AddressTableModel *getAddressTableModel();
     TransactionTableModel *getTransactionTableModel();
+    MintingTableModel *getMintingTableModel();
     RecentRequestsTableModel *getRecentRequestsTableModel();
+    StakingRewardSettingTableModel *getStakingRewardSettingTableModel();
 
     EncryptionStatus getEncryptionStatus() const;
 
@@ -226,7 +232,9 @@ private:
 
     AddressTableModel *addressTableModel;
     TransactionTableModel *transactionTableModel;
+    MintingTableModel *mintingTableModel;
     RecentRequestsTableModel *recentRequestsTableModel;
+    StakingRewardSettingTableModel *stakingRewardSettingTableModel;
 
     // Cache some values to be able to detect changes
     interfaces::WalletBalances m_cached_balances;

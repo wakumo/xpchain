@@ -11,7 +11,7 @@ fourth node is a miner.
 Miner creates 100 blocks so 1 2 3 each have 50 mature
 coins to spend.
 Then 5 iterations of 1/2/3 sending coins amongst
-themselves to get transactions in the wallets,
+themselves to get transactions in the wallets,0
 and the miner mining one block.
 
 Wallets are backed up using dumpwallet/backupwallet.
@@ -107,9 +107,9 @@ class WalletBackupTest(BitcoinTestFramework):
         self.nodes[3].generate(100)
         sync_blocks(self.nodes)
 
-        assert_equal(self.nodes[0].getbalance(), 50)
-        assert_equal(self.nodes[1].getbalance(), 50)
-        assert_equal(self.nodes[2].getbalance(), 50)
+        assert_equal(self.nodes[0].getbalance(), 11000000)
+        assert_equal(self.nodes[1].getbalance(), 11000000)
+        assert_equal(self.nodes[2].getbalance(), 11000000)
         assert_equal(self.nodes[3].getbalance(), 0)
 
         self.log.info("Creating transactions")
@@ -141,8 +141,8 @@ class WalletBackupTest(BitcoinTestFramework):
         total = balance0 + balance1 + balance2 + balance3
 
         # At this point, there are 214 blocks (103 for setup, then 10 rounds, then 101.)
-        # 114 are mature, so the sum of all wallets should be 114 * 50 = 5700.
-        assert_equal(total, 5700)
+        # 114 are mature, so the sum of all wallets should be 114 * 11000000 = 1254000000.
+        assert_equal(total, 1254000000)
 
         ##
         # Test restoring spender wallets from backups

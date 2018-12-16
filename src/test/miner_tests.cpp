@@ -52,34 +52,34 @@ struct {
     unsigned char extranonce;
     unsigned int nonce;
 } blockinfo[] = {
-    {1, 0x77ddcd5f}, {4, 0x348e13f4}, {1, 0xfd7a63b4}, {5, 0x23c47817},
-    {3, 0x0945456d}, {0, 0x621fa323}, {4, 0x9362e61d}, {0, 0xdd09b022},
-    {1, 0x10b7256d}, {2, 0x00f196f1}, {3, 0x084afdd1}, {3, 0xff0eabcb},
-    {4, 0x639197f3}, {4, 0xe43a4909}, {4, 0xf3b3e0a8}, {1, 0x3c19132d},
-    {4, 0xd683c259}, {5, 0x082dcd17}, {1, 0x630658c5}, {2, 0x46c521bb},
-    {2, 0xe5b86bcd}, {3, 0x2164c8a5}, {4, 0x80a532f8}, {5, 0xdaf7a2eb},
-    {0, 0xc5258361}, {0, 0xd50e3e71}, {2, 0x0bd244a5}, {4, 0x4dd7f046},
-    {5, 0xc0df3515}, {3, 0x4000efa7}, {3, 0xe6803ae1}, {4, 0x15a1a8eb},
-    {0, 0x9592d159}, {3, 0x21aea4b8}, {1, 0x8eba3944}, {2, 0x006f5d5c},
-    {2, 0x5a6a6887}, {3, 0x407351c6}, {5, 0x503507ed}, {5, 0xe594b27c},
-    {0, 0x80bf55f2}, {0, 0x8e36408e}, {1, 0x2c5ba9a8}, {1, 0xa5f3b7fd},
-    {2, 0xabdd530f}, {4, 0x0e28e1c8}, {5, 0x82f70d32}, {5, 0xc53b6f5d},
-    {0, 0x0a5ca55f}, {2, 0x293fefdf}, {4, 0xd772eb6f}, {5, 0x1283df5f},
-    {5, 0x872de10f}, {0, 0x1452bfcb}, {0, 0x4c368c63}, {2, 0x0b4c0dd7},
-    {3, 0x295b2e46}, {3, 0xf528284b}, {4, 0x3802b709}, {4, 0x3bcb1a8d},
-    {4, 0x740abaec}, {4, 0xae6a342d}, {5, 0xbd66d79a}, {3, 0x0857e79a},
-    {3, 0x2161ac36}, {3, 0x4a3528d2}, {3, 0x739915ea}, {5, 0xa304cadf},
-    {0, 0x4602fe0c}, {1, 0x6aa9337b}, {1, 0x743f7557}, {3, 0x21f0b60e},
-    {3, 0x4a0f24e0}, {4, 0xe0e69f94}, {5, 0x1d8032b0}, {5, 0x52b73eca},
-    {5, 0xe56510b4}, {0, 0x1480ebf9}, {2, 0x3dbb61c0}, {4, 0x9deca519},
-    {5, 0x3a2cc935}, {5, 0x79f184bc}, {0, 0x650afcea}, {0, 0x709a2d01},
-    {2, 0x4903b6ab}, {2, 0x93f89489}, {3, 0x8d8697d6}, {3, 0xb5b7712c},
-    {4, 0x63d1fd89}, {4, 0xfecb3e43}, {5, 0x22282a0f}, {1, 0x29eecade},
-    {1, 0x5aed6e09}, {1, 0x76b53a39}, {2, 0xec5dbaf6}, {3, 0x5be68ebd},
-    {3, 0xc9229840}, {5, 0x047d2c61}, {5, 0xf35e4673}, {0, 0x12d95ad6},
-    {0, 0x85dd7290}, {1, 0xbb55e6af}, {1, 0xe8dbdcae}, {2, 0x18e0e1ec},
-    {2, 0x76e6a2a1}, {3, 0x2336098b}, {3, 0xb6494755}, {0, 0x0d6df932},
-    {1, 0x9b7561b2}, {1, 0xcf1337ae},
+    {5, 0xaf59388e}, {0, 0x69b57979}, {3, 0x6bd85bda}, {3, 0xe975b347},
+    {4, 0xf6a2e6b1}, {0, 0x777c1b86}, {0, 0xcb891cad}, {1, 0x4e6f0484},
+    {1, 0x5492a002}, {3, 0x2838bce3}, {3, 0x7381f50f}, {4, 0xd9c90906},
+    {5, 0xccc8b71d}, {0, 0x5956fa11}, {0, 0x80177dc7}, {0, 0x9e6fb3cf},
+    {1, 0x8de0f923}, {3, 0xd4e8896f}, {3, 0xf9de44f9}, {4, 0x2a249667},
+    {4, 0x32619f82}, {4, 0xc4755d36}, {4, 0xca853f7b}, {5, 0x5ee8d148},
+    {0, 0xba4dcc92}, {1, 0x0fef5ad7}, {1, 0x888957ed}, {4, 0x3ac63c4d},
+    {5, 0x038569c3}, {5, 0x8f485730}, {5, 0xc3284f3a}, {5, 0xd6b0e77f},
+    {1, 0xe3c9e711}, {2, 0x7730dbe5}, {2, 0xc074eee9}, {3, 0xf91593d1},
+    {4, 0x01035569}, {5, 0x31d8872e}, {5, 0xb8d7cb97}, {5, 0xca395cd4},
+    {3, 0x2e45e0b0}, {3, 0x65a7d235}, {4, 0x1357af6b}, {5, 0x308bf33f},
+    {5, 0x38b20cb3}, {5, 0x460fe6ee}, {5, 0xa7ce3ab8}, {0, 0x09472967},
+    {0, 0x4251588e}, {0, 0xae94b043}, {2, 0xb7bdb1ab}, {4, 0x02433390},
+    {5, 0x03ee9214}, {5, 0x0b901d7b}, {5, 0x3d4656b0}, {5, 0x48b646dd},
+    {5, 0x778802eb}, {0, 0x8eac50e9}, {2, 0x542c3c62}, {3, 0x919be8a7},
+    {5, 0x8a51fb55}, {5, 0x8d8ee4f3}, {1, 0x890587e2}, {2, 0x6deeaf27},
+    {3, 0x53329e06}, {3, 0x615092f1}, {0, 0x4c0de164}, {0, 0x7a1f0356},
+    {1, 0x3798eef9}, {2, 0xaba2edea}, {2, 0xedea0372}, {3, 0x74811987},
+    {5, 0xf62559bc}, {0, 0x2ed29354}, {0, 0x9ce3fb33}, {0, 0xe7f8f652},
+    {1, 0x69a848bb}, {1, 0x7952df31}, {3, 0xcec9ba3e}, {5, 0x0f595709},
+    {1, 0x8a254f5f}, {3, 0x01cfd3c3}, {3, 0xea864db7}, {4, 0xa24487a6},
+    {5, 0x0a8e3eac}, {0, 0x2b8d21ca}, {1, 0x04d56b1d}, {1, 0x66155cf5},
+    {3, 0x2fdfce30}, {3, 0xa0915ae1}, {3, 0xd46cb8e8}, {5, 0x1929f847},
+    {5, 0xe0672620}, {0, 0x1ff7ddb1}, {1, 0xc0058825}, {2, 0x294cff70},
+    {3, 0x6772f394}, {5, 0xe814539e}, {2, 0x5191dd5a}, {2, 0xc34e59e8},
+    {2, 0xcd57af17}, {4, 0x103a1949}, {4, 0x2f95120f}, {1, 0x96d93046},
+    {1, 0xcefcb933}, {3, 0x5ff2a9b9}, {4, 0x6d134e3c}, {4, 0xf0458147},
+    {4, 0xf4d62672}, {1, 0x0404dac7}
 };
 
 static CBlockIndex CreateBlockIndex(int nHeight)
@@ -112,20 +112,20 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vin[0].prevout.n = 0;
     tx.vout.resize(1);
-    tx.vout[0].nValue = 5000000000LL - 1000;
-    // This tx has a low fee: 1000 satoshis
+    tx.vout[0].nValue = 110000000000LL - 1000;
+    // This tx has a low fee: 1000 mochas
     uint256 hashParentTx = tx.GetHash(); // save this txid for later use
     mempool.addUnchecked(hashParentTx, entry.Fee(1000).Time(GetTime()).SpendsCoinbase(true).FromTx(tx));
 
-    // This tx has a medium fee: 10000 satoshis
+    // This tx has a medium fee: 10000 mochas
     tx.vin[0].prevout.hash = txFirst[1]->GetHash();
-    tx.vout[0].nValue = 5000000000LL - 10000;
+    tx.vout[0].nValue = 110000000000LL - 10000;
     uint256 hashMediumFeeTx = tx.GetHash();
     mempool.addUnchecked(hashMediumFeeTx, entry.Fee(10000).Time(GetTime()).SpendsCoinbase(true).FromTx(tx));
 
     // This tx has a high fee, but depends on the first transaction
     tx.vin[0].prevout.hash = hashParentTx;
-    tx.vout[0].nValue = 5000000000LL - 1000 - 50000; // 50k satoshi fee
+    tx.vout[0].nValue = 110000000000LL - 1000 - 50000; // 50000 mocha fee
     uint256 hashHighFeeTx = tx.GetHash();
     mempool.addUnchecked(hashHighFeeTx, entry.Fee(50000).Time(GetTime()).SpendsCoinbase(false).FromTx(tx));
 
@@ -136,7 +136,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
 
     // Test that a package below the block min tx fee doesn't get included
     tx.vin[0].prevout.hash = hashHighFeeTx;
-    tx.vout[0].nValue = 5000000000LL - 1000 - 50000; // 0 fee
+    tx.vout[0].nValue = 110000000000LL - 1000 - 50000; // 0 fee
     uint256 hashFreeTx = tx.GetHash();
     mempool.addUnchecked(hashFreeTx, entry.Fee(0).FromTx(tx));
     size_t freeTxSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
@@ -146,7 +146,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     CAmount feeToUse = blockMinFeeRate.GetFee(2*freeTxSize) - 1;
 
     tx.vin[0].prevout.hash = hashFreeTx;
-    tx.vout[0].nValue = 5000000000LL - 1000 - 50000 - feeToUse;
+    tx.vout[0].nValue = 110000000000LL - 1000 - 50000 - feeToUse;
     uint256 hashLowFeeTx = tx.GetHash();
     mempool.addUnchecked(hashLowFeeTx, entry.Fee(feeToUse).FromTx(tx));
     pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey);
@@ -172,8 +172,8 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     // Add a 0-fee transaction that has 2 outputs.
     tx.vin[0].prevout.hash = txFirst[2]->GetHash();
     tx.vout.resize(2);
-    tx.vout[0].nValue = 5000000000LL - 100000000;
-    tx.vout[1].nValue = 100000000; // 1BTC output
+    tx.vout[0].nValue = 110000000000LL - 60000000;
+    tx.vout[1].nValue = 60000000; // 6000XPC output
     uint256 hashFreeTx2 = tx.GetHash();
     mempool.addUnchecked(hashFreeTx2, entry.Fee(0).SpendsCoinbase(true).FromTx(tx));
 
@@ -181,7 +181,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     tx.vin[0].prevout.hash = hashFreeTx2;
     tx.vout.resize(1);
     feeToUse = blockMinFeeRate.GetFee(freeTxSize);
-    tx.vout[0].nValue = 5000000000LL - 100000000 - feeToUse;
+    tx.vout[0].nValue = 110000000000LL - 60000000 - feeToUse;
     uint256 hashLowFeeTx2 = tx.GetHash();
     mempool.addUnchecked(hashLowFeeTx2, entry.Fee(feeToUse).SpendsCoinbase(false).FromTx(tx));
     pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey);
@@ -195,7 +195,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     // This tx will be mineable, and should cause hashLowFeeTx2 to be selected
     // as well.
     tx.vin[0].prevout.n = 1;
-    tx.vout[0].nValue = 100000000 - 10000; // 10k satoshi fee
+    tx.vout[0].nValue = 60000000 - 10000; // 10000 mocha fee
     mempool.addUnchecked(tx.GetHash(), entry.Fee(10000).FromTx(tx));
     pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey);
     BOOST_CHECK(pblocktemplate->block.vtx[8]->GetHash() == hashLowFeeTx2);
@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     // Note that by default, these tests run with size accounting enabled.
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
     const CChainParams& chainparams = *chainParams;
-    CScript scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+    CScript scriptPubKey = CScript() << ParseHex("039db95916fba1def89a58e75205f7c581f219da808a0ecadfa827c10963c01c24") << OP_CHECKSIG;
     std::unique_ptr<CBlockTemplate> pblocktemplate;
     CMutableTransaction tx;
     CScript script;
@@ -257,10 +257,10 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     // Just to make sure we can still make simple blocks
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey));
 
-    const CAmount BLOCKSUBSIDY = 50*COIN;
-    const CAmount LOWFEE = CENT;
-    const CAmount HIGHFEE = COIN;
-    const CAmount HIGHERFEE = 4*COIN;
+    const CAmount BLOCKSUBSIDY = 11000000 * COIN;
+    const CAmount LOWFEE = CENT * 10000;
+    const CAmount HIGHFEE = COIN * 10000;
+    const CAmount HIGHERFEE = 4 * COIN * 10000;
 
     // block sigops > limit: 1000 CHECKMULTISIG + 1
     tx.vin.resize(1);
@@ -367,8 +367,8 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 
     // subsidy changing
     int nHeight = chainActive.Height();
-    // Create an actual 209999-long block chain (without valid blocks).
-    while (chainActive.Tip()->nHeight < 209999) {
+    // Create an actual 9999-long block chain (without valid blocks).
+    while (chainActive.Tip()->nHeight < 9999) {
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
         next->phashBlock = new uint256(InsecureRand256());
@@ -379,8 +379,8 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         chainActive.SetTip(next);
     }
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey));
-    // Extend to a 210000-long block chain.
-    while (chainActive.Tip()->nHeight < 210000) {
+    // Extend to a 10000-long block chain.
+    while (chainActive.Tip()->nHeight < 10000) {
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
         next->phashBlock = new uint256(InsecureRand256());

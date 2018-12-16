@@ -19,11 +19,14 @@ EXPECTED_CIRCULAR_DEPENDENCIES=(
     "qt/bitcoingui -> qt/utilitydialog -> qt/bitcoingui"
     "qt/bitcoingui -> qt/walletframe -> qt/bitcoingui"
     "qt/bitcoingui -> qt/walletview -> qt/bitcoingui"
+    "qt/bitcoingui -> qt/walletview -> qt/stakingrewardsettingpage -> qt/bitcoingui"
     "qt/clientmodel -> qt/peertablemodel -> qt/clientmodel"
     "qt/paymentserver -> qt/walletmodel -> qt/paymentserver"
     "qt/recentrequeststablemodel -> qt/walletmodel -> qt/recentrequeststablemodel"
     "qt/sendcoinsdialog -> qt/walletmodel -> qt/sendcoinsdialog"
+    "qt/stakingrewardsettingmodel -> qt/walletmodel -> qt/stakingrewardsettingmodel"
     "qt/transactiontablemodel -> qt/walletmodel -> qt/transactiontablemodel"
+    "qt/mintingtablemodel -> qt/walletmodel -> qt/mintingtablemodel"
     "qt/walletmodel -> qt/walletmodeltransaction -> qt/walletmodel"
     "rpc/rawtransaction -> wallet/rpcwallet -> rpc/rawtransaction"
     "txmempool -> validation -> txmempool"
@@ -41,6 +44,9 @@ EXPECTED_CIRCULAR_DEPENDENCIES=(
     "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/signverifymessagedialog -> qt/addressbookpage"
     "qt/guiutil -> qt/walletmodel -> qt/optionsmodel -> qt/intro -> qt/guiutil"
     "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/sendcoinsdialog -> qt/sendcoinsentry -> qt/addressbookpage"
+    "kernel -> validation -> kernel"
+    "init -> miner -> wallet/wallet -> kernel -> init"
+    "keystore -> script/sign -> policy/policy -> validation -> outputtype -> keystore"
 )
 
 EXIT_CODE=0

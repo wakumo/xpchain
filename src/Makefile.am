@@ -121,6 +121,8 @@ BITCOIN_CORE_H = \
   index/txindex.h \
   indirectmap.h \
   init.h \
+  kernel.h \
+  kernelrecord.h \
   interfaces/handler.h \
   interfaces/node.h \
   interfaces/wallet.h \
@@ -144,6 +146,7 @@ BITCOIN_CORE_H = \
   policy/fees.h \
   policy/policy.h \
   policy/rbf.h \
+  policy/stake.h \
   pow.h \
   protocol.h \
   random.h \
@@ -227,6 +230,8 @@ libbitcoin_server_a_SOURCES = \
   index/base.cpp \
   index/txindex.cpp \
   init.cpp \
+  kernel.cpp \
+  kernelrecord.cpp \
   dbwrapper.cpp \
   merkleblock.cpp \
   miner.cpp \
@@ -237,6 +242,7 @@ libbitcoin_server_a_SOURCES = \
   policy/fees.cpp \
   policy/policy.cpp \
   policy/rbf.cpp \
+  policy/stake.cpp \
   pow.cpp \
   rest.cpp \
   rpc/blockchain.cpp \

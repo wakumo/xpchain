@@ -4,6 +4,7 @@ FORMS += \
     ../src/qt/forms/askpassphrasedialog.ui \
     ../src/qt/forms/coincontroldialog.ui \
     ../src/qt/forms/editaddressdialog.ui \
+    ../src/qt/forms/editstakingrewarddistributiondialog.ui \
     ../src/qt/forms/helpmessagedialog.ui \
     ../src/qt/forms/intro.ui \
     ../src/qt/forms/openuridialog.ui \
@@ -15,6 +16,7 @@ FORMS += \
     ../src/qt/forms/sendcoinsdialog.ui \
     ../src/qt/forms/sendcoinsentry.ui \
     ../src/qt/forms/signverifymessagedialog.ui \
+    ../src/qt/forms/stakingrewardsettingpage.ui \
     ../src/qt/forms/transactiondescdialog.ui \
 
 RESOURCES += \
