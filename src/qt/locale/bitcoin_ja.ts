@@ -1051,15 +1051,15 @@
     <name>MintingView</name>
     <message>
         <source>transaction is too young</source>
-        <translation>トランザクションは成熟前</translation>
+        <translation>熟成前</translation>
     </message>
     <message>
         <source>transaction is mature</source>
-        <translation>トランザクションは成熟中</translation>
+        <translation>熟成中</translation>
     </message>
     <message>
         <source>transaction has reached maximum probability</source>
-        <translation>トランザクションは最大鋳造確率に到達済み</translation>
+        <translation>最大鋳造確率に到達済み</translation>
     </message>
     <message>
         <source>Display minting probability within : </source>
