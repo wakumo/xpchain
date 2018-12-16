@@ -20,29 +20,6 @@ struct Hasher
 //blocktime, TxPrevOffset, amount of prevtx, prevout.n
 unordered_map<uint256, tuple<uint32_t, unsigned int, CAmount, uint64_t>, Hasher>m_txdata;
 
-// ppcoin kernel protocol
-// coinstake must meet hash target according to the protocol:
-// kernel (input 0) must meet the formula
-//     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nCoinDayWeight
-// this ensures that the chance of getting a coinstake is proportional to the
-// amount of coin age one owns.
-// The reason this hash is chosen is the following:
-//   nStakeModifier: 
-//       (v0.3) scrambles computation to make it very difficult to precompute
-//              future proof-of-stake at the time of the coin's confirmation
-//       (v0.2) nBits (deprecated): encodes all past block timestamps
-//   txPrev.block.nTime: prevent nodes from guessing a good timestamp to
-//                       generate transaction for future advantage
-//   txPrev.offset: offset of txPrev inside block, to reduce the chance of 
-//                  nodes generating coinstake at the same time
-//   txPrev.nTime: reduce the chance of nodes generating coinstake at the same
-//                 time
-//   txPrev.vout.n: output number of txPrev, to reduce the chance of nodes
-//                  generating coinstake at the same time
-//   block/tx hash should not be used here as they can be generated in vast
-//   quantities so as to generate blocks faster, degrading the system back into
-//   a proof-of-work situation.
-//
 bool CheckStakeKernelHash(unsigned int nBits, uint32_t nTimeBlockFrom, unsigned int nTxPrevOffset, CAmount nAmount, uint64_t n, uint32_t nTimeTx, uint256& hashProofOfStake)
 {
     if (nTimeBlockFrom + Params().GetConsensus().nStakeMinAge > nTimeTx) // Min age requirement
