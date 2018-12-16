@@ -267,7 +267,7 @@ bool TxIndex::FindTx(const uint256& tx_hash, CDiskTxPos& postx, CBlockHeader& he
     if (!m_db->ReadTxPos(tx_hash, postx))
         return error("CheckProofOfStake() : tx index not found");  // tx index not found
     // Read txPrev and header of its block
-   
+
     CAutoFile file(OpenBlockFile(postx, true), SER_DISK, CLIENT_VERSION);
     try {
         file >> header;
