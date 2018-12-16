@@ -506,8 +506,8 @@
         <translation>ブロックは最新</translation>
     </message>
     <message>
-        <source>鋳造の状況を表示する</source>
-        <translation></translation>
+        <source>Show the status of minting</source>
+        <translation>鋳造の状況を表示する</translation>
     </message>
     <message>
         <source>&amp;Unlock Wallet for Minting Only</source>
@@ -1036,7 +1036,7 @@
     </message>
     <message>
         <source>Coin age in the output.</source>
-        <translation>アウトプットのコインAge</translation>
+        <translation>アウトプットのコインAge。</translation>
     </message>
     <message>
         <source>Chance to mint a block within given time interval.</source>
@@ -1051,15 +1051,15 @@
     <name>MintingView</name>
     <message>
         <source>transaction is too young</source>
-        <translation>トランザクションは成熟前</translation>
+        <translation>熟成前</translation>
     </message>
     <message>
         <source>transaction is mature</source>
-        <translation>トランザクションは成熟中</translation>
+        <translation>熟成中</translation>
     </message>
     <message>
         <source>transaction has reached maximum probability</source>
-        <translation>トランザクションは最大鋳造確率に到達済み</translation>
+        <translation>最大鋳造確率に到達済み</translation>
     </message>
     <message>
         <source>Display minting probability within : </source>
@@ -1308,7 +1308,7 @@
     </message>
     <message>
         <source>Prune &amp;block storage to</source>
-        <translation>ブロックの保存容量を次の値までに節約する(&amp;b):</translation>
+        <translation>ブロックの保存容量を次の値までに節約する(&amp;B):</translation>
     </message>
     <message>
         <source>GB</source>
@@ -1360,7 +1360,7 @@
     </message>
     <message>
         <source>Connect to the XPChain network through a SOCKS5 proxy.</source>
-        <translation>SOCKS5 プロキシ経由で XPChain ネットワークに接続する</translation>
+        <translation>SOCKS5 プロキシ経由で XPChain ネットワークに接続する。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1412,7 +1412,7 @@
     </message>
     <message>
         <source>M&amp;inimize on close</source>
-        <translation>閉じたときに最小化(&amp;i)</translation>
+        <translation>閉じたときに最小化(&amp;I)</translation>
     </message>
     <message>
         <source>&amp;Display</source>
@@ -1420,7 +1420,7 @@
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>ユーザーインターフェイスの言語(&amp;l):</translation>
+        <translation>ユーザーインターフェイスの言語(&amp;L):</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
@@ -1448,7 +1448,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>キャンセル (&amp;C)</translation>
+        <translation>キャンセル(&amp;C)</translation>
     </message>
     <message>
         <source>default</source>
@@ -2862,10 +2862,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>ステーキング報酬の設定</translation>
     </message>
     <message>
-        <source>You will get a staking reward every time you mine a block according to the following settings.&lt;br&gt;In calculating each amount of distribution, the number of it is rounded down to the nearest integer, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
-        <translation>ブロックを発掘すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;各分配量は計算時に整数へと切り捨てられ、余りは元金アドレスに送り返されます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
-    </message>
-    <message>
         <source>Enter address or label to search</source>
         <translation>検索したいアドレスまたはラベルを入力</translation>
     </message>
@@ -2888,6 +2884,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     <message>
         <source>&amp;New</source>
         <translation>新規(&amp;N)</translation>
+    </message>
+    <message>
+        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;When calculated, each amount of distribution is rounded down to the nearest integer in mochas, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation>ブロックを生成すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;各分配量は計算時に mocha 単位で切り捨てられ、余りは元金アドレスに送り返されます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
     </message>
     <message>
         <source>C&amp;opy</source>
@@ -2950,7 +2950,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <source>(no label)</source>
-        <translation>（ラベル無し）</translation>
+        <translation>(ラベル無し)</translation>
     </message>
 </context>
 <context>
@@ -3205,8 +3205,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>自分への送金</translation>
     </message>
     <message>
-        <source>Mined</source>
-        <translation>発掘</translation>
+        <source>Minted</source>
+        <translation>鋳造</translation>
     </message>
     <message>
         <source>watch-only</source>
@@ -3218,7 +3218,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <source>(no label)</source>
-        <translation>（ラベル無し）</translation>
+        <translation>(ラベル無し)</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
@@ -3288,8 +3288,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>自己送金</translation>
     </message>
     <message>
-        <source>Mined</source>
-        <translation>発掘</translation>
+        <source>Minted</source>
+        <translation>鋳造</translation>
     </message>
     <message>
         <source>Other</source>
@@ -3904,7 +3904,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
-        <translation>ネットワークバージョン文字列の長さ（%i）が、最大の長さ (%i) を超えています。UAコメントの数や長さを削減してください。</translation>
+        <translation>ネットワークバージョン文字列の長さ（%i）が、最大の長さ（%i） を超えています。UAコメントの数や長さを削減してください。</translation>
     </message>
     <message>
         <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>

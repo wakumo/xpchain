@@ -3677,12 +3677,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
-        <source>You will get a staking reward every time you mine a block according to the following settings.&lt;br&gt;In calculating each amount of distribution, the number of it is rounded down to the nearest integer, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
+        <location line="+19"/>
         <source>Enter address or label to search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3712,7 +3707,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="-57"/>
+        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;When calculated, each amount of distribution is rounded down to the nearest integer in mochas, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+74"/>
         <source>C&amp;opy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4126,7 +4126,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <location line="+2"/>
-        <source>Mined</source>
+        <source>Minted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4230,7 +4230,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <location line="+1"/>
-        <source>Mined</source>
+        <source>Minted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
