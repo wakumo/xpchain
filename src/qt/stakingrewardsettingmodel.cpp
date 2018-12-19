@@ -357,7 +357,7 @@ QString StakingRewardSettingTableModel::addRow(const QString &label, const QStri
     priv->findEntry(address, /* lower= */ nullptr, /* upper= */ nullptr, &lowerIndex, /* upperIndex= */ nullptr);
 
     beginInsertRows(QModelIndex(), lowerIndex, lowerIndex);
-    priv->settingEntriesTable.insert(lowerIndex, StakingRewardSettingTableEntry(label, address, percentage));
+    priv->settingEntriesTable.insert(lowerIndex, StakingRewardSettingTableEntry(_label, address, percentage));
     endInsertRows();
 
     return QString::fromStdString(strAddress);
