@@ -44,7 +44,8 @@ bool CheckStakeKernelHash(unsigned int nBits, uint32_t nTimeBlockFrom, unsigned 
     hashProofOfStake = Hash(ss.begin(), ss.end());
     //printf("hash = %s, target = %s\n", hashProofOfStake.ToString().c_str(), ArithToUint256(bnCoinDayWeight * bnTargetPerCoinDay).ToString().c_str());
     // Now check if proof-of-stake hash meets target protocol
-    if (UintToArith256(hashProofOfStake) > bnCoinDayWeight * bnTargetPerCoinDay)
+
+    if (arith_uint512(UintToArith256(hashProofOfStake))> arith_uint512(bnCoinDayWeight) * arith_uint512(bnTargetPerCoinDay))
         return false;
 
     return true;
