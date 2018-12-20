@@ -172,8 +172,8 @@
         <translation>Confirmar encriptación del monedero</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Advertencia: Si encripta su monedero y pierde su frase clave &lt;b&gt;PERDERÁ TODOS SUS BITCOINS&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>Advertencia: Si encripta su monedero y pierde su frase clave &lt;b&gt;PERDERÁ TODOS SUS XPCHAINS&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -691,8 +691,8 @@
         <translation>Esta etiqueta se vuelve roja si algún destinatario recibe una cantidad inferior a la actual puerta polvorienta.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Puede variar +/- %1 satoshi(s) por entrada.</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Puede variar +/- %1 mocha(s) por entrada.</translation>
     </message>
     <message>
         <source>(no label)</source>

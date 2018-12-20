@@ -176,8 +176,8 @@
         <translation>Підтвердіть шифрування гаманця</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>УВАГА: Якщо ви зашифруєте гаманець і забудете пароль, ви &lt;b&gt;ВТРАТИТЕ ВСІ СВОЇ БІТКОІНИ&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>УВАГА: Якщо ви зашифруєте гаманець і забудете пароль, ви &lt;b&gt;ВТРАТИТЕ ВСІ СВОЇ XPCHAINSИ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -709,8 +709,8 @@
         <translation>ні</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Може відрізнятися на +/- %1 сатоші за введені</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Може відрізнятися на +/- %1 mocha за введені</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2123,10 +2123,10 @@
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 mochas per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
         <translation>Вкажіть комісію за кБ (1,000 байт) віртуального розміру транзакції.
 
-Примітка: Так як комісія нараховується за байт, комісія "100 сатоші за кБ" для транзакції розміром 500 байт (пів 1 кБ) буде приблизно 50 сатоші. </translation>
+Примітка: Так як комісія нараховується за байт, комісія "100 mocha за кБ" для транзакції розміром 500 байт (пів 1 кБ) буде приблизно 50 mocha. </translation>
     </message>
     <message>
         <source>per kilobyte</source>

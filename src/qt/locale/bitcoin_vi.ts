@@ -168,8 +168,8 @@
         <translation>Xác nhận mã hóa ví</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Cảnh báo: Nếu bạn mã hóa ví và mất cụm mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ BITCOIN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>Cảnh báo: Nếu bạn mã hóa ví và mất cụm mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ XPCHAIN&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -687,8 +687,8 @@
         <translation>Label này chuyển sang đỏ nếu bất cứ giao dịch nhận nào có số lượng nhỏ hơn ngưỡng dust.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Có thể thay đổi +/-%1 satoshi(s) trên input.</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Có thể thay đổi +/-%1 mocha(s) trên input.</translation>
     </message>
     <message>
         <source>(no label)</source>

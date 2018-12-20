@@ -176,8 +176,8 @@
         <translation>Potwierdź szyfrowanie portfela</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Uwaga: jeśli zaszyfrujesz swój portfel i zgubisz hasło &lt;b&gt;STRACISZ WSZYSTKIE SWOJE BITCOINY&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>Uwaga: jeśli zaszyfrujesz swój portfel i zgubisz hasło &lt;b&gt;STRACISZ WSZYSTKIE SWOJE XPCHAINY&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -713,8 +713,8 @@
         <translation>Ta etykieta staje się czerwona jeżeli którykolwiek odbiorca otrzymuje kwotę mniejszą niż obecny próg pyłu.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Waha się +/- %1 satoshi na wejście.</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Waha się +/- %1 mocha na wejście.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2138,10 +2138,10 @@ Korzystanie z opłaty domyślnej może skutkować wysłaniem transakcji, która 
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 mochas per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
         <translation>Określ niestandardową opłatę za kB (1000 bajtów) wirtualnego rozmiaru transakcji.
 
-Uwaga: Ponieważ opłata jest naliczana za każdy bajt, opłata "100 satoshi za kB" w przypadku transakcji o wielkości 500 bajtów (połowa 1 kB) ostatecznie da opłatę w wysokości tylko 50 satoshi.</translation>
+Uwaga: Ponieważ opłata jest naliczana za każdy bajt, opłata "100 mocha za kB" w przypadku transakcji o wielkości 500 bajtów (połowa 1 kB) ostatecznie da opłatę w wysokości tylko 50 mocha.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
