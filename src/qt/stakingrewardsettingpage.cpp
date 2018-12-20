@@ -153,7 +153,7 @@ void StakingRewardSettingPage::calculateSurplus()
     } else if(totalPcts == 100) // No coins will be sent back.
     {
         ui->labelSurplus->setText(
-            tr("Almost all reward will be sent as above. If there are some XPChains left by rounding, they will be sent back to the captal address."));
+            tr("Almost all reward will be sent as above."));
         ui->labelSurplus->setStyleSheet(QString());
         ui->okButton->setEnabled(true);
     } else // Error: thte total of percentage exceeds maximum
