@@ -587,11 +587,8 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
     RenameThread("xpchain-stake-minter");
 
     /*
-    TODO:use these messages
+    TODO:write warnig if cannot stake
     */
-    //std::string strMintMessage = _("Info: Minting suspended due to locked wallet.");
-    //std::string strMintDisabledMessage = _("Info: Minting disabled by 'nominting' option.");
-    //std::string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
     try
     {
         while (true)
@@ -605,8 +602,6 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
             regtest always stake
             others always mint GetBoolArg or !vNodes.empty()
             */
-            //while (vNodes.empty())
-            //    MilliSleep(1000);
 
             while(wallet->IsLocked())
             {
