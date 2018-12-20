@@ -14,6 +14,7 @@
 #include <vector>
 
 class uint256;
+class arith_uint512;
 
 class uint_error : public std::runtime_error {
 public:
@@ -280,9 +281,22 @@ public:
 
     friend uint256 ArithToUint256(const arith_uint256 &);
     friend arith_uint256 UintToArith256(const uint256 &);
+    friend arith_uint512;
 };
 
 uint256 ArithToUint256(const arith_uint256 &);
 arith_uint256 UintToArith256(const uint256 &);
+
+class arith_uint512 : public base_uint<512> {
+public:
+    arith_uint512(){}
+    arith_uint512(const base_uint<512>& b) : base_uint<512>(b) {}
+    arith_uint512(uint64_t b) : base_uint<512>(b) {}
+    arith_uint512(const arith_uint256& b){
+        for(int i = 0;i < b.WIDTH;i++){
+            pn[i] = b.pn[i];
+        }
+    }
+};
 
 #endif // BITCOIN_ARITH_UINT256_H
