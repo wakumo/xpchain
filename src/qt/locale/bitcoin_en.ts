@@ -3677,7 +3677,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+12"/>
+        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;Each amount of distribution is rounded down to the nearest integer in mochas.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
         <source>Enter address or label to search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3707,12 +3712,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-57"/>
-        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;When calculated, each amount of distribution is rounded down to the nearest integer in mochas, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+74"/>
+        <location line="+17"/>
         <source>C&amp;opy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3753,17 +3753,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <location line="+6"/>
-        <source>Almost all reward will be sent as above. If there are some XPChains left by rounding, they will be sent back to the captal address.</source>
+        <source>Almost all reward will be sent as above.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>The total of distribution percentage must be 100% or less.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+91"/>
-        <source>The total of distribution percentage must be 100% or less</source>
+        <source>The total of distribution percentage must be 100% or less.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
