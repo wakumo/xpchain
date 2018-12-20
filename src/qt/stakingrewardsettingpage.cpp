@@ -249,7 +249,7 @@ void StakingRewardSettingPage::on_okButton_clicked()
     if(totalPct > 100)
     {
         // There's almost no chance to get here because ok button is automatically disabled in calculating of surplus.
-        QMessageBox::critical(this, windowTitle(), tr("The total of distribution percentage must be 100% or less"),
+        QMessageBox::critical(this, windowTitle(), tr("The total of distribution percentage must be 100% or less."),
             QMessageBox::Ok, QMessageBox::Ok);
         returnValue = std::vector<std::pair<std::string, std::uint8_t>>();
         return;
