@@ -176,8 +176,8 @@
         <translation>Confirmar cifrado del monedero</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Advertencia: Si cifra su monedero y pierde su contraseña&lt;b&gt;¡PERDERÁ TODOS SUS BITCOINS!&lt;/b&gt;</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>Advertencia: Si cifra su monedero y pierde su contraseña&lt;b&gt;¡PERDERÁ TODOS SUS XPCHAINS!&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -712,8 +712,8 @@
         <translation>Esta etiqueta se vuelve roja si algún destinatario recibe una cantidad inferior al actual umbral de polvo.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Puede variar +/- %1 satoshi(s) por entrada.</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Puede variar +/- %1 mocha(s) por entrada.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2136,10 +2136,10 @@
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 mochas per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
         <translation>Especifique una comisión personalizada por kB (1,000 bytes) del tamaño virtual de la transacción.
 
-Nota: Dado que la comisión se calcula por byte, una comisión de "100 satoshis por kB" para un tamaño de transacción de 500 bytes (la mitad de 1 kB) finalmente generará una comisión de solo 50 satoshis.</translation>
+Nota: Dado que la comisión se calcula por byte, una comisión de "100 mochas por kB" para un tamaño de transacción de 500 bytes (la mitad de 1 kB) finalmente generará una comisión de solo 50 mochas.</translation>
     </message>
     <message>
         <source>per kilobyte</source>

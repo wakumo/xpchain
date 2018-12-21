@@ -176,8 +176,8 @@
         <translation>Confirmar criptografia da carteira</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Aviso: Se você criptografar sua carteira e perder sua senha, você vai &lt;b&gt;PERDER TODOS OS SEUS BITCOINS&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>Aviso: Se você criptografar sua carteira e perder sua senha, você vai &lt;b&gt;PERDER TODOS OS SEUS XPCHAINS&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -709,8 +709,8 @@
         <translation>Este texto fica vermelho se qualquer destinatário receber uma quantidade menor que o limite atual para poeira.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Pode variar +/- %1 satoshi(s) por entrada</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Pode variar +/- %1 mocha(s) por entrada</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2133,10 +2133,10 @@
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 mochas per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
         <translation>Especifique uma taxa personalizada por kB (1.000 bytes) do tamanho virtual da transação.
 
-Nota:  Como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por uma transação de 500 bytes (metade de 1 kB) teria uma taxa final de apenas 50 satoshis.</translation>
+Nota:  Como a taxa é calculada por byte, uma taxa de "100 mochas por kB" por uma transação de 500 bytes (metade de 1 kB) teria uma taxa final de apenas 50 mochas.</translation>
     </message>
     <message>
         <source>per kilobyte</source>

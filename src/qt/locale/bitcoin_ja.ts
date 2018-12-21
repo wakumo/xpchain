@@ -176,7 +176,7 @@
         <translation>ウォレットの暗号化の承諾</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
         <translation>警告: もしもあなたのウォレットを暗号化してパスフレーズを失ってしまったなら、&lt;b&gt;あなたの XPChain はすべて失われます&lt;/b&gt;！</translation>
     </message>
     <message>
@@ -2862,6 +2862,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>ステーキング報酬の設定</translation>
     </message>
     <message>
+        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;Each amount of distribution is rounded down to the nearest integer in mochas.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation>ブロックを生成すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;分配量はそれぞれ mocha 単位で切り捨てられます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
+    </message>
+    <message>
         <source>Enter address or label to search</source>
         <translation>検索したいアドレスまたはラベルを入力</translation>
     </message>
@@ -2884,10 +2888,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     <message>
         <source>&amp;New</source>
         <translation>新規(&amp;N)</translation>
-    </message>
-    <message>
-        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;When calculated, each amount of distribution is rounded down to the nearest integer in mochas, and any remainder is sent back together to the captal address.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
-        <translation>ブロックを生成すると、以下の設定に従ってステーキング報酬を獲得します。&lt;br&gt;各分配量は計算時に mocha 単位で切り捨てられ、余りは元金アドレスに送り返されます。&lt;br&gt;注意: 変更は、OKボタンをクリック&lt;b&gt;した後に&lt;/b&gt;反映されます。</translation>
     </message>
     <message>
         <source>C&amp;opy</source>
@@ -2922,15 +2922,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>報酬の残り約 %1 %が元金アドレスに送り返されます。</translation>
     </message>
     <message>
-        <source>Almost all reward will be sent as above. If there are some XPChains left by rounding, they will be sent back to the captal address.</source>
-        <translation>ほぼ全額の報酬が上記の通り送られます。小数点以下切り捨ての際に余った XPChain は、元金アドレスに送り返されます。</translation>
+        <source>Almost all reward will be sent as above.</source>
+        <translation>ほぼ全額の報酬が上記の通り送られます。</translation>
     </message>
     <message>
         <source>The total of distribution percentage must be 100% or less.</source>
-        <translation>分配率の合計は100%以下である必要があります。</translation>
-    </message>
-    <message>
-        <source>The total of distribution percentage must be 100% or less</source>
         <translation>分配率の合計は100%以下である必要があります。</translation>
     </message>
 </context>

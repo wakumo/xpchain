@@ -176,8 +176,8 @@
         <translation>Confirmer le chiffrement du porte-monnaie</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Avertissement : si vous chiffrez votre porte-monnaie et perdez votre phrase de passe, vous &lt;b&gt;PERDREZ TOUS VOS BITCOINS&lt;/b&gt; !</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>Avertissement : si vous chiffrez votre porte-monnaie et perdez votre phrase de passe, vous &lt;b&gt;PERDREZ TOUS VOS XPCHAINS&lt;/b&gt; !</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -713,8 +713,8 @@
         <translation>Cette étiquette devient rouge si un destinataire reçoit un montant inférieur au seuil actuel de poussière.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Peut varier +/- %1 satoshi(s) par entrée.</translation>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
+        <translation>Peut varier +/- %1 mocha(s) par entrée.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2137,10 +2137,10 @@
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 mochas per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
         <translation>Déterminer des frais personnalisés par Ko (1 000 octets) de la taille virtuelle de la transaction.
 
-Note : Les frais étant calculés par octet, des frais de « 100 satoshis par Ko » pour une transaction d’une taille de 500 octets (la moitié de 1 Ko) donneront des frais de seulement 50 satoshis.</translation>
+Note : Les frais étant calculés par octet, des frais de « 100 mochas par Ko » pour une transaction d’une taille de 500 octets (la moitié de 1 Ko) donneront des frais de seulement 50 mochas.</translation>
     </message>
     <message>
         <source>per kilobyte</source>

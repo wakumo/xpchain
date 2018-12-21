@@ -201,6 +201,9 @@ template void base_uint<256>::SetHex(const char*);
 template void base_uint<256>::SetHex(const std::string&);
 template unsigned int base_uint<256>::bits() const;
 
+template base_uint<512>& base_uint<512>::operator*=(const base_uint<512>& b);
+template int base_uint<512>::CompareTo(const base_uint<512>&) const;
+
 // This implementation directly uses shifts instead of going
 // through an intermediate MPI representation.
 arith_uint256& arith_uint256::SetCompact(uint32_t nCompact, bool* pfNegative, bool* pfOverflow)
