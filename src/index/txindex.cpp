@@ -260,25 +260,3 @@ bool TxIndex::FindTx(const uint256& tx_hash, uint256& block_hash, CTransactionRe
     block_hash = header.GetHash();
     return true;
 }
-
-bool TxIndex::FindTx(const uint256& tx_hash, CDiskTxPos& postx, CBlockHeader& header, CTransactionRef& txPrev)
-{
-    // Get transaction index for the previous transaction
-    if (!m_db->ReadTxPos(tx_hash, postx))
-        return error("CheckProofOfStake() : tx index not found");  // tx index not found
-    // Read txPrev and header of its block
-
-    CAutoFile file(OpenBlockFile(postx, true), SER_DISK, CLIENT_VERSION);
-    try {
-        file >> header;
-        fseek(file.Get(), postx.nTxOffset, SEEK_CUR);
-        file >> txPrev;
-    } catch (std::exception& e) {
-        return error("%s() : deserialize or I/O error in CheckProofOfStake()", __PRETTY_FUNCTION__);
-    }
-    if (txPrev->GetHash() != tx_hash){
-        return error("%s() : txid mismatch in CheckProofOfStake()", __PRETTY_FUNCTION__);
-    }
-
-    return true;
-}

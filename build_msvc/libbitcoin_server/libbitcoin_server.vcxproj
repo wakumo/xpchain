@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\httpserver.cpp" />
     <ClCompile Include="..\..\src\index\base.cpp" />
     <ClCompile Include="..\..\src\init.cpp" />
+    <ClCompile Include="..\..\src\kernel.cpp" />
     <ClCompile Include="..\..\src\merkleblock.cpp" />
     <ClCompile Include="..\..\src\miner.cpp" />
     <ClCompile Include="..\..\src\net.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="..\..\src\policy\fees.cpp" />
     <ClCompile Include="..\..\src\policy\policy.cpp" />
     <ClCompile Include="..\..\src\policy\rbf.cpp" />
+    <ClCompile Include="..\..\src\policy\stake.cpp" />
     <ClCompile Include="..\..\src\pow.cpp" />
     <ClCompile Include="..\..\src\rest.cpp" />
     <ClCompile Include="..\..\src\shutdown.cpp" />
