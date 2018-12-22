@@ -24,14 +24,10 @@ bool CheckStakeKernelHash(unsigned int nBits, uint32_t nTimeBlockFrom, unsigned 
 {
     if (nTimeBlockFrom + Params().GetConsensus().nStakeMinAge > nTimeTx) // Min age requirement
         return false;
-        //return error("CheckStakeKernelHash() : min age violation");
 
     arith_uint256 bnTargetPerCoinDay;
     bnTargetPerCoinDay.SetCompact(nBits);
 
-    // v0.3 protocol kernel hash weight starts from 0 at the 30-day min age
-    // this change increases active coins participating the hash and helps
-    // to secure the network when proof-of-stake difficulty is low
     int64_t nTimeWeight = min((int64_t)nTimeTx - nTimeBlockFrom, Params().GetConsensus().nStakeMaxAge) - Params().GetConsensus().nStakeMinAge;
 
     arith_uint256 bnCoinDayWeight = arith_uint256(nAmount) * nTimeWeight / COIN / (24 * 60 * 60);
@@ -42,8 +38,6 @@ bool CheckStakeKernelHash(unsigned int nBits, uint32_t nTimeBlockFrom, unsigned 
     ss << nBits << nTimeBlockFrom << nTxPrevOffset << nTimeBlockFrom << n << nTimeTx;
 
     hashProofOfStake = Hash(ss.begin(), ss.end());
-    //printf("hash = %s, target = %s\n", hashProofOfStake.ToString().c_str(), ArithToUint256(bnCoinDayWeight * bnTargetPerCoinDay).ToString().c_str());
-    // Now check if proof-of-stake hash meets target protocol
 
     if (arith_uint512(UintToArith256(hashProofOfStake))> arith_uint512(bnCoinDayWeight) * arith_uint512(bnTargetPerCoinDay))
         return false;
@@ -98,7 +92,6 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
             return false;
         }
 
-        //return state.DoS(1, error("CheckProofOfStake() : txPrev not found")); // previous transaction not in main chain, may occur during initial download
         // Verify signature
         PrecomputedTransactionData txdata(*tx);
         if (!CScriptCheck(txTmp->vout[tx->vin[0].prevout.n], *tx, 0, 0, true, &txdata)())
@@ -137,7 +130,6 @@ bool CheckProofOfStake(const CTransactionRef& tx, unsigned int nBits, uint256& h
 
     if (!CheckStakeKernelHash(nBits, nTimeBlockFrom, nTxPrevOffset, nAmount, n, nBlockTime, hashProofOfStake))
         return false;
-        //return state.DoS(1, error("CheckProofOfStake() : INFO: check kernel failed on coinstake %s, hashProof=%s", tx->GetHash().ToString(), hashProofOfStake.ToString())); // may occur during initial download or if behind on block chain sync
 
     return true;
 
