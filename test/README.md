@@ -6,10 +6,10 @@ etc.
 There are currently two sets of tests in this directory:
 
 - [functional](/test/functional) which test the functionality of
-bitcoind and bitcoin-qt by interacting with them through the RPC and P2P
+xpchaind and xpchain-qt by interacting with them through the RPC and P2P
 interfaces.
-- [util](/test/util) which tests the bitcoin utilities, currently only
-bitcoin-tx.
+- [util](/test/util) which tests the xpchain utilities, currently only
+xpchain-tx.
 
 The util tests are run as part of `make check` target. The functional
 tests are run by the travis continuous build process whenever a pull

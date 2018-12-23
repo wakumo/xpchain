@@ -1,8 +1,8 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Bitcoin
+Upstream-Name: XPChain
 Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
  irc://#bitcoin@freenode.net
-Source: https://github.com/bitcoin/bitcoin
+Source: https://github.com/xpc-wg/xpchain
 
 Files: *
 Copyright: 2009-2018, Bitcoin Core Developers
@@ -86,8 +86,6 @@ License: Expat
 Comment: Modifications of Stephan Hutchings Typicons
 
 Files: src/qt/res/icons/about.png
-       src/qt/res/icons/bitcoin.*
-       share/pixmaps/bitcoin*
        src/qt/res/src/bitcoin.svg
 Copyright: Bitboy, Jonas Schnelli
 License: public-domain
@@ -97,6 +95,21 @@ Files: src/qt/res/icons/proxy.png
        src/qt/res/src/proxy.svg
 Copyright: Cristian Mircea Messel
 Licese: public-domain
+
+Files: src/qt/res/icons/xpchain.*
+       share/pixmaps/xpchain*
+Copyright: WEbrick
+License: webrick-license
+Comment: Site: https://www.webrick.co.kr/
+
+Files: src/policy/stake.cpp
+       src/policy/stake.h
+       src/policy/stake.h
+       src/qt/stakingrewardsettingentrydelegate.cpp
+       src/qt/stakingrewardsettingentrydelegate.h
+Copyright: 2018, XPChain Core Developers
+License: Expat
+Comment: The XPChain Core Developers refer to the numerous contributors to the project.
 
 
 License: Expat
@@ -155,3 +168,6 @@ Comment:
 
 License: public-domain
  This work is in the public domain.
+
+License: webrick-license
+ You can use them freely in public order and morals.

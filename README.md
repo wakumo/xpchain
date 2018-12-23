@@ -1,35 +1,37 @@
-Bitcoin Core integration/staging tree
+XPChain Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/bitcoin/bitcoin.svg?branch=master)](https://travis-ci.org/bitcoin/bitcoin)
+[![Build Status](https://travis-ci.org/xpc-wg/xpchain.svg?branch=master)](https://travis-ci.org/xpc-wg/xpchain)
 
-https://bitcoincore.org
+https://www.xpchain.io/
 
-What is Bitcoin?
+What is XPChain?
 ----------------
 
-Bitcoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Bitcoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Bitcoin Core is the name of open source
+XPChain, which is usually abbreviated XPC, is a cryptocurrency based on Bitcoin 0.17.0.
+
+XPChain introduces new proof-of-stake consensus as a secutiry model, which solves
+“nothing at stake” issue in a way proposed by Peercoin community, and enables you
+to distribute your staking rewards to anyone in the world.
+
+XPChain Core is the name of open source
 software which enables the use of this currency.
 
-For more information, as well as an immediately useable, binary version of
-the Bitcoin Core software, see https://bitcoincore.org/en/download/, or read the
-[original whitepaper](https://bitcoincore.org/bitcoin.pdf).
+For more information, <!-- as well as an immediately useable, binary version of
+the XPChain Core software, see https://bitcoincore.org/en/download/, --> read the [original whitepaper](https://www.xpchain.io/?loc=lnkwhitepaper).
 
 License
 -------
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+XPChain Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
-regularly to indicate new official, stable release versions of Bitcoin Core.
+completely stable. [Tags](https://github.com/xpc-wg/xpchain/tags) are created
+regularly to indicate new official, stable release versions of XPChain Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -64,13 +66,7 @@ not straightforward.
 Translations
 ------------
 
-Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).
-
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
-
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
-
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/bitcoin-translators).
+While Bitcoin has [their Transifex page](https://www.transifex.com/projects/p/bitcoin/),
+XPChain doesn't have such pages of external translation web service (e.g. Transifex or Crowdin). If you want to make some change as well as add new translations, just create a new GitHub pull request
+to whose title is prefixed “Translation:”.
+Read [translation_process.md](https://github.com/xpc-wg/xpchain/blob/master/doc/translation_process.md) for details.

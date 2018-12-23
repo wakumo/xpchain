@@ -1,14 +1,23 @@
 Translations
 ============
 
-The Bitcoin-Core project has been designed to support multiple localisations. This makes adding new phrases, and completely new languages easily achievable. For managing all application translations, Bitcoin-Core makes use of the Transifex online translation management tool.
+The XPChain-Core project has been designed to support multiple localisations. This makes adding new phrases, and completely new languages easily achievable.
 
-### Helping to translate (using Transifex)
-Transifex is setup to monitor the GitHub repo for updates, and when code containing new translations is found, Transifex will process any changes. It may take several hours after a pull-request has been merged, to appear in the Transifex web interface.
+Multiple language support is critical in assisting XPChain’s global adoption, and growth.
+One of XPChain’s greatest strengths is cross-border money transfers, any help making that easier is greatly appreciated.
 
-Multiple language support is critical in assisting Bitcoin’s global adoption, and growth. One of Bitcoin’s greatest strengths is cross-border money transfers, any help making that easier is greatly appreciated.
+### Helping to translate
 
-See the [Transifex Bitcoin project](https://www.transifex.com/projects/p/bitcoin/) to assist in translations. You should also join the translation mailing list for announcements - see details below.
+There are no external translation management tools for XPChain-Core.
+To help to translate:
+
+1. Clone (or download) your forked repository.
+2. Update `src/qt/bitcoinstrings.cpp` and `src/qt/locale/bitcoin_en.ts` (translation definition file) by executing `make translate` in `src/` directory. (described below)
+3. Check their diff if you need to.
+4. Make changes to translation source files in `src/qt/locale/`.
+   - Although they are located inside `src/qt/`, they also include translation of non-GUI strings (e.g. error messages on startup).
+   - Do not edit `src/qt/locale/bitcoin_en.ts`. This is the special definition file. (described below).
+5. [Create a pull request](#creating-a-pull-request).
 
 ### Writing code with translations
 We use automated scripts to help extract translations in both Qt, and non-Qt source files. It is rarely necessary to manually edit the files in `src/qt/locale/`. The translation source files must adhere to the following format:
@@ -30,39 +39,17 @@ QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
 ```
 
 ### Creating a pull-request
-For general PRs, you shouldn’t include any updates to the translation source files. They will be updated periodically, primarily around pre-releases, allowing time for any new phrases to be translated before public releases. This is also important in avoiding translation related merge conflicts.
-
-When an updated source file is merged into the GitHub repo, Transifex will automatically detect it (although it can take several hours). Once processed, the new strings will show up as "Remaining" in the Transifex web interface and are ready for translators.
+For non-translation PRs, you shouldn’t include any updates to the translation source files.
+In development, the original strings in source code may be frequently changed, so persistent tracking to them will cause floods of PRs in the repo.
 
 To create the pull-request, use the following commands:
 ```
 git add src/qt/bitcoinstrings.cpp src/qt/locale/bitcoin_en.ts
+git commit -m "Update translation definition files"
+git add bitcoin_xx_YY.ts
 git commit
 ```
-
-### Creating a Transifex account
-Visit the [Transifex Signup](https://www.transifex.com/signup/) page to create an account. Take note of your username and password, as they will be required to configure the command-line tool.
-
-You can find the Bitcoin translation project at [https://www.transifex.com/projects/p/bitcoin/](https://www.transifex.com/projects/p/bitcoin/).
-
-### Installing the Transifex client command-line tool
-The client is used to fetch updated translations. If you are having problems, or need more details, see [https://docs.transifex.com/client/installing-the-client](https://docs.transifex.com/client/installing-the-client)
-
-`pip install transifex-client`
-
-Setup your Transifex client config as follows. Please *ignore the token field*.
-
-```ini
-nano ~/.transifexrc
-
-[https://www.transifex.com]
-hostname = https://www.transifex.com
-password = PASSWORD
-token =
-username = USERNAME
-```
-
-The Transifex Bitcoin project config file is included as part of the repo. It can be found at `.tx/config`, however you shouldn’t need to change anything.
+Note that you have to replace `bitcoin_xx_YY.ts` with the name of file you changed.
 
 ### Synchronising translations
 To assist in updating translations, we have created a script to help.
@@ -73,8 +60,6 @@ To assist in updating translations, we have created a script to help.
 3. Update `src/Makefile.qt.include` manually or via
    `ls src/qt/locale/*ts|xargs -n1 basename|sed 's/\(bitcoin_\(.*\)\).ts/  qt\/locale\/\1.ts \\/'`
 4. `git add` new translations from `src/qt/locale/`
-
-**Do not directly download translations** one by one from the Transifex website, as we do a few post-processing steps before committing the translations.
 
 ### Handling Plurals (in source files)
 When new plurals are added to the source file, it's important to do the following steps:
@@ -100,6 +85,4 @@ To create a new language template, you will need to edit the languages manifest 
 **Note:** that the language translation file **must end in `.qm`** (the compiled extension), and not `.ts`.
 
 ### Questions and general assistance
-The Bitcoin-Core translation maintainers include *tcatm, seone, Diapolo, wumpus and luke-jr*. You can find them, and others, in the Freenode IRC chatroom - `irc.freenode.net #bitcoin-core-dev`.
-
-If you are a translator, you should also subscribe to the mailing list, https://groups.google.com/forum/#!forum/bitcoin-translators. Announcements will be posted during application pre-releases to notify translators to check for updates.
+You can contact the team via [BitcoinTalk](https://bitcointalk.org/index.php?topic=4022431.0), [official Twitter](https://twitter.com/xpchain_global), or [Discord server](https://discord.gg/DbfBWZY) (require Discord client).
