@@ -18,7 +18,7 @@ XPChain Core is the name of open source
 software which enables the use of this currency.
 
 For more information, <!-- as well as an immediately useable, binary version of
-the XPChain Core software, see https://bitcoincore.org/en/download/, --> read the [original whitepaper](https://xpchain.io/?loc=lnkwhitepaper).
+the XPChain Core software, see https://bitcoincore.org/en/download/, --> read the [original whitepaper](https://www.xpchain.io/?loc=lnkwhitepaper).
 
 License
 -------
