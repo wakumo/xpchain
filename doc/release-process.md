@@ -26,11 +26,9 @@ Before every major release:
   [this pull request](https://github.com/bitcoin/bitcoin/pull/12270) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
 
 Finally:
-* Update xpchain.io
 * Announce the release:
-  - XPChain Core announcements list https://bitcoincore.org/en/list/announcements/join/
-  - bitcoincore.org blog post
-  - Official announcement in Discord, Twitter, etc.
+  - Update xpchain.io
+  - Official announcements in Discord, Twitter, etc.
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
   - Create a [new GitHub release](https://github.com/xpc-wg/xpchain/releases/new) with a link to the archived release notes.
   - Celebrate
