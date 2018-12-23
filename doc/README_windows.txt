@@ -1,4 +1,4 @@
-Bitcoin Core
+XPChain Core
 =============
 
 Intro
