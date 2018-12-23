@@ -5,35 +5,38 @@ Developer Notes
 **Table of Contents**
 
 - [Developer Notes](#developer-notes)
-    - [Coding Style (General)](#coding-style-general)
-    - [Coding Style (C++)](#coding-style-c)
-    - [Doxygen comments](#doxygen-comments)
-    - [Coding Style (Python)](#coding-style-python)
-    - [Development tips and tricks](#development-tips-and-tricks)
-        - [Compiling for debugging](#compiling-for-debugging)
-        - [Compiling for gprof profiling](#compiling-for-gprof-profiling)
-        - [debug.log](#debuglog)
-        - [Testnet and Regtest modes](#testnet-and-regtest-modes)
-        - [DEBUG_LOCKORDER](#debug_lockorder)
-        - [Valgrind suppressions file](#valgrind-suppressions-file)
-        - [Compiling for test coverage](#compiling-for-test-coverage)
-    - [Locking/mutex usage notes](#lockingmutex-usage-notes)
-    - [Threads](#threads)
-    - [Ignoring IDE/editor files](#ignoring-ideeditor-files)
+  - [Coding Style (General)](#coding-style-general)
+  - [Coding Style (C++)](#coding-style-c)
+  - [Doxygen comments](#doxygen-comments)
+  - [Coding Style (Python)](#coding-style-python)
+  - [Development tips and tricks](#development-tips-and-tricks)
+    - [Compiling for debugging](#compiling-for-debugging)
+    - [Compiling for gprof profiling](#compiling-for-gprof-profiling)
+    - [debug.log](#debuglog)
+    - [Testnet and Regtest modes](#testnet-and-regtest-modes)
+    - [DEBUG_LOCKORDER](#debuglockorder)
+    - [Valgrind suppressions file](#valgrind-suppressions-file)
+    - [Compiling for test coverage](#compiling-for-test-coverage)
+  - [Locking/mutex usage notes](#lockingmutex-usage-notes)
+  - [Threads](#threads)
+  - [Ignoring IDE/editor files](#ignoring-ideeditor-files)
 - [Development guidelines](#development-guidelines)
-    - [General Bitcoin Core](#general-bitcoin-core)
-    - [Wallet](#wallet)
-    - [General C++](#general-c)
-    - [C++ data structures](#c-data-structures)
-    - [Strings and formatting](#strings-and-formatting)
-    - [Variable names](#variable-names)
-    - [Threads and synchronization](#threads-and-synchronization)
-    - [Source code organization](#source-code-organization)
-    - [GUI](#gui)
-    - [Subtrees](#subtrees)
-    - [Git and GitHub tips](#git-and-github-tips)
-    - [Scripted diffs](#scripted-diffs)
-    - [RPC interface guidelines](#rpc-interface-guidelines)
+  - [General XPChain Core](#general-xpchain-core)
+  - [Wallet](#wallet)
+  - [General C++](#general-c)
+  - [C++ data structures](#c-data-structures)
+  - [Strings and formatting](#strings-and-formatting)
+  - [Variable names](#variable-names)
+  - [Threads and synchronization](#threads-and-synchronization)
+  - [Source code organization](#source-code-organization)
+  - [GUI](#gui)
+  - [Subtrees](#subtrees)
+  - [Upgrading LevelDB](#upgrading-leveldb)
+    - [File Descriptor Counts](#file-descriptor-counts)
+    - [Consensus Compatibility](#consensus-compatibility)
+  - [Git and GitHub tips](#git-and-github-tips)
+  - [Scripted diffs](#scripted-diffs)
+  - [RPC interface guidelines](#rpc-interface-guidelines)
 
 <!-- markdown-toc end -->
 
@@ -209,7 +212,7 @@ to see it.
 
 ### Testnet and Regtest modes
 
-Run with the `-testnet` option to run with "play bitcoins" on the test network, if you
+Run with the `-testnet` option to run with "play xpchains" on the test network, if you
 are testing multi-machine code that needs to operate across the internet.
 
 If you are testing something that can run on one machine, run with the `-regtest` option.
@@ -218,7 +221,7 @@ that run in `-regtest` mode.
 
 ### DEBUG_LOCKORDER
 
-Bitcoin Core is a multi-threaded application, and deadlocks or other
+XPChain Core is a multi-threaded application, and deadlocks or other
 multi-threading bugs can be very difficult to track down. The `--enable-debug`
 configure option adds `-DDEBUG_LOCKORDER` to the compiler flags. This inserts
 run-time checks to keep track of which locks are held, and adds warnings to the
@@ -228,7 +231,7 @@ debug.log file if inconsistencies are detected.
 
 Valgrind is a programming tool for memory debugging, memory leak detection, and
 profiling. The repo contains a Valgrind suppressions file
-([`valgrind.supp`](https://github.com/bitcoin/bitcoin/blob/master/contrib/valgrind.supp))
+([`valgrind.supp`](https://github.com/xpc-wg/xpchain/blob/master/contrib/valgrind.supp))
 which includes known Valgrind warnings in our dependencies that cannot be fixed
 in-tree. Example use:
 
@@ -236,7 +239,7 @@ in-tree. Example use:
 $ valgrind --suppressions=contrib/valgrind.supp src/test/test_bitcoin
 $ valgrind --suppressions=contrib/valgrind.supp --leak-check=full \
       --show-leak-kinds=all src/test/test_bitcoin --log_level=test_suite
-$ valgrind -v --leak-check=full src/bitcoind -printtoconsole
+$ valgrind -v --leak-check=full src/xpchaind -printtoconsole
 ```
 
 ### Compiling for test coverage
@@ -257,7 +260,7 @@ make cov
 
 **Sanitizers**
 
-Bitcoin Core can be compiled with various "sanitizers" enabled, which add
+XPChain Core can be compiled with various "sanitizers" enabled, which add
 instrumentation for issues regarding things like memory safety, thread race
 conditions, or undefined behavior. This is controlled with the
 `--with-sanitizers` configure flag, which should be a comma separated list of
@@ -356,7 +359,7 @@ Ignoring IDE/editor files
 In closed-source environments in which everyone uses the same IDE it is common
 to add temporary files it produces to the project-wide `.gitignore` file.
 
-However, in open source software such as Bitcoin Core, where everyone uses
+However, in open source software such as XPChain Core, where everyone uses
 their own editors/IDE/tools, it is less common. Only you know what files your
 editor produces and this may change from version to version. The canonical way
 to do this is thus to create your local gitignore. Add this to `~/.gitconfig`:
@@ -386,9 +389,9 @@ Development guidelines
 ============================
 
 A few non-style-related recommendations for developers, as well as points to
-pay attention to for reviewers of Bitcoin Core code.
+pay attention to for reviewers of XPChain Core code.
 
-General Bitcoin Core
+General XPChain Core
 ----------------------
 
 - New features should be exposed on RPC first, then can be made available in the GUI
@@ -541,7 +544,7 @@ Strings and formatting
 
 - For `strprintf`, `LogPrint`, `LogPrintf` formatting characters don't need size specifiers
 
-  - *Rationale*: Bitcoin Core uses tinyformat, which is type safe. Leave them out to avoid confusion
+  - *Rationale*: XPChain Core uses tinyformat, which is type safe. Leave them out to avoid confusion
 
 Variable names
 --------------
@@ -683,12 +686,12 @@ Subtrees
 
 Several parts of the repository are subtrees of software maintained elsewhere.
 
-Some of these are maintained by active developers of Bitcoin Core, in which case changes should probably go
+Some of these are maintained by active developers of XPChain Core, in which case changes should probably go
 directly upstream without being PRed directly against the project.  They will be merged back in the next
 subtree merge.
 
 Others are external projects without a tight relationship with our project.  Changes to these should also
-be sent upstream but bugfixes may also be prudent to PR against Bitcoin Core so that they can be integrated
+be sent upstream but bugfixes may also be prudent to PR against XPChain Core so that they can be integrated
 quickly.  Cosmetic changes should be purely taken upstream.
 
 There is a tool in `test/lint/git-subtree-check.sh` to check a subtree directory for consistency with
@@ -721,7 +724,7 @@ you must be aware of.
 
 In most configurations we use the default LevelDB value for `max_open_files`,
 which is 1000 at the time of this writing. If LevelDB actually uses this many
-file descriptors it will cause problems with Bitcoin's `select()` loop, because
+file descriptors it will cause problems with XPChain's `select()` loop, because
 it may cause new sockets to be created where the fd value is >= 1024. For this
 reason, on 64-bit Unix systems we rely on an internal LevelDB optimization that
 uses `mmap()` + `close()` to open table files without actually retaining
@@ -732,7 +735,7 @@ In addition to reviewing the upstream changes in `env_posix.cc`, you can use `ls
 check this. For example, on Linux this command will show open `.ldb` file counts:
 
 ```bash
-$ lsof -p $(pidof bitcoind) |\
+$ lsof -p $(pidof xpchaind) |\
     awk 'BEGIN { fd=0; mem=0; } /ldb$/ { if ($4 == "mem") mem++; else fd++ } END { printf "mem = %s, fd = %s\n", mem, fd}'
 mem = 119, fd = 0
 ```
@@ -754,7 +757,7 @@ to check for issues affecting consensus compatibility.
 For example, if LevelDB had a bug that accidentally prevented a key from being
 returned in an edge case, and that bug was fixed upstream, the bug "fix" would
 be an incompatible consensus change. In this situation the correct behavior
-would be to revert the upstream fix before applying the updates to Bitcoin's
+would be to revert the upstream fix before applying the updates to XPChain's
 copy of LevelDB. In general you should be wary of any upstream changes affecting
 what data is returned from LevelDB queries.
 
@@ -800,7 +803,7 @@ Git and GitHub tips
 
         [remote "upstream-pull"]
                 fetch = +refs/pull/*:refs/remotes/upstream-pull/*
-                url = git@github.com:bitcoin/bitcoin.git
+                url = git@github.com:xpc-wg/xpchain.git
 
   This will add an `upstream-pull` remote to your git repository, which can be fetched using `git fetch --all`
   or `git fetch upstream-pull`. Afterwards, you can use `upstream-pull/NUMBER/head` in arguments to `git show`,
@@ -824,7 +827,7 @@ To create a scripted-diff:
 
 The scripted-diff is verified by the tool `test/lint/commit-script-check.sh`
 
-Commit [`bb81e173`](https://github.com/bitcoin/bitcoin/commit/bb81e173) is an example of a scripted-diff.
+Commit [`bb81e173`](https://github.com/xpc-wg/xpchain/commit/bb81e173) is an example of a scripted-diff.
 
 RPC interface guidelines
 --------------------------
@@ -866,7 +869,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 - Try not to overload methods on argument type. E.g. don't make `getblock(true)` and `getblock("hash")`
   do different things.
 
-  - *Rationale*: This is impossible to use with `bitcoin-cli`, and can be surprising to users.
+  - *Rationale*: This is impossible to use with `xpchain-cli`, and can be surprising to users.
 
   - *Exception*: Some RPC calls can take both an `int` and `bool`, most notably when a bool was switched
     to a multi-value, or due to other historical reasons. **Always** have false map to 0 and
@@ -885,7 +888,7 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 
 - Add every non-string RPC argument `(method, idx, name)` to the table `vRPCConvertParams` in `rpc/client.cpp`.
 
-  - *Rationale*: `bitcoin-cli` and the GUI debug console use this table to determine how to
+  - *Rationale*: `xpchain-cli` and the GUI debug console use this table to determine how to
     convert a plaintext command line to JSON. If the types don't match, the method can be unusable
     from there.
 
