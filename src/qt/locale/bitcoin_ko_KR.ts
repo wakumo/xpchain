@@ -2863,7 +2863,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;Each amount of distribution is rounded down to the nearest integer in mochas.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
-        <translation>블록을 생성하게 되면, 이하 설정에 따라 채굴보상을 받게 됩니다. & lt; br & gt; 각 분배 금액은 mocha단위로 변경됩니다. & lt; br & gt; 참고 : 변경 사항은 확인 버튼을 클릭 & lt; b & gt;한 후에 & lt; / b & gt; 반영됩니다.</translation>
+        <translation>블록을 생성하게 되면, 이하 설정에 따라 채굴보상을 받게 됩니다. &lt;br&gt; 각 분배 금액은 mocha단위로 변경됩니다. &lt;br&gt; 참고 : 변경 사항은 확인 버튼을 클릭 &lt;b&gt;한 후에&lt;/b&gt; 반영됩니다.</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
