@@ -10,7 +10,7 @@ What is XPChain?
 
 XPChain, which is usually abbreviated XPC, is a cryptocurrency based on Bitcoin 0.17.0.
 
-XPChain introduces new proof-of-stake consensus as a secutiry model, which solves
+XPChain introduces new proof-of-stake consensus as a security model, which solves
 “nothing at stake” issue in a way proposed by Peercoin community, and enables you
 to distribute your staking rewards to anyone in the world.
 
