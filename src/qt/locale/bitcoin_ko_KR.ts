@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>현재 목록에 선택한 주소 삭제</translation>
+        <translation>현재 목록에서 선택 주소 삭제</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
-        <translation>검색하기 위한 주소 또는 표 입력</translation>
+        <translation>검색할 주소 또는 라벨 입력</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
@@ -67,15 +67,15 @@
     </message>
     <message>
         <source>These are your XPChain addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>비트코인을 보내는 계좌 주소입니다. 코인을 보내기 전에 잔고와 받는 주소를 항상 확인하세요.</translation>
+        <translation>XPChain 출금주소입니다. 전송 전에 수량 및 출금 주소를 확인해 주세요.</translation>
     </message>
     <message>
         <source>These are your XPChain addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>비트코인을 받을 수 있는 계좌 주소입니다. 매 거래마다 새로운 주소 사용을 권장합니다. </translation>
+        <translation>XPChain 입금주소입니다. 매 거래마다 새로운 주소 사용을 권장합니다. </translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>계좌 복사(&amp;C)</translation>
+        <translation>주소 복사(&amp;C)</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -125,7 +125,7 @@
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>암호 입력하기</translation>
+        <translation>암호 입력</translation>
     </message>
     <message>
         <source>New passphrase</source>
@@ -137,11 +137,11 @@
     </message>
     <message>
         <source>Show password</source>
-        <translation>비밀번호를 입력하세요</translation>
+        <translation>비밀번호 보기</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>지갑에 새로운 비밀문구를 입력하세요.&lt;br/&gt;비밀문구를 &lt;b&gt;열 개 이상의 무작위 글자&lt;/b&gt; 혹은 &lt;b&gt;여덟개 이상의 단어로&lt;b&gt; 정하세요.</translation>
+        <translation>지갑에 새로운 패스워드를 입력하세요.&lt;br/&gt;패스워드를 &lt;b&gt;열 개 이상의 무작위 글자&lt;/b&gt; 혹은 &lt;b&gt;여덟개 이상의 단어로&lt;b&gt; 입력해 주세요.</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -176,8 +176,8 @@
         <translation>지갑 암호화 승인</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>경고: 만약 암호화 된 지갑의 비밀번호를 잃어버릴 경우, &lt;b&gt;모든 비트코인들을 잃어버릴 수 있습니다&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR XPCHAINS&lt;/b&gt;!</source>
+        <translation>경고: 만약 암호화 된 지갑의 비밀번호를 잃어버릴 경우, &lt;b&gt;모든 XPChain을 잃어버릴 수 있습니다&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your xpchains from being stolen by malware infecting your computer.</source>
-        <translation>암호화 처리 과정을 끝내기 위해 %1을 종료합니다. 지갑 암호화는 컴퓨터로의 멀웨어 감염으로 인한 비트코인 도난을 완전히 방지할 수 없음을 기억하세요.</translation>
+        <translation>암호화 처리 과정을 끝내기 위해 %1을 종료합니다. 지갑 암호화는 컴퓨터로의 멀웨어 감염으로 인한 XPChain 도난을 완전히 방지할 수 없음을 기억하세요.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -270,12 +270,16 @@
         <translation>거래내역을 검색합니다.</translation>
     </message>
     <message>
+        <source>&amp;Minting</source>
+        <translation>채굴</translation>
+    </message>
+    <message>
         <source>E&amp;xit</source>
         <translation>나가기(&amp;X)</translation>
     </message>
     <message>
         <source>Quit application</source>
-        <translation>어플리케이션 종료</translation>
+        <translation>지갑 종료</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
@@ -326,6 +330,10 @@
         <translation>&amp;URI 열기...</translation>
     </message>
     <message>
+        <source>Staking reward settings...</source>
+        <translation>채굴 보상 설정</translation>
+    </message>
+    <message>
         <source>Wallet:</source>
         <translation>지갑:&lt;br&gt;</translation>
     </message>
@@ -359,7 +367,7 @@
     </message>
     <message>
         <source>Send coins to a XPChain address</source>
-        <translation>비트코인 주소로 코인 전송</translation>
+        <translation>XPChain 주소로 코인 전송</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -383,7 +391,7 @@
     </message>
     <message>
         <source>XPChain</source>
-        <translation>비트코인</translation>
+        <translation>XPChain</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -411,11 +419,11 @@
     </message>
     <message>
         <source>Sign messages with your XPChain addresses to prove you own them</source>
-        <translation>지갑 주소가 본인 소유인지 증명하기 위해 비트코인 주소에 서명할 수 있습니다.</translation>
+        <translation>지갑 주소가 본인 소유인지 증명하기 위해 XPChain 주소에 서명할 수 있습니다.</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified XPChain addresses</source>
-        <translation>비트코인 주소의 전자 서명 확인을 위해 첨부된 메시지가 있을 경우 이를 검증할 수 있습니다.</translation>
+        <translation>XPChain 주소의 전자 서명 확인을 위해 첨부된 메시지가 있을 경우 이를 검증할 수 있습니다.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -435,15 +443,15 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and xpchain: URIs)</source>
-        <translation>지불 요청하기 (QR코드와 비트코인이 생성됩니다: URIs)</translation>
+        <translation>지불 요청하기 (QR코드와 xpchain이 생성됩니다: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>한번 이상 사용된 보내는 주소와 주소 제목의 목록을 보여줍니다.</translation>
+        <translation>한번 이상 사용된 보내는 주소와 라벨의 목록을 보여줍니다.</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>한번 이상 사용된 받는 주소와 주소 제목의 목록을 보여줍니다.</translation>
+        <translation>한번 이상 사용된 받는 주소와 라의 목록을 보여줍니다.</translation>
     </message>
     <message>
         <source>Open a xpchain: URI or payment request</source>
@@ -455,7 +463,7 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to XPChain network</source>
-        <translation><numerusform>비트코인 네트워크에 %n개의 연결이 활성화되어 있습니다.</numerusform></translation>
+        <translation><numerusform>XPChain 네트워크에 %n개의 연결이 활성화되어 있습니다.</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -498,8 +506,24 @@
         <translation>현재까지</translation>
     </message>
     <message>
+        <source>Show the status of minting</source>
+        <translation>채굴 상태를 보여줍니다.</translation>
+    </message>
+    <message>
+        <source>&amp;Unlock Wallet for Minting Only</source>
+        <translation>채굴을 위한 지갑 잠금해제</translation>
+    </message>
+    <message>
+        <source>Unlock wallet only for minting. Sending coins will still require the password.</source>
+        <translation>채굴을 위해 지갑 잠금을 해제합니다. 코인 전송 시 암호가 필요합니다.</translation>
+    </message>
+    <message>
+        <source>Modify settings for staking reward</source>
+        <translation>채굴보상 설정 변경</translation>
+    </message>
+    <message>
         <source>Show the %1 help message to get a list with possible XPChain command-line options</source>
-        <translation>사용할 수 있는 비트코인 명령줄 옵션 목록을 가져오기 위해 %1 도움말 메시지를 표시합니다.</translation>
+        <translation>사용할 수 있는 XPChain 명령줄 옵션 목록을 가져오기 위해 %1 도움말 메시지를 표시합니다.</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -575,7 +599,7 @@
     </message>
     <message>
         <source>A fatal error occurred. XPChain can no longer continue safely and will quit.</source>
-        <translation>치명적인 오류가 발생했습니다. 비트코인을 더이상 안전하게 진행할 수 없어 곧 종료합니다.</translation>
+        <translation>치명적인 오류가 발생했습니다. XPChain을 더이상 안전하게 진행할 수 없어 곧 종료합니다.</translation>
     </message>
 </context>
 <context>
@@ -614,7 +638,7 @@
     </message>
     <message>
         <source>(un)select all</source>
-        <translation>모두 선택(하지 않음)</translation>
+        <translation>전체선택(선택해제)</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -713,7 +737,7 @@
         <translation>수령인이 현재 더스트 임계값보다 작은 양을 수신하면 이 라벨이 빨간색으로 변합니다.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
+        <source>Can vary +/- %1 mocha(s) per input.</source>
         <translation>입력마다 +/- %1 사토시(s)가 변할 수 있습니다.</translation>
     </message>
     <message>
@@ -765,7 +789,7 @@
     </message>
     <message>
         <source>The entered address "%1" is not a valid XPChain address.</source>
-        <translation>입력한 "%1" 주소는 올바른 비트코인 주소가 아닙니다.</translation>
+        <translation>입력한 "%1" 주소는 올바른 XPChain 주소가 아닙니다.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -782,6 +806,57 @@
     <message>
         <source>New key generation failed.</source>
         <translation>새로운 키 생성이 실패하였습니다.</translation>
+    </message>
+</context>
+<context>
+    <name>EditStakingRewardDistributionDialog</name>
+    <message>
+        <source>Edit Setting</source>
+        <translation>설정 변경</translation>
+    </message>
+    <message>
+        <source>&amp;Label</source>
+        <translation>&amp;라벨</translation>
+    </message>
+    <message>
+        <source>&amp;Address</source>
+        <translation>주소</translation>
+    </message>
+    <message>
+        <source>The label associated with this setting entry for staking reward distribution</source>
+        <translation>채굴보상 분배설정 관련 라벨</translation>
+    </message>
+    <message>
+        <source>The address associated with this setting entry for staking reward distribution</source>
+        <translation>채굴보상 분배설정 관련 주소</translation>
+    </message>
+    <message>
+        <source>&amp;Distribution %</source>
+        <translation>분배</translation>
+    </message>
+    <message>
+        <source>The percentage of staking reward you want to send to the address</source>
+        <translation>임의주소로 보낼 채굴보상의 퍼센트</translation>
+    </message>
+    <message>
+        <source> %</source>
+        <translation>%</translation>
+    </message>
+    <message>
+        <source>New staking reward distribution setting</source>
+        <translation>새로운 채굴보상 분배 설정</translation>
+    </message>
+    <message>
+        <source>The entered address &quot;%1&quot; is not a valid XPChain address.</source>
+        <translation>입력 된 주소 &quot;% 1&quot; 올바른 XPChain 주소가 아닙니다.</translation>
+    </message>
+    <message>
+        <source>The entered number of percentage is not between 1 and 100, or is not a valid number</source>
+        <translation>입력 한 퍼센트가 1에서 100 사이가 아니거나 잘못 입력된 값입니다.</translation>
+    </message>
+    <message>
+        <source>The entered address &quot;%1&quot; is already in the settings with label &quot;%2&quot;.</source>
+        <translation>입력 된 주소 &quot;% 1&quot; 라벨 &quot;% 2&quot;이 (가) 이미 설정되어 있습니다.</translation>
     </message>
 </context>
 <context>
@@ -842,7 +917,7 @@
     </message>
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>확인을 클릭하면 %1은 모든 %4블록 체인 (%2GB) 장부를 %3 안에 다운로드하고 처리하기 시작합니다.  이는 %4가 시작될 때 생성된 가장 오래된 트랜잭션부터 시작합니다.</translation>
+        <translation>확인을 클릭하면 %1은 모든 %4블록 체인 (%2GB) 장부를[ %3 ]파일경로에 다운로드를 시작합니다.  이는 %4가 시작될 때 생성된 가장 오래된 트랜젝션부터 시작합니다.</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
@@ -862,7 +937,7 @@
     </message>
     <message>
         <source>XPChain</source>
-        <translation>비트코인</translation>
+        <translation>XPChain</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -898,6 +973,180 @@
     </message>
 </context>
 <context>
+    <name>MintingTableModel</name>
+    <message>
+        <source>Transaction</source>
+        <translation>트랜젝션</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>주소</translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation>잔액</translation>
+    </message>
+    <message>
+        <source>Age</source>
+        <translation>Age</translation>
+    </message>
+    <message>
+        <source>CoinDay</source>
+        <translation>CoinDay</translation>
+    </message>
+    <message>
+        <source>MintProbability</source>
+        <translation>채굴확률</translation>
+    </message>
+    <message>
+        <source>MintReward</source>
+        <translation>보수량</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>분</translation>
+    </message>
+     <message>
+        <source>hours</source>
+        <translation>시간</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation>일</translation>
+    </message>
+    <message>
+        <source>You have %1 chance to find a POS block if you mint %2 %3 at current difficulty.</source>
+        <translation>현재 난이도로  %2 %3 채굴 하였을 때, POS블록을 찾을 확률은  %1 입니다.</translation>
+    </message>
+    <message>
+        <source>Destination address of the output.</source>
+        <translation>보낼 외부 주소</translation>
+    </message>
+    <message>
+        <source>Original transaction id.</source>
+        <translation>오리지널 트랜젝션 ID</translation>
+    </message>
+    <message>
+        <source>Age of the transaction in days.</source>
+        <translation>日数表記でのトランザクションのAge。</translation>
+    </message>
+    <message>
+        <source>Balance of the output.</source>
+        <translation>외부 잔액</translation>
+    </message>
+    <message>
+        <source>Coin age in the output.</source>
+        <translation>외부 코인Age</translation>
+    </message>
+    <message>
+        <source>Chance to mint a block within given time interval.</source>
+        <translation>지정된 시간 내에 블록을 생성할 확률</translation>
+    </message>
+    <message>
+        <source>The size of the potential rewards if the block is found at the beginning and the end given time interval.</source>
+        <translation>지정된 시간의 개시시점과 종료시점에서 블록을 발견하였을 경우의 획득 보수량의 범위</translation>
+    </message>
+</context>
+<context>
+    <name>MintingView</name>
+    <message>
+        <source>transaction is too young</source>
+        <translation>숙성이 충분하지 않습니다.</translation>
+    </message>
+    <message>
+        <source>transaction is mature</source>
+        <translation>거래가 만기되었습니다.</translation>
+    </message>
+    <message>
+        <source>transaction has reached maximum probability</source>
+        <translation>보상 지급확률이 최대치에 도달했습니다.</translation>
+    </message>
+    <message>
+        <source>Display minting probability within : </source>
+        <translation>채굴 퍼센트 표시</translation>
+    </message>
+    <message>
+        <source>10 min</source>
+        <translation>10 분</translation>
+    </message>
+    <message>
+        <source>24 hours</source>
+        <translation>24 시간</translation>
+    </message>
+    <message>
+        <source>7 days</source>
+        <translation>7 일</translation>
+    </message>
+    <message>
+        <source>30 days</source>
+        <translation>30 일</translation>
+    </message>
+    <message>
+        <source>90 days</source>
+        <translation>90 일</translation>
+    </message>
+    <message>
+        <source>Copy address</source>
+        <translation>주소 복사</translation>
+    </message>
+    <message>
+        <source>Copy transaction id</source>
+        <translation>트랜젝션 아이디 복사</translation>
+    </message>
+    <message>
+        <source>Show/hide &apos;Address&apos; column</source>
+        <translation>보이기/숨기기&apos; 주소 &apos;목록</translation>
+    </message>
+    <message>
+        <source>Show/hide &apos;Transaction&apos; column</source>
+        <translation>보이기/숨기기&apos; 트랜젝션 &apos;목록</translation>
+    </message>
+    <message>
+        <source>Export Minting Data</source>
+        <translation>채굴 데이터 내보내기</translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>쉼표로 구분된 파일(*.csv)</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>주소</translation>
+    </message>
+    <message>
+        <source>Transaction</source>
+        <translation>트랜젝션</translation>
+    </message>
+    <message>
+        <source>Age</source>
+        <translation>Age</translation>
+    </message>
+    <message>
+        <source>CoinDay</source>
+        <translation>CoinDay</translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation>잔액</translation>
+    </message>
+    <message>
+        <source>MintingProbability</source>
+        <translation>채굴퍼센트</translation>
+    </message>
+    <message>
+        <source>MintingReward</source>
+        <translation>채굴보상</translation>
+    </message>
+    <message>
+        <source>Error exporting</source>
+        <translation>내보내기 오류</translation>
+    </message>
+    <message>
+        <source>Could not write to file %1.</source>
+        <translation>파일에 기록할 수 없음 %1</translation>
+    </message>
+</context>
+<context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
@@ -905,11 +1154,11 @@
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the xpchain network, as detailed below.</source>
-        <translation>최근 거래는 아직 보이지 않을 것입니다, 그러므로 당신의 지갑의 잔액이 틀릴 수도 있습니다. 이 정보는 비트코인 네트워크와 완전한 동기화가 완료되면 아래의 설명과 같이 정확해집니다.</translation>
+        <translation>최근 거래는 아직 보이지 않을 것입니다, 그러므로 당신의 지갑의 잔액이 틀릴 수도 있습니다. 이 정보는 XPChain 네트워크와 완전한 동기화가 완료되면 아래의 설명과 같이 정확해집니다.</translation>
     </message>
     <message>
         <source>Attempting to spend xpchains that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>아직 표시되지 않은 거래의 영향을 받는 비트코인을 사용하려고 하는 것은 네트워크에서 허가되지 않습니다.</translation>
+        <translation>아직 표시되지 않은 거래의 영향을 받는 XPChain을 사용하려고 하는 것은 네트워크에서 허가되지 않습니다.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1067,7 +1316,7 @@
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
-        <translation>이 설정을 되돌리려면 처음주터 블록체인을 다시 다운로드 받아야 합니다.</translation>
+        <translation>이 설정을 되돌리려면 처음부터 블록체인을 다시 다운로드 받아야 합니다.</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1111,7 +1360,7 @@
     </message>
     <message>
         <source>Connect to the XPChain network through a SOCKS5 proxy.</source>
-        <translation>SOCKS5 프록시를 통해 비트코인 네트워크 연결</translation>
+        <translation>SOCKS5 프록시를 통해 XPChain 네트워크 연결</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1147,7 +1396,7 @@
     </message>
     <message>
         <source>Connect to the XPChain network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Tor 서비스를 경유하여 비트코인 네트워크에 연결하기 위해 분리된 SOCKS5 프록시를 사용.</translation>
+        <translation>Tor 서비스를 경유하여 XPChain 네트워크에 연결하기 위해 분리된 SOCKS5 프록시를 사용.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1254,7 +1503,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the XPChain network after a connection is established, but this process has not completed yet.</source>
-        <translation>표시된 정보가 오래된 것 같습니다. 비트코인 네트워크에 연결하고 난 다음에 지갑을 자동으로 동기화 하지만, 아직 과정이 끝나지는 않았습니다.</translation>
+        <translation>표시된 정보가 오래된 것 같습니다. XPChain 네트워크에 연결하고 난 다음에 지갑을 자동으로 동기화 하지만, 아직 과정이 끝나지는 않았습니다.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1329,7 +1578,7 @@
     </message>
     <message>
         <source>Cannot start xpchain: click-to-pay handler</source>
-        <translation>비트코인을 시작할 수 없습니다: 지급제어기를 클릭하세요</translation>
+        <translation>xpchain 시작할 수 없습니다: 지급제어기를 클릭하세요</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1349,7 +1598,7 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid XPChain address or malformed URI parameters.</source>
-        <translation>URI의 파싱에 문제가 발생했습니다. 잘못된 비트코인 주소나 URI 파라미터 구성에 오류가 존재할 수 있습니다.</translation>
+        <translation>URI의 파싱에 문제가 발생했습니다. 잘못된 XPChain 주소나 URI 파라미터 구성에 오류가 존재할 수 있습니다.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1451,7 +1700,7 @@
     </message>
     <message>
         <source>Enter a XPChain address (e.g. %1)</source>
-        <translation>비트코인 주소를 입력하기 (예. %1)</translation>
+        <translation>XPChain 주소를 입력하기 (예. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1532,6 +1781,10 @@
     <message>
         <source>unknown</source>
         <translation>알수없음</translation>
+    </message>
+    <message>
+        <source>from  %1 to %2</source>
+        <translation>%1 ～ %2</translation>
     </message>
 </context>
 <context>
@@ -1899,7 +2152,7 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the XPChain network.</source>
-        <translation>지불 요청에 첨부되는 선택가능한 메시지 입니다. 이 메세지는 요청이 열릴 때 표시될 것 입니다. 메모: 이 메시지는 비트코인 네트워크로 전송되지 않습니다.</translation>
+        <translation>지불 요청에 첨부되는 선택가능한 메시지 입니다. 이 메세지는 요청이 열릴 때 표시될 것 입니다. 메모: 이 메시지는 XPChain 네트워크로 전송되지 않습니다.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2135,14 +2388,6 @@
         <translation>수수료 설정 접기</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
-
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
-        <translation>거래 가상 크기의 kB (1,000 바이트)당 수수료을 지정하십시오.
-
-참고 : 수수료는 바이트 단위로 계산되므로 거래 크기가 500 바이트 (1kB의 절반)일때에 수수료가 "100 satoshis / kB"이면 궁극적으로 50사토시의 수수료만 발생합니다.</translation>
-    </message>
-    <message>
         <source>per kilobyte</source>
         <translation>킬로바이트 당</translation>
     </message>
@@ -2151,8 +2396,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>숨기기</translation>
     </message>
     <message>
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mochas per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 mochas.</source>
+        <translation>거래 가상 크기의 kB (1,000 바이트)당 수수료을 지정하십시오.
+
+참고 : 수수료는 바이트 단위로 계산되므로 거래 크기가 500 바이트 (1kB의 절반)일때에 수수료가 "100 satoshis / kB"이면 궁극적으로 50사토시의 수수료만 발생합니다.</translation>
+    </message>
+    <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for xpchain transactions than the network can process.</source>
-        <translation>블록의 용량보다 거래의 용량이 작은 경우에는 최소한의 수수료만으로도 충분합니다. 그러나 비트코인 네트워크의 처리량보다 더 많은 거래 요구는 영원히 검증이 안 될 수도 있습니다.</translation>
+        <translation>블록의 용량보다 거래의 용량이 작은 경우에는 최소한의 수수료만으로도 충분합니다. 그러나 XPChain 네트워크의 처리량보다 더 많은 거래 요구는 영원히 검증이 안 될 수도 있습니다.</translation>
     </message>
     <message>
         <source>(read the tooltip)</source>
@@ -2196,8 +2449,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>Replace-By-Fee (BIP-125) 옵션은 보낸 거래의 수수료 상향을 지원해 줍니다.
-이 옵션이 없을 경우 거래 지연을 방지하기 위해 더 높은 수수료가 요구됩니다.</translation>
+        <translation>Replace-By-Fee (BIP-125) 옵션은 보낸 거래의 수수료 상향을 지원해 줍니다. 이 옵션이 없을 경우 거래 지연을 방지하기 위해 더 높은 수수료가 요구됩니다.</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -2333,7 +2585,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Warning: Invalid XPChain address</source>
-        <translation>경고: 잘못된 비트코인주소입니다</translation>
+        <translation>경고: 잘못된 XPChain주소입니다</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2376,7 +2628,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The XPChain address to send the payment to</source>
-        <translation>이 비트코인 주소로 송금됩니다</translation>
+        <translation>이 XPChain 주소로 송금됩니다</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2424,7 +2676,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>A message that was attached to the xpchain: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the XPChain network.</source>
-        <translation>비트코인에 첨부된 메시지: 참고용으로 거래와 함께 저장될 URI. 메모: 이 메시지는 비트코인 네트워크로 전송되지 않습니다.</translation>
+        <translation>xpchain에 첨부된 메시지: 참고용으로 거래와 함께 저장될 URI. 메모: 이 메시지는 XPChain 네트워크로 전송되지 않습니다.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2473,7 +2725,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The XPChain address to sign the message with</source>
-        <translation>메세지를 서명한 비트코인 주소</translation>
+        <translation>메세지를 서명한 XPChain 주소</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2505,7 +2757,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Sign the message to prove you own this XPChain address</source>
-        <translation>여러분의 비트코인 주소를 증명하려면 메시지 서명하십시오</translation>
+        <translation>여러분의 XPChain 주소를 증명하려면 메시지 서명하십시오</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2529,11 +2781,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The XPChain address the message was signed with</source>
-        <translation>메세지의 서명에 사용된 비트코인 주소</translation>
+        <translation>메세지의 서명에 사용된 XPChain 주소</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified XPChain address</source>
-        <translation>정확한 비트코인주소가 입력됬는지 메시지를 확인하시오</translation>
+        <translation>정확한 XPChain주소가 입력됬는지 메시지를 확인하시오</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2601,6 +2853,100 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>[testnet]</source>
         <translation>[테스트넷]</translation>
+    </message>
+</context>
+<context>
+    <name>StakingRewardSettingPage</name>
+    <message>
+        <source>Staking reward settings</source>
+        <translation>채굴 보상 설정</translation>
+    </message>
+    <message>
+        <source>You will get a staking reward every time you generate a block according to the following settings.&lt;br&gt;Each amount of distribution is rounded down to the nearest integer in mochas.&lt;br&gt;Note: the changes will apply &lt;b&gt;only after&lt;/b&gt; you click OK button.</source>
+        <translation>블록을 생성하게 되면, 이하 설정에 따라 채굴보상을 받게 됩니다. &lt;br&gt; 각 분배 금액은 mocha단위로 변경됩니다. &lt;br&gt; 참고 : 변경 사항은 확인 버튼을 클릭 &lt;b&gt;한 후에&lt;/b&gt; 반영됩니다.</translation>
+    </message>
+    <message>
+        <source>Enter address or label to search</source>
+        <translation>검색할 주소 혹은 라벨 입력</translation>
+    </message>
+    <message>
+        <source>Double-click cell to edit address, label or percentage</source>
+        <translation>주소, 레이블 또는 퍼센트를 편집하려면 셀을 더블클릭하십시오.</translation>
+    </message>
+    <message>
+        <source>Insert a new setting entry</source>
+        <translation>새 설정 항목 추가</translation>
+    </message>
+    <message>
+        <source>Copy address of the currently selected entry to the system clipboard</source>
+        <translation>선택한 항목의 주소를 클립 보드에 복사합니다.</translation>
+    </message>
+    <message>
+        <source>Delete the currently selected entry from the list</source>
+        <translation>선택된 항목을 목록에서 삭제합니다.</translation>
+    </message>
+    <message>
+        <source>&amp;New</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>C&amp;opy</source>
+        <translation>복사</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;삭제</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;확인</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;취소</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Address</source>
+        <translation>주소복사</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Label</source>
+        <translation>라벨</translation>
+    </message>
+    <message>
+        <source>An entire reward will be sent to the captal address.</source>
+        <translation>보상은 전액 기본주소로 송금됩니다.</translation>
+    </message>
+    <message>
+        <source>About %1% remaining of a reward will be sent back to the captal address.</source>
+        <translation>약 %1 %의 보상 잔액이 기본주소로 보내집니다.</translation>
+    </message>
+    <message>
+        <source>Almost all reward will be sent as above.</source>
+        <translation>거의 모든 보상은 위와 같이 전송됩니다.</translation>
+    </message>
+    <message>
+        <source>The total of distribution percentage must be 100% or less.</source>
+        <translation>총 분배 비율은 100 % 이하 여야합니다.</translation>
+    </message>
+</context>
+<context>
+    <name>StakingRewardSettingTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>채굴 보상 테이블 모델설정</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>주소</translation>
+    </message>
+    <message>
+        <source>Distribution %</source>
+        <translation>분배</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>라벨없음</translation>
     </message>
 </context>
 <context>
@@ -2750,7 +3096,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>신규 채굴된 코인이 사용되기 위해서는 %1 개의 블록이 경과되어야 합니다. 블록을 생성할 때 블록체인에 추가되도록 네트워크에 전파되는 과정을 거치는데, 블록체인에 포함되지 못하고 실패한다면 해당 블록의 상태는 '미승인'으로 표현되고 비트코인 또한 사용될 수 없습니다. 이 현상은 다른 노드가 비슷한 시간대에 동시에 블록을 생성할 때 종종 발생할 수 있습니다. </translation>
+        <translation>신규 채굴된 코인이 사용되기 위해서는 %1 개의 블록이 경과되어야 합니다. 블록을 생성할 때 블록체인에 추가되도록 네트워크에 전파되는 과정을 거치는데, 블록체인에 포함되지 못하고 실패한다면 해당 블록의 상태는 '미승인'으로 표현되고 XPChain 또한 사용될 수 없습니다. 이 현상은 다른 노드가 비슷한 시간대에 동시에 블록을 생성할 때 종종 발생할 수 있습니다. </translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2855,7 +3201,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>자신에게 지불</translation>
     </message>
     <message>
-        <source>Mined</source>
+        <source>Minted</source>
         <translation>채굴</translation>
     </message>
     <message>
@@ -2938,7 +3284,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>자기거래</translation>
     </message>
     <message>
-        <source>Mined</source>
+        <source>Minted</source>
         <translation>채굴</translation>
     </message>
     <message>
@@ -3108,7 +3454,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Could not commit transaction</source>
-        <translation>트랜잭션을 커밋 할 수 없습니다.</translation>
+        <translation>트랜젝션을 커밋 할 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -3182,7 +3528,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>XPChain Core</source>
-        <translation>비트코인 코어</translation>
+        <translation>XPChain 코어</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -3234,7 +3580,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>경고: 현재 비트코인 버전이 다른 네트워크 참여자들과 동일하지 않은 것 같습니다. 당신 또는 다른 참여자들이 동일한 비트코인 버전으로 업그레이드 할 필요가 있습니다.</translation>
+        <translation>경고: 현재 XPChain 버전이 다른 네트워크 참여자들과 동일하지 않은 것 같습니다. 당신 또는 다른 참여자들이 동일한 XPChain 버전으로 업그레이드 할 필요가 있습니다.</translation>
     </message>
     <message>
         <source>%d of last 100 blocks have unexpected version</source>
@@ -3267,6 +3613,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>블록 데이터베이스를 다시 생성하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <translation>%s 작업이 실패하였습니다. 이 버전에서는 HD지갑 이외는 작성할 수 없습니다.</translation>
     </message>
     <message>
         <source>Error initializing block database</source>
@@ -3335,6 +3685,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
         <translation>유효하지 않은 금액 -fallbackfee=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>Specified blocks directory "%s" does not exist.</source>
+        <translation>지정한 블록 폴더 "%s"는 존재하지 않습니다.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3477,18 +3831,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>거래를 서명하는것을 실패하였습니다.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>애러: 지정한 지갑 폴더 "%s"은 존재하지 않습니다.</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>애러: 지정한 지갑 폴더 "%s"은 상대 경로입니다.</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>애러: 지정한 지갑 폴더 "%s"은 디렉토리가 아닙니다.</translation>
-    </message>
-    <message>
         <source>The transaction amount is too small to pay the fee</source>
         <translation>거래액이 수수료를 지불하기엔 너무 작습니다</translation>
     </message>
@@ -3507,6 +3849,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Transaction too large</source>
         <translation>너무 큰 거래</translation>
+    </message>
+    <message>
+        <source>Unable to bind to %s on this computer (bind returned error %s)</source>
+        <translation>이 컴퓨터의  %s 에 바인드할 수 없습니다.（%s 애러가 리턴되었습니다.）</translation>
     </message>
     <message>
         <source>Unable to generate initial keys</source>
