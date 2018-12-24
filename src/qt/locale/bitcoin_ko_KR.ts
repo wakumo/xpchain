@@ -2919,7 +2919,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <source>About %1% remaining of a reward will be sent back to the captal address.</source>
-        <translation>약 1 %의 보상 잔액이 기본주소로 보내집니다.</translation>
+        <translation>약 %1 %의 보상 잔액이 기본주소로 보내집니다.</translation>
     </message>
     <message>
         <source>Almost all reward will be sent as above.</source>
