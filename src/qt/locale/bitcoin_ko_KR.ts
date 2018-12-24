@@ -973,6 +973,81 @@
     </message>
 </context>
 <context>
+    <name>MintingTableModel</name>
+    <message>
+        <source>Transaction</source>
+        <translation>트랜젝션</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>주소</translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation>잔액</translation>
+    </message>
+    <message>
+        <source>Age</source>
+        <translation>Age</translation>
+    </message>
+    <message>
+        <source>CoinDay</source>
+        <translation>CoinDay</translation>
+    </message>
+    <message>
+        <source>MintProbability</source>
+        <translation>채굴확률</translation>
+    </message>
+    <message>
+        <source>MintReward</source>
+        <translation>보수량</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>분</translation>
+    </message>
+     <message>
+        <source>hours</source>
+        <translation>시간</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation>일</translation>
+    </message>
+    <message>
+        <source>You have %1 chance to find a POS block if you mint %2 %3 at current difficulty.</source>
+        <translation>현재 난이도로  %2 %3 채굴 하였을 때, POS블록을 찾을 확률은  %1 입니다.</translation>
+    </message>
+    <message>
+        <source>Destination address of the output.</source>
+        <translation>보낼 외부 주소</translation>
+    </message>
+    <message>
+        <source>Original transaction id.</source>
+        <translation>오리지널 트랜젝션 ID</translation>
+    </message>
+    <message>
+        <source>Age of the transaction in days.</source>
+        <translation>日数表記でのトランザクションのAge。</translation>
+    </message>
+    <message>
+        <source>Balance of the output.</source>
+        <translation>외부 잔액</translation>
+    </message>
+    <message>
+        <source>Coin age in the output.</source>
+        <translation>외부 코인Age</translation>
+    </message>
+    <message>
+        <source>Chance to mint a block within given time interval.</source>
+        <translation>지정된 시간 내에 블록을 생성할 확률</translation>
+    </message>
+    <message>
+        <source>The size of the potential rewards if the block is found at the beginning and the end given time interval.</source>
+        <translation>지정된 시간의 개시시점과 종료시점에서 블록을 발견하였을 경우의 획득 보수량의 범위</translation>
+    </message>
+</context>
+<context>
     <name>MintingView</name>
     <message>
         <source>transaction is too young</source>
@@ -1706,6 +1781,10 @@
     <message>
         <source>unknown</source>
         <translation>알수없음</translation>
+    </message>
+    <message>
+        <source>from  %1 to %2</source>
+        <translation>%1 ～ %2</translation>
     </message>
 </context>
 <context>
@@ -3536,6 +3615,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
         <translation>블록 데이터베이스를 다시 생성하시겠습니까?</translation>
     </message>
     <message>
+        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <translation>%s 작업이 실패하였습니다. 이 버전에서는 HD지갑 이외는 작성할 수 없습니다.</translation>
+    </message>
+    <message>
         <source>Error initializing block database</source>
         <translation>블록 데이터베이스를 초기화하는데 오류</translation>
     </message>
@@ -3766,6 +3849,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     <message>
         <source>Transaction too large</source>
         <translation>너무 큰 거래</translation>
+    </message>
+    <message>
+        <source>Unable to bind to %s on this computer (bind returned error %s)</source>
+        <translation>이 컴퓨터의  %s 에 바인드할 수 없습니다.（%s 애러가 리턴되었습니다.）</translation>
     </message>
     <message>
         <source>Unable to generate initial keys</source>
