@@ -1,0 +1,18 @@
+version: '2.3'
+services:
+  wallet:
+    build:
+      context: .
+    image: xpchaind
+    ports:
+      - 8798:8798
+      - 18798:18798
+    volumes:
+      - wallet-data:/home/wallet/.xpchain
+volumes:
+  wallet-data:
+    ## Uncomment below to mount host's directory into container
+    # driver_opts:
+    #   type: none
+    #   device: /path/to/wallet-data
+    #   o: bind
