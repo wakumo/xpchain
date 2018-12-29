@@ -1,0 +1,13 @@
+version: '2.3'
+services:
+  daemon:
+    build:
+      context: .
+    image: xpchaind
+    ports:
+      - 8798:8798
+      - 18798:18798
+    volumes:
+      - wallet-data:/home/wallet/.xpchain
+volumes:
+  wallet-data:
