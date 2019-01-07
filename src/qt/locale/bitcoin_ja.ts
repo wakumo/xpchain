@@ -1328,7 +1328,7 @@
     </message>
     <message>
         <source>Expert</source>
-        <translation>エクスポート</translation>
+        <translation>上級者向け機能</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
