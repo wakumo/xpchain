@@ -379,8 +379,6 @@ void SetupServerArgs()
         -GetNumCores(), MAX_SCRIPTCHECK_THREADS, DEFAULT_SCRIPTCHECK_THREADS), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-persistmempool", strprintf("Whether to save the mempool on shutdown and load on restart (default: %u)", DEFAULT_PERSIST_MEMPOOL), false, OptionsCategory::OPTIONS);
 
-    gArgs.AddArg("-minting","stake",false, OptionsCategory::STAKE);
-
 #ifndef WIN32
     gArgs.AddArg("-pid=<file>", strprintf("Specify pid file. Relative paths will be prefixed by a net-specific datadir location. (default: %s)", XPCHAIN_PID_FILENAME), false, OptionsCategory::OPTIONS);
 #else
