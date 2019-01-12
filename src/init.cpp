@@ -95,7 +95,7 @@ void DummyWalletInit::AddWalletOptions() const
     std::vector<std::string> opts = {"-addresstype", "-changetype", "-disablewallet", "-discardfee=<amt>", "-fallbackfee=<amt>",
         "-keypool=<n>", "-mintxfee=<amt>", "-paytxfee=<amt>", "-rescan", "-salvagewallet", "-spendzeroconfchange",  "-txconfirmtarget=<n>",
         "-upgradewallet", "-wallet=<path>", "-walletbroadcast", "-walletdir=<dir>", "-walletnotify=<cmd>", "-walletrbf", "-zapwallettxes=<mode>",
-        "-dblogsize=<n>", "-flushwallet", "-privdb", "-walletrejectlongchains", "-minting=<n>"};
+        "-dblogsize=<n>", "-flushwallet", "-privdb", "-walletrejectlongchains", "-minting"};
     gArgs.AddHiddenArgs(opts);
 }
 
