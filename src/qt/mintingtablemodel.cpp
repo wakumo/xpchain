@@ -296,7 +296,7 @@ QVariant MintingTableModel::data(const QModelIndex &index, int role) const
         case Age:
             return (qlonglong)rec->getAge();
         case CoinDay:
-            return (qlonglong)rec->coinAge;
+            return (qlonglong)rec->getCoinDay();
         case Balance:
             return (qlonglong)rec->nValue;
         case MintProbability:
@@ -380,7 +380,7 @@ QString MintingTableModel::formatTxHash(const KernelRecord *wtx) const
 
 QString MintingTableModel::formatTxCoinDay(const KernelRecord *wtx) const
 {
-    return QString::number(wtx->coinAge);
+    return QString::number(wtx->getCoinDay());
 }
 
 QString MintingTableModel::formatTxAge(const KernelRecord *wtx) const

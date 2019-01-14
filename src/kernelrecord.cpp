@@ -30,14 +30,12 @@ vector<KernelRecord> KernelRecord::decomposeOutput(const COutPoint& output, cons
     uint32_t n = output.n;
     int64_t nTime = out.time;
     int64_t nValue = out.txout.nValue;
-    int64_t nDayWeight = (min((GetAdjustedTime() - nTime), (int64_t)(Params().GetConsensus().nStakeMaxAge+Params().GetConsensus().nStakeMinAge)) - Params().GetConsensus().nStakeMinAge); // DayWeight * 86400, чтобы был
     CTxDestination address;
     std::string addrStr;
     ExtractDestination(out.txout.scriptPubKey, address);
     addrStr = EncodeDestination(address);
-    uint64_t coinAge = max( (nValue * nDayWeight) / (COIN * 86400), (int64_t)0);
 
-    parts.push_back(KernelRecord(hash, n, nTime, addrStr, nValue, coinAge));
+    parts.push_back(KernelRecord(hash, n, nTime, addrStr, nValue));
     return parts;
 }
 
