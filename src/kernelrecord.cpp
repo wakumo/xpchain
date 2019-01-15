@@ -81,7 +81,8 @@ double KernelRecord::getProbToMintStake(double difficulty, int timeOffset) const
     //return target * coinAge / pow(static_cast<double>(2), 256);
     int64_t Weight = (min((GetAdjustedTime() - nTime) + timeOffset, (int64_t)(Params().GetConsensus().nStakeMinAge+Params().GetConsensus().nStakeMaxAge)) - Params().GetConsensus().nStakeMinAge);
     uint64_t coinAge = max(nValue * Weight / (COIN * 86400), (int64_t)0);
-    return coinAge / (pow(static_cast<double>(2),32) * difficulty);
+    double probability = coinAge / (pow(static_cast<double>(2),32) * difficulty);
+    return probability > 1 ? 1 : probability;
 }
 
 double KernelRecord::getProbToMintWithinNMinutes(double difficulty, int minutes)
