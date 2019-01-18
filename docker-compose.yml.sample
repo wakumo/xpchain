@@ -9,9 +9,9 @@ services:
       ## Uncomment to open testnet port.
       # - 18798:18798
       ## Uncommnet to open mainnet RPC port. MAKE SURE WHAT WILL HAPPENS.
-      # - 8762
+      # - 8762:8762
       ## Uncommnet to open testnet RPC port. MAKE SURE WHAT WILL HAPPENS.
-      # - 18762
+      # - 18762:18762
     volumes:
       - wallet-data:/home/wallet/.xpchain
 volumes:
