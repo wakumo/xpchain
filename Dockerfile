@@ -103,6 +103,6 @@ COPY --from=build \
 USER wallet
 WORKDIR /home/wallet
 VOLUME ["${XPCHAIND_DATA_DIR}"]
-EXPOSE 8798 18798
+EXPOSE 8762 8798 18762 18798
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/local/bin/xpchaind", "-printtoconsole", "-nodebuglogfile"]
