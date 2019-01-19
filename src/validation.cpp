@@ -2208,6 +2208,9 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                 if (!CheckBlockSignature(block, state, chainparams.GetConsensus())) {
                     return error("ConnectBlock(): CheckBlockSignature failed");
                 }
+                if (block.nNonce != 0){
+                    return error("ConnectBlock(): nonce is not zero failed");
+                }
             }
         }
     }
