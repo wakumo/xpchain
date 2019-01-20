@@ -1082,8 +1082,8 @@
         <translation>30 일</translation>
     </message>
     <message>
-        <source>90 days</source>
-        <translation>90 일</translation>
+        <source>60 days</source>
+        <translation>60 일</translation>
     </message>
     <message>
         <source>Copy address</source>
