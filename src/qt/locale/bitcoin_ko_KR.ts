@@ -1028,7 +1028,7 @@
     </message>
     <message>
         <source>Age of the transaction in days.</source>
-        <translation>트렌젝션의 일수표기Age</translation>
+        <translation>트렌젝션의 일수표기Age.</translation>
     </message>
     <message>
         <source>Balance of the output.</source>
