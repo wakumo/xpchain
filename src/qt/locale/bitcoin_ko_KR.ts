@@ -1,4 +1,4 @@
-<TS language="ko_KR" version="2.1">
+﻿<TS language="ko_KR" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -1028,7 +1028,7 @@
     </message>
     <message>
         <source>Age of the transaction in days.</source>
-        <translation>日数表記でのトランザクションのAge。</translation>
+        <translation>트렌젝션의 일수표기Age.</translation>
     </message>
     <message>
         <source>Balance of the output.</source>
@@ -2887,7 +2887,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 mocha
     </message>
     <message>
         <source>&amp;New</source>
-        <translation></translation>
+        <translation>새로 만들기</translation>
     </message>
     <message>
         <source>C&amp;opy</source>
