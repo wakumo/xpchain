@@ -4756,7 +4756,7 @@ UniValue walletcreatefundedpsbt(const JSONRPCRequest& request)
     return result;
 }
 
-static UniValue listminting(const JSONRPCRequest& request)
+static UniValue listmintings(const JSONRPCRequest& request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CWallet* const pwallet = wallet.get();
@@ -4767,7 +4767,7 @@ static UniValue listminting(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() > 5)
         throw std::runtime_error(
-            "listminting ( period minage maxage  [\"addresses\",...] [include_unsafe] [query_options] )\n"
+            "listmintings ( period minage maxage  [\"addresses\",...] [include_unsafe] [query_options] )\n"
             "\nReturns array of minting status of transaction outputs\n"
             "with between minage and maxage (inclusive) age.\n"
             "Optionally filter to only include txouts paid to specified addresses.\n"
@@ -4812,11 +4812,11 @@ static UniValue listminting(const JSONRPCRequest& request)
             "]\n"
 
             "\nExamples\n"
-            + HelpExampleCli("listminting", "")
-            + HelpExampleCli("listminting", "10 6 9999999 \"[\\\"xpc1qgjmjulc04k09mdwdj3fng4qau3unmwc7k3k8su\\\",\\\"CPy4aRyZVYBAyzVuXmvGy6ce11AN8Woau3\\\"]\"")
-            + HelpExampleRpc("listminting", "10, 6, 9999999 \"[\\\"xpc1qgjmjulc04k09mdwdj3fng4qau3unmwc7k3k8su\\\",\\\"CPy4aRyZVYBAyzVuXmvGy6ce11AN8Woau3\\\"]\"")
-            + HelpExampleCli("listminting", "1440 6 9999999 '[]' true '{ \"minimumAmount\": 0.005 }'")
-            + HelpExampleRpc("listminting", "1440, 6, 9999999, [] , true, { \"minimumAmount\": 0.005 } ")
+            + HelpExampleCli("listmintings", "")
+            + HelpExampleCli("listmintings", "10 6 9999999 \"[\\\"xpc1qgjmjulc04k09mdwdj3fng4qau3unmwc7k3k8su\\\",\\\"CPy4aRyZVYBAyzVuXmvGy6ce11AN8Woau3\\\"]\"")
+            + HelpExampleRpc("listmintings", "10, 6, 9999999 \"[\\\"xpc1qgjmjulc04k09mdwdj3fng4qau3unmwc7k3k8su\\\",\\\"CPy4aRyZVYBAyzVuXmvGy6ce11AN8Woau3\\\"]\"")
+            + HelpExampleCli("listmintings", "1440 6 9999999 '[]' true '{ \"minimumAmount\": 0.005 }'")
+            + HelpExampleRpc("listmintings", "1440, 6, 9999999, [] , true, { \"minimumAmount\": 0.005 } ")
         );
 
     int nCalculatePeriod = 10;
@@ -5035,7 +5035,7 @@ static const CRPCCommand commands[] =
     { "wallet",             "setlabel",                         &setlabel,                      {"address","label"} },
 
     { "generating",         "generate",                         &generate,                      {"nblocks","maxtries"} },
-    { "mining",             "listminting",                      &listminting,                   {"period", "minage","maxage","addresses","include_unsafe","query_options"} },
+    { "mining",             "listmintings",                     &listmintings,                   {"period", "minage","maxage","addresses","include_unsafe","query_options"} },
 };
 
 void RegisterWalletRPCCommands(CRPCTable &t)
