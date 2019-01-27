@@ -28,8 +28,8 @@ which contains the amount that is a decimal to more than 4 places, an error will
 - Make sure you put no restrictions on the length of withdrawal addresses. Addresses of
 XPChain can be around 75 characters. Nothing would probably go wrong if you support the latest
 Bitcoin's address generation.
-- Don't use any legacy addresses, from which you can't send XPC to native Segwit (bech32) addresses.
-You must be able to send XPC to either legacy, native Segwit (bech32), P2SH-Segwit, or P2WSH addresses.
+- Use native Segwit (bech32) addresses instead of legacy addresses, which enables you to send
+XPC to either legacy, native Segwit, P2SH-Segwit, or P2WSH addresses.
 - You can be sent XPC that cannot be spent in next 100 blocks, because XPChain wallet has the
 function of sending proof-of-stake reward to arbitrary addresses and its users can easily transfer
 their reward to an exchange's deposit address.
