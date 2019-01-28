@@ -3427,7 +3427,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
             // return state.DoS()
             return false;
         }
-        
     }
     // Check transactions
     for (const auto& tx : block.vtx)
