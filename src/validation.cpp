@@ -3323,19 +3323,51 @@ bool GetPubKeysFromCoinStakeTx(CTransactionRef txCoinStake, std::vector<CPubKey>
     return true;
 }
 
+static bool MakeBlockHashExcludedSignature(const CBlock& block, uint256& hashBlock, std::vector<unsigned char>& sig)
+{
+    const CScript& scriptSig = block.vtx[0]->vin[0].scriptSig;
+    int cnt = 0;
+
+    auto itr = scriptSig.begin();
+    opcodetype op;
+    //get last element
+    while (GetScriptOp(itr, scriptSig.end(), op, &sig)) {
+        if(itr == scriptSig.end())
+        {
+            break;
+        }
+    }
+
+    if(op >= OP_PUSHDATA1)
+    {
+        return error("MakeBlockHashExcludedSignature(): the last element of scriptSig is not signature");
+    }
+    
+    CMutableTransaction txCoinBase(*block.vtx[0]);
+    txCoinBase.vin[0].scriptSig = CScript(scriptSig.begin(), scriptSig.end() - (op + 1));
+    CBlock cpBlock = block;
+    cpBlock.vtx[0] = MakeTransactionRef(std::move(txCoinBase));
+    cpBlock.hashMerkleRoot = BlockMerkleRoot(cpBlock);
+
+    hashBlock = cpBlock.GetBlockHeader().GetHash();
+}
+
 bool CheckBlockSignature(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams)
 {
     std::vector<CPubKey> pubkeys;
     if (!GetPubKeysFromCoinStakeTx(block.vtx[1], pubkeys)) {
-        //Can't Get Pubkey;
-        return false;
+        return error("CheckBlockSignature(): could not get the public key");
     }
-    LogPrintf("check hash = %s signature = %s\n",block.GetBlockHeader().GetHash().ToString().c_str(), HexStr(block.vchBlockSig.begin(), block.vchBlockSig.end()));
+    uint256 hashBlock;
+    std::vector<unsigned char> signature;
+    if (!MakeBlockHashExcludedSignature(block, hashBlock, signature)) {
+        return error("CheckBlockSignature(): could not get the signature and hashblock");
+    }
     for (CPubKey pubkey : pubkeys) {
-        if (pubkey.Verify(block.GetBlockHeader().GetHash(), block.vchBlockSig))
+        if (pubkey.Verify(hashBlock, signature))
             return true;
     }
-    return false;
+    return error("CheckBlockSignature(): Verify Failed signature = %s, hashblock = %s", HexStr(signature), HexStr(hashBlock));
 }
 
 bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW, bool fCheckMerkleRoot)

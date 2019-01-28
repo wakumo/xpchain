@@ -78,8 +78,6 @@ public:
     // memory only
     mutable bool fChecked;
 
-    std::vector<unsigned char> vchBlockSig;
-
     CBlock()
     {
         SetNull();
@@ -97,7 +95,6 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITEAS(CBlockHeader, *this);
         READWRITE(vtx);
-        READWRITE(vchBlockSig);
     }
 
     void SetNull()
@@ -105,7 +102,6 @@ public:
         CBlockHeader::SetNull();
         vtx.clear();
         fChecked = false;
-        vchBlockSig.clear();
     }
 
     CBlockHeader GetBlockHeader() const
