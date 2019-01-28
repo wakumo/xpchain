@@ -2203,7 +2203,6 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return error("ConnectBlock(): coinbase tx is incorrect");
         }
         {
-            LOCK(cs_main);
             if (VersionBitsState(pindex->pprev, chainparams.GetConsensus(), Consensus::BLOCK_SIGNATURE_ADDITION, versionbitscache) == ThresholdState::ACTIVE) {
                 if (!CheckBlockSignature(block, state, chainparams.GetConsensus())) {
                     return error("ConnectBlock(): CheckBlockSignature failed");
