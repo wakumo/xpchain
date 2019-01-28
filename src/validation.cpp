@@ -2209,7 +2209,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                     return error("ConnectBlock(): CheckBlockSignature failed");
                 }
                 if (block.nNonce != 0){
-                    return error("ConnectBlock(): nonce is not zero failed");
+                    return error("ConnectBlock(): nonce is not zero");
                 }
             }
         }
