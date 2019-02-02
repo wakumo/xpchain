@@ -45,22 +45,22 @@ frequently tested on them.
 Notable changes
 ===============
 
-New RPC for listing statuses of minting
+New RPC for listing states of minting
 ----------------------------------------
 
 The `listmintings` RPC lists data of unspent transaction outputs (UTXO)
-and the statuses of minting, including coin-age of the UTXO, the probability
+and the states of minting, including coin-age of the UTXO, the probability
 of minting, and the expected amounts of the reward, which were displayed only
 in Qt wallet. You can filter the result similarly to `listunspent`, as well as by
 a minimum or maximum of coin-age.
 
-Missing statuses in Minting tab
+Missing records in Minting tab
 -----------------------------------
 
-Some of the statuses of minting didn't show up in Minting tab when a transaction
-had two or more outputs to your addresses, because the status of one in the table
+Some of the records of states of minting didn't show up in Minting tab when a transaction
+had two or more outputs to your addresses, because the record of one in the table
 overwrote those of the others. Now this is fixed so that you can see the complete
-list of the statuses.
+list of the states.
 
 St13runtime_error in minting
 ----------------------------
