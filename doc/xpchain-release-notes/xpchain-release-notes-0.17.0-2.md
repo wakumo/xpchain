@@ -14,8 +14,7 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over `/Applications/XPChain-Qt` (on Mac)
-or `xpchaind`/`xpchain-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/XPChain-Qt` (on Mac).
 
 <!-- commented out because there doesn't seems any change for the chainstate database-->
 <!--
