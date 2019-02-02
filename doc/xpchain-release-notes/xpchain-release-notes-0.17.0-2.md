@@ -72,7 +72,7 @@ of proof-of-stake has been so fully refactored that this error will never cause.
 GUI changes
 -----------
 
-- In Minting tab, the setting for displaying probability *within 90 minutes* is replaced by that for *within 60 minutes*.
+- In Minting tab, the setting for displaying probability *within 90 days* is replaced by that for *within 60 days*.
 
 XPChain 0.17.0-2 change log
 ------------------
