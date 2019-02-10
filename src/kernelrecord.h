@@ -32,7 +32,7 @@ public:
 
     static bool showTransaction();
     static std::vector<KernelRecord> decomposeOutput(const COutPoint& output, const interfaces::WalletTxOut& out);
-
+    static std::vector<KernelRecord> decomposeOutput(const interfaces::WalletTx& wtx);
 
     uint256 hash;
     uint32_t n;
