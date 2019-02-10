@@ -392,7 +392,7 @@ MintingTableModel::MintingTableModel(const PlatformStyle *_platformStyle, Wallet
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateAge()));
-    timer->start(MODEL_MINTING_UPDATE_DELAY);
+    timer->start(MODEL_UPDATE_DELAY);
 
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
 }
