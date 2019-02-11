@@ -46,7 +46,7 @@ vector<KernelRecord> KernelRecord::decomposeOutput(const interfaces::WalletTx& w
     std::vector<isminetype> isMine = wtx.txout_is_mine;
     vector<KernelRecord> parts;
     int64_t nTime = wtx.time;
-    
+
     for(uint32_t n = 0; n < outs.size(); n++){
         if(isMine[n] == isminetype::ISMINE_SPENDABLE){
             int64_t nValue = outs[n].nValue;

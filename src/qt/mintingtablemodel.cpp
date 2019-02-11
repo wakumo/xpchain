@@ -100,7 +100,7 @@ public:
      */
     QList<KernelRecord> cachedWallet;
     QList<std::pair<uint256, int>> procQueue;
-    
+
     /* Query entire wallet anew from core.
      */
     void refreshWallet()
@@ -116,7 +116,7 @@ public:
             procQueue.removeAt(0);
         }
     }
-    
+
     void procEvent(uint256 hash, int status)
     {
         // Find bounds of this transaction in model
@@ -126,13 +126,13 @@ public:
             cachedWallet.begin(), cachedWallet.end(), hash, TxLessThan());
         int lowerIndex = (lower - cachedWallet.begin());
         int upperIndex = (upper - cachedWallet.begin());
-        
+
         interfaces::WalletTx wtx = parent->walletModel->wallet().getWalletTx(hash);
         interfaces::WalletTxStatus tx_status;
         int num_blocks;
         int64_t block_time;
         bool success = parent->walletModel->wallet().tryGetTxStatus(hash, tx_status, num_blocks, block_time);
-        
+
         if(!success){
             // not found status
             return;
@@ -146,7 +146,7 @@ public:
                 procQueue.append(std::make_pair(hash, status));
                 return;
             }
-            
+
             // spent
             const std::vector<CTxIn> ins = wtx.tx->vin;
             const std::vector<isminetype> isMine = wtx.txin_is_mine;
@@ -156,7 +156,7 @@ public:
                 {
                     uint256 phash = ins[i].prevout.hash;
                     uint32_t n = ins[i].prevout.n;
-                    
+
                     for(int i = 0; i < cachedWallet.size(); i++){
                         if(cachedWallet[i].hash == phash && cachedWallet[i].n == n){
                             parent->beginRemoveRows(QModelIndex(), i, i);
@@ -167,7 +167,7 @@ public:
                     }
                 }
             }
-            
+
             // append
             int offsetLower = 0;
             for(const KernelRecord& kr : KernelRecord::decomposeOutput(wtx))
@@ -176,7 +176,7 @@ public:
                 {
                     continue;
                 }
-                
+
                 parent->beginInsertRows(QModelIndex(), lowerIndex + offsetLower, lowerIndex + offsetLower);
                 cachedWallet.insert(lowerIndex + offsetLower, kr);
                 parent->endInsertRows();
@@ -202,16 +202,16 @@ public:
                 if(wtx.txin_is_mine[n] == isminetype::ISMINE_SPENDABLE)
                 {
                     interfaces::WalletTx prev_wtx = parent->walletModel->wallet().getWalletTx(wtx.tx->vin[n].prevout.hash);
-                    
+
                     std::vector<KernelRecord> krs = KernelRecord::decomposeOutput(prev_wtx);
                     const KernelRecord& kr = krs[wtx.tx->vin[n].prevout.n];
-                    
+
                     QList<KernelRecord>::iterator prev_lower = qLowerBound(
                         cachedWallet.begin(), cachedWallet.end(), kr, TxLessThan());
                     QList<KernelRecord>::iterator prev_upper = qUpperBound(
                         cachedWallet.begin(), cachedWallet.end(), kr, TxLessThan());
                     int prev_lowerIndex = (prev_lower - cachedWallet.begin());
-                    
+
                     if(prev_lower == prev_upper) // not in model
                     {
                         parent->beginInsertRows(QModelIndex(), prev_lowerIndex, prev_lowerIndex);
