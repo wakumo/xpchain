@@ -23,22 +23,6 @@ bool KernelRecord::showTransaction()
 /*
  * Decompose CWallet transaction to model kernel records.
  */
-vector<KernelRecord> KernelRecord::decomposeOutput(const COutPoint& output, const interfaces::WalletTxOut& out)
-{
-    vector<KernelRecord> parts;
-    uint256 hash = output.hash;
-    uint32_t n = output.n;
-    int64_t nTime = out.time;
-    int64_t nValue = out.txout.nValue;
-    CTxDestination address;
-    std::string addrStr;
-    ExtractDestination(out.txout.scriptPubKey, address);
-    addrStr = EncodeDestination(address);
-
-    parts.push_back(KernelRecord(hash, n, nTime, addrStr, nValue));
-    return parts;
-}
-
 vector<KernelRecord> KernelRecord::decomposeOutput(const interfaces::WalletTx& wtx)
 {
     uint256 hash = wtx.tx->GetHash();
