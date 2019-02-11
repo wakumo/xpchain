@@ -50,10 +50,7 @@ vector<KernelRecord> KernelRecord::decomposeOutput(const interfaces::WalletTx& w
     for(uint32_t n = 0; n <= outs.size(); n++){
         if(isMine[n] == isminetype::ISMINE_SPENDABLE){
             int64_t nValue = outs[n].nValue;
-            CTxDestination address;
-            std::string addrStr;
-            ExtractDestination(outs[n].scriptPubKey, address);
-            addrStr = EncodeDestination(address);
+            std::string addrStr = EncodeDestination(wtx.txout_address[n]);
             parts.push_back(KernelRecord(hash, n, nTime, addrStr, nValue));
         }
     }
