@@ -35,7 +35,7 @@ vector<KernelRecord> KernelRecord::decomposeOutput(const interfaces::WalletTx& w
         if(isMine[n] == isminetype::ISMINE_SPENDABLE){
             int64_t nValue = outs[n].nValue;
             std::string addrStr = EncodeDestination(wtx.txout_address[n]);
-            parts.push_back(KernelRecord(hash, n, nTime, addrStr, nValue));
+            parts.emplace_back(hash, n, nTime, addrStr, nValue);
         }
     }
     return parts;
