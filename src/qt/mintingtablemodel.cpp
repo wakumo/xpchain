@@ -115,14 +115,10 @@ public:
             procEvent(pair.first, pair.second);
             procQueue.removeAt(0);
         }
-        
-printf("(refreshWallet) size %d\n", cachedWallet.size());
     }
     
     void procEvent(uint256 hash, int status)
     {
-//printf("(procEvent) proc %s : %d\n", hash.ToString().c_str(), status);
-
         // Find bounds of this transaction in model
         QList<KernelRecord>::iterator lower = qLowerBound(
             cachedWallet.begin(), cachedWallet.end(), hash, TxLessThan());
@@ -147,7 +143,6 @@ printf("(refreshWallet) size %d\n", cachedWallet.size());
             // requeue if the transaction is coinbase and immature
             if(tx_status.is_coinbase && tx_status.blocks_to_maturity > 0)
             {
-//printf("(procEvent) requeue : %s (depth = %d)\n", hash.ToString().c_str(), tx_status.depth_in_main_chain);
                 procQueue.append(std::make_pair(hash, status));
                 return;
             }
@@ -161,11 +156,9 @@ printf("(refreshWallet) size %d\n", cachedWallet.size());
                 {
                     uint256 phash = ins[i].prevout.hash;
                     uint32_t n = ins[i].prevout.n;
-//printf("(procEvent) delRow %s : %d\n", phash.ToString().c_str(), n);
                     
                     for(int i = 0; i < cachedWallet.size(); i++){
                         if(cachedWallet[i].hash == phash && cachedWallet[i].n == n){
-//printf("(procEvent) delRow found at %d\n", i);
                             parent->beginRemoveRows(QModelIndex(), i, i);
                             cachedWallet.removeAt(i);
                             parent->endRemoveRows();
@@ -179,8 +172,6 @@ printf("(refreshWallet) size %d\n", cachedWallet.size());
             int offsetLower = 0;
             for(const KernelRecord& kr : KernelRecord::decomposeOutput(wtx))
             {
-//printf("%s\t%d\n", kr.hash.ToString().c_str(), kr.n);
-//printf("(procEvent) addRow %d : %ld\n", kr.n, kr.nValue);
                 if(parent->walletModel->wallet().isSpent(kr.hash, kr.n)) // spent
                 {
                     continue;
@@ -199,7 +190,6 @@ printf("(refreshWallet) size %d\n", cachedWallet.size());
         else if(status == CT_DELETED)
         {
             // this status is not thrown
-//printf("(procEvent) delete tx %s\n", hash.ToString().c_str());
             parent->beginRemoveRows(QModelIndex(), lowerIndex, upperIndex - 1);
             for(int i = lowerIndex; i < upperIndex; i++)
             {
@@ -224,7 +214,6 @@ printf("(refreshWallet) size %d\n", cachedWallet.size());
                     
                     if(prev_lower == prev_upper) // not in model
                     {
-//printf("(procEvent) reviveRow %s : %d\n", kr.hash.ToString().c_str(), kr.n);
                         parent->beginInsertRows(QModelIndex(), prev_lowerIndex, prev_lowerIndex);
                         cachedWallet.insert(prev_lowerIndex, kr);
                         parent->endInsertRows();
