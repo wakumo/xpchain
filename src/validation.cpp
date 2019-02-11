@@ -3341,7 +3341,7 @@ static bool MakeBlockHashExcludedSignature(const CBlock& block, uint256& hashBlo
     {
         return error("MakeBlockHashExcludedSignature(): the last element of scriptSig is not signature");
     }
-    
+
     CMutableTransaction txCoinBase(*block.vtx[0]);
     txCoinBase.vin[0].scriptSig = CScript(scriptSig.begin(), scriptSig.end() - (op + 1));
     CBlock cpBlock = block;
@@ -3349,6 +3349,8 @@ static bool MakeBlockHashExcludedSignature(const CBlock& block, uint256& hashBlo
     cpBlock.hashMerkleRoot = BlockMerkleRoot(cpBlock);
 
     hashBlock = cpBlock.GetBlockHeader().GetHash();
+
+    return true;
 }
 
 bool CheckBlockSignature(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams)

@@ -124,8 +124,8 @@ static std::vector<std::pair<CTxDestination, int>> GetRewardPct(const CWallet& w
 }
 static bool SignBlock(CBlock* pblock, const CWallet& wallet)
 {
-    CMutableTransaction coinbaseTx(*pblock->vtx[0]);
     assert(pblock->vtx.size() >= 2);
+    CMutableTransaction coinbaseTx(*pblock->vtx[0]);
     std::vector<CPubKey> vPubKeys;
     LogPrintf("get pubkey\n");
     if (!GetPubKeysFromCoinStakeTx(pblock->vtx[1], vPubKeys)) {
@@ -147,10 +147,8 @@ static bool SignBlock(CBlock* pblock, const CWallet& wallet)
             }
         }
     }
-
     LogPrintf("could not get pubkey from wallet\n");
     return false;
-    
 }
 #endif
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
