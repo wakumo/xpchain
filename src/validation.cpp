@@ -3276,6 +3276,7 @@ static bool GetPubKeyFromScript(CScript scriptPubKey, const CTxIn& txIn, std::ve
         break;
         case TX_WITNESS_V0_KEYHASH:
             vPubKey.push_back(CPubKey(txIn.scriptWitness.stack.back().begin(), txIn.scriptWitness.stack.back().end()));
+            break;
         case TX_SCRIPTHASH:
         {
             std::vector<std::vector<unsigned char>> stack;
