@@ -3325,7 +3325,6 @@ bool GetPubKeysFromCoinStakeTx(CTransactionRef txCoinStake, std::vector<CPubKey>
 static bool MakeBlockHashExcludedSignature(const CBlock& block, uint256& hashBlock, std::vector<unsigned char>& sig)
 {
     const CScript& scriptSig = block.vtx[0]->vin[0].scriptSig;
-    int cnt = 0;
 
     auto itr = scriptSig.begin();
     opcodetype op;
