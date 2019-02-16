@@ -1879,7 +1879,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     uint256 hashProofOfStake;
     if(IsPoSHeight(pindex->nHeight, chainparams.GetConsensus()) && !CheckProofOfStake(block.vtx[1], block.nBits, hashProofOfStake, block.nTime))
     {
-        return state.DoS(100, error("CheckProofOfStake Failed"), REJECT_INVALID, "bad-block");
+        return state.DoS(100, error("CheckProofOfStake Failed"), REJECT_INVALID, "bad-blk");
     }
 
     // Check it again in case a previous version let a bad block in
@@ -2142,19 +2142,19 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
         if(hash == uint256())
         {
-            return state.DoS(100, error("ConnectBlock(): block of prevTx not found"), REJECT_INVALID, "bad-prev-block");
+            return state.DoS(100, error("ConnectBlock(): block of prevTx not found"), REJECT_INVALID, "bad-prev-blk");
         }
 
         auto itr = mapBlockIndex.find(hash);
 
         if(itr == mapBlockIndex.end())
         {
-            return state.DoS(100, error("ConnectBlock(): coinstakeTx block was not found"), REJECT_INVALID, "no-prev-block");
+            return state.DoS(100, error("ConnectBlock(): coinstakeTx block was not found"), REJECT_INVALID, "no-prev-blk");
         }
 
         if(hash != (*itr).second->GetBlockHash())
         {
-            return state.DoS(100, error("ConnectBlock(): coinstakeTx block hash is incorrect"), REJECT_INVALID, "bad-prev-block");
+            return state.DoS(100, error("ConnectBlock(): coinstakeTx block hash is incorrect"), REJECT_INVALID, "bad-prev-blk");
         }
 
         CBlockHeader header = (*itr).second->GetBlockHeader();
@@ -2163,17 +2163,17 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
         if(block.vtx[1]->vin.size() != 1)
         {
-            return state.DoS(100, error("ConnectBlock(): vtx[1] is not coinstaketx too many inputs"), REJECT_INVALID, "bad-coinstake");
+            return state.DoS(100, error("ConnectBlock(): vtx[1] is not coinstaketx too many inputs"), REJECT_INVALID, "bad-cs");
         }
 
         if(block.vtx[1]->vout.size() != 1 )
         {
-            return state.DoS(100, error("ConnectBlock(): vtx[1] is not coinstaketx too many outputs"), REJECT_INVALID, "bad-coinstake");
+            return state.DoS(100, error("ConnectBlock(): vtx[1] is not coinstaketx too many outputs"), REJECT_INVALID, "bad-cs");
         }
 
         if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
         {
-            return state.DoS(100, error("ConnectBlock(): vtx[1] is not coinstaketx"), REJECT_INVALID, "bad-coinstake");
+            return state.DoS(100, error("ConnectBlock(): vtx[1] is not coinstaketx"), REJECT_INVALID, "bad-cs");
         }
 
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
@@ -2188,11 +2188,11 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             {
                 if(block.vtx[0]->vout[0].nValue < blockReward)
                 {
-                    state.DoS(100, return error("ConnectBlock(): coinbase pays too little"), REJECT_INVALID, "bad-cb-amount");
+                    return state.DoS(100, error("ConnectBlock(): coinbase pays too little"), REJECT_INVALID, "bad-cb-amount");
                 }
                 if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey))
                 {
-                    return state.DoS(100, error("ConnectBlock(): vtx[1].address != vtx[0].address"), REJECT_INVALID, "bad-coinstake");
+                    return state.DoS(100, error("ConnectBlock(): vtx[1].address != vtx[0].address"), REJECT_INVALID, "bad-cs");
                 }
                 checkCoinBase = true;
             }
@@ -3292,8 +3292,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     {
         if(block.vtx.size() < 2) // block doesn't include coinbase and coinstake
         {
-            // return state.DoS()
-            return false;
+            return state.DoS(100, false, REJECT_INVALID, "bad-blk-length");
         }
     }
     // Check transactions
