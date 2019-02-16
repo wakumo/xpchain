@@ -2205,10 +2205,10 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         {
             if (VersionBitsState(pindex->pprev, chainparams.GetConsensus(), Consensus::BLOCK_SIGNATURE_ADDITION, versionbitscache) == ThresholdState::ACTIVE) {
                 if (!CheckBlockSignature(block, state, chainparams.GetConsensus())) {
-                    return error("ConnectBlock(): CheckBlockSignature failed");
+                    return state.DoS(100, error("ConnectBlock(): CheckBlockSignature failed"), REJECT_INVALID, "bad-signature");
                 }
                 if (block.nNonce != 0){
-                    return error("ConnectBlock(): nonce is not zero");
+                    return state.DoS(100, error("ConnectBlock(): nonce is not zero"), REJECT_INVALID, "bad-nonce");
                 }
             }
         }
