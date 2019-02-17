@@ -2174,7 +2174,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
         if (block.vtx[0]->vout.size() >= 3) {
             if (!VerifyCoinBaseTx(block)) {
-                return state.DoS(100, error("%s: VerifyCoinBaseTx() Failed", __func__), REJECT_INVALID, "bad-cb")
+                return state.DoS(100, error("%s: VerifyCoinBaseTx() failed", __func__), REJECT_INVALID, "bad-cb");
             }
         }
         if (1 <= block.vtx[0]->vout.size() && block.vtx[0]->vout.size() <= 2) {
