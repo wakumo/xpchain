@@ -5046,38 +5046,31 @@ static bool EqualDestination(CTransactionRef txCoinStake, CPubKey pubkey)
 bool VerifyCoinBaseTx(const CBlock& block, CValidationState& state)
 {
     //If the number of transactions is 0, it returns false
-    if(block.vtx.size() < 1)
-    {
-        return false;
+    if (block.vtx.size() < 1) {
+        return state.DoS(100, error("%s: invalid coinbase", __func__), REJECT_INVALID, "bad-blk");
     }
     //sig is data output (number of output destination + signature + pubkey)
     CScript sig = block.vtx[0]->vout[0].scriptPubKey;
     //if the first of sig is OP_RETURN
-    if(sig.size() < 1)
-    {
-        LogPrintf("coinbase sig size is %d\n", sig.size());
-        return false;
+    if (sig.size() < 1) {
+        return state.DoS(100, error("%s: coinbase's scriptPubKey empty", __func__), REJECT_INVALID, "bad-cb");
     }
-    if(sig[0] != OP_RETURN)
-    {
-        LogPrintf("sig[0] != OP_RETURN\n");
-        return false;
+    if (sig[0] != OP_RETURN) {
+        return state.DoS(100, error("%s: coinbase's scriptPubKey must begin with OP_RETURN", __func__), REJECT_INVALID,
+                         "bad-cb");
     }
     //get datas
-    CScriptBase::const_iterator ptr = sig.begin()+1;
+    CScriptBase::const_iterator ptr = sig.begin() + 1;
 
     //get number of output destination
     opcodetype sizeOP;
     std::vector<unsigned char> vchSize;
-    if(!GetScriptOp(ptr, sig.end(), sizeOP, &vchSize))
-    {
-        LogPrintf("size not found\n");
-        return false;
+    if (!GetScriptOp(ptr, sig.end(), sizeOP, &vchSize)) {
+        return state.DoS(100, error("%s: cannot get the number of outputs", __func__), REJECT_INVALID, "bad-cb");
     }
-    if(vchSize.size() > 4)
-    {
-        LogPrintf("size is not 4byte\n");
-        return false;
+    if (vchSize.size() > 4) {
+        return state.DoS(100, error("%s: the number of outputs must be in the range of 32-bit integer", __func__),
+                         REJECT_INVALID, "bad-cb");
     }
     CScriptNum nSize(vchSize, false);
     int size = nSize.getint();
@@ -5085,54 +5078,53 @@ bool VerifyCoinBaseTx(const CBlock& block, CValidationState& state)
     //get signature
     opcodetype sigOP;
     std::vector<unsigned char> vchSig;
-    if(!GetScriptOp(ptr, sig.end(), sigOP, &vchSig))
-    {
-        LogPrintf("signature not found\n");
-        return false;
+    if (!GetScriptOp(ptr, sig.end(), sigOP, &vchSig)) {
+        return state.DoS(100, error("%s: cannot get signature", __func__), REJECT_INVALID, "bad-cb");
     }
 
     //get pubkey
     opcodetype pubkeyOP;
     std::vector<unsigned char> vchPubKey;
-    if(!GetScriptOp(ptr, sig.end(), pubkeyOP, &vchPubKey))
-    {
-        LogPrintf("pubkey not found\n");
-        return false;
+    if (!GetScriptOp(ptr, sig.end(), pubkeyOP, &vchPubKey)) {
+        return state.DoS(100, error("%s: cannot get pubkey", __func__), REJECT_INVALID, "bad-cb");
     }
     CPubKey pubkey(vchPubKey.begin(), vchPubKey.end());
     //printf("size = %d\n", block.vtx[0]->vout[0].scriptPubKey.size());
-    if(!pubkey.IsFullyValid())
-    {
-        LogPrintf("coinbase sig is incorrect\n");
-        return false;
+    if (!pubkey.IsFullyValid()) {
+        return state.DoS(100, error("%s: invalid pubkey", __func__), REJECT_INVALID, "bad-cb");
     }
-    if(size != block.vtx[0]->vout.size() - 2)
-    {
-        return false;
+    if (size != block.vtx[0]->vout.size() - 2) {
+        return state.DoS(100,
+                         error("%s: the number of outputs in scriptPubKey (%d) does not match the actual number of ones (%d)",
+                               __func__, size, block.vtx[0]->vout.size() - 2),
+                         REJECT_INVALID, "bad-cb");
     }
-    if(block.vtx[0]->vout[0].nValue != 0 || block.vtx[0]->vout[size+1].nValue != 0)
-    {
-        return false;
+    if (block.vtx[0]->vout[0].nValue != 0) {
+        return state.DoS(100, error("%s: invalid value of scriptPubKey", __func__), REJECT_INVALID, "bad-cb");
+    }
+    if (block.vtx[0]->vout.back().nValue != 0) {
+        return state.DoS(100, error("%s: invalid value of witness commitment", __func__), REJECT_INVALID, "bad-cb");
     }
     //make rewardvalues and hash
-    std::vector<std::pair<CScript, CAmount>> rewardValues;
+    std::vector <std::pair<CScript, CAmount>> rewardValues;
     rewardValues.clear();
     rewardValues.resize(size);
     //printf("vout size =  %d\n",block.vtx[0]->vout.size());
-    for(size_t i = 1;i<=size;i++)
-    {
-        rewardValues[i-1].first = block.vtx[0]->vout[i].scriptPubKey;
-        rewardValues[i-1].second = block.vtx[0]->vout[i].nValue;
+    for (size_t i = 1; i <= size; i++) {
+        rewardValues[i - 1].first = block.vtx[0]->vout[i].scriptPubKey;
+        rewardValues[i - 1].second = block.vtx[0]->vout[i].nValue;
     }
 
     //address from coinstakeTX output == address from pubkey
-    if(!EqualDestination(block.vtx[1], pubkey))
-    {
-        LogPrintf("coinstaketx output != address from pubkey\n");
-        return false;
+    if (!EqualDestination(block.vtx[1], pubkey)) {
+        return state.DoS(100, error("%s: pubkey does not match coinstake's output", __func__), REJECT_INVALID,
+                         "bad-cb");
     }
 
     uint256 hash = GetRewardHash(rewardValues, block.vtx[1], block.nTime);
     //printf("verify hash = %s\n",hash.ToString().c_str());
-    return pubkey.Verify(hash, vchSig);
+    if (pubkey.Verify(hash, vchSig)) {
+        return true;
+    }
+    return state.DoS(100, error("%s: verify failed", __func__), REJECT_INVALID, "bad-cb");
 }
