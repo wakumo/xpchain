@@ -506,5 +506,6 @@ inline bool IsBlockPruned(const CBlockIndex* pblockindex)
 bool IsPoSHeight(int n, const Consensus::Params& params);
 uint256 GetRewardHash(const std::vector<std::pair<CScript, CAmount>>& vReward,CTransactionRef txCoinStake, uint32_t nTime);
 bool VerifyCoinBaseTx(const CBlock& block);
+bool IsProofOfStakeTx(const CScript& prevTxOut, const CScript& coinStakeTxOut);
 
 #endif // BITCOIN_VALIDATION_H

@@ -5150,3 +5150,27 @@ bool VerifyCoinBaseTx(const CBlock& block)
     //printf("verify hash = %s\n",hash.ToString().c_str());
     return pubkey.Verify(hash, vchSig);
 }
+
+bool IsProofOfStakeTx(const CScript& prevTxOut, const CScript& coinStakeTxOut)
+{
+    txnouttype prevType, coinStakeType;
+    std::vector <std::vector<unsigned char>> prevSol, coinStakeSol;
+
+    if (!Solver(prevTxOut, prevType, prevSol) || !Solver(coinStakeTxOut, coinStakeType, coinStakeSol)) {
+        return false;
+    }
+
+    if (prevType != coinStakeType) {
+        return false;
+    }
+
+    if (prevSol.size() != 1 || coinStakeSol.size() != 1) {
+        return false;
+    }
+
+    if (prevSol[0] != coinStakeSol[0]) {
+        return false;
+    }
+
+    return true;
+}
