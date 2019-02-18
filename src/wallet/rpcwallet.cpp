@@ -4773,7 +4773,7 @@ static UniValue listmintings(const JSONRPCRequest& request)
             "Optionally filter to only include txouts paid to specified addresses.\n"
             "\nArguments:\n"
             "1. period           (numeric, optional, default=10) period in minute of calculate probability and reward\n"
-            "2. minage           (numeric, optional, default=1) The minimum age to filter\n"
+            "2. minage           (numeric, optional, default=0) The minimum age to filter\n"
             "3. maxage           (numeric, optional, default=9999999) The maximum age to filter\n"
             "4. \"addresses\"      (string, optional) A json array of xpchain addresses to filter\n"
             "    [\n"
@@ -4825,7 +4825,7 @@ static UniValue listmintings(const JSONRPCRequest& request)
         nCalculatePeriod = request.params[0].get_int();
     }
 
-    int nMinAge = 1;
+    int nMinAge = 0;
     if (!request.params[1].isNull()) {
         RPCTypeCheckArgument(request.params[1], UniValue::VNUM);
         nMinAge = request.params[1].get_int();
