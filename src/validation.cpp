@@ -2171,7 +2171,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return error("ConnectBlock(): vtx[1] is not coinstaketx too many outputs");
         }
 
-        if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
+        if(!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
         {
             return error("ConnectBlock(): vtx[1] is not coinstaketx");
         }
@@ -2190,7 +2190,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                 {
                     return error("ConnectBlock(): coinbase pays too little");
                 }
-                if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey))
+                if(!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey))
                 {
                     return error("ConnectBlock(): vtx[1].address != vtx[0].address");
                 }
