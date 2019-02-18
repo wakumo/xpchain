@@ -5126,5 +5126,5 @@ bool VerifyCoinBaseTx(const CBlock& block, CValidationState& state)
     if (pubkey.Verify(hash, vchSig)) {
         return true;
     }
-    return state.DoS(100, error("%s: verify failed", __func__), REJECT_INVALID, "bad-cb");
+    return state.DoS(100, error("%s: verification failed", __func__), REJECT_INVALID, "bad-cb");
 }
