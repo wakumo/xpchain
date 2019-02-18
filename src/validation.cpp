@@ -5151,24 +5151,24 @@ bool VerifyCoinBaseTx(const CBlock& block)
     return pubkey.Verify(hash, vchSig);
 }
 
-bool IsProofOfStakeTx(const CScript& prevTxOut, const CScript& coinStakeTxOut)
+bool IsDestinationSame(const CScript& a, const CScript& b)
 {
-    txnouttype prevType, coinStakeType;
-    std::vector <std::vector<unsigned char>> prevSol, coinStakeSol;
+    txnouttype aType, bType;
+    std::vector <std::vector<unsigned char>> aSol, bSol;
 
-    if (!Solver(prevTxOut, prevType, prevSol) || !Solver(coinStakeTxOut, coinStakeType, coinStakeSol)) {
+    if (!Solver(a, aType, aSol) || !Solver(b, bType, bSol)) {
         return false;
     }
 
-    if (prevType != coinStakeType) {
+    if (aType != bType) {
         return false;
     }
 
-    if (prevSol.size() != 1 || coinStakeSol.size() != 1) {
+    if (aSol.size() != 1 || bSol.size() != 1) {
         return false;
     }
 
-    if (prevSol[0] != coinStakeSol[0]) {
+    if (aSol[0] != bSol[0]) {
         return false;
     }
 
