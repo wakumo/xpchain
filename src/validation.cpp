@@ -2130,14 +2130,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         uint256 hash;
         CTransactionRef tx;
 
-        if(!GetTransaction(block.vtx[1]->vin[0].prevout.hash, tx, chainparams.GetConsensus(), hash, true))
-        {
-            return error("ConnectBlock(): coinstakeTx was not found");
-        }
-
-        if(tx->GetHash() != block.vtx[1]->vin[0].prevout.hash)
-        {
-            return error("ConnectBlock(): prevTx Hash is incorrect");
+        if(!IsCoinStakeTxLoadDB(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
+            return state.DoS(100, false, REJECT_INVALID, "bad-cs");
         }
 
         if(hash == uint256())
@@ -2160,21 +2154,6 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         CBlockHeader header = (*itr).second->GetBlockHeader();
 
         uint32_t nTime = block.nTime - header.nTime;
-
-        if(block.vtx[1]->vin.size() != 1)
-        {
-            return error("ConnectBlock(): vtx[1] is not coinstaketx too many inputs");
-        }
-
-        if(block.vtx[1]->vout.size() != 1 )
-        {
-            return error("ConnectBlock(): vtx[1] is not coinstaketx too many outputs");
-        }
-
-        if(!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
-        {
-            return error("ConnectBlock(): vtx[1] is not coinstaketx");
-        }
 
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
         bool checkCoinBase = false;
