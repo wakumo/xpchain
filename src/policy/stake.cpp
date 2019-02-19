@@ -14,33 +14,6 @@
 #include <stdio.h>
 #include <key_io.h>
 
-bool AddressesEqual(const CScript& a, const CScript& b)
-{
-    txnouttype aType, bType;
-    std::vector<std::vector<unsigned char>> aSolutions, bSolutions;
-
-    if(!Solver(a, aType, aSolutions) || !Solver(b, bType, bSolutions))
-    {
-        return false;
-    }
-
-    if(aSolutions.size() != 1 || bSolutions.size() != 1)
-    {
-        return false;
-    }
-
-    //addresses of a,b are the same
-    //TODO: fix
-    CTxDestination aAddress, bAddress;
-    if(!ExtractDestination(a, aAddress) || !ExtractDestination(b, bAddress))
-    {
-        return false;
-    }
-
-    //printf("a = %s b = %s\n", EncodeDestination(aAddress).c_str(), EncodeDestination(bAddress).c_str());
-    return aAddress == bAddress;
-}
-
 bool IsDestinationSame(const CScript& a, const CScript& b)
 {
     txnouttype aType, bType;

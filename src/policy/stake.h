@@ -8,7 +8,6 @@
 #include <primitives/block.h>
 #include <primitives/transaction.h>
 
-bool AddressesEqual(const CScript& a, const CScript& b);
 bool IsDestinationSame(const CScript& prevTxOut, const CScript& coinStakeTxOut);
 
 #endif //BITCOIN_POLICY_STAKE_H
