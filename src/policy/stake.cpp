@@ -13,6 +13,34 @@
 #include <script/standard.h>
 #include <stdio.h>
 #include <key_io.h>
+#include <validation.h>
+#include <util.h>
+
+bool IsCoinStakeTxLoadDB(CTransactionRef tx, const Consensus::Params &consensusParams, uint256 &hashBlock,
+                         CTransactionRef prevTx) {
+    if (tx->vin.size() != 1) {
+        return error("%s: coinstake has too many inputs", __func__);
+    }
+    if (tx->vout.size() != 1) {
+        return error("%s: coinstake has too many outputs", __func__);
+    }
+
+    if (!GetTransaction(tx->vin[0].prevout.hash, prevTx, consensusParams, hashBlock, true)) {
+        return error("%s: unknown coinstake input", __func__);
+    }
+
+    if (prevTx->GetHash() != tx->vin[0].prevout.hash) {
+        return error("%s: invalid coinstake input hash", __func__);
+    }
+
+    if (!IsDestinationSame(prevTx->vout[tx->vin[0].prevout.n].scriptPubKey, tx->vout[0].scriptPubKey)) {
+        return error("%s: invalid coinstake output", __func__);
+    }
+
+    return true;
+}
+
+
 
 bool IsDestinationSame(const CScript& a, const CScript& b)
 {
