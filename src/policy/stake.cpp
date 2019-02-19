@@ -17,7 +17,7 @@
 #include <util.h>
 
 bool IsCoinStakeTxLoadDB(CTransactionRef tx, const Consensus::Params &consensusParams, uint256 &hashBlock,
-                         CTransactionRef prevTx) {
+                         CTransactionRef& prevTx) {
     if (tx->vin.size() != 1) {
         return error("%s: coinstake has too many inputs", __func__);
     }
@@ -52,6 +52,10 @@ bool IsDestinationSame(const CScript& a, const CScript& b)
     }
 
     if (aType != bType) {
+        return false;
+    }
+
+    if (aType == TX_NULL_DATA || aType == TX_MULTISIG || aType == TX_NONSTANDARD) {
         return false;
     }
 

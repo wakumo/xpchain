@@ -9,7 +9,7 @@
 #include <primitives/transaction.h>
 #include <consensus/params.h>
 
-bool IsCoinStakeTxLoadDB(CTransactionRef tx, const Consensus::Params &consensusParams, uint256 &hashBlock, CTransactionRef prevTx);
+bool IsCoinStakeTxLoadDB(CTransactionRef tx, const Consensus::Params &consensusParams, uint256 &hashBlock, CTransactionRef& prevTx);
 bool IsDestinationSame(const CScript& prevTxOut, const CScript& coinStakeTxOut);
 
 #endif //BITCOIN_POLICY_STAKE_H
