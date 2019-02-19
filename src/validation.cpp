@@ -2130,7 +2130,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         uint256 hash;
         CTransactionRef tx;
 
-        if(!IsCoinStakeTxLoadDB(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
+        if(!IsCoinStakeTx(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
             return state.DoS(100, false, REJECT_INVALID, "bad-cs");
         }
 

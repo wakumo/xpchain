@@ -16,7 +16,7 @@
 #include <validation.h>
 #include <util.h>
 
-bool IsCoinStakeTxLoadDB(CTransactionRef tx, const Consensus::Params &consensusParams, uint256 &hashBlock,
+bool IsCoinStakeTx(CTransactionRef tx, const Consensus::Params &consensusParams, uint256 &hashBlock,
                          CTransactionRef& prevTx) {
     if (tx->vin.size() != 1) {
         return error("%s: coinstake has too many inputs", __func__);
