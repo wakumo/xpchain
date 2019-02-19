@@ -40,3 +40,27 @@ bool AddressesEqual(const CScript& a, const CScript& b)
     //printf("a = %s b = %s\n", EncodeDestination(aAddress).c_str(), EncodeDestination(bAddress).c_str());
     return aAddress == bAddress;
 }
+
+bool IsDestinationSame(const CScript& a, const CScript& b)
+{
+    txnouttype aType, bType;
+    std::vector <std::vector<unsigned char>> aSol, bSol;
+
+    if (!Solver(a, aType, aSol) || !Solver(b, bType, bSol)) {
+        return false;
+    }
+
+    if (aType != bType) {
+        return false;
+    }
+
+    if (aSol.size() != 1 || bSol.size() != 1) {
+        return false;
+    }
+
+    if (aSol[0] != bSol[0]) {
+        return false;
+    }
+
+    return true;
+}

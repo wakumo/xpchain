@@ -5150,27 +5150,3 @@ bool VerifyCoinBaseTx(const CBlock& block)
     //printf("verify hash = %s\n",hash.ToString().c_str());
     return pubkey.Verify(hash, vchSig);
 }
-
-bool IsDestinationSame(const CScript& a, const CScript& b)
-{
-    txnouttype aType, bType;
-    std::vector <std::vector<unsigned char>> aSol, bSol;
-
-    if (!Solver(a, aType, aSol) || !Solver(b, bType, bSol)) {
-        return false;
-    }
-
-    if (aType != bType) {
-        return false;
-    }
-
-    if (aSol.size() != 1 || bSol.size() != 1) {
-        return false;
-    }
-
-    if (aSol[0] != bSol[0]) {
-        return false;
-    }
-
-    return true;
-}
