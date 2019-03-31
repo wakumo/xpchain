@@ -649,6 +649,11 @@ void BitcoinMinter(const std::shared_ptr<CWallet>& wallet)
                 continue;
             }
 
+            if(IsInitialBlockDownload()) {
+                MilliSleep(1000);
+                continue;
+            }
+
             //
             // Create new block
             //
