@@ -103,8 +103,8 @@ public:
 
         //  Block Signature addition
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].bit = 2;
-        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = 1548946800;
-        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nTimeout = 1548946800 + 60 * 60 * 24 * 365; //nStartTime + 1Year
+        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = 1554076800; // April 1, 2019;
+        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nTimeout = 1585699200;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -210,8 +210,8 @@ public:
 
         //  Block Signature addition
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].bit = 2;
-        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = 1548946800;
-        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nTimeout = 1548946800 + 60 * 60 * 24 * 365; //nStartTime + 1Year
+        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = 1554076800; // April 1, 2019;
+        consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nTimeout = 1585699200;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
