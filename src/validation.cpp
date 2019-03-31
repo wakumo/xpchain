@@ -3631,6 +3631,17 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     // large by filling up the coinbase witness, which doesn't change
     // the block hash, so we couldn't mark the block as permanently
     // failed).
+
+    if(VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_CHECK_DUP_TXIN, versionbitscache) == ThresholdState::ACTIVE)
+    {
+        // Check transactions
+        for (const auto& tx : block.vtx)
+            if (!CheckTransaction(*tx, state, true))
+                return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
+                                 strprintf("Transaction check failed (tx hash %s) %s", tx->GetHash().ToString(), state.GetDebugMessage()));
+
+    }
+
     if (GetBlockWeight(block) > MAX_BLOCK_WEIGHT) {
         return state.DoS(100, false, REJECT_INVALID, "bad-blk-weight", false, strprintf("%s : weight limit failed", __func__));
     }

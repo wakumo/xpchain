@@ -20,6 +20,8 @@ enum DeploymentPos
     DEPLOYMENT_SEGWIT, // Deployment of BIP141, BIP143, and BIP147.
     BLOCK_SIGNATURE_ADDITION,
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
+
+    DEPLOYMENT_CHECK_DUP_TXIN,
     MAX_VERSION_BITS_DEPLOYMENTS
 };
 

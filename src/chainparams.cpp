@@ -101,6 +101,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
+        // Deployment of Check dup Txin
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].bit = 3;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = 1554076800; // April 1, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = 1585699200;
         //  Block Signature addition
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].bit = 2;
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = 1554076800; // April 1, 2019;
@@ -208,6 +212,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
+        // Deployment of Check dup Txin
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].bit = 3;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = 1554076800; // April 1, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = 1585699200;
         //  Block Signature addition
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].bit = 2;
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = 1554076800; // April 1, 2019;
@@ -303,6 +311,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].bit = 3;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].bit = 2;
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
         consensus.vDeployments[Consensus::BLOCK_SIGNATURE_ADDITION].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
