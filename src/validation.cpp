@@ -2130,14 +2130,13 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         uint256 hash;
         CTransactionRef tx;
 
-        if(!GetTransaction(block.vtx[1]->vin[0].prevout.hash, tx, chainparams.GetConsensus(), hash, true))
-        {
-            return state.DoS(100, error("%s: unknown coinstake input", __func__), REJECT_INVALID, "bad-prev-tx");
+        if(!IsCoinStakeTx(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
+            return state.DoS(100, false, REJECT_INVALID, "bad-cs");
         }
 
-        if(tx->GetHash() != block.vtx[1]->vin[0].prevout.hash)
+        if(hash == uint256())
         {
-            return state.DoS(100, error("%s: invalid coinstake input hash", __func__), REJECT_INVALID, "bad-prev-tx");
+            return error("ConnectBlock(): block of prevTx not found");
         }
 
         auto itr = mapBlockIndex.find(hash);
@@ -2166,7 +2165,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return state.DoS(100, error("%s: coinstake has too many outputs", __func__), REJECT_INVALID, "bad-cs");
         }
 
-        if(!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
+        if(!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
         {
             return state.DoS(100, error("%s: invalid coinstake output", __func__), REJECT_INVALID, "bad-cs");
         }
@@ -2184,7 +2183,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                        __func__, block.vtx[0]->vout[0].nValue, blockReward),
                                  REJECT_INVALID, "bad-cb-amount");
             }
-            if (!AddressesEqual(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey)) {
+            if (!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, block.vtx[0]->vout[0].scriptPubKey)) {
                 return state.DoS(100, error("%s: coinstake and coinbase output mismatched", __func__), REJECT_INVALID,
                                  "bad-cs");
             }
