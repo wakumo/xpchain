@@ -59,7 +59,7 @@ generate a block incompatible to this change.
 Bad block rejection
 -------------------
 
-Your wallet wrongly accepted invalid blocks to consensus rules and then it crashed.
+Your wallet wrongly accepted invalid blocks to some consensus rules and then it crashed.
 Now the wallet rejects them properly, so the crash will never happen.
 
 No more unnecessary minting
@@ -81,12 +81,12 @@ XPChain 0.17.0-3 change log
 ### Consensus
 - #70 `775b417` Consensus: Change consensus.nStakeMinAge (mban259)
 - #72 `d89ec2a` Consensus: Reject bad block (mban259)
-- #78 `not-yet-merged` Consensus: Improve check coinstake (mban259)
-- #81 `not-yet-merged` Consensus: Add more checks for duplicated txIns (mban259)
-- #82 `not-yet-merged` Consensus:Fix kernel (mban259)
+- #78 `f6d4f63` Consensus: Improve check coinstake (mban259)
+- #81 `995ab88` Consensus: Add more checks for duplicated txIns (mban259)
+- #82 `5e9e3b3` Consensus:Fix kernel (mban259)
 
 ### Mining/Staking
-- #62 `not-yet-merged` minting: check block signature (mban259)
+- #62 `e779cc3` minting: check block signature (mban259)
 - #79 `66a3bad` Mining: Add IsInitialBlockDownload to BitcoinMinter (mban259)
 
 ### P2P
@@ -110,11 +110,11 @@ XPChain 0.17.0-3 change log
 Credits
 =======
 
+Thanks to everyone who directly contributed to this release:
+
 - mban259
 - moochannel
 - serisia
 - MaySoMusician
-
-Thanks to everyone who directly contributed to this release:
 
 As well as everyone that reported bugs & issues through Discord etc.
