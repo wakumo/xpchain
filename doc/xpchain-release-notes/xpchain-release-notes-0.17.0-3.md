@@ -62,7 +62,7 @@ Now the wallet rejects them properly, so the crash will never happen.
 No more unnecessary minting
 ---------------------------
 
-The wallet doesn't begin minting before completing download blocks from other nodes,
+The wallet doesn't begin minting before finishing to download blocks from other nodes,
 which prevents the wallet from generating invalid blocks that will be rejected.
 
 GUI changes
