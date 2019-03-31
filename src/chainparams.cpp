@@ -102,8 +102,8 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].bit = 3;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = 0; // TODO:
-        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = 0;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = 1554076800; // April 1, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = 1585699200;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -208,8 +208,8 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].bit = 3;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = 0; // TODO:
-        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = 0;
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nStartTime = 1554076800; // April 1, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CHECK_DUP_TXIN].nTimeout = 1585699200;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
