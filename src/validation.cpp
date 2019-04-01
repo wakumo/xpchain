@@ -2130,13 +2130,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         uint256 hash;
         CTransactionRef tx;
 
-        if(!IsCoinStakeTx(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
+        if(block.vtx.size() < 2 || !IsCoinStakeTx(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
             return state.DoS(100, false, REJECT_INVALID, "bad-cs");
-        }
-
-        if(hash == uint256())
-        {
-            return error("ConnectBlock(): block of prevTx not found");
         }
 
         auto itr = mapBlockIndex.find(hash);
