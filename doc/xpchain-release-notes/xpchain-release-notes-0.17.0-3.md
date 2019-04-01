@@ -81,6 +81,7 @@ XPChain 0.17.0-3 change log
 - #78 `f6d4f63` Consensus: Improve check coinstake (mban259)
 - #81 `995ab88` Consensus: Add more checks for duplicated txIns (mban259)
 - #82 `5e9e3b3` Consensus:Fix kernel (mban259)
+- #84 `cf4540f` Consensus: Undo IsDestinationSame (mban259)
 
 ### Mining/Staking
 - #62 `e779cc3` minting: check block signature (mban259)
