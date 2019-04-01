@@ -2150,21 +2150,6 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
         uint32_t nTime = block.nTime - header.nTime;
 
-        if(block.vtx[1]->vin.size() != 1)
-        {
-            return state.DoS(100, error("%s: coinstake has too many inputs", __func__), REJECT_INVALID, "bad-cs");
-        }
-
-        if(block.vtx[1]->vout.size() != 1 )
-        {
-            return state.DoS(100, error("%s: coinstake has too many outputs", __func__), REJECT_INVALID, "bad-cs");
-        }
-
-        if(!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
-        {
-            return state.DoS(100, error("%s: invalid coinstake output", __func__), REJECT_INVALID, "bad-cs");
-        }
-
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
         if (block.vtx[0]->vout.size() >= 3) {
             if (!VerifyCoinBaseTx(block, state)) {
