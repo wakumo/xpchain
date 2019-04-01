@@ -51,19 +51,16 @@ bool IsDestinationSame(const CScript& a, const CScript& b)
         return false;
     }
 
-    if (aType != bType) {
-        return false;
-    }
-
-    if (aType == TX_NULL_DATA || aType == TX_MULTISIG || aType == TX_NONSTANDARD) {
-        return false;
-    }
-
     if (aSol.size() != 1 || bSol.size() != 1) {
         return false;
     }
 
-    if (aSol[0] != bSol[0]) {
+    CTxDestination aDest,bDest;
+    if(!ExtractDestination(a, aDest) || !ExtractDestination(b, bDest)) {
+        return false;
+    }
+
+    if (aDest != bDest) {
         return false;
     }
 
