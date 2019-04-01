@@ -2130,13 +2130,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         uint256 hash;
         CTransactionRef tx;
 
-        if(!IsCoinStakeTx(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
+        if(block.vtx.size() < 2 || !IsCoinStakeTx(block.vtx[1], chainparams.GetConsensus(), hash, tx)){
             return state.DoS(100, false, REJECT_INVALID, "bad-cs");
-        }
-
-        if(hash == uint256())
-        {
-            return error("ConnectBlock(): block of prevTx not found");
         }
 
         auto itr = mapBlockIndex.find(hash);
@@ -2154,21 +2149,6 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         CBlockHeader header = (*itr).second->GetBlockHeader();
 
         uint32_t nTime = block.nTime - header.nTime;
-
-        if(block.vtx[1]->vin.size() != 1)
-        {
-            return state.DoS(100, error("%s: coinstake has too many inputs", __func__), REJECT_INVALID, "bad-cs");
-        }
-
-        if(block.vtx[1]->vout.size() != 1 )
-        {
-            return state.DoS(100, error("%s: coinstake has too many outputs", __func__), REJECT_INVALID, "bad-cs");
-        }
-
-        if(!IsDestinationSame(block.vtx[1]->vout[0].scriptPubKey, tx->vout[block.vtx[1]->vin[0].prevout.n].scriptPubKey))
-        {
-            return state.DoS(100, error("%s: invalid coinstake output", __func__), REJECT_INVALID, "bad-cs");
-        }
 
         blockReward = GetProofOfStakeReward(pindex->nHeight, tx->vout[block.vtx[1]->vin[0].prevout.n].nValue, nTime, chainparams.GetConsensus());
         if (block.vtx[0]->vout.size() >= 3) {
