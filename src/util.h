@@ -132,7 +132,7 @@ enum class OptionsCategory {
     GUI,
     COMMANDS,
     REGISTER_COMMANDS,
-    STAKE,
+    MINTING,
 
     HIDDEN // Always the last option to avoid printing these in the help
 };
@@ -322,7 +322,7 @@ void RenameThread(const char* name);
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("bitcoin-%s", name);
+    std::string s = strprintf("xpchain-%s", name);
     RenameThread(s.c_str());
     try
     {
